@@ -415,8 +415,7 @@ function _parseSearchResultInitialData(responseText, callback) {
 
     for (var i = 0; i < scripts.length; i++) {
       var script = $(scripts[i]).html();
-      var lines = script.split('
-');
+      var lines = script.split('\n');
       lines.forEach(function (line) {
         var i;
 
@@ -754,9 +753,7 @@ function _parseVideoInitialData(responseText, callback) {
   if (!initialPlayerData) {
     return callback('could not find inital player data in the html document');
   } // debug( initialData[ 0 ] )
-  // debug( '
-------------------
-' )
+  // debug( '\n------------------\n' )
   // debug( initialPlayerData[ 0 ] )
 
 
@@ -1284,8 +1281,7 @@ function _getScripts(text) {
     var data = child && child.data;
 
     if (data) {
-      buffer += data + '
-';
+      buffer += data + '\n';
     }
   }
 
@@ -1296,8 +1292,7 @@ function _findLine(regex, text) {
   var cache = _findLine.cache || {};
   _findLine.cache = cache;
   cache[text] = cache[text] || {};
-  var lines = cache[text].lines || text.split('
-');
+  var lines = cache[text].lines || text.split('\n');
   cache[text].lines = lines;
   clearTimeout(cache[text].timeout);
   cache[text].timeout = setTimeout(function () {
