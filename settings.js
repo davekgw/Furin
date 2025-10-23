@@ -110,7 +110,7 @@ global.wm = "Selfbot•"
 global.botscript = 'Buy dulu!'
 global.version = "4.1.0"
 global.packname = "Selfbot•"
-global.author = "
+global.author = ""
 
 Selfbot•"
 global.creator = "6289631008798@s.whatsapp.net"
