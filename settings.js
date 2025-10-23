@@ -179,8 +179,7 @@ global.decor = {
 	menut: '––––––『',
     menuh: '』––––––',
     menub: '┊☃︎ ',
-    menuf: '┗━═┅═━––––––๑
-',
+    menuf: '┗━═┅═━––––––๑',
 	menua: '',
 	menus: '☃︎',
 
