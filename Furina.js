@@ -1360,6 +1360,29 @@ percentase: *${similarityPercentage}%*`;
         ephemeralExpiration: 86400
       });
     };
+    const replydaftar = _0x592995 => {
+      DinzBotz.sendMessage(m.chat, {
+        text: _0x592995,
+        contextInfo: {
+              isForwarded: true,
+              mentionedJid: [m.sender],
+              forwardedNewsletterMessageInfo: {
+                newsletterJid: "120363186130999681@newsletter",
+                newsletterName: `Dev~`
+              },
+              externalAdReply: {
+                title: `Silahkan Daftar🍁`,
+                body: `Register Selfbot~`,
+                thumbnailUrl: "https://files.catbox.moe/ptq0jd.jpeg",
+                sourceUrl: "https://github.com/davekgw",
+                mediaType: 1,
+                renderLargerThumbnail: true
+              }
+            }
+      }, {
+        quoted: m
+      });
+    };
     //Pengubah Text
     const DinzID = (text, style = 1) => {
       var abc = "abcdefghijklmnopqrstuvwxyz1234567890".split("");
