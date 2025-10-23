@@ -701,8 +701,7 @@ percentase: *${similarityPercentage}%*`;
         fileLength: 99999,
         mimetype: "image/png",
         jpegThumbnail: fs.readFileSync("./data/media/reply.jpg"),
-        caption: "
-" + teks
+        caption: "" + teks
       }, {
         quoted: fsaluran,
         ephemeralExpiration: 86400
@@ -728,8 +727,7 @@ percentase: *${similarityPercentage}%*`;
         fileLength: 99999,
         mimetype: "image/png",
         jpegThumbnail: fs.readFileSync("./data/media/reply.jpg"),
-        caption: "
-" + teks
+        caption: "" + teks
       }, {
         quoted: fsaluran,
         ephemeralExpiration: 86400
