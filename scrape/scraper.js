@@ -452,11 +452,16 @@ exports.chara = async (query) => {
 						const $$ = cheerio.load(data.data)
 						resolve({
 							nama: $$('#siteContainer > h1').text(),
-							gender: $$('#siteContainer > section.pure-g.entryBar > div:nth-child(1)').text().split('\nGender: ')[1],
-							warna_rambut: $$('#siteContainer > section.pure-g.entryBar > div:nth-child(2)').text().split('\nHair Color: ')[1],
-							warna_mata: $$('#siteContainer > section:nth-child(11) > div > div > div > div > div:nth-child(1) > div').text().split('\n')[1],
-							gol_darah: $$('#siteContainer > section:nth-child(11) > div > div > div > div > div:nth-child(2) > div').text().split('\n')[1],
-							birthday: $$('#siteContainer > section:nth-child(11) > div > div > div > div > div:nth-child(3) > div').text().split('\n')[1],
+							gender: $$('#siteContainer > section.pure-g.entryBar > div:nth-child(1)').text().split('
+Gender: ')[1],
+							warna_rambut: $$('#siteContainer > section.pure-g.entryBar > div:nth-child(2)').text().split('
+Hair Color: ')[1],
+							warna_mata: $$('#siteContainer > section:nth-child(11) > div > div > div > div > div:nth-child(1) > div').text().split('
+')[1],
+							gol_darah: $$('#siteContainer > section:nth-child(11) > div > div > div > div > div:nth-child(2) > div').text().split('
+')[1],
+							birthday: $$('#siteContainer > section:nth-child(11) > div > div > div > div > div:nth-child(3) > div').text().split('
+')[1],
 							description: $$('#siteContainer > section:nth-child(11) > div > div > div > div:nth-child(1) > p').text()
 						})
 					})
@@ -935,7 +940,8 @@ exports.gempa = async () => {
 				})
 				teks = ''
 				for (let i = 0; i < drasa.length; i++) {
-					teks += drasa[i] + '\n'
+					teks += drasa[i] + '
+'
 				}
 				const rasa = teks
 				const format = {
@@ -1017,13 +1023,18 @@ exports.bacaresep = async (query) => {
 				const hasil = $('body > div.all-wrapper.with-animations > div.single-panel.os-container > div.single-panel-main > div.single-meta > ul > li.single-meta-serves > span').text().split(': ')[1]
 				const level = $('body > div.all-wrapper.with-animations > div.single-panel.os-container > div.single-panel-main > div.single-meta > ul > li.single-meta-difficulty > span').text().split(': ')[1]
 				const thumb = $('body > div.all-wrapper.with-animations > div.single-panel.os-container > div.single-panel-details > div > div.single-main-media > img').attr('src')
-				tbahan = 'bahan\n'
+				tbahan = 'bahan
+'
 				for (let i = 0; i < abahan.length; i++) {
-					tbahan += abahan[i] + ' ' + atakaran[i] + '\n'
+					tbahan += abahan[i] + ' ' + atakaran[i] + '
+'
 				}
-				ttahap = 'tahap\n'
+				ttahap = 'tahap
+'
 				for (let i = 0; i < atahap.length; i++) {
-					ttahap += atahap[i] + '\n\n'
+					ttahap += atahap[i] + '
+
+'
 				}
 				const tahap = ttahap
 				const bahan = tbahan
@@ -1034,8 +1045,10 @@ exports.bacaresep = async (query) => {
 						hasil_nya: hasil,
 						tingkat_kesulitan: level,
 						thumb_nya: thumb,
-						bahan_nya: bahan.split('bahan\n')[1],
-						langkah_langkah: tahap.split('tahap\n')[1]
+						bahan_nya: bahan.split('bahan
+')[1],
+						langkah_langkah: tahap.split('tahap
+')[1]
 				}
 				resolve(result)
 			})
@@ -1254,7 +1267,8 @@ exports.sfiledown = async (link) => {
 					mime: other.substr(other.length - 6).split('.')[1],
 					desc: desc,
 					uploader: uploader,
-					uploaded: upload.split('\n - Uploaded: ')[1],
+					uploaded: upload.split('
+ - Uploaded: ')[1],
 					download_count: download.split(' - Downloads: ')[1],
 					link: link
 				}
@@ -1392,7 +1406,8 @@ exports.apkmody = (query) => {
 				})
 				$('#primary > section:nth-child(3) > div > div > div > article > a > div > div > p').each(function(c, d) {
 					modd = $(d).text();
-					mod.push(modd.split('\n')[1])
+					mod.push(modd.split('
+')[1])
 				})
 				$('#primary > section:nth-child(3) > div > div > div > article > a > div > img').each(function(e, f) {
 					thumb.push($(f).attr('src'))
@@ -1650,10 +1665,18 @@ exports.artinama = (query) => {
 			}) => {
 				const $ = cheerio.load(data)
 				const result = $('#body').text();
-				const result2 = result.split('\n      \n        \n        \n')[0]
+				const result2 = result.split('
+      
+        
+        
+')[0]
 				const result4 = result2.split('ARTI NAMA')[1]
-				const result5 = result4.split('.\n\n')
-				const result6 = result5[0] + '\n\n' + result5[1]
+				const result5 = result4.split('.
+
+')
+				const result6 = result5[0] + '
+
+' + result5[1]
 				resolve(result6)
 			})
 			.catch(reject)

@@ -384,15 +384,23 @@ exports.makeWASocket = (connectionOptions, options = {}) => {
                     let vcard = `
 BEGIN:VCARD
 VERSION:3.0
-FN:${name.replace(/\n/g, '\\n')}
+FN:${name.replace(/
+/g, '\
+')}
 ORG:
 item1.TEL;waid=${number}:${PhoneNumber('+' + number).getNumber('international')}
 item1.X-ABLabel:Ponsel${biz.description ? `
-item2.EMAIL;type=INTERNET:${(biz.email || '').replace(/\n/g, '\\n')}
+item2.EMAIL;type=INTERNET:${(biz.email || '').replace(/
+/g, '\
+')}
 item2.X-ABLabel:Email
 PHOTO;BASE64:${(await DinzBotz.getFile(await DinzBotz.profilePictureUrl(njid)).catch(_ => ({})) || {}).number?.toString('base64')}
-X-WA-BIZ-DESCRIPTION:${(biz.description || '').replace(/\n/g, '\\n')}
-X-WA-BIZ-NAME:${name.replace(/\n/g, '\\n')}
+X-WA-BIZ-DESCRIPTION:${(biz.description || '').replace(/
+/g, '\
+')}
+X-WA-BIZ-NAME:${name.replace(/
+/g, '\
+')}
 ` : ''}
 END:VCARD
 `.trim()
@@ -431,10 +439,14 @@ END:VCARD
                 }, [])
                 let teks = result
                     .map((v, index) => {
-                        return `${v.title || ''}\n${v.rowId || ''}\n${v.description || ''}`.trim()
+                        return `${v.title || ''}
+${v.rowId || ''}
+${v.description || ''}`.trim()
                     })
                     .filter(v => v)
-                    .join("\n\n")
+                    .join("
+
+")
                 return DinzBotz.sendMessage(jid, {
                     ...options,
                     text: teks
@@ -1215,7 +1227,9 @@ DinzBotz.setBio = async (status) => {
       {
         interactiveMessage: {
           body: {
-            text: "\n" + text + "\n",
+            text: "
+" + text + "
+",
           },
           footer: {
             text: "Powered by : dcodekemii",

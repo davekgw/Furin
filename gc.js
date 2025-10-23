@@ -12,7 +12,10 @@ function GroupParticipants(Zion, { id, participants, action, author }) {
 
                 switch (action) {
                     case "add":
-                        Zion.sendMessage(id, {image: {url: `https://api.siputzx.my.id/api/canvas/welcomev4?avatar=https://files.catbox.moe/nwvkbt.png&background=${setwel}&description=@${jid.split("@")[0]}` }, caption: `Hai @${jid.split("@")[0]} 👋\n\nSelamat datang di *${subject}*!\nJangan lupa baca deskripsi grup dan tetap patuhi aturan. 😊✨`,
+                        Zion.sendMessage(id, {image: {url: `https://api.siputzx.my.id/api/canvas/welcomev4?avatar=https://files.catbox.moe/nwvkbt.png&background=${setwel}&description=@${jid.split("@")[0]}` }, caption: `Hai @${jid.split("@")[0]} 👋
+
+Selamat datang di *${subject}*!
+Jangan lupa baca deskripsi grup dan tetap patuhi aturan. 😊✨`,
                                 contextInfo: { mentionedJid: [jid] }
                             },
                             { ephemeralExpiration: WA_DEFAULT_EPHEMERAL }
@@ -20,7 +23,8 @@ function GroupParticipants(Zion, { id, participants, action, author }) {
                         break
 
                     case "remove":
-                        Zion.sendMessage(id, {image: {url: `https://api.siputzx.my.id/api/canvas/goodbyev4?avatar=https://files.catbox.moe/nwvkbt.png&background=${setwel}&description=@${jid.split("@")[0]}` }, caption: `Selamat tinggal @${jid.split("@")[0]} 👋\nSemoga sukses di luar sana! 🚀`,
+                        Zion.sendMessage(id, {image: {url: `https://api.siputzx.my.id/api/canvas/goodbyev4?avatar=https://files.catbox.moe/nwvkbt.png&background=${setwel}&description=@${jid.split("@")[0]}` }, caption: `Selamat tinggal @${jid.split("@")[0]} 👋
+Semoga sukses di luar sana! 🚀`,
                                 contextInfo: { mentionedJid: [jid] }
                             },
                             { ephemeralExpiration: WA_DEFAULT_EPHEMERAL }

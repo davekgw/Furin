@@ -61,7 +61,8 @@ function getDoujin(identifier) {
                         const el = $(this);
                         el.text(` (${el.text()}) `);
                     });
-                    $('.tag-container.field-name').text().split('\n').map(string => string.trim()).filter(u => u).map((tag, i, tags) => {
+                    $('.tag-container.field-name').text().split('
+').map(string => string.trim()).filter(u => u).map((tag, i, tags) => {
                         if (tag.endsWith(':') && !tags[i + 1].endsWith(':')) {
                             details[tag.substring(0, tag.length - 1).toLowerCase()] = tags[i + 1].replace(tagSpacerPatternn, '$1 $2').split(tagSplitPattern);
                         }
@@ -312,21 +313,32 @@ function nomorhp(nomor) {
       let result;
       try {
           result = {
-            nomor_hp: fetchText.split('No. HP : ')[1].split('\n')[0],
-            angka_bagua_shuzi: fetchText.split('Angka Bagua Shuzi : ')[1].split('\n')[0],
+            nomor_hp: fetchText.split('No. HP : ')[1].split('
+')[0],
+            angka_bagua_shuzi: fetchText.split('Angka Bagua Shuzi : ')[1].split('
+')[0],
             energi_positif: {
-              kekayaan: fetchText.split('Kekayaan = ')[1].split('\n')[0],
-              kesehatan: fetchText.split('Kesehatan = ')[1].split('\n')[0],
-              cinta: fetchText.split('Cinta/Relasi = ')[1].split('\n')[0],
-              kestabilan: fetchText.split('Kestabilan = ')[1].split('\n')[0],
+              kekayaan: fetchText.split('Kekayaan = ')[1].split('
+')[0],
+              kesehatan: fetchText.split('Kesehatan = ')[1].split('
+')[0],
+              cinta: fetchText.split('Cinta/Relasi = ')[1].split('
+')[0],
+              kestabilan: fetchText.split('Kestabilan = ')[1].split('
+')[0],
               persentase: fetchText.split('Kestabilan = ')[1].split('% = ')[1].split('ENERGI NEGATIF')[0]
             },
             energi_negatif: {
-              perselisihan: fetchText.split('Perselisihan = ')[1].split('\n')[0],
-              kehilangan: fetchText.split('Kehilangan = ')[1].split('\n')[0],
-              malapetaka: fetchText.split('Malapetaka = ')[1].split('\n')[0],
-              kehancuran: fetchText.split('Kehancuran = ')[1].split('\n')[0],
-              persentase: fetchText.split('Kehancuran = ')[1].split('% = ')[1].split("\n")[0]
+              perselisihan: fetchText.split('Perselisihan = ')[1].split('
+')[0],
+              kehilangan: fetchText.split('Kehilangan = ')[1].split('
+')[0],
+              malapetaka: fetchText.split('Malapetaka = ')[1].split('
+')[0],
+              kehancuran: fetchText.split('Kehancuran = ')[1].split('
+')[0],
+              persentase: fetchText.split('Kehancuran = ')[1].split('% = ')[1].split("
+")[0]
             },
             notes: fetchText.split('* ')[1].split('Masukan Nomor HP Anda')[0]
           }
@@ -727,8 +739,10 @@ function cerpen (category) {
                 let hasil = {
                     title: $$('#content > article > h1').text(),
                     author: $$('#content > article').text().split('Cerpen Karangan: ')[1].split('Kategori: ')[0],
-                    kategori: $$('#content > article').text().split('Kategori: ')[1].split('\n')[0],
-                    lolos: $$('#content > article').text().split('Lolos moderasi pada: ')[1].split('\n')[0],
+                    kategori: $$('#content > article').text().split('Kategori: ')[1].split('
+')[0],
+                    lolos: $$('#content > article').text().split('Lolos moderasi pada: ')[1].split('
+')[0],
                     cerita: $$('#content > article > p').text()
                 }
                 resolve(hasil)
@@ -824,7 +838,8 @@ function otakudesu(judul){
 		result.rilis = $$(b).find('p:nth-child(9)').text().replace('Tanggal Rilis: ','')
 		result.studio = $$(b).find('p:nth-child(10)').text().replace('Studio: ','')
 		result.genre = $$(b).find('p:nth-child(11)').text().replace('Genre: ','')
-		result.desc = $$('#venkonten > div.venser > div.fotoanime > div.sinopc').text().replace('.','\n') + $$(b).find('div.sinopc > p:nth-child(2)').text()
+		result.desc = $$('#venkonten > div.venser > div.fotoanime > div.sinopc').text().replace('.','
+') + $$(b).find('div.sinopc > p:nth-child(2)').text()
 		result.batch = $$('#venkonten > div.venser > div:nth-child(10) > ul > li > span:nth-child(1) > a').attr('href')
 	})
 	const lim = $$('#venkonten > div.venser > div:nth-child(10) > ul > li > span:nth-child(1) > a').attr('href')

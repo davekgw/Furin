@@ -547,7 +547,10 @@ module.exports = DinzBotz = async (DinzBotz, m, chatUpdate, store) => {
           if (mean && command.toLowerCase() !== mean.toLowerCase()) {
             // Pesan untuk orang yang salah menginput perintah
             let respon = `
-Maksudnya?\n\n➠ Command \`${prefix + mean}\`\n➠ Similarity   \`[ ${similarityPercentage}% ]\``.trim();
+Maksudnya?
+
+➠ Command \`${prefix + mean}\`
+➠ Similarity   \`[ ${similarityPercentage}% ]\``.trim();
             let button = [{
               name: "quick_reply",
               buttonParamsJson: `{\"display_text\":\"${prefix + mean} (${similarityPercentage}%)\",\"id\":\"${prefix + mean}\"}`
@@ -608,7 +611,13 @@ Maksudnya?\n\n➠ Command \`${prefix + mean}\`\n➠ Similarity   \`[ ${similarit
       message: {
         contactMessage: {
           displayName: `${botname}`,
-          vcard: `BEGIN:VCARD\nVERSION:3.0\nN:XL;ttname,;;;\nFN:ttname\nitem1.TEL;waid=6285813708397:+62 857 2602 0929\nitem1.X-ABLabel:Ponsel\nEND:VCARD`,
+          vcard: `BEGIN:VCARD
+VERSION:3.0
+N:XL;ttname,;;;
+FN:ttname
+item1.TEL;waid=6285813708397:+62 857 2602 0929
+item1.X-ABLabel:Ponsel
+END:VCARD`,
           sendEphemeral: true
         }
       }
@@ -662,7 +671,10 @@ Maksudnya?\n\n➠ Command \`${prefix + mean}\`\n➠ Similarity   \`[ ${similarit
           let sim = similarity(our, mean);
           let similarityPercentage = parseInt(sim * 100);
           if (mean && our.toLowerCase() !== mean.toLowerCase()) {
-            didyoumenn = `*\`[ MATCH FOR THIS COMMAND ]\`*\n\nmungkin yang anda maksud adalah: *.${mean}*\npercentase: *${similarityPercentage}%*`;
+            didyoumenn = `*\`[ MATCH FOR THIS COMMAND ]\`*
+
+mungkin yang anda maksud adalah: *.${mean}*
+percentase: *${similarityPercentage}%*`;
             /*
             # similarityPercentage
             # mean
@@ -689,7 +701,8 @@ Maksudnya?\n\n➠ Command \`${prefix + mean}\`\n➠ Similarity   \`[ ${similarit
         fileLength: 99999,
         mimetype: "image/png",
         jpegThumbnail: fs.readFileSync("./data/media/reply.jpg"),
-        caption: "\n" + teks
+        caption: "
+" + teks
       }, {
         quoted: fsaluran,
         ephemeralExpiration: 86400
@@ -715,7 +728,8 @@ Maksudnya?\n\n➠ Command \`${prefix + mean}\`\n➠ Similarity   \`[ ${similarit
         fileLength: 99999,
         mimetype: "image/png",
         jpegThumbnail: fs.readFileSync("./data/media/reply.jpg"),
-        caption: "\n" + teks
+        caption: "
+" + teks
       }, {
         quoted: fsaluran,
         ephemeralExpiration: 86400
@@ -1145,7 +1159,10 @@ async function generateAndSendCertificate(recipientName, achievementText) {
       reply(result);
     }
     let example = teks => {
-      return `\n*Contoh Penggunaan :*\nketik *${command}* ${teks}\n`;
+      return `
+*Contoh Penggunaan :*
+ketik *${command}* ${teks}
+`;
     };
     DinzBotz.ments = (teks = "") => {
       if (teks.match("@")) {
@@ -1666,7 +1683,13 @@ async function generateAndSendCertificate(recipientName, achievementText) {
       message: {
         contactMessage: {
           displayName: ownername,
-          vcard: `BEGIN:VCARD\nVERSION:3.0\nN:XL;${ownername},;;;\nFN:${ownername}\nitem1.TEL;waid=6285813708397:6285813708397\nitem1.X-ABLabel:Mobile\nEND:VCARD`,
+          vcard: `BEGIN:VCARD
+VERSION:3.0
+N:XL;${ownername},;;;
+FN:${ownername}
+item1.TEL;waid=6285813708397:6285813708397
+item1.X-ABLabel:Mobile
+END:VCARD`,
           jpegThumbnail: thumb,
           thumbnail: thumb,
           sendEphemeral: true
@@ -1703,7 +1726,19 @@ async function generateAndSendCertificate(recipientName, achievementText) {
     for (let i of owner) {
       list.push({
         displayName: await DinzBotz.getName(i),
-        vcard: `BEGIN:VCARD\nVERSION:3.0\nN:${await DinzBotz.getName(i)}\nFN:${await DinzBotz.getName(i)}\nitem1.TEL;waid=${i}:${i}\nitem1.X-ABLabel:Click here to chat\nitem2.EMAIL;type=INTERNET:${yt}\nitem2.X-ABLabel:YouTube\nitem3.URL:${socialm}\nitem3.X-ABLabel:GitHub\nitem4.ADR:;;${location};;;;\nitem4.X-ABLabel:Region\nEND:VCARD`
+        vcard: `BEGIN:VCARD
+VERSION:3.0
+N:${await DinzBotz.getName(i)}
+FN:${await DinzBotz.getName(i)}
+item1.TEL;waid=${i}:${i}
+item1.X-ABLabel:Click here to chat
+item2.EMAIL;type=INTERNET:${yt}
+item2.X-ABLabel:YouTube
+item3.URL:${socialm}
+item3.X-ABLabel:GitHub
+item4.ADR:;;${location};;;;
+item4.X-ABLabel:Region
+END:VCARD`
       });
     }
     const repPy = {
@@ -1851,7 +1886,8 @@ Desc : ${PlXz.player_response.videoDetails.shortDescription}`
             return console.log(`${teks}`);
           }
           filteredArray.map(function (e, i) {
-            teks += `${i + 1}. ${e}\n`;
+            teks += `${i + 1}. ${e}
+`;
           });
           await filteredArray.forEach(function (file) {});
           await sleep(2000);
@@ -2355,7 +2391,8 @@ Desc : ${PlXz.player_response.videoDetails.shortDescription}`
         } else {
           const nyut = await DinzIDTTDL(budy);
           await DinzBotz.sendMessage(m.chat, {
-            caption: `Judul: ${nyut.title ?? "Tidak diketahui"}\nDeskripsi: ${nyut.description ?? "Tidak diketahui"}`,
+            caption: `Judul: ${nyut.title ?? "Tidak diketahui"}
+Deskripsi: ${nyut.description ?? "Tidak diketahui"}`,
             video: {
               url: nyut.downloadLink || nyut.hdDownloadLink
             }
@@ -2486,17 +2523,23 @@ if (m.isGroup) {
         let isgclink = isLinkThisGc.test(m.text);
         if (isgclink) {
           return DinzBotz.sendMessage(m.chat, {
-            text: `\`\`\`「 Group Link Detected 」\`\`\`\n\n Anda tidak akan di kick oleh bot karena yang Anda kirim adalah tautan ke grup ini`
+            text: `\`\`\`「 Group Link Detected 」\`\`\`
+
+ Anda tidak akan di kick oleh bot karena yang Anda kirim adalah tautan ke grup ini`
           });
         }
         if (isAdmins) {
           return DinzBotz.sendMessage(m.chat, {
-            text: `\`\`\`「 Group Link Detected 」\`\`\`\n\n Admin mengirimkan link, admin mah bebas memposting link apapun`
+            text: `\`\`\`「 Group Link Detected 」\`\`\`
+
+ Admin mengirimkan link, admin mah bebas memposting link apapun`
           });
         }
         if (DinzTheCreator) {
           return DinzBotz.sendMessage(m.chat, {
-            text: `\`\`\`「 Group Link Detected 」\`\`\`\n\n owner telah mengirim tautan, owner bebas memposting tautan apa pun`
+            text: `\`\`\`「 Group Link Detected 」\`\`\`
+
+ owner telah mengirim tautan, owner bebas memposting tautan apa pun`
           });
         }
         kice = m.sender;
@@ -2509,7 +2552,10 @@ if (m.isGroup) {
           }
         });
         DinzBotz.sendMessage(from, {
-          text: `\`\`\`「 Tautan Terdeteksi 」\`\`\`\n\n@${m.sender.split("@")[0]} telah mengirimkan tautan dan berhasil dihapus\n> MELANGGAR 3X ADMIN BAKAL NGEKICK😹`,
+          text: `\`\`\`「 Tautan Terdeteksi 」\`\`\`
+
+@${m.sender.split("@")[0]} telah mengirimkan tautan dan berhasil dihapus
+> MELANGGAR 3X ADMIN BAKAL NGEKICK😹`,
           contextInfo: {
             mentionedJid: [m.sender]
           }
@@ -2528,17 +2574,23 @@ if (m.isGroup) {
         let isgclink = isLinkThisGc.test(m.text);
         if (isgclink) {
           return DinzBotz.sendMessage(m.chat, {
-            text: `\`\`\`「 Channel Link Detected 」\`\`\`\n\n Anda tidak akan di kick oleh bot karena yang Anda kirim adalah tautan ke grup ini`
+            text: `\`\`\`「 Channel Link Detected 」\`\`\`
+
+ Anda tidak akan di kick oleh bot karena yang Anda kirim adalah tautan ke grup ini`
           });
         }
         if (isAdmins) {
           return DinzBotz.sendMessage(m.chat, {
-            text: `\`\`\`「 Channel Link Detected 」\`\`\`\n\n Admin mengirimkan link, admin mah bebas memposting link apapun`
+            text: `\`\`\`「 Channel Link Detected 」\`\`\`
+
+ Admin mengirimkan link, admin mah bebas memposting link apapun`
           });
         }
         if (DinzTheCreator) {
           return DinzBotz.sendMessage(m.chat, {
-            text: `\`\`\`「 Channel Link Detected 」\`\`\`\n\n owner telah mengirim tautan, owner bebas memposting tautan apa pun`
+            text: `\`\`\`「 Channel Link Detected 」\`\`\`
+
+ owner telah mengirim tautan, owner bebas memposting tautan apa pun`
           });
         }
         kice = m.sender;
@@ -2551,7 +2603,10 @@ if (m.isGroup) {
           }
         });
         DinzBotz.sendMessage(from, {
-          text: `\`\`\`「 Tautan Terdeteksi 」\`\`\`\n\n@${m.sender.split("@")[0]} telah mengirimkan tautan dan berhasil dihapus\n> MELANGGAR 3X ADMIN BAKAL NGEKICK😹`,
+          text: `\`\`\`「 Tautan Terdeteksi 」\`\`\`
+
+@${m.sender.split("@")[0]} telah mengirimkan tautan dan berhasil dihapus
+> MELANGGAR 3X ADMIN BAKAL NGEKICK😹`,
           contextInfo: {
             mentionedJid: [m.sender]
           }
@@ -2570,17 +2625,23 @@ if (m.isGroup) {
         let isgclink = isLinkThisGc.test(m.text);
         if (isgclink) {
           return DinzBotz.sendMessage(m.chat, {
-            text: `\`\`\`「 Wa.me Detected 」\`\`\`\n\n Anda tidak akan di kick oleh bot karena yang Anda kirim adalah tautan ke grup ini`
+            text: `\`\`\`「 Wa.me Detected 」\`\`\`
+
+ Anda tidak akan di kick oleh bot karena yang Anda kirim adalah tautan ke grup ini`
           });
         }
         if (isAdmins) {
           return DinzBotz.sendMessage(m.chat, {
-            text: `\`\`\`「 Wa.me Detected 」\`\`\`\n\n Admin mengirimkan link, admin mah bebas memposting link apapun`
+            text: `\`\`\`「 Wa.me Detected 」\`\`\`
+
+ Admin mengirimkan link, admin mah bebas memposting link apapun`
           });
         }
         if (DinzTheCreator) {
           return DinzBotz.sendMessage(m.chat, {
-            text: `\`\`\`「 Wa.me Detected 」\`\`\`\n\n owner telah mengirim tautan, owner bebas memposting tautan apa pun`
+            text: `\`\`\`「 Wa.me Detected 」\`\`\`
+
+ owner telah mengirim tautan, owner bebas memposting tautan apa pun`
           });
         }
         kice = m.sender;
@@ -2593,7 +2654,10 @@ if (m.isGroup) {
           }
         });
         DinzBotz.sendMessage(from, {
-          text: `\`\`\`「 Tautan Terdeteksi 」\`\`\`\n\n@${m.sender.split("@")[0]} telah mengirimkan tautan dan berhasil dihapus\n> MELANGGAR 3X ADMIN BAKAL NGEKICK😹`,
+          text: `\`\`\`「 Tautan Terdeteksi 」\`\`\`
+
+@${m.sender.split("@")[0]} telah mengirimkan tautan dan berhasil dihapus
+> MELANGGAR 3X ADMIN BAKAL NGEKICK😹`,
           contextInfo: {
             mentionedJid: [m.sender]
           }
@@ -2618,7 +2682,9 @@ if (m.isGroup) {
           }
         });
         DinzBotz.sendMessage(from, {
-          text: `\`\`\`「 Virus Detected 」\`\`\`\n\n@${m.sender.split("@")[0]}  because of sending virus in this group`,
+          text: `\`\`\`「 Virus Detected 」\`\`\`
+
+@${m.sender.split("@")[0]}  because of sending virus in this group`,
           contextInfo: {
             mentionedJid: [m.sender]
           }
@@ -2632,7 +2698,9 @@ if (m.isGroup) {
     if (antiToxic) {
       if (BadDinzID.includes(messagesD)) {
         if (m.text) {
-          bvl = `\`\`\`「 Bad Word Detected 」\`\`\`\n\nYou are using bad word but you are an admin/owner that's why i won't kick you😇`;
+          bvl = `\`\`\`「 Bad Word Detected 」\`\`\`
+
+You are using bad word but you are an admin/owner that's why i won't kick you😇`;
           if (isAdmins) {
             return reply(bvl);
           }
@@ -2651,7 +2719,9 @@ if (m.isGroup) {
             }
           });
           await DinzBotz.sendMessage(from, {
-            text: `\`\`\`「 Bad Word Detected 」\`\`\`\n\n@${m.sender.split("@")[0]} was kicked because of using bad words in this group`,
+            text: `\`\`\`「 Bad Word Detected 」\`\`\`
+
+@${m.sender.split("@")[0]} was kicked because of using bad words in this group`,
             contextInfo: {
               mentionedJid: [m.sender]
             }
@@ -2673,12 +2743,16 @@ if (m.isGroup) {
         let isgclink = isLinkThisGc.test(m.text);
         if (isAdmins) {
           return DinzBotz.sendMessage(m.chat, {
-            text: `\`\`\`「 Link Video Yt Detected 」\`\`\`\n\n Admin mengirimkan link, admin mah bebas memposting link apapun`
+            text: `\`\`\`「 Link Video Yt Detected 」\`\`\`
+
+ Admin mengirimkan link, admin mah bebas memposting link apapun`
           });
         }
         if (DinzTheCreator) {
           return DinzBotz.sendMessage(m.chat, {
-            text: `\`\`\`「 Link Video Yt Detected 」\`\`\`\n\n owner telah mengirim tautan, owner bebas memposting tautan apa pun`
+            text: `\`\`\`「 Link Video Yt Detected 」\`\`\`
+
+ owner telah mengirim tautan, owner bebas memposting tautan apa pun`
           });
         }
         kice = m.sender;
@@ -2691,7 +2765,10 @@ if (m.isGroup) {
           }
         });
         DinzBotz.sendMessage(from, {
-          text: `\`\`\`「 Tautan Terdeteksi 」\`\`\`\n\n@${m.sender.split("@")[0]} telah mengirimkan tautan dan berhasil dihapus\n> MELANGGAR 3X ADMIN BAKAL NGEKICK😹`,
+          text: `\`\`\`「 Tautan Terdeteksi 」\`\`\`
+
+@${m.sender.split("@")[0]} telah mengirimkan tautan dan berhasil dihapus
+> MELANGGAR 3X ADMIN BAKAL NGEKICK😹`,
           contextInfo: {
             mentionedJid: [m.sender]
           }
@@ -2706,12 +2783,16 @@ if (m.isGroup) {
       if (budy.includes("https://www.instagram.com/")) {
         if (isAdmins) {
           return DinzBotz.sendMessage(m.chat, {
-            text: `\`\`\`「 Link Instagram Detected 」\`\`\`\n\n Admin mengirimkan link, admin mah bebas memposting link apapun`
+            text: `\`\`\`「 Link Instagram Detected 」\`\`\`
+
+ Admin mengirimkan link, admin mah bebas memposting link apapun`
           });
         }
         if (DinzTheCreator) {
           return DinzBotz.sendMessage(m.chat, {
-            text: `\`\`\`「 Link instagram Detected 」\`\`\`\n\n owner telah mengirim tautan, owner bebas memposting tautan apa pun`
+            text: `\`\`\`「 Link instagram Detected 」\`\`\`
+
+ owner telah mengirim tautan, owner bebas memposting tautan apa pun`
           });
         }
         kice = m.sender;
@@ -2724,7 +2805,10 @@ if (m.isGroup) {
           }
         });
         DinzBotz.sendMessage(from, {
-          text: `\`\`\`「 Instagram Link Detected 」\`\`\`\n\n@${m.sender.split("@")[0]}  because of sending instagram link in this group\n> MELANGGAR 3X ADMIN BAKAL NGEKICK😹`,
+          text: `\`\`\`「 Instagram Link Detected 」\`\`\`
+
+@${m.sender.split("@")[0]}  because of sending instagram link in this group
+> MELANGGAR 3X ADMIN BAKAL NGEKICK😹`,
           contextInfo: {
             mentionedJid: [m.sender]
           }
@@ -2738,12 +2822,16 @@ if (m.isGroup) {
       if (budy.includes("https://www.facebook.com/")) {
         if (isAdmins) {
           return DinzBotz.sendMessage(m.chat, {
-            text: `\`\`\`「 Link Facebook Detected 」\`\`\`\n\n Admin mengirimkan link, admin mah bebas memposting link apapun`
+            text: `\`\`\`「 Link Facebook Detected 」\`\`\`
+
+ Admin mengirimkan link, admin mah bebas memposting link apapun`
           });
         }
         if (DinzTheCreator) {
           return DinzBotz.sendMessage(m.chat, {
-            text: `\`\`\`「 Link Faceboook Detected 」\`\`\`\n\n owner telah mengirim tautan, owner bebas memposting tautan apa pun`
+            text: `\`\`\`「 Link Faceboook Detected 」\`\`\`
+
+ owner telah mengirim tautan, owner bebas memposting tautan apa pun`
           });
         }
         kice = m.sender;
@@ -2756,7 +2844,9 @@ if (m.isGroup) {
           }
         });
         DinzBotz.sendMessage(from, {
-          text: `\`\`\`「 Facebook Link Detected 」\`\`\`\n\n@${m.sender.split("@")[0]}  because of sending facebook link in this group`,
+          text: `\`\`\`「 Facebook Link Detected 」\`\`\`
+
+@${m.sender.split("@")[0]}  because of sending facebook link in this group`,
           contextInfo: {
             mentionedJid: [m.sender]
           }
@@ -2771,13 +2861,17 @@ if (m.isGroup) {
         if (AntiLinkTelegram) {
           if (isAdmins) {
             return DinzBotz.sendMessage(m.chat, {
-              text: `\`\`\`「 Link Telegram Detected 」\`\`\`\n\n Admin mengirimkan link, admin mah bebas memposting link apapun`
+              text: `\`\`\`「 Link Telegram Detected 」\`\`\`
+
+ Admin mengirimkan link, admin mah bebas memposting link apapun`
             });
           }
         }
         if (DinzTheCreator) {
           return DinzBotz.sendMessage(m.chat, {
-            text: `\`\`\`「 Link Telegram Detected 」\`\`\`\n\n owner telah mengirim tautan, owner bebas memposting tautan apa pun`
+            text: `\`\`\`「 Link Telegram Detected 」\`\`\`
+
+ owner telah mengirim tautan, owner bebas memposting tautan apa pun`
           });
         }
         kice = m.sender;
@@ -2790,7 +2884,10 @@ if (m.isGroup) {
           }
         });
         DinzBotz.sendMessage(from, {
-          text: `\`\`\`「 Telegram Link Detected 」\`\`\`\n\n@${m.sender.split("@")[0]} Telah di kick karena mengirim tautan telegram di grup ini\n> MELANGGAR 3X ADMIN BAKAL NGEKICK😹`,
+          text: `\`\`\`「 Telegram Link Detected 」\`\`\`
+
+@${m.sender.split("@")[0]} Telah di kick karena mengirim tautan telegram di grup ini
+> MELANGGAR 3X ADMIN BAKAL NGEKICK😹`,
           contextInfo: {
             mentionedJid: [m.sender]
           }
@@ -2803,12 +2900,16 @@ if (m.isGroup) {
       if (budy.includes("https://www.tiktok.com/")) {
         if (isAdmins) {
           return DinzBotz.sendMessage(m.chat, {
-            text: `\`\`\`「 Link Tiktok Detected 」\`\`\`\n\n Admin mengirimkan link, admin mah bebas memposting link apapun`
+            text: `\`\`\`「 Link Tiktok Detected 」\`\`\`
+
+ Admin mengirimkan link, admin mah bebas memposting link apapun`
           });
         }
         if (DinzTheCreator) {
           return DinzBotz.sendMessage(m.chat, {
-            text: `\`\`\`「 Link Tiktok Detected 」\`\`\`\n\n owner telah mengirim tautan, owner bebas memposting tautan apa pun`
+            text: `\`\`\`「 Link Tiktok Detected 」\`\`\`
+
+ owner telah mengirim tautan, owner bebas memposting tautan apa pun`
           });
         }
         kice = m.sender;
@@ -2821,7 +2922,10 @@ if (m.isGroup) {
           }
         });
         DinzBotz.sendMessage(from, {
-          text: `\`\`\`「 Tiktok Link Detected 」\`\`\`\n\n@${m.sender.split("@")[0]} Telah di kick karena mengirim tautan tiktok di grup ini\n> MELANGGAR 3X ADMIN BAKAL NGEKICK😹`,
+          text: `\`\`\`「 Tiktok Link Detected 」\`\`\`
+
+@${m.sender.split("@")[0]} Telah di kick karena mengirim tautan tiktok di grup ini
+> MELANGGAR 3X ADMIN BAKAL NGEKICK😹`,
           contextInfo: {
             mentionedJid: [m.sender]
           }
@@ -2835,12 +2939,16 @@ if (m.isGroup) {
       if (budy.includes("https://x.com/")) {
         if (isAdmins) {
           return DinzBotz.sendMessage(m.chat, {
-            text: `\`\`\`「 Link twitter Detected 」\`\`\`\n\n Admin mengirimkan link, admin mah bebas memposting link apapun`
+            text: `\`\`\`「 Link twitter Detected 」\`\`\`
+
+ Admin mengirimkan link, admin mah bebas memposting link apapun`
           });
         }
         if (DinzTheCreator) {
           return DinzBotz.sendMessage(m.chat, {
-            text: `\`\`\`「 Link twitter Detected 」\`\`\`\n\n owner telah mengirim tautan, owner bebas memposting tautan apa pun`
+            text: `\`\`\`「 Link twitter Detected 」\`\`\`
+
+ owner telah mengirim tautan, owner bebas memposting tautan apa pun`
           });
         }
         kice = m.sender;
@@ -2853,7 +2961,10 @@ if (m.isGroup) {
           }
         });
         DinzBotz.sendMessage(from, {
-          text: `\`\`\`「 Twitter/X Link Detected 」\`\`\`\n\n@${m.sender.split("@")[0]} Telah di kick karena mengirim tautan twitter di grup ini\n> MELANGGAR 3X ADMIN BAKAL NGEKICK😹`,
+          text: `\`\`\`「 Twitter/X Link Detected 」\`\`\`
+
+@${m.sender.split("@")[0]} Telah di kick karena mengirim tautan twitter di grup ini
+> MELANGGAR 3X ADMIN BAKAL NGEKICK😹`,
           contextInfo: {
             mentionedJid: [m.sender]
           }
@@ -2899,7 +3010,8 @@ ${Array.from(room.jawaban, (jawaban, index) => {
         } else {
           return false;
         }
-      }).filter(v => v).join("\n")}
+      }).filter(v => v).join("
+")}
 
 ${isSurrender ? "" : `+${room.winScore} Money tiap jawaban benar`}
     `.trim();
@@ -2924,7 +3036,11 @@ ${isSurrender ? "" : `+${room.winScore} Money tiap jawaban benar`}
           image: {
             url: "https://telegra.ph/file/14744917bea0185b52fb1.jpg"
           },
-          caption: `🎮 Tebak Lagu 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? Silahkan Ketik Tebak Lagu`
+          caption: `🎮 Tebak Lagu 🎮
+
+Jawaban Benar 🎉
+
+Ingin bermain lagi? Silahkan Ketik Tebak Lagu`
         }, {
           quoted: m
         });
@@ -2941,7 +3057,11 @@ ${isSurrender ? "" : `+${room.winScore} Money tiap jawaban benar`}
       kuis = true;
       if (budy.toLowerCase() == json.jawaban.toLowerCase().trim()) {
         users.money += 10000;
-        var teks = `🎮 Tebak Kata 🎮\n\nJawaban Benar 🎉\nHadiah : 10.000 money\n`;
+        var teks = `🎮 Tebak Kata 🎮
+
+Jawaban Benar 🎉
+Hadiah : 10.000 money
+`;
         replyviex(`${teks}`);
         clearTimeout(DinzBotz.tebakkata[id][2]);
         delete DinzBotz.tebakkata[id];
@@ -2957,7 +3077,12 @@ ${isSurrender ? "" : `+${room.winScore} Money tiap jawaban benar`}
       let json = JSON.parse(JSON.stringify(DinzBotz.tebakgambar[id][1]));
       if (budy.toLowerCase() == json.jawaban.toLowerCase().trim()) {
         users.money += 10000;
-        var teks = `🎮 Tebak Gambar 🎮\n\nJawaban Benar 🎉\nHadiah : 10.000 money\n\nIngin bermain lagi? Silahkan Ketik TebakGambar`;
+        var teks = `🎮 Tebak Gambar 🎮
+
+Jawaban Benar 🎉
+Hadiah : 10.000 money
+
+Ingin bermain lagi? Silahkan Ketik TebakGambar`;
         replyviex(`${teks}`);
         clearTimeout(DinzBotz.tebakgambar[id][3]);
         delete DinzBotz.tebakgambar[id];
@@ -2973,7 +3098,9 @@ ${isSurrender ? "" : `+${room.winScore} Money tiap jawaban benar`}
         await replyviex("*Anda Telah menyerah*");
         delete tebakbendera2[m.sender.split("@")[0]];
       } else if (budy.toLowerCase() == jawaban) {
-        await DinzBotz.sendText(m.chat, `🎮 Tebak Bendera 🎮\n\nJawaban Benar 🎉`, m);
+        await DinzBotz.sendText(m.chat, `🎮 Tebak Bendera 🎮
+
+Jawaban Benar 🎉`, m);
         delete tebakbendera2[m.sender.split("@")[0]];
       } else {
         console.log("*Jawaban Salah!*");
@@ -2987,7 +3114,9 @@ ${isSurrender ? "" : `+${room.winScore} Money tiap jawaban benar`}
         await replyviex("*Anda Telah menyerah*");
         delete tebakbendera[m.sender.split("@")[0]];
       } else if (budy.toLowerCase() == jawaban) {
-        await DinzBotz.sendText(m.chat, `🎮 Tebak Gambar 🎮\n\nJawaban Benar 🎉`, m);
+        await DinzBotz.sendText(m.chat, `🎮 Tebak Gambar 🎮
+
+Jawaban Benar 🎉`, m);
         delete tebakbendera[m.sender.split("@")[0]];
       } else {
         console.log("*Jawaban Salah!*");
@@ -3001,7 +3130,9 @@ ${isSurrender ? "" : `+${room.winScore} Money tiap jawaban benar`}
         await replyviex("*Anda Telah menyerah*");
         delete tebakkabupaten[m.sender.split("@")[0]];
       } else if (budy.toLowerCase() == jawaban) {
-        await DinzBotz.sendText(m.chat, `🎮 Tebak Kabupaten 🎮\n\nJawaban Benar 🎉`, m);
+        await DinzBotz.sendText(m.chat, `🎮 Tebak Kabupaten 🎮
+
+Jawaban Benar 🎉`, m);
         delete tebakkabupaten[m.sender.split("@")[0]];
       } else {
         console.log("*Jawaban Salah!*");
@@ -3015,7 +3146,9 @@ ${isSurrender ? "" : `+${room.winScore} Money tiap jawaban benar`}
         await replyviex("*Anda Telah menyerah*");
         delete tebakkimia[m.sender.split("@")[0]];
       } else if (budy.toLowerCase() == jawaban) {
-        await DinzBotz.sendText(m.chat, `🎮 Tebak Kimia 🎮\n\nJawaban Benar 🎉`, m);
+        await DinzBotz.sendText(m.chat, `🎮 Tebak Kimia 🎮
+
+Jawaban Benar 🎉`, m);
         delete tebakkimia[m.sender.split("@")[0]];
       } else {
         console.log("*Jawaban Salah!*");
@@ -3032,7 +3165,10 @@ ${isSurrender ? "" : `+${room.winScore} Money tiap jawaban benar`}
       let json = JSON.parse(JSON.stringify(DinzBotz.tekateki[id][1]));
       if (budy.toLowerCase() == json.jawaban.toLowerCase().trim()) {
         users.money += DinzBotz.tekateki[id][2];
-        var teks = `*GAME TEKATEKI*\n\nJawaban Kamu Benar!\n Hadiah : +${DinzBotz.tekateki[id][2]} Money 💸`;
+        var teks = `*GAME TEKATEKI*
+
+Jawaban Kamu Benar!
+ Hadiah : +${DinzBotz.tekateki[id][2]} Money 💸`;
         replyviex(`${teks}`);
         clearTimeout(DinzBotz.tekateki[id][3]);
         delete DinzBotz.tekateki[id];
@@ -3049,7 +3185,9 @@ ${isSurrender ? "" : `+${room.winScore} Money tiap jawaban benar`}
         await replyviex("*Anda Telah menyerah*");
         delete tebakasahotak[m.sender.split("@")[0]];
       } else if (budy.toLowerCase() == jawaban) {
-        await DinzBotz.sendText(m.chat, `🎮 Asah Otak 🎮\n\nJawaban Benar 🎉`, m);
+        await DinzBotz.sendText(m.chat, `🎮 Asah Otak 🎮
+
+Jawaban Benar 🎉`, m);
         delete tebakasahotak[m.sender.split("@")[0]];
       } else {
         console.log("*Jawaban Salah!*");
@@ -3065,7 +3203,10 @@ ${isSurrender ? "" : `+${room.winScore} Money tiap jawaban benar`}
       let json = JSON.parse(JSON.stringify(DinzBotz.siapaaku[id][1]));
       if (budy.toLowerCase() == json.jawaban.toLowerCase().trim()) {
         users.money += DinzBotz.siapaaku[id][2];
-        var teks = `*GAME SIAPAKAH AKU*\n\nJawaban Kamu Benar!\n Hadiah : +${DinzBotz.siapaaku[id][2]} Money 💸`;
+        var teks = `*GAME SIAPAKAH AKU*
+
+Jawaban Kamu Benar!
+ Hadiah : +${DinzBotz.siapaaku[id][2]} Money 💸`;
         replyviex(`${teks}`);
         clearTimeout(DinzBotz.siapaaku[id][3]);
         delete DinzBotz.siapaaku[id];
@@ -3084,7 +3225,10 @@ ${isSurrender ? "" : `+${room.winScore} Money tiap jawaban benar`}
       let json = JSON.parse(JSON.stringify(DinzBotz.susunkata[id][1]));
       if (budy.toLowerCase() == json.jawaban.toLowerCase().trim()) {
         users.money += DinzBotz.susunkata[id][2];
-        var teks = `*GAME SUSUN KATA*\n\nJawaban Kamu Benar!\n Hadiah : +${DinzBotz.susunkata[id][2]} Money 💸`;
+        var teks = `*GAME SUSUN KATA*
+
+Jawaban Kamu Benar!
+ Hadiah : +${DinzBotz.susunkata[id][2]} Money 💸`;
         replyviex(`${teks}`);
         clearTimeout(DinzBotz.susunkata[id][3]);
         delete DinzBotz.susunkata[id];
@@ -3104,7 +3248,11 @@ ${isSurrender ? "" : `+${room.winScore} Money tiap jawaban benar`}
           image: {
             url: "https://telegra.ph/file/14744917bea0185b52fb1.jpg"
           },
-          caption: `🎮 Tebak Lontong 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? Silahkan Ketik Tebak Lontong`
+          caption: `🎮 Tebak Lontong 🎮
+
+Jawaban Benar 🎉
+
+Ingin bermain lagi? Silahkan Ketik Tebak Lontong`
         }, {
           quoted: m
         });
@@ -3123,7 +3271,11 @@ ${isSurrender ? "" : `+${room.winScore} Money tiap jawaban benar`}
           image: {
             url: "https://telegra.ph/file/14744917bea0185b52fb1.jpg"
           },
-          caption: `🎮 Tebak Kalimat 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? Silahkan Ketik Tebak Kalimat`
+          caption: `🎮 Tebak Kalimat 🎮
+
+Jawaban Benar 🎉
+
+Ingin bermain lagi? Silahkan Ketik Tebak Kalimat`
         }, {
           quoted: m
         });
@@ -3144,7 +3296,11 @@ ${isSurrender ? "" : `+${room.winScore} Money tiap jawaban benar`}
       if (budy.toLowerCase() == json.jawaban.toLowerCase().trim()) {
         user.money += DinzBotz.tebaklirik[id][2];
         global.db.users[m.sender].exp += 10;
-        var teks = `*GAME TEBAK LIRIK*\n\nJawaban Kamu Benar!\n Hadiah : +${DinzBotz.tebaklirik[id][2]} Money 💸\n EXP: +10`;
+        var teks = `*GAME TEBAK LIRIK*
+
+Jawaban Kamu Benar!
+ Hadiah : +${DinzBotz.tebaklirik[id][2]} Money 💸
+ EXP: +10`;
         replyviex(`${teks}`);
         clearTimeout(DinzBotz.tebaklirik[id][3]);
         delete DinzBotz.tebaklirik[id];
@@ -3163,7 +3319,11 @@ ${isSurrender ? "" : `+${room.winScore} Money tiap jawaban benar`}
           image: {
             url: "https://telegra.ph/file/14744917bea0185b52fb1.jpg"
           },
-          caption: `🎮 Tebak Tebakan 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? Silahkan Ketik Tebak Tebakan`
+          caption: `🎮 Tebak Tebakan 🎮
+
+Jawaban Benar 🎉
+
+Ingin bermain lagi? Silahkan Ketik Tebak Tebakan`
         }, {
           quoted: m
         });
@@ -3177,12 +3337,16 @@ ${isSurrender ? "" : `+${room.winScore} Money tiap jawaban benar`}
       if (budy.includes("https://") || budy.includes("wa.me") || budy.includes("whatsapp.com") || budy.includes("Wa.me")) {
         if (isAdmins) {
           return DinzBotz.sendMessage(m.chat, {
-            text: `\`\`\`「 Link All Detected 」\`\`\`\n\n Admin mengirimkan link, admin mah bebas memposting link apapun`
+            text: `\`\`\`「 Link All Detected 」\`\`\`
+
+ Admin mengirimkan link, admin mah bebas memposting link apapun`
           });
         }
         if (DinzTheCreator) {
           return DinzBotz.sendMessage(m.chat, {
-            text: `\`\`\`「 Link All Detected 」\`\`\`\n\n owner telah mengirim tautan, owner bebas memposting tautan apa pun`
+            text: `\`\`\`「 Link All Detected 」\`\`\`
+
+ owner telah mengirim tautan, owner bebas memposting tautan apa pun`
           });
         }
         kice = m.sender;
@@ -3195,7 +3359,9 @@ ${isSurrender ? "" : `+${room.winScore} Money tiap jawaban benar`}
           }
         });
         DinzBotz.sendMessage(from, {
-          text: `\`\`\`「 Tautan Terdeteksi 」\`\`\`\n\n@${m.sender.split("@")[0]} telah mengirimkan tautan dan berhasil dihapus`,
+          text: `\`\`\`「 Tautan Terdeteksi 」\`\`\`
+
+@${m.sender.split("@")[0]} telah mengirimkan tautan dan berhasil dihapus`,
           contextInfo: {
             mentionedJid: [m.sender]
           }
@@ -3234,7 +3400,8 @@ ${isSurrender ? "" : `+${room.winScore} Money tiap jawaban benar`}
           });
         });
       } catch (e) {
-        replyviex("Emoji error, please enter another emoji\nNOTE : Just enter 1 emoji");
+        replyviex("Emoji error, please enter another emoji
+NOTE : Just enter 1 emoji");
       }
     };
 
@@ -3289,10 +3456,12 @@ function formatWIB(dateString) {
 }
 function cleanHtml(html) {
   return html
-    .replace(/<\/?p[^>]*>/g, '\n')
+    .replace(/<\/?p[^>]*>/g, '
+')
     .replace(/<\/?strong>/g, '**')
     .replace(/<\/?em>/g, '_')
-    .replace(/<\/?br>/g, '\n')
+    .replace(/<\/?br>/g, '
+')
     .replace(/<\/?ul>/g, '')
     .replace(/<\/?li>/g, '- ')
     .replace(/<\/?span[^>]*>/g, '')
@@ -3302,7 +3471,11 @@ function cleanHtml(html) {
     .replace(/&quot;/g, '"')
     .replace(/&ldquo;/g, '"')
     .replace(/&rdquo;/g, '"')
-    .replace(/\n\s*\n/g, '\n\n')
+    .replace(/
+\s*
+/g, '
+
+')
     .trim();
 }
 function extractImage(html) {
@@ -3312,10 +3485,17 @@ function extractImage(html) {
 function createNewsMessage(news) {
   const tanggal = formatWIB(news.date);
   const isi = cleanHtml(news.content);
-  return `📰 *Berita Terbaru JKT48!* 📰\n\n` +
-    `📌 *Judul:* ${news.title}\n` +
-    `📅 *Tanggal:* ${tanggal}\n\n` +
-    `${isi}\n\n` +
+  return `📰 *Berita Terbaru JKT48!* 📰
+
+` +
+    `📌 *Judul:* ${news.title}
+` +
+    `📅 *Tanggal:* ${tanggal}
+
+` +
+    `${isi}
+
+` +
     `_Sumber: JKT48 Official Website_`;
 }
 async function checkAndSendNews(DinzBotz) {
@@ -3352,12 +3532,26 @@ async function checkAndSendNews(DinzBotz) {
       case "tictactoe":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : FurinaMD✨\n╰───────────────────✦\n\nDENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA\n\n💂‍♀: Kenapa harus daftar sih?\n🍁: Agar bot mengenal siapa anda\n💂‍♀: Ribet banget harus daftar segala\n🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
+
+╭──「 `CARA DAFTAR` 」─✦
+│⦿ 〔 Cara : .daftar nama.umur
+│⦿ 〔 Contoh : .daftar Furina.20
+│⦿ 〔 Botname : FurinaMD✨
+╰───────────────────✦
+
+DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
+
+💂‍♀: Kenapa harus daftar sih?
+🍁: Agar bot mengenal siapa anda
+💂‍♀: Ribet banget harus daftar segala
+🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
           }
           let TicTacToe = require("./lib/tictactoe");
           this.game = this.game ? this.game : {};
           if (Object.values(this.game).find(room13 => room13.id.startsWith("tictactoe") && [room13.game.playerX, room13.game.playerO].includes(m.sender))) {
-            return replyviex(`Kamu Masih Dalam Permainan\n> KETIK .delttc UNTUK KELUAR PERMAINAN`);
+            return replyviex(`Kamu Masih Dalam Permainan
+> KETIK .delttc UNTUK KELUAR PERMAINAN`);
           }
           let room13 = Object.values(this.game).find(room13 => room13.state === "WAITING" && (text ? room13.name === text : true));
           if (room13) {
@@ -3407,7 +3601,11 @@ Ketik *surrender* untuk menyerah dan mengakui kekalahan`;
             if (text) {
               room13.name = text;
             }
-            replyviex("Tag pasangan ttc\n> Contoh: .ttc @dinz" + (text ? `\n\n𝗧𝗘𝗞𝗦 𝗗𝗜 𝗔𝗧𝗔𝗦 𝗔𝗕𝗔𝗜𝗞𝗔𝗡 𝗦𝗔𝗝𝗔\n YANG DITAG WAJIB KETIK *${prefix}${command}* UNTUK BERMAIN` : ""));
+            replyviex("Tag pasangan ttc
+> Contoh: .ttc @dinz" + (text ? `
+
+𝗧𝗘𝗞𝗦 𝗗𝗜 𝗔𝗧𝗔𝗦 𝗔𝗕𝗔𝗜𝗞𝗔𝗡 𝗦𝗔𝗝𝗔
+ YANG DITAG WAJIB KETIK *${prefix}${command}* UNTUK BERMAIN` : ""));
             this.game[room13.id] = room13;
           }
         }
@@ -3416,7 +3614,20 @@ Ketik *surrender* untuk menyerah dan mengakui kekalahan`;
       case "delttt":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : FurinaMD✨\n╰───────────────────✦\n\nDENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA\n\n💂‍♀: Kenapa harus daftar sih?\n🍁: Agar bot mengenal siapa anda\n💂‍♀: Ribet banget harus daftar segala\n🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
+
+╭──「 `CARA DAFTAR` 」─✦
+│⦿ 〔 Cara : .daftar nama.umur
+│⦿ 〔 Contoh : .daftar Furina.20
+│⦿ 〔 Botname : FurinaMD✨
+╰───────────────────✦
+
+DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
+
+💂‍♀: Kenapa harus daftar sih?
+🍁: Agar bot mengenal siapa anda
+💂‍♀: Ribet banget harus daftar segala
+🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
           }
           this.game = this.game ? this.game : {};
           try {
@@ -3439,7 +3650,20 @@ Ketik *surrender* untuk menyerah dan mengakui kekalahan`;
       case "suit":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : FurinaMD✨\n╰───────────────────✦\n\nDENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA\n\n💂‍♀: Kenapa harus daftar sih?\n🍁: Agar bot mengenal siapa anda\n💂‍♀: Ribet banget harus daftar segala\n🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
+
+╭──「 `CARA DAFTAR` 」─✦
+│⦿ 〔 Cara : .daftar nama.umur
+│⦿ 〔 Contoh : .daftar Furina.20
+│⦿ 〔 Botname : FurinaMD✨
+╰───────────────────✦
+
+DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
+
+💂‍♀: Kenapa harus daftar sih?
+🍁: Agar bot mengenal siapa anda
+💂‍♀: Ribet banget harus daftar segala
+🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
           }
           this.suit = this.suit ? this.suit : {};
           let poin = 10;
@@ -3452,7 +3676,10 @@ Ketik *surrender* untuk menyerah dan mengakui kekalahan`;
             return replyviex(`Can't play with myself !`);
           }
           if (!m.mentionedJid[0]) {
-            return replyviex(`_Who do you want to challenge?_\nTag the person..\n\nContoh : .suit @${owner}`, m.chat, {
+            return replyviex(`_Who do you want to challenge?_
+Tag the person..
+
+Contoh : .suit @${owner}`, m.chat, {
               mentions: [owner[1] + "@s.whatsapp.net"]
             });
           }
@@ -3489,7 +3716,20 @@ Ketik *surrender* untuk menyerah dan mengakui kekalahan`;
       case "public":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : FurinaMD✨\n╰───────────────────✦\n\nDENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA\n\n💂‍♀: Kenapa harus daftar sih?\n🍁: Agar bot mengenal siapa anda\n💂‍♀: Ribet banget harus daftar segala\n🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
+
+╭──「 `CARA DAFTAR` 」─✦
+│⦿ 〔 Cara : .daftar nama.umur
+│⦿ 〔 Contoh : .daftar Furina.20
+│⦿ 〔 Botname : FurinaMD✨
+╰───────────────────✦
+
+DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
+
+💂‍♀: Kenapa harus daftar sih?
+🍁: Agar bot mengenal siapa anda
+💂‍♀: Ribet banget harus daftar segala
+🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
           }
           if (!DinzTheCreator) {
             return replyviex(mess.only.owner);
@@ -3501,7 +3741,20 @@ Ketik *surrender* untuk menyerah dan mengakui kekalahan`;
       case "self":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : FurinaMD✨\n╰───────────────────✦\n\nDENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA\n\n💂‍♀: Kenapa harus daftar sih?\n🍁: Agar bot mengenal siapa anda\n💂‍♀: Ribet banget harus daftar segala\n🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
+
+╭──「 `CARA DAFTAR` 」─✦
+│⦿ 〔 Cara : .daftar nama.umur
+│⦿ 〔 Contoh : .daftar Furina.20
+│⦿ 〔 Botname : FurinaMD✨
+╰───────────────────✦
+
+DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
+
+💂‍♀: Kenapa harus daftar sih?
+🍁: Agar bot mengenal siapa anda
+💂‍♀: Ribet banget harus daftar segala
+🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
           }
           if (!DinzTheCreator) {
             return replyviex(mess.only.owner);
@@ -3515,7 +3768,20 @@ Ketik *surrender* untuk menyerah dan mengakui kekalahan`;
       case "stickmeme":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : FurinaMD✨\n╰───────────────────✦\n\nDENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA\n\n💂‍♀: Kenapa harus daftar sih?\n🍁: Agar bot mengenal siapa anda\n💂‍♀: Ribet banget harus daftar segala\n🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
+
+╭──「 `CARA DAFTAR` 」─✦
+│⦿ 〔 Cara : .daftar nama.umur
+│⦿ 〔 Contoh : .daftar Furina.20
+│⦿ 〔 Botname : FurinaMD✨
+╰───────────────────✦
+
+DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
+
+💂‍♀: Kenapa harus daftar sih?
+🍁: Agar bot mengenal siapa anda
+💂‍♀: Ribet banget harus daftar segala
+🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
           }
           if (!/webp/.test(mime) && /image/.test(mime)) {
             if (!text) {
@@ -3575,15 +3841,33 @@ Ketik *surrender* untuk menyerah dan mengakui kekalahan`;
         break;
       case "listjadibot":
         if (!isRegistered) {
-          return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : FurinaMD✨\n╰───────────────────✦\n\nDENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA\n\n💂‍♀: Kenapa harus daftar sih?\n🍁: Agar bot mengenal siapa anda\n💂‍♀: Ribet banget harus daftar segala\n🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+          return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
+
+╭──「 `CARA DAFTAR` 」─✦
+│⦿ 〔 Cara : .daftar nama.umur
+│⦿ 〔 Contoh : .daftar Furina.20
+│⦿ 〔 Botname : FurinaMD✨
+╰───────────────────✦
+
+DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
+
+💂‍♀: Kenapa harus daftar sih?
+🍁: Agar bot mengenal siapa anda
+💂‍♀: Ribet banget harus daftar segala
+🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
         }
         try {
           let user = [...new Set([...global.conns.filter(DinzBotz => DinzBotz.user).map(DinzBotz => DinzBotz.user)])];
-          te = "*Rentbot List*\n\n";
+          te = "*Rentbot List*
+
+";
           for (let i of user) {
             y = await DinzBotz.decodeJid(i.id);
-            te += " × User : @" + y.split("@")[0] + "\n";
-            te += " × Name : " + i.name + "\n\n";
+            te += " × User : @" + y.split("@")[0] + "
+";
+            te += " × Name : " + i.name + "
+
+";
           }
           DinzBotz.sendMessage(from, {
             text: te,
@@ -3598,7 +3882,20 @@ Ketik *surrender* untuk menyerah dan mengakui kekalahan`;
       case "clearall":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : FurinaMD✨\n╰───────────────────✦\n\nDENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA\n\n💂‍♀: Kenapa harus daftar sih?\n🍁: Agar bot mengenal siapa anda\n💂‍♀: Ribet banget harus daftar segala\n🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
+
+╭──「 `CARA DAFTAR` 」─✦
+│⦿ 〔 Cara : .daftar nama.umur
+│⦿ 〔 Contoh : .daftar Furina.20
+│⦿ 〔 Botname : FurinaMD✨
+╰───────────────────✦
+
+DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
+
+💂‍♀: Kenapa harus daftar sih?
+🍁: Agar bot mengenal siapa anda
+💂‍♀: Ribet banget harus daftar segala
+🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
           }
           if (!DinzTheCreator) {
             return replyviex(mess.only.owner);
@@ -3615,7 +3912,20 @@ Ketik *surrender* untuk menyerah dan mengakui kekalahan`;
       case "pinchat":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : FurinaMD✨\n╰───────────────────✦\n\nDENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA\n\n💂‍♀: Kenapa harus daftar sih?\n🍁: Agar bot mengenal siapa anda\n💂‍♀: Ribet banget harus daftar segala\n🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
+
+╭──「 `CARA DAFTAR` 」─✦
+│⦿ 〔 Cara : .daftar nama.umur
+│⦿ 〔 Contoh : .daftar Furina.20
+│⦿ 〔 Botname : FurinaMD✨
+╰───────────────────✦
+
+DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
+
+💂‍♀: Kenapa harus daftar sih?
+🍁: Agar bot mengenal siapa anda
+💂‍♀: Ribet banget harus daftar segala
+🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
           }
           if (!DinzTheCreator) {
             return replyviex(mess.only.owner);
@@ -3631,7 +3941,20 @@ Ketik *surrender* untuk menyerah dan mengakui kekalahan`;
       case "unpinchat":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : FurinaMD✨\n╰───────────────────✦\n\nDENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA\n\n💂‍♀: Kenapa harus daftar sih?\n🍁: Agar bot mengenal siapa anda\n💂‍♀: Ribet banget harus daftar segala\n🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
+
+╭──「 `CARA DAFTAR` 」─✦
+│⦿ 〔 Cara : .daftar nama.umur
+│⦿ 〔 Contoh : .daftar Furina.20
+│⦿ 〔 Botname : FurinaMD✨
+╰───────────────────✦
+
+DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
+
+💂‍♀: Kenapa harus daftar sih?
+🍁: Agar bot mengenal siapa anda
+💂‍♀: Ribet banget harus daftar segala
+🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
           }
           if (!DinzTheCreator) {
             return replyviex(mess.only.owner);
@@ -3646,7 +3969,20 @@ Ketik *surrender* untuk menyerah dan mengakui kekalahan`;
         break;
       case "restart":
         if (!isRegistered) {
-          return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : FurinaMD✨\n╰───────────────────✦\n\nDENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA\n\n💂‍♀: Kenapa harus daftar sih?\n🍁: Agar bot mengenal siapa anda\n💂‍♀: Ribet banget harus daftar segala\n🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+          return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
+
+╭──「 `CARA DAFTAR` 」─✦
+│⦿ 〔 Cara : .daftar nama.umur
+│⦿ 〔 Contoh : .daftar Furina.20
+│⦿ 〔 Botname : FurinaMD✨
+╰───────────────────✦
+
+DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
+
+💂‍♀: Kenapa harus daftar sih?
+🍁: Agar bot mengenal siapa anda
+💂‍♀: Ribet banget harus daftar segala
+🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
         }
         if (!DinzTheCreator) {
           return replyviex(mess.only.owner);
@@ -3659,7 +3995,20 @@ Ketik *surrender* untuk menyerah dan mengakui kekalahan`;
       case "totalfitur":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : FurinaMD✨\n╰───────────────────✦\n\nDENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA\n\n💂‍♀: Kenapa harus daftar sih?\n🍁: Agar bot mengenal siapa anda\n💂‍♀: Ribet banget harus daftar segala\n🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
+
+╭──「 `CARA DAFTAR` 」─✦
+│⦿ 〔 Cara : .daftar nama.umur
+│⦿ 〔 Contoh : .daftar Furina.20
+│⦿ 〔 Botname : FurinaMD✨
+╰───────────────────✦
+
+DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
+
+💂‍♀: Kenapa harus daftar sih?
+🍁: Agar bot mengenal siapa anda
+💂‍♀: Ribet banget harus daftar segala
+🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
           }
           replyviex(`📱Total Fitur Bot : 4687`);
         }
@@ -3669,7 +4018,20 @@ Ketik *surrender* untuk menyerah dan mengakui kekalahan`;
       case "dev":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : FurinaMD✨\n╰───────────────────✦\n\nDENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA\n\n💂‍♀: Kenapa harus daftar sih?\n🍁: Agar bot mengenal siapa anda\n💂‍♀: Ribet banget harus daftar segala\n🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
+
+╭──「 `CARA DAFTAR` 」─✦
+│⦿ 〔 Cara : .daftar nama.umur
+│⦿ 〔 Contoh : .daftar Furina.20
+│⦿ 〔 Botname : FurinaMD✨
+╰───────────────────✦
+
+DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
+
+💂‍♀: Kenapa harus daftar sih?
+🍁: Agar bot mengenal siapa anda
+💂‍♀: Ribet banget harus daftar segala
+🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
           }
           try {
             let ppuser;
@@ -3680,7 +4042,16 @@ Ketik *surrender* untuk menyerah dan mengakui kekalahan`;
             }
             const kontak = {
               displayName: "Furina︎",
-              vcard: `BEGIN:VCARD\nVERSION:3.0\nN:;;;;\nFN: ${global.ownername}\nitem1.TEL;waid=${global.owner}:${global.owner}\nitem1.X-ABLabel:\nPlease Don't Spam My Owner\nURL;Email Owner:${global.ownername}@gmail.com\nORG: INI OWNER\nEND:VCARD`
+              vcard: `BEGIN:VCARD
+VERSION:3.0
+N:;;;;
+FN: ${global.ownername}
+item1.TEL;waid=${global.owner}:${global.owner}
+item1.X-ABLabel:
+Please Don't Spam My Owner
+URL;Email Owner:${global.ownername}@gmail.com
+ORG: INI OWNER
+END:VCARD`
             };
             await DinzBotz.sendMessage(from, {
               contacts: {
@@ -3718,7 +4089,20 @@ Ketik *surrender* untuk menyerah dan mengakui kekalahan`;
       case "domainmenu":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : FurinaMD✨\n╰───────────────────✦\n\nDENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA\n\n💂‍♀: Kenapa harus daftar sih?\n🍁: Agar bot mengenal siapa anda\n💂‍♀: Ribet banget harus daftar segala\n🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
+
+╭──「 `CARA DAFTAR` 」─✦
+│⦿ 〔 Cara : .daftar nama.umur
+│⦿ 〔 Contoh : .daftar Furina.20
+│⦿ 〔 Botname : FurinaMD✨
+╰───────────────────✦
+
+DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
+
+💂‍♀: Kenapa harus daftar sih?
+🍁: Agar bot mengenal siapa anda
+💂‍♀: Ribet banget harus daftar segala
+🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
           }
           const text12 = `*Hi @${sender.split("@")[0]} 👋*
 
@@ -3749,7 +4133,20 @@ Ketik *surrender* untuk menyerah dan mengakui kekalahan`;
       case "gamemenu":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : FurinaMD✨\n╰───────────────────✦\n\nDENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA\n\n💂‍♀: Kenapa harus daftar sih?\n🍁: Agar bot mengenal siapa anda\n💂‍♀: Ribet banget harus daftar segala\n🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
+
+╭──「 `CARA DAFTAR` 」─✦
+│⦿ 〔 Cara : .daftar nama.umur
+│⦿ 〔 Contoh : .daftar Furina.20
+│⦿ 〔 Botname : FurinaMD✨
+╰───────────────────✦
+
+DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
+
+💂‍♀: Kenapa harus daftar sih?
+🍁: Agar bot mengenal siapa anda
+💂‍♀: Ribet banget harus daftar segala
+🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
           }
           let DinzID_sad = `${gamemenu(prefix, hituet)}`;
           DinzBotz.sendMessage(m.chat, {
@@ -3779,7 +4176,20 @@ Ketik *surrender* untuk menyerah dan mengakui kekalahan`;
       case "cpanelmenu":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : FurinaMD✨\n╰───────────────────✦\n\nDENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA\n\n💂‍♀: Kenapa harus daftar sih?\n🍁: Agar bot mengenal siapa anda\n💂‍♀: Ribet banget harus daftar segala\n🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
+
+╭──「 `CARA DAFTAR` 」─✦
+│⦿ 〔 Cara : .daftar nama.umur
+│⦿ 〔 Contoh : .daftar Furina.20
+│⦿ 〔 Botname : FurinaMD✨
+╰───────────────────✦
+
+DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
+
+💂‍♀: Kenapa harus daftar sih?
+🍁: Agar bot mengenal siapa anda
+💂‍♀: Ribet banget harus daftar segala
+🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
           }
           let DinzID_sad = `${cpanelmenu(prefix, hituet)}`;
           DinzBotz.sendMessage(m.chat, {
@@ -3810,7 +4220,20 @@ Ketik *surrender* untuk menyerah dan mengakui kekalahan`;
       case "storemenu":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : FurinaMD✨\n╰───────────────────✦\n\nDENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA\n\n💂‍♀: Kenapa harus daftar sih?\n🍁: Agar bot mengenal siapa anda\n💂‍♀: Ribet banget harus daftar segala\n🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
+
+╭──「 `CARA DAFTAR` 」─✦
+│⦿ 〔 Cara : .daftar nama.umur
+│⦿ 〔 Contoh : .daftar Furina.20
+│⦿ 〔 Botname : FurinaMD✨
+╰───────────────────✦
+
+DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
+
+💂‍♀: Kenapa harus daftar sih?
+🍁: Agar bot mengenal siapa anda
+💂‍♀: Ribet banget harus daftar segala
+🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
           }
           let DinzID_sad = `${storemenu(prefix, hituet)}`;
           DinzBotz.sendMessage(m.chat, {
@@ -3841,7 +4264,20 @@ Ketik *surrender* untuk menyerah dan mengakui kekalahan`;
       case "quotesmenu":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : FurinaMD✨\n╰───────────────────✦\n\nDENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA\n\n💂‍♀: Kenapa harus daftar sih?\n🍁: Agar bot mengenal siapa anda\n💂‍♀: Ribet banget harus daftar segala\n🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
+
+╭──「 `CARA DAFTAR` 」─✦
+│⦿ 〔 Cara : .daftar nama.umur
+│⦿ 〔 Contoh : .daftar Furina.20
+│⦿ 〔 Botname : FurinaMD✨
+╰───────────────────✦
+
+DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
+
+💂‍♀: Kenapa harus daftar sih?
+🍁: Agar bot mengenal siapa anda
+💂‍♀: Ribet banget harus daftar segala
+🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
           }
           let DinzID_sad = `${quotesmenu(prefix, hituet)}`;
           DinzBotz.sendMessage(m.chat, {
@@ -3872,7 +4308,20 @@ Ketik *surrender* untuk menyerah dan mengakui kekalahan`;
       case "anonymousmenu":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : FurinaMD✨\n╰───────────────────✦\n\nDENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA\n\n💂‍♀: Kenapa harus daftar sih?\n🍁: Agar bot mengenal siapa anda\n💂‍♀: Ribet banget harus daftar segala\n🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
+
+╭──「 `CARA DAFTAR` 」─✦
+│⦿ 〔 Cara : .daftar nama.umur
+│⦿ 〔 Contoh : .daftar Furina.20
+│⦿ 〔 Botname : FurinaMD✨
+╰───────────────────✦
+
+DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
+
+💂‍♀: Kenapa harus daftar sih?
+🍁: Agar bot mengenal siapa anda
+💂‍♀: Ribet banget harus daftar segala
+🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
           }
           let DinzID_sad = `${anonymousmenu(prefix, hituet)}`;
           DinzBotz.sendMessage(m.chat, {
@@ -3903,7 +4352,20 @@ Ketik *surrender* untuk menyerah dan mengakui kekalahan`;
       case "islamimenu":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : FurinaMD✨\n╰───────────────────✦\n\nDENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA\n\n💂‍♀: Kenapa harus daftar sih?\n🍁: Agar bot mengenal siapa anda\n💂‍♀: Ribet banget harus daftar segala\n🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
+
+╭──「 `CARA DAFTAR` 」─✦
+│⦿ 〔 Cara : .daftar nama.umur
+│⦿ 〔 Contoh : .daftar Furina.20
+│⦿ 〔 Botname : FurinaMD✨
+╰───────────────────✦
+
+DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
+
+💂‍♀: Kenapa harus daftar sih?
+🍁: Agar bot mengenal siapa anda
+💂‍♀: Ribet banget harus daftar segala
+🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
           }
           let DinzID_sad = `${islamimenu(prefix, hituet)}`;
           DinzBotz.sendMessage(m.chat, {
@@ -3933,7 +4395,20 @@ Ketik *surrender* untuk menyerah dan mengakui kekalahan`;
       case "rpgmenu":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : FurinaMD✨\n╰───────────────────✦\n\nDENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA\n\n💂‍♀: Kenapa harus daftar sih?\n🍁: Agar bot mengenal siapa anda\n💂‍♀: Ribet banget harus daftar segala\n🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
+
+╭──「 `CARA DAFTAR` 」─✦
+│⦿ 〔 Cara : .daftar nama.umur
+│⦿ 〔 Contoh : .daftar Furina.20
+│⦿ 〔 Botname : FurinaMD✨
+╰───────────────────✦
+
+DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
+
+💂‍♀: Kenapa harus daftar sih?
+🍁: Agar bot mengenal siapa anda
+💂‍♀: Ribet banget harus daftar segala
+🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
           }
           let DinzID_sad = `${rpgmenu(prefix, hituet)}`;
           DinzBotz.sendMessage(m.chat, {
@@ -3963,7 +4438,20 @@ Ketik *surrender* untuk menyerah dan mengakui kekalahan`;
       case "ownermenu":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : FurinaMD✨\n╰───────────────────✦\n\nDENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA\n\n💂‍♀: Kenapa harus daftar sih?\n🍁: Agar bot mengenal siapa anda\n💂‍♀: Ribet banget harus daftar segala\n🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
+
+╭──「 `CARA DAFTAR` 」─✦
+│⦿ 〔 Cara : .daftar nama.umur
+│⦿ 〔 Contoh : .daftar Furina.20
+│⦿ 〔 Botname : FurinaMD✨
+╰───────────────────✦
+
+DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
+
+💂‍♀: Kenapa harus daftar sih?
+🍁: Agar bot mengenal siapa anda
+💂‍♀: Ribet banget harus daftar segala
+🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
           }
           let DinzID_sad = `${ownermenu(prefix, hituet)}`;
           DinzBotz.sendMessage(m.chat, {
@@ -3993,7 +4481,20 @@ Ketik *surrender* untuk menyerah dan mengakui kekalahan`;
       case "pushmenu":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : FurinaMD✨\n╰───────────────────✦\n\nDENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA\n\n💂‍♀: Kenapa harus daftar sih?\n🍁: Agar bot mengenal siapa anda\n💂‍♀: Ribet banget harus daftar segala\n🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
+
+╭──「 `CARA DAFTAR` 」─✦
+│⦿ 〔 Cara : .daftar nama.umur
+│⦿ 〔 Contoh : .daftar Furina.20
+│⦿ 〔 Botname : FurinaMD✨
+╰───────────────────✦
+
+DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
+
+💂‍♀: Kenapa harus daftar sih?
+🍁: Agar bot mengenal siapa anda
+💂‍♀: Ribet banget harus daftar segala
+🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
           }
           let DinzID_sad = `${pushmenu(prefix, hituet)}`;
           DinzBotz.sendMessage(m.chat, {
@@ -4023,7 +4524,20 @@ Ketik *surrender* untuk menyerah dan mengakui kekalahan`;
       case "othermenu":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : FurinaMD✨\n╰───────────────────✦\n\nDENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA\n\n💂‍♀: Kenapa harus daftar sih?\n🍁: Agar bot mengenal siapa anda\n💂‍♀: Ribet banget harus daftar segala\n🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
+
+╭──「 `CARA DAFTAR` 」─✦
+│⦿ 〔 Cara : .daftar nama.umur
+│⦿ 〔 Contoh : .daftar Furina.20
+│⦿ 〔 Botname : FurinaMD✨
+╰───────────────────✦
+
+DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
+
+💂‍♀: Kenapa harus daftar sih?
+🍁: Agar bot mengenal siapa anda
+💂‍♀: Ribet banget harus daftar segala
+🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
           }
           let DinzID_sad = `${othermenu(prefix, hituet)}`;
           DinzBotz.sendMessage(m.chat, {
@@ -4053,7 +4567,20 @@ Ketik *surrender* untuk menyerah dan mengakui kekalahan`;
       case "newupdatemenu":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : FurinaMD✨\n╰───────────────────✦\n\nDENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA\n\n💂‍♀: Kenapa harus daftar sih?\n🍁: Agar bot mengenal siapa anda\n💂‍♀: Ribet banget harus daftar segala\n🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
+
+╭──「 `CARA DAFTAR` 」─✦
+│⦿ 〔 Cara : .daftar nama.umur
+│⦿ 〔 Contoh : .daftar Furina.20
+│⦿ 〔 Botname : FurinaMD✨
+╰───────────────────✦
+
+DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
+
+💂‍♀: Kenapa harus daftar sih?
+🍁: Agar bot mengenal siapa anda
+💂‍♀: Ribet banget harus daftar segala
+🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
           }
           let DinzID_sad = `${newupdate(prefix, hituet)}`;
           DinzBotz.sendMessage(m.chat, {
@@ -4083,7 +4610,20 @@ Ketik *surrender* untuk menyerah dan mengakui kekalahan`;
       case "downloadmenu":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : FurinaMD✨\n╰───────────────────✦\n\nDENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA\n\n💂‍♀: Kenapa harus daftar sih?\n🍁: Agar bot mengenal siapa anda\n💂‍♀: Ribet banget harus daftar segala\n🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
+
+╭──「 `CARA DAFTAR` 」─✦
+│⦿ 〔 Cara : .daftar nama.umur
+│⦿ 〔 Contoh : .daftar Furina.20
+│⦿ 〔 Botname : FurinaMD✨
+╰───────────────────✦
+
+DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
+
+💂‍♀: Kenapa harus daftar sih?
+🍁: Agar bot mengenal siapa anda
+💂‍♀: Ribet banget harus daftar segala
+🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
           }
           let DinzID_sad = `${downloadmenu(prefix, hituet)}`;
           DinzBotz.sendMessage(m.chat, {
@@ -4116,14 +4656,29 @@ Ketik *surrender* untuk menyerah dan mengakui kekalahan`;
       case "menfess":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : FurinaMD✨\n╰───────────────────✦\n\nDENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA\n\n💂‍♀: Kenapa harus daftar sih?\n🍁: Agar bot mengenal siapa anda\n💂‍♀: Ribet banget harus daftar segala\n🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
+
+╭──「 `CARA DAFTAR` 」─✦
+│⦿ 〔 Cara : .daftar nama.umur
+│⦿ 〔 Contoh : .daftar Furina.20
+│⦿ 〔 Botname : FurinaMD✨
+╰───────────────────✦
+
+DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
+
+💂‍♀: Kenapa harus daftar sih?
+🍁: Agar bot mengenal siapa anda
+💂‍♀: Ribet banget harus daftar segala
+🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
           }
           DinzBotz.menfes = DinzBotz.menfes ?? {};
           const session = Object.values(DinzBotz.menfes).find(v => v.state === "CHATTING" && [v.a, v.b].includes(m.sender));
           if (session) {
             const target = session.a === m.sender ? session.b : session.a;
             await DinzBotz.sendMessage(target, {
-              text: `📩 Pesan baru dari @${m.sender.split("@")[0]}:\n\n${m.text}`,
+              text: `📩 Pesan baru dari @${m.sender.split("@")[0]}:
+
+${m.text}`,
               mentions: [m.sender]
             });
             replyviex("Pesan diteruskan.");
@@ -4137,7 +4692,10 @@ Ketik *surrender* untuk menyerah dan mengakui kekalahan`;
             return replyviex("Fitur hanya tersedia di private chat!");
           }
           if (!text) {
-            return replyviex(`Kirim perintah ${prefix + command} nama|nomor|pesan\n\nContoh:\n${prefix + command} ${pushname}|628xxx|Menfess nih`);
+            return replyviex(`Kirim perintah ${prefix + command} nama|nomor|pesan
+
+Contoh:
+${prefix + command} ${pushname}|628xxx|Menfess nih`);
           }
           if (!text.includes("|")) {
             return replyviex("Format salah! Gunakan format: nama|nomor|pesan");
@@ -4147,7 +4705,16 @@ Ketik *surrender* untuk menyerah dan mengakui kekalahan`;
           if (isNaN(nomorNya)) {
             return replyviex("Nomor tidak valid! Pastikan hanya menggunakan angka.");
           }
-          const yoi = `Hi ada menfess nih buat kamu\n\nDari: ${namaNya}\nPesan: ${pesanNya}\n\nKetik:\n${prefix}balasmenfess -- Untuk menerima menfess\n${prefix}tolakmenfess -- Untuk menolak menfess\n\n_Pesan ini dikirim oleh bot._`;
+          const yoi = `Hi ada menfess nih buat kamu
+
+Dari: ${namaNya}
+Pesan: ${pesanNya}
+
+Ketik:
+${prefix}balasmenfess -- Untuk menerima menfess
+${prefix}tolakmenfess -- Untuk menolak menfess
+
+_Pesan ini dikirim oleh bot._`;
           const tod = await getBuffer("https://telegra.ph/file/c8fdfc8426f5f60b48cca.jpg");
           const id = m.sender;
           DinzBotz.menfes[id] = {
@@ -4166,7 +4733,20 @@ Ketik *surrender* untuk menyerah dan mengakui kekalahan`;
       case "balasmenfess":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : FurinaMD✨\n╰───────────────────✦\n\nDENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA\n\n💂‍♀: Kenapa harus daftar sih?\n🍁: Agar bot mengenal siapa anda\n💂‍♀: Ribet banget harus daftar segala\n🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
+
+╭──「 `CARA DAFTAR` 」─✦
+│⦿ 〔 Cara : .daftar nama.umur
+│⦿ 〔 Contoh : .daftar Furina.20
+│⦿ 〔 Botname : FurinaMD✨
+╰───────────────────✦
+
+DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
+
+💂‍♀: Kenapa harus daftar sih?
+🍁: Agar bot mengenal siapa anda
+💂‍♀: Ribet banget harus daftar segala
+🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
           }
           DinzBotz.menfes = DinzBotz.menfes ?? {};
           const roof = Object.values(DinzBotz.menfes).find(menpes => [menpes.a, menpes.b].includes(m.sender));
@@ -4184,7 +4764,9 @@ Ketik *surrender* untuk menyerah dan mengakui kekalahan`;
             ...room
           };
           await DinzBotz.sendMessage(other, {
-            text: `_@${m.sender.split("@")[0]} telah menerima menfess kamu, sekarang kamu bisa chat lewat bot ini._\n\n*NOTE:* Ketik .stopmenfess untuk berhenti.`,
+            text: `_@${m.sender.split("@")[0]} telah menerima menfess kamu, sekarang kamu bisa chat lewat bot ini._
+
+*NOTE:* Ketik .stopmenfess untuk berhenti.`,
             mentions: [m.sender]
           });
           replyviex("Menfess diterima, sekarang kamu bisa chat!");
@@ -4194,7 +4776,20 @@ Ketik *surrender* untuk menyerah dan mengakui kekalahan`;
       case "tolakmenfess":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : FurinaMD✨\n╰───────────────────✦\n\nDENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA\n\n💂‍♀: Kenapa harus daftar sih?\n🍁: Agar bot mengenal siapa anda\n💂‍♀: Ribet banget harus daftar segala\n🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
+
+╭──「 `CARA DAFTAR` 」─✦
+│⦿ 〔 Cara : .daftar nama.umur
+│⦿ 〔 Contoh : .daftar Furina.20
+│⦿ 〔 Botname : FurinaMD✨
+╰───────────────────✦
+
+DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
+
+💂‍♀: Kenapa harus daftar sih?
+🍁: Agar bot mengenal siapa anda
+💂‍♀: Ribet banget harus daftar segala
+🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
           }
           DinzBotz.menfes = DinzBotz.menfes ?? {};
           const roof = Object.values(DinzBotz.menfes).find(menpes => [menpes.a, menpes.b].includes(m.sender));
@@ -4213,7 +4808,20 @@ Ketik *surrender* untuk menyerah dan mengakui kekalahan`;
       case "stopmenfess":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : FurinaMD✨\n╰───────────────────✦\n\nDENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA\n\n💂‍♀: Kenapa harus daftar sih?\n🍁: Agar bot mengenal siapa anda\n💂‍♀: Ribet banget harus daftar segala\n🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
+
+╭──「 `CARA DAFTAR` 」─✦
+│⦿ 〔 Cara : .daftar nama.umur
+│⦿ 〔 Contoh : .daftar Furina.20
+│⦿ 〔 Botname : FurinaMD✨
+╰───────────────────✦
+
+DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
+
+💂‍♀: Kenapa harus daftar sih?
+🍁: Agar bot mengenal siapa anda
+💂‍♀: Ribet banget harus daftar segala
+🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
           }
           DinzBotz.menfes = DinzBotz.menfes ?? {};
           const find = Object.values(DinzBotz.menfes).find(menpes => [menpes.a, menpes.b].includes(m.sender));
@@ -4233,7 +4841,20 @@ Ketik *surrender* untuk menyerah dan mengakui kekalahan`;
       case "whatmusic":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : FurinaMD✨\n╰───────────────────✦\n\nDENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA\n\n💂‍♀: Kenapa harus daftar sih?\n🍁: Agar bot mengenal siapa anda\n💂‍♀: Ribet banget harus daftar segala\n🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
+
+╭──「 `CARA DAFTAR` 」─✦
+│⦿ 〔 Cara : .daftar nama.umur
+│⦿ 〔 Contoh : .daftar Furina.20
+│⦿ 〔 Botname : FurinaMD✨
+╰───────────────────✦
+
+DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
+
+💂‍♀: Kenapa harus daftar sih?
+🍁: Agar bot mengenal siapa anda
+💂‍♀: Ribet banget harus daftar segala
+🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
           }
           if (!/audio/.test(mime) && !/ogg/.test(mime)) {
             return replyviex("Mohon kirimkan file audio atau .ogg!");
@@ -4254,8 +4875,11 @@ Ketik *surrender* untuk menyerah dan mengakui kekalahan`;
 *ʀɪʟɪs*: ${item.release}
 *ᴅᴜʀᴀsɪ*: ${(item.duration / 1000).toFixed(2)} ᴅᴇᴛɪᴋ
 *ʟɪɴᴋ*: 
-  ${item.url.map((link, idx) => `${idx + 1}. ${link}`).join("\n")}
-      `).join("\n\n");
+  ${item.url.map((link, idx) => `${idx + 1}. ${link}`).join("
+")}
+      `).join("
+
+");
               let buttons = jr.map((item, index) => ({
                 name: "quick_reply",
                 buttonParamsJson: `{"display_text":"ᴍᴀɪɴᴋᴀɴ sᴇᴋᴀʀᴀɴɢ ${item.title}","id":".play ${item.title}"}`
@@ -4281,7 +4905,20 @@ Ketik *surrender* untuk menyerah dan mengakui kekalahan`;
       case "groupmenu":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : FurinaMD✨\n╰───────────────────✦\n\nDENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA\n\n💂‍♀: Kenapa harus daftar sih?\n🍁: Agar bot mengenal siapa anda\n💂‍♀: Ribet banget harus daftar segala\n🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
+
+╭──「 `CARA DAFTAR` 」─✦
+│⦿ 〔 Cara : .daftar nama.umur
+│⦿ 〔 Contoh : .daftar Furina.20
+│⦿ 〔 Botname : FurinaMD✨
+╰───────────────────✦
+
+DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
+
+💂‍♀: Kenapa harus daftar sih?
+🍁: Agar bot mengenal siapa anda
+💂‍♀: Ribet banget harus daftar segala
+🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
           }
           let DinzID_sad = `${groupmenu(prefix, hituet)}`;
           DinzBotz.sendMessage(m.chat, {
@@ -4311,7 +4948,20 @@ Ketik *surrender* untuk menyerah dan mengakui kekalahan`;
       case "funmenu":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : FurinaMD✨\n╰───────────────────✦\n\nDENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA\n\n💂‍♀: Kenapa harus daftar sih?\n🍁: Agar bot mengenal siapa anda\n💂‍♀: Ribet banget harus daftar segala\n🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
+
+╭──「 `CARA DAFTAR` 」─✦
+│⦿ 〔 Cara : .daftar nama.umur
+│⦿ 〔 Contoh : .daftar Furina.20
+│⦿ 〔 Botname : FurinaMD✨
+╰───────────────────✦
+
+DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
+
+💂‍♀: Kenapa harus daftar sih?
+🍁: Agar bot mengenal siapa anda
+💂‍♀: Ribet banget harus daftar segala
+🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
           }
           let DinzID_sad = `${funmenu(prefix, hituet)}`;
           DinzBotz.sendMessage(m.chat, {
@@ -4341,7 +4991,20 @@ Ketik *surrender* untuk menyerah dan mengakui kekalahan`;
       case "stalkermenu":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : FurinaMD✨\n╰───────────────────✦\n\nDENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA\n\n💂‍♀: Kenapa harus daftar sih?\n🍁: Agar bot mengenal siapa anda\n💂‍♀: Ribet banget harus daftar segala\n🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
+
+╭──「 `CARA DAFTAR` 」─✦
+│⦿ 〔 Cara : .daftar nama.umur
+│⦿ 〔 Contoh : .daftar Furina.20
+│⦿ 〔 Botname : FurinaMD✨
+╰───────────────────✦
+
+DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
+
+💂‍♀: Kenapa harus daftar sih?
+🍁: Agar bot mengenal siapa anda
+💂‍♀: Ribet banget harus daftar segala
+🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
           }
           let DinzID_sad = `${stalkermenu(prefix, hituet)}`;
           DinzBotz.sendMessage(m.chat, {
@@ -4398,7 +5061,20 @@ Ketik *surrender* untuk menyerah dan mengakui kekalahan`;
       case "randomvideomenu":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : FurinaMD✨\n╰───────────────────✦\n\nDENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA\n\n💂‍♀: Kenapa harus daftar sih?\n🍁: Agar bot mengenal siapa anda\n💂‍♀: Ribet banget harus daftar segala\n🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
+
+╭──「 `CARA DAFTAR` 」─✦
+│⦿ 〔 Cara : .daftar nama.umur
+│⦿ 〔 Contoh : .daftar Furina.20
+│⦿ 〔 Botname : FurinaMD✨
+╰───────────────────✦
+
+DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
+
+💂‍♀: Kenapa harus daftar sih?
+🍁: Agar bot mengenal siapa anda
+💂‍♀: Ribet banget harus daftar segala
+🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
           }
           let DinzID_sad = `${randomvideomenu(prefix, hituet)}`;
           DinzBotz.sendMessage(m.chat, {
@@ -4428,7 +5104,20 @@ Ketik *surrender* untuk menyerah dan mengakui kekalahan`;
       case "ephoto360menu":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : FurinaMD✨\n╰───────────────────✦\n\nDENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA\n\n💂‍♀: Kenapa harus daftar sih?\n🍁: Agar bot mengenal siapa anda\n💂‍♀: Ribet banget harus daftar segala\n🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
+
+╭──「 `CARA DAFTAR` 」─✦
+│⦿ 〔 Cara : .daftar nama.umur
+│⦿ 〔 Contoh : .daftar Furina.20
+│⦿ 〔 Botname : FurinaMD✨
+╰───────────────────✦
+
+DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
+
+💂‍♀: Kenapa harus daftar sih?
+🍁: Agar bot mengenal siapa anda
+💂‍♀: Ribet banget harus daftar segala
+🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
           }
           let DinzID_sad = `${ephoto360menu(prefix, hituet)}`;
           DinzBotz.sendMessage(m.chat, {
@@ -4458,7 +5147,20 @@ Ketik *surrender* untuk menyerah dan mengakui kekalahan`;
       case "nsfwmenu":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : FurinaMD✨\n╰───────────────────✦\n\nDENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA\n\n💂‍♀: Kenapa harus daftar sih?\n🍁: Agar bot mengenal siapa anda\n💂‍♀: Ribet banget harus daftar segala\n🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
+
+╭──「 `CARA DAFTAR` 」─✦
+│⦿ 〔 Cara : .daftar nama.umur
+│⦿ 〔 Contoh : .daftar Furina.20
+│⦿ 〔 Botname : FurinaMD✨
+╰───────────────────✦
+
+DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
+
+💂‍♀: Kenapa harus daftar sih?
+🍁: Agar bot mengenal siapa anda
+💂‍♀: Ribet banget harus daftar segala
+🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
           }
           let DinzID_sad = `${nsfwmenu(prefix, hituet)}`;
           DinzBotz.sendMessage(m.chat, {
@@ -5286,9 +5988,16 @@ ${global.owner}
           }
           subDomain1(host1, ip1).then(e => {
             if (e.success) {
-              reply(`┏━━━━━━━━━━━━━━━━━━━\n┣ Ip = ${e.ip}\n┗━━━━━━━━━━━━━━━━━━━\n┣ Link = ${e.name}\n┗━━━━━━━━━━━━━━━━━━━\n┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = ${botname}\n┗━━━━━━━━━━━━━━━━━━━`);
+              reply(`┏━━━━━━━━━━━━━━━━━━━
+┣ Ip = ${e.ip}
+┗━━━━━━━━━━━━━━━━━━━
+┣ Link = ${e.name}
+┗━━━━━━━━━━━━━━━━━━━
+┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = ${botname}
+┗━━━━━━━━━━━━━━━━━━━`);
             } else {
-              reply(`gagal membuat subdomain\nMsg: ${e.error}`);
+              reply(`gagal membuat subdomain
+Msg: ${e.error}`);
             }
           });
         }
@@ -5349,9 +6058,16 @@ ${global.owner}
           }
           subDomain1(host1, ip1).then(e => {
             if (e.success) {
-              replyviex(`┏━━━━━━━━━━━━━━━━━━━\n┣ Ip = ${e.ip}\n┗━━━━━━━━━━━━━━━━━━━\n┣ Link = ${e.name}\n┗━━━━━━━━━━━━━━━━━━━\n┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = ${botname}\n┗━━━━━━━━━━━━━━━━━━━`);
+              replyviex(`┏━━━━━━━━━━━━━━━━━━━
+┣ Ip = ${e.ip}
+┗━━━━━━━━━━━━━━━━━━━
+┣ Link = ${e.name}
+┗━━━━━━━━━━━━━━━━━━━
+┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = ${botname}
+┗━━━━━━━━━━━━━━━━━━━`);
             } else {
-              replyviex(`gagal membuat subdomain\nMsg: ${e.error}`);
+              replyviex(`gagal membuat subdomain
+Msg: ${e.error}`);
             }
           });
         }
@@ -5412,9 +6128,16 @@ ${global.owner}
           }
           subDomain1(host1, ip1).then(e => {
             if (e.success) {
-              replyviex(`┏━━━━━━━━━━━━━━━━━━━\n┣ Ip = ${e.ip}\n┗━━━━━━━━━━━━━━━━━━━\n┣ Link = ${e.name}\n┗━━━━━━━━━━━━━━━━━━━\n┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = ${botname}\n┗━━━━━━━━━━━━━━━━━━━`);
+              replyviex(`┏━━━━━━━━━━━━━━━━━━━
+┣ Ip = ${e.ip}
+┗━━━━━━━━━━━━━━━━━━━
+┣ Link = ${e.name}
+┗━━━━━━━━━━━━━━━━━━━
+┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = ${botname}
+┗━━━━━━━━━━━━━━━━━━━`);
             } else {
-              replyviex(`gagal membuat subdomain\nMsg: ${e.error}`);
+              replyviex(`gagal membuat subdomain
+Msg: ${e.error}`);
             }
           });
         }
@@ -5475,9 +6198,16 @@ ${global.owner}
           }
           subDomain1(host1, ip1).then(e => {
             if (e.success) {
-              replyviex(`┏━━━━━━━━━━━━━━━━━━━\n┣ Ip = ${e.ip}\n┗━━━━━━━━━━━━━━━━━━━\n┣ Link = ${e.name}\n┗━━━━━━━━━━━━━━━━━━━\n┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = ${botname}\n┗━━━━━━━━━━━━━━━━━━━`);
+              replyviex(`┏━━━━━━━━━━━━━━━━━━━
+┣ Ip = ${e.ip}
+┗━━━━━━━━━━━━━━━━━━━
+┣ Link = ${e.name}
+┗━━━━━━━━━━━━━━━━━━━
+┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = ${botname}
+┗━━━━━━━━━━━━━━━━━━━`);
             } else {
-              replyviex(`gagal membuat subdomain\nMsg: ${e.error}`);
+              replyviex(`gagal membuat subdomain
+Msg: ${e.error}`);
             }
           });
         }
@@ -5538,9 +6268,16 @@ ${global.owner}
           }
           subDomain1(host1, ip1).then(e => {
             if (e.success) {
-              replyviex(`┏━━━━━━━━━━━━━━━━━━━\n┣ Ip = ${e.ip}\n┗━━━━━━━━━━━━━━━━━━━\n┣ Link = ${e.name}\n┗━━━━━━━━━━━━━━━━━━━\n┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = ${botname}\n┗━━━━━━━━━━━━━━━━━━━`);
+              replyviex(`┏━━━━━━━━━━━━━━━━━━━
+┣ Ip = ${e.ip}
+┗━━━━━━━━━━━━━━━━━━━
+┣ Link = ${e.name}
+┗━━━━━━━━━━━━━━━━━━━
+┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = ${botname}
+┗━━━━━━━━━━━━━━━━━━━`);
             } else {
-              replyviex(`gagal membuat subdomain\nMsg: ${e.error}`);
+              replyviex(`gagal membuat subdomain
+Msg: ${e.error}`);
             }
           });
         }
@@ -5601,9 +6338,16 @@ ${global.owner}
           }
           subDomain1(host1, ip1).then(e => {
             if (e.success) {
-              replyviex(`┏━━━━━━━━━━━━━━━━━━━\n┣ Ip = ${e.ip}\n┗━━━━━━━━━━━━━━━━━━━\n┣ Link = ${e.name}\n┗━━━━━━━━━━━━━━━━━━━\n┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨\n┗━━━━━━━━━━━━━━━━━━━`);
+              replyviex(`┏━━━━━━━━━━━━━━━━━━━
+┣ Ip = ${e.ip}
+┗━━━━━━━━━━━━━━━━━━━
+┣ Link = ${e.name}
+┗━━━━━━━━━━━━━━━━━━━
+┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨
+┗━━━━━━━━━━━━━━━━━━━`);
             } else {
-              replyviex(`gagal membuat subdomain\nMsg: ${e.error}`);
+              replyviex(`gagal membuat subdomain
+Msg: ${e.error}`);
             }
           });
         }
@@ -5664,9 +6408,16 @@ ${global.owner}
           }
           subDomain1(host1, ip1).then(e => {
             if (e.success) {
-              replyviex(`┏━━━━━━━━━━━━━━━━━━━\n┣ Ip = ${e.ip}\n┗━━━━━━━━━━━━━━━━━━━\n┣ Link = ${e.name}\n┗━━━━━━━━━━━━━━━━━━━\n┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨\n┗━━━━━━━━━━━━━━━━━━━`);
+              replyviex(`┏━━━━━━━━━━━━━━━━━━━
+┣ Ip = ${e.ip}
+┗━━━━━━━━━━━━━━━━━━━
+┣ Link = ${e.name}
+┗━━━━━━━━━━━━━━━━━━━
+┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨
+┗━━━━━━━━━━━━━━━━━━━`);
             } else {
-              replyviex(`gagal membuat subdomain\nMsg: ${e.error}`);
+              replyviex(`gagal membuat subdomain
+Msg: ${e.error}`);
             }
           });
         }
@@ -5727,9 +6478,16 @@ ${global.owner}
           }
           subDomain1(host1, ip1).then(e => {
             if (e.success) {
-              replyviex(`┏━━━━━━━━━━━━━━━━━━━\n┣ Ip = ${e.ip}\n┗━━━━━━━━━━━━━━━━━━━\n┣ Link = ${e.name}\n┗━━━━━━━━━━━━━━━━━━━\n┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨\n┗━━━━━━━━━━━━━━━━━━━`);
+              replyviex(`┏━━━━━━━━━━━━━━━━━━━
+┣ Ip = ${e.ip}
+┗━━━━━━━━━━━━━━━━━━━
+┣ Link = ${e.name}
+┗━━━━━━━━━━━━━━━━━━━
+┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨
+┗━━━━━━━━━━━━━━━━━━━`);
             } else {
-              replyviex(`gagal membuat subdomain\nMsg: ${e.error}`);
+              replyviex(`gagal membuat subdomain
+Msg: ${e.error}`);
             }
           });
         }
@@ -5790,9 +6548,16 @@ ${global.owner}
           }
           subDomain1(host1, ip1).then(e => {
             if (e.success) {
-              replyviex(`┏━━━━━━━━━━━━━━━━━━━\n┣ Ip = ${e.ip}\n┗━━━━━━━━━━━━━━━━━━━\n┣ Link = ${e.name}\n┗━━━━━━━━━━━━━━━━━━━\n┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨\n┗━━━━━━━━━━━━━━━━━━━`);
+              replyviex(`┏━━━━━━━━━━━━━━━━━━━
+┣ Ip = ${e.ip}
+┗━━━━━━━━━━━━━━━━━━━
+┣ Link = ${e.name}
+┗━━━━━━━━━━━━━━━━━━━
+┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨
+┗━━━━━━━━━━━━━━━━━━━`);
             } else {
-              replyviex(`gagal membuat subdomain\nMsg: ${e.error}`);
+              replyviex(`gagal membuat subdomain
+Msg: ${e.error}`);
             }
           });
         }
@@ -5853,9 +6618,16 @@ ${global.owner}
           }
           subDomain1(host1, ip1).then(e => {
             if (e.success) {
-              replyviex(`┏━━━━━━━━━━━━━━━━━━━\n┣ Ip = ${e.ip}\n┗━━━━━━━━━━━━━━━━━━━\n┣ Link = ${e.name}\n┗━━━━━━━━━━━━━━━━━━━\n┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨\n┗━━━━━━━━━━━━━━━━━━━`);
+              replyviex(`┏━━━━━━━━━━━━━━━━━━━
+┣ Ip = ${e.ip}
+┗━━━━━━━━━━━━━━━━━━━
+┣ Link = ${e.name}
+┗━━━━━━━━━━━━━━━━━━━
+┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨
+┗━━━━━━━━━━━━━━━━━━━`);
             } else {
-              replyviex(`gagal membuat subdomain\nMsg: ${e.error}`);
+              replyviex(`gagal membuat subdomain
+Msg: ${e.error}`);
             }
           });
         }
@@ -5916,9 +6688,16 @@ ${global.owner}
           }
           subDomain1(host1, ip1).then(e => {
             if (e.success) {
-              replyviex(`┏━━━━━━━━━━━━━━━━━━━\n┣ Ip = ${e.ip}\n┗━━━━━━━━━━━━━━━━━━━\n┣ Link = ${e.name}\n┗━━━━━━━━━━━━━━━━━━━\n┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨\n┗━━━━━━━━━━━━━━━━━━━`);
+              replyviex(`┏━━━━━━━━━━━━━━━━━━━
+┣ Ip = ${e.ip}
+┗━━━━━━━━━━━━━━━━━━━
+┣ Link = ${e.name}
+┗━━━━━━━━━━━━━━━━━━━
+┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨
+┗━━━━━━━━━━━━━━━━━━━`);
             } else {
-              replyviex(`gagal membuat subdomain\nMsg: ${e.error}`);
+              replyviex(`gagal membuat subdomain
+Msg: ${e.error}`);
             }
           });
         }
@@ -5979,9 +6758,16 @@ ${global.owner}
           }
           subDomain1(host1, ip1).then(e => {
             if (e.success) {
-              replyviex(`┏━━━━━━━━━━━━━━━━━━━\n┣ Ip = ${e.ip}\n┗━━━━━━━━━━━━━━━━━━━\n┣ Link = ${e.name}\n┗━━━━━━━━━━━━━━━━━━━\n┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨\n┗━━━━━━━━━━━━━━━━━━━`);
+              replyviex(`┏━━━━━━━━━━━━━━━━━━━
+┣ Ip = ${e.ip}
+┗━━━━━━━━━━━━━━━━━━━
+┣ Link = ${e.name}
+┗━━━━━━━━━━━━━━━━━━━
+┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨
+┗━━━━━━━━━━━━━━━━━━━`);
             } else {
-              replyviex(`gagal membuat subdomain\nMsg: ${e.error}`);
+              replyviex(`gagal membuat subdomain
+Msg: ${e.error}`);
             }
           });
         }
@@ -6042,9 +6828,16 @@ ${global.owner}
           }
           subDomain1(host1, ip1).then(e => {
             if (e.success) {
-              replyviex(`┏━━━━━━━━━━━━━━━━━━━\n┣ Ip = ${e.ip}\n┗━━━━━━━━━━━━━━━━━━━\n┣ Link = ${e.name}\n┗━━━━━━━━━━━━━━━━━━━\n┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨\n┗━━━━━━━━━━━━━━━━━━━`);
+              replyviex(`┏━━━━━━━━━━━━━━━━━━━
+┣ Ip = ${e.ip}
+┗━━━━━━━━━━━━━━━━━━━
+┣ Link = ${e.name}
+┗━━━━━━━━━━━━━━━━━━━
+┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨
+┗━━━━━━━━━━━━━━━━━━━`);
             } else {
-              replyviex(`gagal membuat subdomain\nMsg: ${e.error}`);
+              replyviex(`gagal membuat subdomain
+Msg: ${e.error}`);
             }
           });
         }
@@ -6105,9 +6898,16 @@ ${global.owner}
           }
           subDomain1(host1, ip1).then(e => {
             if (e.success) {
-              replyviex(`┏━━━━━━━━━━━━━━━━━━━\n┣ Ip = ${e.ip}\n┗━━━━━━━━━━━━━━━━━━━\n┣ Link = ${e.name}\n┗━━━━━━━━━━━━━━━━━━━\n┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨\n┗━━━━━━━━━━━━━━━━━━━`);
+              replyviex(`┏━━━━━━━━━━━━━━━━━━━
+┣ Ip = ${e.ip}
+┗━━━━━━━━━━━━━━━━━━━
+┣ Link = ${e.name}
+┗━━━━━━━━━━━━━━━━━━━
+┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨
+┗━━━━━━━━━━━━━━━━━━━`);
             } else {
-              replyviex(`gagal membuat subdomain\nMsg: ${e.error}`);
+              replyviex(`gagal membuat subdomain
+Msg: ${e.error}`);
             }
           });
         }
@@ -6168,9 +6968,16 @@ ${global.owner}
           }
           subDomain1(host1, ip1).then(e => {
             if (e.success) {
-              replyviex(`┏━━━━━━━━━━━━━━━━━━━\n┣ Ip = ${e.ip}\n┗━━━━━━━━━━━━━━━━━━━\n┣ Link = ${e.name}\n┗━━━━━━━━━━━━━━━━━━━\n┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨\n┗━━━━━━━━━━━━━━━━━━━`);
+              replyviex(`┏━━━━━━━━━━━━━━━━━━━
+┣ Ip = ${e.ip}
+┗━━━━━━━━━━━━━━━━━━━
+┣ Link = ${e.name}
+┗━━━━━━━━━━━━━━━━━━━
+┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨
+┗━━━━━━━━━━━━━━━━━━━`);
             } else {
-              replyviex(`gagal membuat subdomain\nMsg: ${e.error}`);
+              replyviex(`gagal membuat subdomain
+Msg: ${e.error}`);
             }
           });
         }
@@ -6231,9 +7038,16 @@ ${global.owner}
           }
           subDomain1(host1, ip1).then(e => {
             if (e.success) {
-              replyviex(`┏━━━━━━━━━━━━━━━━━━━\n┣ Ip = ${e.ip}\n┗━━━━━━━━━━━━━━━━━━━\n┣ Link = ${e.name}\n┗━━━━━━━━━━━━━━━━━━━\n┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨\n┗━━━━━━━━━━━━━━━━━━━`);
+              replyviex(`┏━━━━━━━━━━━━━━━━━━━
+┣ Ip = ${e.ip}
+┗━━━━━━━━━━━━━━━━━━━
+┣ Link = ${e.name}
+┗━━━━━━━━━━━━━━━━━━━
+┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨
+┗━━━━━━━━━━━━━━━━━━━`);
             } else {
-              replyviex(`gagal membuat subdomain\nMsg: ${e.error}`);
+              replyviex(`gagal membuat subdomain
+Msg: ${e.error}`);
             }
           });
         }
@@ -6294,9 +7108,16 @@ ${global.owner}
           }
           subDomain1(host1, ip1).then(e => {
             if (e.success) {
-              replyviex(`┏━━━━━━━━━━━━━━━━━━━\n┣ Ip = ${e.ip}\n┗━━━━━━━━━━━━━━━━━━━\n┣ Link = ${e.name}\n┗━━━━━━━━━━━━━━━━━━━\n┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨\n┗━━━━━━━━━━━━━━━━━━━`);
+              replyviex(`┏━━━━━━━━━━━━━━━━━━━
+┣ Ip = ${e.ip}
+┗━━━━━━━━━━━━━━━━━━━
+┣ Link = ${e.name}
+┗━━━━━━━━━━━━━━━━━━━
+┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨
+┗━━━━━━━━━━━━━━━━━━━`);
             } else {
-              replyviex(`gagal membuat subdomain\nMsg: ${e.error}`);
+              replyviex(`gagal membuat subdomain
+Msg: ${e.error}`);
             }
           });
         }
@@ -6357,9 +7178,16 @@ ${global.owner}
           }
           subDomain1(host1, ip1).then(e => {
             if (e.success) {
-              replyviex(`┏━━━━━━━━━━━━━━━━━━━\n┣ Ip = ${e.ip}\n┗━━━━━━━━━━━━━━━━━━━\n┣ Link = ${e.name}\n┗━━━━━━━━━━━━━━━━━━━\n┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨\n┗━━━━━━━━━━━━━━━━━━━`);
+              replyviex(`┏━━━━━━━━━━━━━━━━━━━
+┣ Ip = ${e.ip}
+┗━━━━━━━━━━━━━━━━━━━
+┣ Link = ${e.name}
+┗━━━━━━━━━━━━━━━━━━━
+┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨
+┗━━━━━━━━━━━━━━━━━━━`);
             } else {
-              replyviex(`gagal membuat subdomain\nMsg: ${e.error}`);
+              replyviex(`gagal membuat subdomain
+Msg: ${e.error}`);
             }
           });
         }
@@ -6420,9 +7248,16 @@ ${global.owner}
           }
           subDomain1(host1, ip1).then(e => {
             if (e.success) {
-              replyviex(`┏━━━━━━━━━━━━━━━━━━━\n┣ Ip = ${e.ip}\n┗━━━━━━━━━━━━━━━━━━━\n┣ Link = ${e.name}\n┗━━━━━━━━━━━━━━━━━━━\n┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨\n┗━━━━━━━━━━━━━━━━━━━`);
+              replyviex(`┏━━━━━━━━━━━━━━━━━━━
+┣ Ip = ${e.ip}
+┗━━━━━━━━━━━━━━━━━━━
+┣ Link = ${e.name}
+┗━━━━━━━━━━━━━━━━━━━
+┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨
+┗━━━━━━━━━━━━━━━━━━━`);
             } else {
-              replyviex(`gagal membuat subdomain\nMsg: ${e.error}`);
+              replyviex(`gagal membuat subdomain
+Msg: ${e.error}`);
             }
           });
         }
@@ -6483,9 +7318,16 @@ ${global.owner}
           }
           subDomain1(host1, ip1).then(e => {
             if (e.success) {
-              replyviex(`┏━━━━━━━━━━━━━━━━━━━\n┣ Ip = ${e.ip}\n┗━━━━━━━━━━━━━━━━━━━\n┣ Link = ${e.name}\n┗━━━━━━━━━━━━━━━━━━━\n┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨\n┗━━━━━━━━━━━━━━━━━━━`);
+              replyviex(`┏━━━━━━━━━━━━━━━━━━━
+┣ Ip = ${e.ip}
+┗━━━━━━━━━━━━━━━━━━━
+┣ Link = ${e.name}
+┗━━━━━━━━━━━━━━━━━━━
+┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨
+┗━━━━━━━━━━━━━━━━━━━`);
             } else {
-              replyviex(`gagal membuat subdomain\nMsg: ${e.error}`);
+              replyviex(`gagal membuat subdomain
+Msg: ${e.error}`);
             }
           });
         }
@@ -6546,9 +7388,16 @@ ${global.owner}
           }
           subDomain1(host1, ip1).then(e => {
             if (e.success) {
-              replyviex(`┏━━━━━━━━━━━━━━━━━━━\n┣ Ip = ${e.ip}\n┗━━━━━━━━━━━━━━━━━━━\n┣ Link = ${e.name}\n┗━━━━━━━━━━━━━━━━━━━\n┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨\n┗━━━━━━━━━━━━━━━━━━━`);
+              replyviex(`┏━━━━━━━━━━━━━━━━━━━
+┣ Ip = ${e.ip}
+┗━━━━━━━━━━━━━━━━━━━
+┣ Link = ${e.name}
+┗━━━━━━━━━━━━━━━━━━━
+┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨
+┗━━━━━━━━━━━━━━━━━━━`);
             } else {
-              replyviex(`gagal membuat subdomain\nMsg: ${e.error}`);
+              replyviex(`gagal membuat subdomain
+Msg: ${e.error}`);
             }
           });
         }
@@ -6609,9 +7458,16 @@ ${global.owner}
           }
           subDomain1(host1, ip1).then(e => {
             if (e.success) {
-              replyviex(`┏━━━━━━━━━━━━━━━━━━━\n┣ Ip = ${e.ip}\n┗━━━━━━━━━━━━━━━━━━━\n┣ Link = ${e.name}\n┗━━━━━━━━━━━━━━━━━━━\n┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨\n┗━━━━━━━━━━━━━━━━━━━`);
+              replyviex(`┏━━━━━━━━━━━━━━━━━━━
+┣ Ip = ${e.ip}
+┗━━━━━━━━━━━━━━━━━━━
+┣ Link = ${e.name}
+┗━━━━━━━━━━━━━━━━━━━
+┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨
+┗━━━━━━━━━━━━━━━━━━━`);
             } else {
-              replyviex(`gagal membuat subdomain\nMsg: ${e.error}`);
+              replyviex(`gagal membuat subdomain
+Msg: ${e.error}`);
             }
           });
         }
@@ -6672,9 +7528,16 @@ ${global.owner}
           }
           subDomain1(host1, ip1).then(e => {
             if (e.success) {
-              replyviex(`┏━━━━━━━━━━━━━━━━━━━\n┣ Ip = ${e.ip}\n┗━━━━━━━━━━━━━━━━━━━\n┣ Link = ${e.name}\n┗━━━━━━━━━━━━━━━━━━━\n┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨\n┗━━━━━━━━━━━━━━━━━━━`);
+              replyviex(`┏━━━━━━━━━━━━━━━━━━━
+┣ Ip = ${e.ip}
+┗━━━━━━━━━━━━━━━━━━━
+┣ Link = ${e.name}
+┗━━━━━━━━━━━━━━━━━━━
+┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨
+┗━━━━━━━━━━━━━━━━━━━`);
             } else {
-              replyviex(`gagal membuat subdomain\nMsg: ${e.error}`);
+              replyviex(`gagal membuat subdomain
+Msg: ${e.error}`);
             }
           });
         }
@@ -6735,9 +7598,16 @@ ${global.owner}
           }
           subDomain1(host1, ip1).then(e => {
             if (e.success) {
-              replyviex(`┏━━━━━━━━━━━━━━━━━━━\n┣ Ip = ${e.ip}\n┗━━━━━━━━━━━━━━━━━━━\n┣ Link = ${e.name}\n┗━━━━━━━━━━━━━━━━━━━\n┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨\n┗━━━━━━━━━━━━━━━━━━━`);
+              replyviex(`┏━━━━━━━━━━━━━━━━━━━
+┣ Ip = ${e.ip}
+┗━━━━━━━━━━━━━━━━━━━
+┣ Link = ${e.name}
+┗━━━━━━━━━━━━━━━━━━━
+┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨
+┗━━━━━━━━━━━━━━━━━━━`);
             } else {
-              replyviex(`gagal membuat subdomain\nMsg: ${e.error}`);
+              replyviex(`gagal membuat subdomain
+Msg: ${e.error}`);
             }
           });
         }
@@ -6798,9 +7668,16 @@ ${global.owner}
           }
           subDomain1(host1, ip1).then(e => {
             if (e.success) {
-              replyviex(`┏━━━━━━━━━━━━━━━━━━━\n┣ Ip = ${e.ip}\n┗━━━━━━━━━━━━━━━━━━━\n┣ Link = ${e.name}\n┗━━━━━━━━━━━━━━━━━━━\n┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨\n┗━━━━━━━━━━━━━━━━━━━`);
+              replyviex(`┏━━━━━━━━━━━━━━━━━━━
+┣ Ip = ${e.ip}
+┗━━━━━━━━━━━━━━━━━━━
+┣ Link = ${e.name}
+┗━━━━━━━━━━━━━━━━━━━
+┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨
+┗━━━━━━━━━━━━━━━━━━━`);
             } else {
-              replyviex(`gagal membuat subdomain\nMsg: ${e.error}`);
+              replyviex(`gagal membuat subdomain
+Msg: ${e.error}`);
             }
           });
         }
@@ -6861,9 +7738,16 @@ ${global.owner}
           }
           subDomain1(host1, ip1).then(e => {
             if (e.success) {
-              replyviex(`┏━━━━━━━━━━━━━━━━━━━\n┣ Ip = ${e.ip}\n┗━━━━━━━━━━━━━━━━━━━\n┣ Link = ${e.name}\n┗━━━━━━━━━━━━━━━━━━━\n┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨\n┗━━━━━━━━━━━━━━━━━━━`);
+              replyviex(`┏━━━━━━━━━━━━━━━━━━━
+┣ Ip = ${e.ip}
+┗━━━━━━━━━━━━━━━━━━━
+┣ Link = ${e.name}
+┗━━━━━━━━━━━━━━━━━━━
+┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨
+┗━━━━━━━━━━━━━━━━━━━`);
             } else {
-              replyviex(`gagal membuat subdomain\nMsg: ${e.error}`);
+              replyviex(`gagal membuat subdomain
+Msg: ${e.error}`);
             }
           });
         }
@@ -6924,9 +7808,16 @@ ${global.owner}
           }
           subDomain1(host1, ip1).then(e => {
             if (e.success) {
-              replyviex(`┏━━━━━━━━━━━━━━━━━━━\n┣ Ip = ${e.ip}\n┗━━━━━━━━━━━━━━━━━━━\n┣ Link = ${e.name}\n┗━━━━━━━━━━━━━━━━━━━\n┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨\n┗━━━━━━━━━━━━━━━━━━━`);
+              replyviex(`┏━━━━━━━━━━━━━━━━━━━
+┣ Ip = ${e.ip}
+┗━━━━━━━━━━━━━━━━━━━
+┣ Link = ${e.name}
+┗━━━━━━━━━━━━━━━━━━━
+┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨
+┗━━━━━━━━━━━━━━━━━━━`);
             } else {
-              replyviex(`gagal membuat subdomain\nMsg: ${e.error}`);
+              replyviex(`gagal membuat subdomain
+Msg: ${e.error}`);
             }
           });
         }
@@ -6987,9 +7878,16 @@ ${global.owner}
           }
           subDomain1(host1, ip1).then(e => {
             if (e.success) {
-              replyviex(`┏━━━━━━━━━━━━━━━━━━━\n┣ Ip = ${e.ip}\n┗━━━━━━━━━━━━━━━━━━━\n┣ Link = ${e.name}\n┗━━━━━━━━━━━━━━━━━━━\n┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨\n┗━━━━━━━━━━━━━━━━━━━`);
+              replyviex(`┏━━━━━━━━━━━━━━━━━━━
+┣ Ip = ${e.ip}
+┗━━━━━━━━━━━━━━━━━━━
+┣ Link = ${e.name}
+┗━━━━━━━━━━━━━━━━━━━
+┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨
+┗━━━━━━━━━━━━━━━━━━━`);
             } else {
-              replyviex(`gagal membuat subdomain\nMsg: ${e.error}`);
+              replyviex(`gagal membuat subdomain
+Msg: ${e.error}`);
             }
           });
         }
@@ -7050,9 +7948,16 @@ ${global.owner}
           }
           subDomain1(host1, ip1).then(e => {
             if (e.success) {
-              replyviex(`┏━━━━━━━━━━━━━━━━━━━\n┣ Ip = ${e.ip}\n┗━━━━━━━━━━━━━━━━━━━\n┣ Link = ${e.name}\n┗━━━━━━━━━━━━━━━━━━━\n┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨\n┗━━━━━━━━━━━━━━━━━━━`);
+              replyviex(`┏━━━━━━━━━━━━━━━━━━━
+┣ Ip = ${e.ip}
+┗━━━━━━━━━━━━━━━━━━━
+┣ Link = ${e.name}
+┗━━━━━━━━━━━━━━━━━━━
+┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨
+┗━━━━━━━━━━━━━━━━━━━`);
             } else {
-              replyviex(`gagal membuat subdomain\nMsg: ${e.error}`);
+              replyviex(`gagal membuat subdomain
+Msg: ${e.error}`);
             }
           });
         }
@@ -7113,9 +8018,16 @@ ${global.owner}
           }
           subDomain1(host1, ip1).then(e => {
             if (e.success) {
-              replyviex(`┏━━━━━━━━━━━━━━━━━━━\n┣ Ip = ${e.ip}\n┗━━━━━━━━━━━━━━━━━━━\n┣ Link = ${e.name}\n┗━━━━━━━━━━━━━━━━━━━\n┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨\n┗━━━━━━━━━━━━━━━━━━━`);
+              replyviex(`┏━━━━━━━━━━━━━━━━━━━
+┣ Ip = ${e.ip}
+┗━━━━━━━━━━━━━━━━━━━
+┣ Link = ${e.name}
+┗━━━━━━━━━━━━━━━━━━━
+┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨
+┗━━━━━━━━━━━━━━━━━━━`);
             } else {
-              replyviex(`gagal membuat subdomain\nMsg: ${e.error}`);
+              replyviex(`gagal membuat subdomain
+Msg: ${e.error}`);
             }
           });
         }
@@ -7176,9 +8088,16 @@ ${global.owner}
           }
           subDomain1(host1, ip1).then(e => {
             if (e.success) {
-              reply(`┏━━━━━━━━━━━━━━━━━━━\n┣ Ip = ${e.ip}\n┗━━━━━━━━━━━━━━━━━━━\n┣ Link = ${e.name}\n┗━━━━━━━━━━━━━━━━━━━\n┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨\n┗━━━━━━━━━━━━━━━━━━━`);
+              reply(`┏━━━━━━━━━━━━━━━━━━━
+┣ Ip = ${e.ip}
+┗━━━━━━━━━━━━━━━━━━━
+┣ Link = ${e.name}
+┗━━━━━━━━━━━━━━━━━━━
+┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨
+┗━━━━━━━━━━━━━━━━━━━`);
             } else {
-              reply(`gagal membuat subdomain\nMsg: ${e.error}`);
+              reply(`gagal membuat subdomain
+Msg: ${e.error}`);
             }
           });
         }
@@ -7239,9 +8158,16 @@ ${global.owner}
           }
           subDomain1(host1, ip1).then(e => {
             if (e.success) {
-              reply(`┏━━━━━━━━━━━━━━━━━━━\n┣ Ip = ${e.ip}\n┗━━━━━━━━━━━━━━━━━━━\n┣ Link = ${e.name}\n┗━━━━━━━━━━━━━━━━━━━\n┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨\n┗━━━━━━━━━━━━━━━━━━━`);
+              reply(`┏━━━━━━━━━━━━━━━━━━━
+┣ Ip = ${e.ip}
+┗━━━━━━━━━━━━━━━━━━━
+┣ Link = ${e.name}
+┗━━━━━━━━━━━━━━━━━━━
+┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨
+┗━━━━━━━━━━━━━━━━━━━`);
             } else {
-              reply(`gagal membuat subdomain\nMsg: ${e.error}`);
+              reply(`gagal membuat subdomain
+Msg: ${e.error}`);
             }
           });
         }
@@ -7302,9 +8228,16 @@ ${global.owner}
           }
           subDomain1(host1, ip1).then(e => {
             if (e.success) {
-              reply(`┏━━━━━━━━━━━━━━━━━━━\n┣ Ip = ${e.ip}\n┗━━━━━━━━━━━━━━━━━━━\n┣ Link = ${e.name}\n┗━━━━━━━━━━━━━━━━━━━\n┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨\n┗━━━━━━━━━━━━━━━━━━━`);
+              reply(`┏━━━━━━━━━━━━━━━━━━━
+┣ Ip = ${e.ip}
+┗━━━━━━━━━━━━━━━━━━━
+┣ Link = ${e.name}
+┗━━━━━━━━━━━━━━━━━━━
+┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨
+┗━━━━━━━━━━━━━━━━━━━`);
             } else {
-              reply(`gagal membuat subdomain\nMsg: ${e.error}`);
+              reply(`gagal membuat subdomain
+Msg: ${e.error}`);
             }
           });
         }
@@ -7365,9 +8298,16 @@ ${global.owner}
           }
           subDomain1(host1, ip1).then(e => {
             if (e.success) {
-              reply(`┏━━━━━━━━━━━━━━━━━━━\n┣ Ip = ${e.ip}\n┗━━━━━━━━━━━━━━━━━━━\n┣ Link = ${e.name}\n┗━━━━━━━━━━━━━━━━━━━\n┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨\n┗━━━━━━━━━━━━━━━━━━━`);
+              reply(`┏━━━━━━━━━━━━━━━━━━━
+┣ Ip = ${e.ip}
+┗━━━━━━━━━━━━━━━━━━━
+┣ Link = ${e.name}
+┗━━━━━━━━━━━━━━━━━━━
+┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨
+┗━━━━━━━━━━━━━━━━━━━`);
             } else {
-              reply(`gagal membuat subdomain\nMsg: ${e.error}`);
+              reply(`gagal membuat subdomain
+Msg: ${e.error}`);
             }
           });
         }
@@ -7428,9 +8368,16 @@ ${global.owner}
           }
           subDomain1(host1, ip1).then(e => {
             if (e.success) {
-              reply(`┏━━━━━━━━━━━━━━━━━━━\n┣ Ip = ${e.ip}\n┗━━━━━━━━━━━━━━━━━━━\n┣ Link = ${e.name}\n┗━━━━━━━━━━━━━━━━━━━\n┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨\n┗━━━━━━━━━━━━━━━━━━━`);
+              reply(`┏━━━━━━━━━━━━━━━━━━━
+┣ Ip = ${e.ip}
+┗━━━━━━━━━━━━━━━━━━━
+┣ Link = ${e.name}
+┗━━━━━━━━━━━━━━━━━━━
+┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨
+┗━━━━━━━━━━━━━━━━━━━`);
             } else {
-              reply(`gagal membuat subdomain\nMsg: ${e.error}`);
+              reply(`gagal membuat subdomain
+Msg: ${e.error}`);
             }
           });
         }
@@ -7491,9 +8438,16 @@ ${global.owner}
           }
           subDomain1(host1, ip1).then(e => {
             if (e.success) {
-              reply(`┏━━━━━━━━━━━━━━━━━━━\n┣ Ip = ${e.ip}\n┗━━━━━━━━━━━━━━━━━━━\n┣ Link = ${e.name}\n┗━━━━━━━━━━━━━━━━━━━\n┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨\n┗━━━━━━━━━━━━━━━━━━━`);
+              reply(`┏━━━━━━━━━━━━━━━━━━━
+┣ Ip = ${e.ip}
+┗━━━━━━━━━━━━━━━━━━━
+┣ Link = ${e.name}
+┗━━━━━━━━━━━━━━━━━━━
+┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨
+┗━━━━━━━━━━━━━━━━━━━`);
             } else {
-              reply(`gagal membuat subdomain\nMsg: ${e.error}`);
+              reply(`gagal membuat subdomain
+Msg: ${e.error}`);
             }
           });
         }
@@ -7554,9 +8508,16 @@ ${global.owner}
           }
           subDomain1(host1, ip1).then(e => {
             if (e.success) {
-              reply(`┏━━━━━━━━━━━━━━━━━━━\n┣ Ip = ${e.ip}\n┗━━━━━━━━━━━━━━━━━━━\n┣ Link = ${e.name}\n┗━━━━━━━━━━━━━━━━━━━\n┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨\n┗━━━━━━━━━━━━━━━━━━━`);
+              reply(`┏━━━━━━━━━━━━━━━━━━━
+┣ Ip = ${e.ip}
+┗━━━━━━━━━━━━━━━━━━━
+┣ Link = ${e.name}
+┗━━━━━━━━━━━━━━━━━━━
+┣ 𝘾𝙧𝙚𝙖𝙩𝙚 𝙗𝙮 = 𝙒𝙞𝙣𝙙𝙖𝙃𝙤𝙩𝙨
+┗━━━━━━━━━━━━━━━━━━━`);
             } else {
-              reply(`gagal membuat subdomain\nMsg: ${e.error}`);
+              reply(`gagal membuat subdomain
+Msg: ${e.error}`);
             }
           });
         }
@@ -7626,7 +8587,8 @@ ${global.owner}
 ┗━━━━━━━━━━━━━━━━━━━
 *𝙎𝙪𝙥𝙥𝙤𝙧𝙩 𝙬𝙞𝙣𝙙𝙖 𝙩𝙚𝙧𝙪𝙨 𝙮𝙖𝙖 >_<*`);
             } else {
-              reply(`gagal membuat subdomain\nMsg: ${e.error}`);
+              reply(`gagal membuat subdomain
+Msg: ${e.error}`);
             }
           });
         }
@@ -7703,7 +8665,8 @@ ${global.owner}
 
 *TERIMAKASIH*`);
             } else {
-              reply(`gagal membuat subdomain\nMsg: ${e.error}`);
+              reply(`gagal membuat subdomain
+Msg: ${e.error}`);
             }
           });
         }
@@ -7780,7 +8743,8 @@ ${global.owner}
 
 *TERIMAKASIH*`);
             } else {
-              reply(`gagal membuat subdomain\nMsg: ${e.error}`);
+              reply(`gagal membuat subdomain
+Msg: ${e.error}`);
             }
           });
         }
@@ -7857,7 +8821,8 @@ ${global.owner}
 
 *TERIMAKASIH*`);
             } else {
-              reply(`gagal membuat subdomain\nMsg: ${e.error}`);
+              reply(`gagal membuat subdomain
+Msg: ${e.error}`);
             }
           });
         }
@@ -7934,7 +8899,8 @@ ${global.owner}
 
 *TERIMAKASIH*`);
             } else {
-              reply(`gagal membuat subdomain\nMsg: ${e.error}`);
+              reply(`gagal membuat subdomain
+Msg: ${e.error}`);
             }
           });
         }
@@ -8011,7 +8977,8 @@ ${global.owner}
 
 *TERIMAKASIH*`);
             } else {
-              reply(`gagal membuat subdomain\nMsg: ${e.error}`);
+              reply(`gagal membuat subdomain
+Msg: ${e.error}`);
             }
           });
         }
@@ -8088,7 +9055,8 @@ ${global.owner}
 
 *TERIMAKASIH*`);
             } else {
-              reply(`gagal membuat subdomain\nMsg: ${e.error}`);
+              reply(`gagal membuat subdomain
+Msg: ${e.error}`);
             }
           });
         }
@@ -8165,7 +9133,8 @@ ${global.owner}
 
 *TERIMAKASIH*`);
             } else {
-              reply(`gagal membuat subdomain\nMsg: ${e.error}`);
+              reply(`gagal membuat subdomain
+Msg: ${e.error}`);
             }
           });
         }
@@ -8242,7 +9211,8 @@ ${global.owner}
 
 *TERIMAKASIH*`);
             } else {
-              reply(`gagal membuat subdomain\nMsg: ${e.error}`);
+              reply(`gagal membuat subdomain
+Msg: ${e.error}`);
             }
           });
         }
@@ -8260,8 +9230,14 @@ ${global.owner}
             return replyviex(`Contoh : ${prefix + command} hi dev play command is not working`);
           }
           textt = `*| REQUEST/BUG |*`;
-          teks1 = `\n\n*User* : @${m.sender.split("@")[0]}\n*Request/Bug* : ${text}`;
-          teks2 = `\n\n*Hai ${pushname}, Permintaan Anda telah diteruskan ke Pemilik saya*.\n*Harap tunggu...*`;
+          teks1 = `
+
+*User* : @${m.sender.split("@")[0]}
+*Request/Bug* : ${text}`;
+          teks2 = `
+
+*Hai ${pushname}, Permintaan Anda telah diteruskan ke Pemilik saya*.
+*Harap tunggu...*`;
           for (let i of owner) {
             DinzBotz.sendMessage(i + "@s.whatsapp.net", {
               text: textt + teks1,
@@ -8362,28 +9338,48 @@ Nickname : ${data1}`);
             }
             const result = data.result;
             const additionalInfo = result.additionalInfo;
-            let caption = `*🔍 YOUTUBE CHANNEL INFO*\n\n`;
-            caption += `*Channel:* ${result.channel}\n`;
-            caption += `*Description:* ${result.description || "No description"}\n`;
-            caption += `*URL:* ${result.url}\n\n`;
-            caption += `*📊 STATS*\n`;
-            caption += `*Subscribers:* ${additionalInfo.totalSubs || "0"}\n`;
-            caption += `*Total Videos:* ${additionalInfo.totalVideos || "0"}\n`;
-            caption += `*Total Views:* ${additionalInfo.views || "0"}\n`;
-            caption += `*Joined:* ${additionalInfo.join || "Unknown"}\n`;
+            let caption = `*🔍 YOUTUBE CHANNEL INFO*
+
+`;
+            caption += `*Channel:* ${result.channel}
+`;
+            caption += `*Description:* ${result.description || "No description"}
+`;
+            caption += `*URL:* ${result.url}
+
+`;
+            caption += `*📊 STATS*
+`;
+            caption += `*Subscribers:* ${additionalInfo.totalSubs || "0"}
+`;
+            caption += `*Total Videos:* ${additionalInfo.totalVideos || "0"}
+`;
+            caption += `*Total Views:* ${additionalInfo.views || "0"}
+`;
+            caption += `*Joined:* ${additionalInfo.join || "Unknown"}
+`;
             if (result.socialMediaLinks && result.socialMediaLinks.length > 0) {
-              caption += `\n*🔗 SOCIAL MEDIA*\n`;
+              caption += `
+*🔗 SOCIAL MEDIA*
+`;
               result.socialMediaLinks.forEach((link, index) => {
-                caption += `${index + 1}. ${link.url}\n`;
+                caption += `${index + 1}. ${link.url}
+`;
               });
             }
             if (result.latestVideos && result.latestVideos.length > 0) {
-              caption += `\n*📺 LATEST VIDEOS*\n`;
+              caption += `
+*📺 LATEST VIDEOS*
+`;
               for (let i = 0; i < Math.min(3, result.latestVideos.length); i++) {
                 const video = result.latestVideos[i];
-                caption += `${i + 1}. *${video.title}*\n`;
-                caption += ` Views: ${video.views}\n`;
-                caption += ` URL: ${video.videoUrl}\n\n`;
+                caption += `${i + 1}. *${video.title}*
+`;
+                caption += ` Views: ${video.views}
+`;
+                caption += ` URL: ${video.videoUrl}
+
+`;
               }
             }
             await DinzBotz.sendMessage(m.chat, {
@@ -8403,7 +9399,11 @@ Nickname : ${data1}`);
       case "mlstalk":
         {
           if (!text) {
-            return replyviex(`Contoh penggunaan:\n${prefix + command} id|zona id\n\nEx.\n${prefix + command} 157228049|2241`);
+            return replyviex(`Contoh penggunaan:
+${prefix + command} id|zona id
+
+Ex.
+${prefix + command} 157228049|2241`);
           }
           async function mlstalk(id, zoneId) {
             return new Promise(async (resolve, reject) => {
@@ -8500,9 +9500,14 @@ case 'twitterdl': case 'twdown2': {
       }
     });
     if (result.length === 0) return m.reply("Video tidak ditemukan.");
-    let caption = `*Semua Kualitas Tersedia:*\n\n`;
+    let caption = `*Semua Kualitas Tersedia:*
+
+`;
     result.forEach((v, i) => {
-      caption += `${i + 1}. *${v.quality}*\n${v.url}\n\n`;
+      caption += `${i + 1}. *${v.quality}*
+${v.url}
+
+`;
     });
     await DinzBotz.sendMessage(m.chat, { text: caption }, { quoted: m });
     const video1280 = result.find(v => v.quality.includes("1280"));
@@ -8680,13 +9685,21 @@ case 'twitterdl': case 'twdown2': {
           replyviex("wait proses 🗿");
           await fetch(`https://api.diioffc.web.id/api/search/webtoons?query=${text}`).then(async res => {
             let response = await res.json();
-            let teks = "*🔎 Hasil Pencarian WEBTOONS*\n\n";
+            let teks = "*🔎 Hasil Pencarian WEBTOONS*
+
+";
             for (let i of response.result) {
-              teks += `*◦ Judul :* ${i.judul}\n`;
-              teks += `*◦ Genre :* ${i.genre}\n`;
-              teks += `*◦ Author :* ${i.author}\n`;
-              teks += `*◦ Likes :* ${i.likes}\n`;
-              teks += `*◦ Link Url :* ${i.link}\n\n`;
+              teks += `*◦ Judul :* ${i.judul}
+`;
+              teks += `*◦ Genre :* ${i.genre}
+`;
+              teks += `*◦ Author :* ${i.author}
+`;
+              teks += `*◦ Likes :* ${i.likes}
+`;
+              teks += `*◦ Link Url :* ${i.link}
+
+`;
             }
             m.reply(teks);
           }).catch(err => replyviex("Error 🗿"));
@@ -8840,7 +9853,13 @@ Updated At : ${aj.updated_at}`
       case "sewabot":
         {
           if (!isRegistered) {
-            return replyviex("👋🏻 Halo kak, Maaf, Kamu blum terdaftar di database nih, Daftar dulu yuu,\n=\n╭─ •  「 `CARA DAFTAR` 」\n> ⎙ *Caranya:* .daftar nama. umur\n> ⎙ *Contohnya:* .daftar Tradz. 20\n> ⎙ *Daftar By:* @Furina\n╰───────────────");
+            return replyviex("👋🏻 Halo kak, Maaf, Kamu blum terdaftar di database nih, Daftar dulu yuu,
+=
+╭─ •  「 `CARA DAFTAR` 」
+> ⎙ *Caranya:* .daftar nama. umur
+> ⎙ *Contohnya:* .daftar Tradz. 20
+> ⎙ *Daftar By:* @Furina
+╰───────────────");
           }
           let hostingbsc = `
   *SEWA BOT Furina-MD*
@@ -9030,7 +10049,8 @@ _Sekarang anda sudah bisa mengakses Furina MD_
               let fileSize = (fs.statSync(media).size / 1024).toFixed(2);
               let uploadDate = new Date().toLocaleString();
               let uploader = `${pushname}`;
-              let caption = `> ᴜᴋᴜʀᴀɴ ғɪʟᴇ : ${fileSize} ᴋʙ\n> ᴘᴇɴɢᴜɴɢɢᴀʜ : ${uploader}`.trim();
+              let caption = `> ᴜᴋᴜʀᴀɴ ғɪʟᴇ : ${fileSize} ᴋʙ
+> ᴘᴇɴɢᴜɴɢɢᴀʜ : ${uploader}`.trim();
               let msg = generateWAMessageFromContent(m.chat, {
                 viewOnceMessage: {
                   message: {
@@ -9222,7 +10242,8 @@ ${anuu}
           }
           let [poll, opt] = text.split("|");
           if (text.split("|") < 2) {
-            return await replyviex(`Sebutkan pertanyaan dan minimal 2 pilihan\nContoh: ${prefix}poll Siapa admin terbaik?|Dinz,Asep,Doge...`);
+            return await replyviex(`Sebutkan pertanyaan dan minimal 2 pilihan
+Contoh: ${prefix}poll Siapa admin terbaik?|Dinz,Asep,Doge...`);
           }
           let options = [];
           for (let i of opt.split(",")) {
@@ -9242,12 +10263,19 @@ ${anuu}
             return replyviex(mess.only.group);
           }
           if (m.chat in vote) {
-            return replyviex(`_Masih ada suara di chat ini!_\n\n*${prefix}deletevote* - untuk menghapus suara`);
+            return replyviex(`_Masih ada suara di chat ini!_
+
+*${prefix}deletevote* - untuk menghapus suara`);
           }
           if (!text) {
             return replyviex(`Masukkan Alasan Memilih, Contoh: *${prefix + command} Pemilik Tampan*`);
           }
-          replyviex(`Pemungutan suara dimulai!\n\n*${prefix}upvote* - untuk upvote\n*${prefix}downvote* - untuk downvote\n*${prefix}checkvote* - untuk memeriksa suara\n*${prefix} deletevote* - untuk menghapus suara`);
+          replyviex(`Pemungutan suara dimulai!
+
+*${prefix}upvote* - untuk upvote
+*${prefix}downvote* - untuk downvote
+*${prefix}checkvote* - untuk memeriksa suara
+*${prefix} deletevote* - untuk menghapus suara`);
           vote[m.chat] = [q, [], []];
           await sleep(1000);
           upvote = vote[m.chat][1];
@@ -9287,7 +10315,9 @@ Please Type Below
             return replyviex(mess.only.group);
           }
           if (!(m.chat in vote)) {
-            return replyviex(`_*tidak ada voting di grup ini!*_\n\n*${prefix}vote* - untuk memulai voting`);
+            return replyviex(`_*tidak ada voting di grup ini!*_
+
+*${prefix}vote* - untuk memulai voting`);
           }
           isVote = vote[m.chat][1].concat(vote[m.chat][2]);
           wasVote = isVote.includes(m.sender);
@@ -9303,14 +10333,16 @@ Please Type Below
 ┌〔 UPVOTE 〕
 │ 
 ├ Total: ${vote[m.chat][1].length}
-${vote[m.chat][1].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join("\n")}
+${vote[m.chat][1].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join("
+")}
 │ 
 └────
 
 ┌〔 DOWNVOTE 〕
 │ 
 ├ Total: ${vote[m.chat][2].length}
-${vote[m.chat][2].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join("\n")}
+${vote[m.chat][2].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join("
+")}
 │ 
 └────
 
@@ -9332,7 +10364,9 @@ Please Type Below
             return replyviex(mess.only.group);
           }
           if (!(m.chat in vote)) {
-            return replyviex(`_*no voting in this group!*_\n\n*${prefix}vote* - to start voting`);
+            return replyviex(`_*no voting in this group!*_
+
+*${prefix}vote* - to start voting`);
           }
           isVote = vote[m.chat][1].concat(vote[m.chat][2]);
           wasVote = isVote.includes(m.sender);
@@ -9348,14 +10382,16 @@ Please Type Below
 ┌〔 UPVOTE 〕
 │ 
 ├ Total: ${vote[m.chat][1].length}
-${vote[m.chat][1].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join("\n")}
+${vote[m.chat][1].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join("
+")}
 │ 
 └────
 
 ┌〔 DOWNVOTE 〕
 │ 
 ├ Total: ${vote[m.chat][2].length}
-${vote[m.chat][2].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join("\n")}
+${vote[m.chat][2].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join("
+")}
 │ 
 └────
 
@@ -9376,7 +10412,9 @@ Please Type Below
           return replyviex(mess.only.group);
         }
         if (!(m.chat in vote)) {
-          return replyviex(`_*no voting in this group!*_\n\n*${prefix}vote* - to start voting`);
+          return replyviex(`_*no voting in this group!*_
+
+*${prefix}vote* - to start voting`);
         }
         teks_vote = `* VOTE *
 
@@ -9385,14 +10423,16 @@ Please Type Below
 ┌〔 UPVOTE 〕
 │ 
 ├ Total: ${upvote.length}
-${vote[m.chat][1].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join("\n")}
+${vote[m.chat][1].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join("
+")}
 │ 
 └────
 
 ┌〔 DOWNVOTE 〕
 │ 
 ├ Total: ${devote.length}
-${vote[m.chat][2].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join("\n")}
+${vote[m.chat][2].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join("
+")}
 │ 
 └────
 
@@ -9411,7 +10451,9 @@ ${vote[m.chat][2].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join("\n")}
             return replyviex(mess.only.group);
           }
           if (!(m.chat in vote)) {
-            return replyviex(`_*no voting in this group!*_\n\n*${prefix}vote* - to start voting`);
+            return replyviex(`_*no voting in this group!*_
+
+*${prefix}vote* - to start voting`);
           }
           delete vote[m.chat];
           replyviex("Successfully Deleted Vote Session In This Group");
@@ -9459,11 +10501,16 @@ ${vote[m.chat][2].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join("\n")}
       case "fliptext":
         {
           if (args.length < 1) {
-            return replyviex(`Contoh:\n${prefix}fliptext ${ownername}`);
+            return replyviex(`Contoh:
+${prefix}fliptext ${ownername}`);
           }
           quere = args.join(" ");
           flipe = quere.split("").reverse().join("");
-          replyviex(`\`\`\`「 FLIP TEXT 」\`\`\`\n*•> Normal :*\n${quere}\n*•> Flip :*\n${flipe}`);
+          replyviex(`\`\`\`「 FLIP TEXT 」\`\`\`
+*•> Normal :*
+${quere}
+*•> Flip :*
+${flipe}`);
         }
         break;
       case "paptt":
@@ -9479,7 +10526,10 @@ ${vote[m.chat][2].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join("\n")}
       case "alkitab":
         {
           if (!text) {
-            return replyviex(`uhm.. teksnya mana?\n\ncontoh:\n${prefix + command} kejadian`);
+            return replyviex(`uhm.. teksnya mana?
+
+contoh:
+${prefix + command} kejadian`);
           }
           let res = await axios.get(`https://alkitab.me/search?q=${encodeURIComponent(text)}`, {
             headers: {
@@ -9500,17 +10550,32 @@ ${vote[m.chat][2].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join("\n")}
           });
           let foto = "https://telegra.ph/file/a333442553b1bc336cc55.jpg";
           let judul = "*────────「 Alkitab 」 ────────*";
-          let caption = result.map(v => `💌 ${v.title}\n📮 ${v.teks}`).join("\n┄┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┄\n");
-          DinzBotz.sendFile(m.chat, foto, "alkitab.jpg", `${judul}\n\n${caption}`, m);
+          let caption = result.map(v => `💌 ${v.title}
+📮 ${v.teks}`).join("
+┄┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┄
+");
+          DinzBotz.sendFile(m.chat, foto, "alkitab.jpg", `${judul}
+
+${caption}`, m);
         }
         break;
       case "listpc":
         {
           let anulistp = await store.chats.all().filter(v => v.id.endsWith(".net")).map(v => v.id);
-          let teks = `${themeemoji} *PERSONAL CHAT LIST*\n\nTotal Chat : ${anulistp.length} Chat\n\n`;
+          let teks = `${themeemoji} *PERSONAL CHAT LIST*
+
+Total Chat : ${anulistp.length} Chat
+
+`;
           for (let i of anulistp) {
             let nama = store.messages[i].array[0].pushName;
-            teks += `${themeemoji} *Name :* ${nama}\n${themeemoji} *User :* @${i.split("@")[0]}\n${themeemoji} *Chat :* https://wa.me/${i.split("@")[0]}\n\n────────────────────────\n\n`;
+            teks += `${themeemoji} *Name :* ${nama}
+${themeemoji} *User :* @${i.split("@")[0]}
+${themeemoji} *Chat :* https://wa.me/${i.split("@")[0]}
+
+────────────────────────
+
+`;
           }
           DinzBotz.sendTextWithMentions(m.chat, teks, m);
         }
@@ -9518,10 +10583,22 @@ ${vote[m.chat][2].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join("\n")}
       case "listgc":
         {
           let anulistg = await store.chats.all().filter(v => v.id.endsWith("@g.us")).map(v => v.id);
-          let teks = `${themeemoji} *GROUP CHAT LIST*\n\nTotal Group : ${anulistg.length} Group\n\n`;
+          let teks = `${themeemoji} *GROUP CHAT LIST*
+
+Total Group : ${anulistg.length} Group
+
+`;
           for (let i of anulistg) {
             let metadata = await DinzBotz.groupMetadata(i);
-            teks += `${themeemoji} *Name :* ${metadata.subject}\n${themeemoji} *Owner :* ${metadata.owner !== undefined ? "@" + metadata.owner.split`@`[0] : "Unknown"}\n${themeemoji} *ID :* ${metadata.id}\n${themeemoji} *Made :* ${moment(metadata.creation * 1000).tz("Asia/Kolkata").format("DD/MM/YYYY HH:mm:ss")}\n${themeemoji} *Member :* ${metadata.participants.length}\n\n────────────────────────\n\n`;
+            teks += `${themeemoji} *Name :* ${metadata.subject}
+${themeemoji} *Owner :* ${metadata.owner !== undefined ? "@" + metadata.owner.split`@`[0] : "Unknown"}
+${themeemoji} *ID :* ${metadata.id}
+${themeemoji} *Made :* ${moment(metadata.creation * 1000).tz("Asia/Kolkata").format("DD/MM/YYYY HH:mm:ss")}
+${themeemoji} *Member :* ${metadata.participants.length}
+
+────────────────────────
+
+`;
           }
           DinzBotz.sendTextWithMentions(m.chat, teks, m);
         }
@@ -9586,7 +10663,9 @@ Aktif:
 ${runtime(process.uptime())}
 
 *CPU USAGE (${cpus.length} CORE CPU)*
-${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type => `- *${(type + "*").padEnd(6)}: ${(cpu.times[type] * 100 / cpu.total).toFixed(2)}%`).join("\n")}
+${cpus[0].model.trim()} (${cpu.speed} MHZ)
+${Object.keys(cpu.times).map(type => `- *${(type + "*").padEnd(6)}: ${(cpu.times[type] * 100 / cpu.total).toFixed(2)}%`).join("
+")}
 
 > ${footxt}`.trim();
           let imgso = `https://quickchart.io/chart?v=2.9.4&c=%7B%0A%20%20type%3A%20%27doughnut%27%2C%0A%20%20data%3A%20%7B%0A%20%20%20%20datasets%3A%20%5B%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20data%3A%20%5B${tot.freePercentage}%2C%20${tot.usedPercentage}%5D%2C%0A%20%20%20%20%20%20%20%20backgroundColor%3A%20%5B%27%2326AC00%27%2C%20%27red%27%5D%2C%0A%20%20%20%20%20%20%20%20label%3A%20%27Dataset%201%27%2C%0A%20%20%20%20%20%20%20%20borderWidth%3A%200%2C%0A%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%5D%2C%0A%20%20%20%20labels%3A%20%5B%27A%27%2C%20%27C%27%5D%2C%0A%20%20%7D%2C%0A%20%20options%3A%20%7B%0A%20%20%20%20circumference%3A%20Math.PI%2C%0A%20%20%20%20rotation%3A%20Math.PI%2C%0A%20%20%20%20cutoutPercentage%3A%2075%2C%0A%20%20%20%20layout%3A%20%7B%0A%20%20%20%20%20%20padding%3A%2080%2C%0A%20%20%20%20%7D%2C%0A%20%20%20%20legend%3A%20%7B%0A%20%20%20%20%20%20display%3A%20false%2C%0A%20%20%20%20%7D%2C%0A%20%20%20%20plugins%3A%20%7B%0A%20%20%20%20%20%20datalabels%3A%20%7B%0A%20%20%20%20%20%20%20%20color%3A%20%27%23404040%27%2C%0A%20%20%20%20%20%20%20%20anchor%3A%20%27end%27%2C%0A%20%20%20%20%20%20%20%20align%3A%20%27end%27%2C%0A%20%20%20%20%20%20%20%20formatter%3A%20(val)%20%3D%3E%20val%20%2B%20%27%25%27%2C%0A%20%20%20%20%20%20%20%20font%3A%20%7B%0A%20%20%20%20%20%20%20%20%20%20size%3A%2025%2C%0A%20%20%20%20%20%20%20%20%20%20weight%3A%20%27bold%27%2C%0A%20%20%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20doughnutlabel%3A%20%7B%0A%20%20%20%20%20%20%20%20labels%3A%20%5B%0A%20%20%20%20%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20text%3A%20%27%5CnPing%20Status%27%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20font%3A%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20size%3A%2020%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20text%3A%20%27%5Cn${latensi.toFixed(4)}s%27%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20color%3A%20%27%23000%27%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20font%3A%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20size%3A%2025%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20weight%3A%20%27bold%27%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%20%20%5D%2C%0A%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%7D%2C%0A%20%20%7D%2C%0A%7D`;
@@ -9638,7 +10717,9 @@ ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type =>
           const data = await store.chats.all();
           for (let i of data) {
             DinzBotz.sendMessage(i.id, {
-              text: `${ownername}'s Siaran\n\nPesan : ${q}`
+              text: `${ownername}'s Siaran
+
+Pesan : ${q}`
             });
             await sleep(1000);
           }
@@ -9659,7 +10740,9 @@ ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type =>
         let xeoncast = groups.map(v => v.id);
         replyviex(` Menyiarkan dalam ${xeoncast.length} Obrolan Grup, dalam ${xeoncast.length * 1, 5} detik`);
         for (let i of xeoncast) {
-          let txt = `${ownername}'s Siaran\n\nPesan : ${q}`;
+          let txt = `${ownername}'s Siaran
+
+Pesan : ${q}`;
           if (/image/.test(mime)) {
             let media = await quoted.download();
             await DinzBotz.sendMessage(i, {
@@ -9762,7 +10845,9 @@ ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type =>
             return replyviex("_Bot Harus Menjadi Admin Terlebih Dahulu_");
           }
           if (!q) {
-            return replyviex(`Send orders ${command} _options_\nOptions : close & open\nContoh : ${command} close`);
+            return replyviex(`Send orders ${command} _options_
+Options : close & open
+Contoh : ${command} close`);
           }
           if (args[0] == "close") {
             replyviex(`┌─┉─ • ─┉─  ── .✦
@@ -9794,7 +10879,8 @@ ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type =>
                   },
                   interactiveMessage: proto.Message.InteractiveMessage.create({
                     body: proto.Message.InteractiveMessage.Body.create({
-                      text: `Hai ${pushname}\nSilakan klik tombol di bawah untuk menggunakan _*${command}*_ command`
+                      text: `Hai ${pushname}
+Silakan klik tombol di bawah untuk menggunakan _*${command}*_ command`
                     }),
                     footer: proto.Message.InteractiveMessage.Footer.create({
                       text: botname
@@ -9863,7 +10949,8 @@ ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type =>
           return replyviex("Khusus Admin!!");
         }
         if (args.length < 1) {
-          return replyviex("type auto sticker on to enable\ntype auto sticker off to disable");
+          return replyviex("type auto sticker on to enable
+type auto sticker off to disable");
         }
         if (args[0] === "on") {
           if (isAutoSticker) {
@@ -9905,7 +10992,9 @@ ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type =>
               mems.push(adm.id.replace("c.us", "s.whatsapp.net"));
             });
             DinzBotz.sendMessage(from, {
-              text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`\n\nNo body is allowed to send virus in this group, member who send will be kicked immediately!`,
+              text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`
+
+No body is allowed to send virus in this group, member who send will be kicked immediately!`,
               contextInfo: {
                 mentionedJid: mems
               }
@@ -9948,7 +11037,9 @@ ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type =>
               mems.push(adm.id.replace("c.us", "s.whatsapp.net"));
             });
             DinzBotz.sendMessage(from, {
-              text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`\n\nNobody is allowed to send group link in this group, one who sends will be kicked immediately!`,
+              text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`
+
+Nobody is allowed to send group link in this group, one who sends will be kicked immediately!`,
               contextInfo: {
                 mentionedJid: mems
               }
@@ -9973,7 +11064,8 @@ ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type =>
                   },
                   interactiveMessage: proto.Message.InteractiveMessage.create({
                     body: proto.Message.InteractiveMessage.Body.create({
-                      text: `Hai ${pushname}\nSilakan klik tombol di bawah untuk menggunakan _*${command}*_ command`
+                      text: `Hai ${pushname}
+Silakan klik tombol di bawah untuk menggunakan _*${command}*_ command`
                     }),
                     footer: proto.Message.InteractiveMessage.Footer.create({
                       text: botname
@@ -10063,7 +11155,9 @@ ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type =>
               mems.push(adm.id.replace("c.us", "s.whatsapp.net"));
             });
             DinzBotz.sendMessage(from, {
-              text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`\n\nIf you're not an admin, don't send the youtube channel link in this group or u will be kicked immediately!`,
+              text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`
+
+If you're not an admin, don't send the youtube channel link in this group or u will be kicked immediately!`,
               contextInfo: {
                 mentionedJid: mems
               }
@@ -10088,7 +11182,8 @@ ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type =>
                   },
                   interactiveMessage: proto.Message.InteractiveMessage.create({
                     body: proto.Message.InteractiveMessage.Body.create({
-                      text: `Hai ${pushname}\nSilakan klik tombol di bawah untuk menggunakan _*${command}*_ command`
+                      text: `Hai ${pushname}
+Silakan klik tombol di bawah untuk menggunakan _*${command}*_ command`
                     }),
                     footer: proto.Message.InteractiveMessage.Footer.create({
                       text: botname
@@ -10178,7 +11273,9 @@ ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type =>
               mems.push(adm.id.replace("c.us", "s.whatsapp.net"));
             });
             DinzBotz.sendMessage(from, {
-              text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`\n\nIf you're not an admin, don't send the instagram link in this group or u will be kicked immediately!`,
+              text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`
+
+If you're not an admin, don't send the instagram link in this group or u will be kicked immediately!`,
               contextInfo: {
                 mentionedJid: mems
               }
@@ -10203,7 +11300,8 @@ ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type =>
                   },
                   interactiveMessage: proto.Message.InteractiveMessage.create({
                     body: proto.Message.InteractiveMessage.Body.create({
-                      text: `Hai ${pushname}\nSilakan klik tombol di bawah untuk menggunakan _*${command}*_ command`
+                      text: `Hai ${pushname}
+Silakan klik tombol di bawah untuk menggunakan _*${command}*_ command`
                     }),
                     footer: proto.Message.InteractiveMessage.Footer.create({
                       text: botname
@@ -10292,7 +11390,9 @@ ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type =>
               mems.push(adm.id.replace("c.us", "s.whatsapp.net"));
             });
             DinzBotz.sendMessage(from, {
-              text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`\n\nIf you're not an admin, don't send the facebook link in this group or u will be kicked immediately!`,
+              text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`
+
+If you're not an admin, don't send the facebook link in this group or u will be kicked immediately!`,
               contextInfo: {
                 mentionedJid: mems
               }
@@ -10317,7 +11417,8 @@ ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type =>
                   },
                   interactiveMessage: proto.Message.InteractiveMessage.create({
                     body: proto.Message.InteractiveMessage.Body.create({
-                      text: `Hai ${pushname}\nSilakan klik tombol di bawah untuk menggunakan _*${command}*_ command`
+                      text: `Hai ${pushname}
+Silakan klik tombol di bawah untuk menggunakan _*${command}*_ command`
                     }),
                     footer: proto.Message.InteractiveMessage.Footer.create({
                       text: botname
@@ -10406,7 +11507,9 @@ ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type =>
               mems.push(adm.id.replace("c.us", "s.whatsapp.net"));
             });
             DinzBotz.sendMessage(from, {
-              text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`\n\nIf you're not an admin, don't send the telegram link in this group or u will be kicked immediately!`,
+              text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`
+
+If you're not an admin, don't send the telegram link in this group or u will be kicked immediately!`,
               contextInfo: {
                 mentionedJid: mems
               }
@@ -10431,7 +11534,8 @@ ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type =>
                   },
                   interactiveMessage: proto.Message.InteractiveMessage.create({
                     body: proto.Message.InteractiveMessage.Body.create({
-                      text: `Hai ${pushname}\nSilakan klik tombol di bawah untuk menggunakan _*${command}*_ command`
+                      text: `Hai ${pushname}
+Silakan klik tombol di bawah untuk menggunakan _*${command}*_ command`
                     }),
                     footer: proto.Message.InteractiveMessage.Footer.create({
                       text: botname
@@ -10520,7 +11624,9 @@ ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type =>
               mems.push(adm.id.replace("c.us", "s.whatsapp.net"));
             });
             DinzBotz.sendMessage(from, {
-              text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`\n\nIf you're not an admin, don't send the tiktok link in this group or u will be kicked immediately!`,
+              text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`
+
+If you're not an admin, don't send the tiktok link in this group or u will be kicked immediately!`,
               contextInfo: {
                 mentionedJid: mems
               }
@@ -10545,7 +11651,8 @@ ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type =>
                   },
                   interactiveMessage: proto.Message.InteractiveMessage.create({
                     body: proto.Message.InteractiveMessage.Body.create({
-                      text: `Hai ${pushname}\nSilakan klik tombol di bawah untuk menggunakan _*${command}*_ command`
+                      text: `Hai ${pushname}
+Silakan klik tombol di bawah untuk menggunakan _*${command}*_ command`
                     }),
                     footer: proto.Message.InteractiveMessage.Footer.create({
                       text: botname
@@ -10635,7 +11742,9 @@ ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type =>
               mems.push(adm.id.replace("c.us", "s.whatsapp.net"));
             });
             DinzBotz.sendMessage(from, {
-              text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`\n\nIf you're not an admin, don't send the twitter link in this group or u will be kicked immediately!`,
+              text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`
+
+If you're not an admin, don't send the twitter link in this group or u will be kicked immediately!`,
               contextInfo: {
                 mentionedJid: mems
               }
@@ -10660,7 +11769,8 @@ ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type =>
                   },
                   interactiveMessage: proto.Message.InteractiveMessage.create({
                     body: proto.Message.InteractiveMessage.Body.create({
-                      text: `Hai ${pushname}\nSilakan klik tombol di bawah untuk menggunakan _*${command}*_ command`
+                      text: `Hai ${pushname}
+Silakan klik tombol di bawah untuk menggunakan _*${command}*_ command`
                     }),
                     footer: proto.Message.InteractiveMessage.Footer.create({
                       text: botname
@@ -10748,7 +11858,9 @@ ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type =>
               mems.push(adm.id.replace("c.us", "s.whatsapp.net"));
             });
             DinzBotz.sendMessage(from, {
-              text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`\n\nIf you're not an admin, don't send any link in this group or u will be kicked immediately!`,
+              text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`
+
+If you're not an admin, don't send any link in this group or u will be kicked immediately!`,
               contextInfo: {
                 mentionedJid: mems
               }
@@ -10773,7 +11885,8 @@ ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type =>
                   },
                   interactiveMessage: proto.Message.InteractiveMessage.create({
                     body: proto.Message.InteractiveMessage.Body.create({
-                      text: `Hai ${pushname}\nSilakan klik tombol di bawah untuk menggunakan _*${command}*_ command`
+                      text: `Hai ${pushname}
+Silakan klik tombol di bawah untuk menggunakan _*${command}*_ command`
                     }),
                     footer: proto.Message.InteractiveMessage.Footer.create({
                       text: botname
@@ -10862,7 +11975,9 @@ ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type =>
               mems.push(adm.id.replace("c.us", "s.whatsapp.net"));
             });
             DinzBotz.sendMessage(from, {
-              text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`\n\nNobody is allowed to use bad words in this group, one who uses will be kicked immediately!`,
+              text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`
+
+Nobody is allowed to use bad words in this group, one who uses will be kicked immediately!`,
               contextInfo: {
                 mentionedJid: mems
               }
@@ -10887,7 +12002,8 @@ ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type =>
                   },
                   interactiveMessage: proto.Message.InteractiveMessage.create({
                     body: proto.Message.InteractiveMessage.Body.create({
-                      text: `Hai ${pushname}\nSilakan klik tombol di bawah untuk menggunakan _*${command}*_ command`
+                      text: `Hai ${pushname}
+Silakan klik tombol di bawah untuk menggunakan _*${command}*_ command`
                     }),
                     footer: proto.Message.InteractiveMessage.Footer.create({
                       text: botname
@@ -10975,7 +12091,9 @@ ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type =>
               mems.push(adm.id.replace("c.us", "s.whatsapp.net"));
             });
             DinzBotz.sendMessage(from, {
-              text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`\n\nNobody is allowed to send group link in this group, one who sends will be kicked immediately!`,
+              text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`
+
+Nobody is allowed to send group link in this group, one who sends will be kicked immediately!`,
               contextInfo: {
                 mentionedJid: mems
               }
@@ -11000,7 +12118,8 @@ ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type =>
                   },
                   interactiveMessage: proto.Message.InteractiveMessage.create({
                     body: proto.Message.InteractiveMessage.Body.create({
-                      text: `Hai ${pushname}\nSilakan klik tombol di bawah untuk menggunakan _*${command}*_ command`
+                      text: `Hai ${pushname}
+Silakan klik tombol di bawah untuk menggunakan _*${command}*_ command`
                     }),
                     footer: proto.Message.InteractiveMessage.Footer.create({
                       text: botname
@@ -11070,7 +12189,16 @@ ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type =>
               return replyviex("Fitur ini hanya untuk Pangeran Warr!");
             }
             if (!text || text.split(" ").length < 2) {
-              return replyviex(`Gunakan dengan cara ${prefix + command} *linkgc waktu*\n\nContoh: ${command} https://chat.whatsapp.com/JanPql7MaMLa 30d\n\n*CATATAN:*\nd = hari (day)\nm = menit (minute)\ns = detik (second)\ny = tahun (year)\nh = jam (hour)`);
+              return replyviex(`Gunakan dengan cara ${prefix + command} *linkgc waktu*
+
+Contoh: ${command} https://chat.whatsapp.com/JanPql7MaMLa 30d
+
+*CATATAN:*
+d = hari (day)
+m = menit (minute)
+s = detik (second)
+y = tahun (year)
+h = jam (hour)`);
             }
             const [link, waktu] = text.split(" ");
             if (!isUrl(link) || !link.includes("https://chat.whatsapp.com/")) {
@@ -11110,16 +12238,26 @@ ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type =>
         break;
       case "listsewa":
         {
-          let list_sewa_list = `*✨✨LIST SEWA✨✨*\n\n*Total:* ${sewa.length}\n\n`;
+          let list_sewa_list = `*✨✨LIST SEWA✨✨*
+
+*Total:* ${sewa.length}
+
+`;
           let data_array = [];
           for (let x of sewa) {
-            list_sewa_list += `*Name:* ${await getGcName(x.id)}\n*ID :* ${x.id}\n`;
+            list_sewa_list += `*Name:* ${await getGcName(x.id)}
+*ID :* ${x.id}
+`;
             if (x.expired === "PERMANENT") {
               let ceksewa = "PERMANENT";
-              list_sewa_list += `*Expire :* PERMANENT\n\n`;
+              list_sewa_list += `*Expire :* PERMANENT
+
+`;
             } else {
               let ceksewa = x.expired - Date.now();
-              list_sewa_list += `*Expired :* ${msToDate(ceksewa)}\n\n`;
+              list_sewa_list += `*Expired :* ${msToDate(ceksewa)}
+
+`;
             }
           }
           DinzBotz.sendMessage(m.chat, {
@@ -11131,16 +12269,26 @@ ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type =>
         break;
       case "ceksewa":
         {
-          let list_sewa_list = `*CEK SEWA*\n\n*Total:* ${sewa.length}\n\n`;
+          let list_sewa_list = `*CEK SEWA*
+
+*Total:* ${sewa.length}
+
+`;
           let data_array = [];
           for (let x of sewa) {
-            list_sewa_list += `*Name:* ${await getGcName(x.id)}\n*ID :* ${x.id}\n`;
+            list_sewa_list += `*Name:* ${await getGcName(x.id)}
+*ID :* ${x.id}
+`;
             if (x.expired === "PERMANENT") {
               let ceksewa = "PERMANENT";
-              list_sewa_list += `*Expire :* PERMANENT\n\n`;
+              list_sewa_list += `*Expire :* PERMANENT
+
+`;
             } else {
               let ceksewa = x.expired - Date.now();
-              list_sewa_list += `*Expired :* ${msToDate(ceksewa)}\n\n`;
+              list_sewa_list += `*Expired :* ${msToDate(ceksewa)}
+
+`;
             }
           }
           DinzBotz.sendMessage(m.chat, {
@@ -11175,7 +12323,9 @@ ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type =>
               mems.push(adm.id.replace("c.us", "s.whatsapp.net"));
             });
             DinzBotz.sendMessage(from, {
-              text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`\n\nNobody is allowed to send group link in this group, one who sends will be kicked immediately!`,
+              text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`
+
+Nobody is allowed to send group link in this group, one who sends will be kicked immediately!`,
               contextInfo: {
                 mentionedJid: mems
               }
@@ -11200,7 +12350,8 @@ ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type =>
                   },
                   interactiveMessage: proto.Message.InteractiveMessage.create({
                     body: proto.Message.InteractiveMessage.Body.create({
-                      text: `Hai ${pushname}\nSilakan klik tombol di bawah untuk menggunakan _*${command}*_ command`
+                      text: `Hai ${pushname}
+Silakan klik tombol di bawah untuk menggunakan _*${command}*_ command`
                     }),
                     footer: proto.Message.InteractiveMessage.Footer.create({
                       text: botname
@@ -11289,7 +12440,9 @@ ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type =>
               mems.push(adm.id.replace("c.us", "s.whatsapp.net"));
             });
             DinzBotz.sendMessage(from, {
-              text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`\n\nNobody is allowed to send group link in this group, one who sends will be kicked immediately!`,
+              text: `\`\`\`「 ⚠️Warning⚠️ 」\`\`\`
+
+Nobody is allowed to send group link in this group, one who sends will be kicked immediately!`,
               contextInfo: {
                 mentionedJid: mems
               }
@@ -11314,7 +12467,8 @@ ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type =>
                   },
                   interactiveMessage: proto.Message.InteractiveMessage.create({
                     body: proto.Message.InteractiveMessage.Body.create({
-                      text: `Hai ${pushname}\nSilakan klik tombol di bawah untuk menggunakan _*${command}*_ command`
+                      text: `Hai ${pushname}
+Silakan klik tombol di bawah untuk menggunakan _*${command}*_ command`
                     }),
                     footer: proto.Message.InteractiveMessage.Footer.create({
                       text: botname
@@ -11430,9 +12584,14 @@ ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type =>
           }
           subDomain1(host1, ip1).then(e => {
             if (e.success) {
-              replyviex(`*_Berhasil Menambah Subdomain✅_*\n_Ip : ${e.ip}_\n_Hostname: ${e.name}_\n\n*_Subdomain By celiaofficial⚡_*`);
+              replyviex(`*_Berhasil Menambah Subdomain✅_*
+_Ip : ${e.ip}_
+_Hostname: ${e.name}_
+
+*_Subdomain By celiaofficial⚡_*`);
             } else {
-              replyviex(`gagal membuat subdomain\nMsg: ${e.error}`);
+              replyviex(`gagal membuat subdomain
+Msg: ${e.error}`);
             }
           });
         }
@@ -11479,12 +12638,19 @@ ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type =>
           } else if (args[1] == "day") {
             var timer = args[0] * `86400000`;
           } else {
-            return replyviex("*Choose:*\nsecond\nminute\nhour\n\n*Contoh*\n10 second");
+            return replyviex("*Choose:*
+second
+minute
+hour
+
+*Contoh*
+10 second");
           }
           replyviex(`Close Time ${q} Starting from now`);
           setTimeout(() => {
             var nomor = m.participant;
-            const close = `*On time* Group Closed By Admin\nNow Only Admins Can Send Messages`;
+            const close = `*On time* Group Closed By Admin
+Now Only Admins Can Send Messages`;
             DinzBotz.groupSettingUpdate(from, "announcement");
             replyviex(close);
           }, timer);
@@ -11570,7 +12736,9 @@ ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type =>
             return reply("_Bot Harus Menjadi Admin Terlebih Dahulu_");
           }
           let response = await DinzBotz.groupInviteCode(m.chat);
-          DinzBotz.sendText(m.chat, `https://chat.whatsapp.com/${response}\n\nGroup Link : ${groupMetadata.subject}`, m, {
+          DinzBotz.sendText(m.chat, `https://chat.whatsapp.com/${response}
+
+Group Link : ${groupMetadata.subject}`, m, {
             detectLink: true
           });
         }
@@ -11619,12 +12787,19 @@ ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type =>
           } else if (args[1] == "day") {
             var timer = args[0] * `86400000`;
           } else {
-            return replyviex("*Choose:*\nsecond\nminute\nhour\n\n*Contoh*\n10 second");
+            return replyviex("*Choose:*
+second
+minute
+hour
+
+*Contoh*
+10 second");
           }
           replyviex(`Open Time ${q} Starting from now`);
           setTimeout(() => {
             var nomor = m.participant;
-            const open = `*On time* Group Opened By Admin\n Now Members Can Send Messages`;
+            const open = `*On time* Group Opened By Admin
+ Now Members Can Send Messages`;
             DinzBotz.groupSettingUpdate(from, "not_announcement");
             replyviex(open);
           }, timer);
@@ -11681,7 +12856,14 @@ ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type =>
             return reply(`*Tidak ada member sider pada grup ini.*`);
           }
           DinzBotz.sendMessage(m.chat, {
-            text: `*${total}/${sum}* Anggota Grup *${groupName}* Menjadi Anggota Sider karena Alasan:\n1. Tidak Aktif Selama Lebih Dari 7 Hari\n2. Bergabung Namun Tidak Pernah Nimbrun\n_“${pesan}”_\n\n*Anggota Sider yang Terdaftar:*\n${sider.map(v => "  • @" + v.replace(/@.+/, "" + typeof global.db.users[v] == "undefined" ? " Sider " : " Off " + msToDate(milliseconds * 1 - global.db.users[v].lastseen))).join("\n")}`
+            text: `*${total}/${sum}* Anggota Grup *${groupName}* Menjadi Anggota Sider karena Alasan:
+1. Tidak Aktif Selama Lebih Dari 7 Hari
+2. Bergabung Namun Tidak Pernah Nimbrun
+_“${pesan}”_
+
+*Anggota Sider yang Terdaftar:*
+${sider.map(v => "  • @" + v.replace(/@.+/, "" + typeof global.db.users[v] == "undefined" ? " Sider " : " Off " + msToDate(milliseconds * 1 - global.db.users[v].lastseen))).join("
+")}`
           }, m, {
             contextInfo: {
               mentionedJid: sider
@@ -11729,7 +12911,8 @@ ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type =>
             return reply(mess.only.owner);
           }
           if (!text) {
-            return replyviex(`Dimana namanya?\nContoh: ${prefix + command} DinzID BotID`);
+            return replyviex(`Dimana namanya?
+Contoh: ${prefix + command} DinzID BotID`);
           }
           await DinzBotz.updateProfileName(text);
           replyviex(`Success in changing the name of bot's number`);
@@ -11741,7 +12924,8 @@ ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type =>
             return reply(mess.only.owner);
           }
           if (!text) {
-            return replyviex(`Dimana teksnya?\nContoh: ${prefix + command} DinzID BotID`);
+            return replyviex(`Dimana teksnya?
+Contoh: ${prefix + command} DinzID BotID`);
           }
           await DinzBotz.updateProfileStatus(text);
           replyviex(`Success in changing the bio of bot's number`);
@@ -11940,7 +13124,8 @@ ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type =>
           }
           let mem = m.isGroup ? await groupMetadata.participants.map(a => a.id) : "";
           DinzBotz.sendMessage(m.chat, {
-            text: `@${m.chat}\n${text}`,
+            text: `@${m.chat}
+${text}`,
             contextInfo: {
               mentionedJid: mem,
               groupMentions: [{
@@ -12002,9 +13187,12 @@ ${cpus[0].model.trim()} (${cpu.speed} MHZ)\n${Object.keys(cpu.times).map(type =>
           let teks = `╚»˙·٠${themeemoji}●♥ Tag All ♥●${themeemoji}٠·˙«╝ 
  
  😶 *penanda :*  @${me.split("@")[0]}
- 🌿 *Isi pesan : ${q ? q : "tidak ada pesan"}*\n\n`;
+ 🌿 *Isi pesan : ${q ? q : "tidak ada pesan"}*
+
+`;
           for (let mem of participants) {
-            teks += `${themeemoji} @${mem.id.split("@")[0]}\n`;
+            teks += `${themeemoji} @${mem.id.split("@")[0]}
+`;
           }
           DinzBotz.sendMessage(m.chat, {
             text: teks,
@@ -12271,11 +13459,17 @@ case "toghibli": {
             let scale = availableScales.includes(parseInt(text)) ? parseInt(text) : 2;
             let tag = `@${m.sender.split("@")[0]}`;
             let result = await upscale(media, scale);
-            let caption = "🌟 *Effect*: HD\n";
-            caption += `📩 *Requested by*: ${tag}\n`;
-            caption += `✨ *Source*: imageupscaler.com\n`;
-            caption += `🔍 *Skala*: ${scale}\n`;
-            caption += `📏 *Available Scales*: ${availableScales.join(", ")}\n\n`;
+            let caption = "🌟 *Effect*: HD
+";
+            caption += `📩 *Requested by*: ${tag}
+`;
+            caption += `✨ *Source*: imageupscaler.com
+`;
+            caption += `🔍 *Skala*: ${scale}
+`;
+            caption += `📏 *Available Scales*: ${availableScales.join(", ")}
+
+`;
             caption += "Terima kasih sudah menggunakan fitur ini ya, Bos! 😊";
             await DinzBotz.sendMessage(m.chat, {
               image: {
@@ -12378,7 +13572,9 @@ case "hd": {
         const { data } = await axios.get(`${this.api_url}/queue/data?session_hash=${session_hash}`);
 
         let result;
-        const lines = data.split('\n\n');
+        const lines = data.split('
+
+');
         for (const line of lines) {
           if (line.startsWith('data:')) {
             const d = JSON.parse(line.substring(6));
@@ -12438,7 +13634,8 @@ case "hd": {
       case "nulishitam":
         {
           if (!text) {
-            return reply("iya kak,  mau nulis apa? untuk menulis caranya begini ya\n> .nulis teks yang mau ditulis");
+            return reply("iya kak,  mau nulis apa? untuk menulis caranya begini ya
+> .nulis teks yang mau ditulis");
           }
           DinzBotz.sendMessage(m.chat, {
             react: {
@@ -12465,7 +13662,8 @@ case "hd": {
       case "magernulis":
         {
           if (!text) {
-            return reply("iya kak,  mau nulis apa? untuk menulis caranya begini ya\n> .nulis nama|kelas|teks yang mau ditulis");
+            return reply("iya kak,  mau nulis apa? untuk menulis caranya begini ya
+> .nulis nama|kelas|teks yang mau ditulis");
           }
           nama = text.split("|")[0] ? text.split("|")[0] : "-";
           kelas = text.split("|")[1] ? text.split("|")[1] : "-";
@@ -12494,7 +13692,11 @@ case "hd": {
       case "tiktokslide":
         {
           if (!text) {
-            return replyviex(`Gunakan dengan cara ${prefix + command} *url*\n\n_Contoh_\n\n${prefix + command} https://vt.tiktok.com/ZSL36LfEP/`);
+            return replyviex(`Gunakan dengan cara ${prefix + command} *url*
+
+_Contoh_
+
+${prefix + command} https://vt.tiktok.com/ZSL36LfEP/`);
           }
           DinzBotz.sendMessage(m.chat, {
             react: {
@@ -12534,12 +13736,14 @@ case "hd": {
       case "kisahnabi":
         {
           if (!text) {
-            return replyviex(`Masukan nama nabi\nContoh: kisahnabi adam`);
+            return replyviex(`Masukan nama nabi
+Contoh: kisahnabi adam`);
           }
           let url = await fetch(`https://raw.githubusercontent.com/ZeroChanBot/Api-Freee/a9da6483809a1fbf164cdf1dfbfc6a17f2814577/data/kisahNabi/${text}.json`);
           let kisah = await url.json().catch(_ => "Error");
           if (kisah == "Error") {
-            return replyviex("*Not Found*\n*📮 ᴛɪᴘs :* coba jangan gunakan huruf capital");
+            return replyviex("*Not Found*
+*📮 ᴛɪᴘs :* coba jangan gunakan huruf capital");
           }
           let hasil = `_*👳 Nabi :*_ ${kisah.name}
 _*📅 Tanggal Lahir :*_ ${kisah.thn_kelahiran}
@@ -13157,9 +14361,14 @@ Artinya: "Sesungguhnya Allah mempunyai sembilan puluh sembilan nama, alias serat
             translation_en: "The Patient"
           }];
           let json = JSON.parse(JSON.stringify(asmaulhusna));
-          let data = json.map((v, i) => `${i + 1}. ${v.latin}\n${v.arabic}\n${v.translation_id}`).join("\n\n");
+          let data = json.map((v, i) => `${i + 1}. ${v.latin}
+${v.arabic}
+${v.translation_id}`).join("
+
+");
           if (isNaN(args[0])) {
-            return replyviex(`contoh:\nasmaulhusna 1`);
+            return replyviex(`contoh:
+asmaulhusna 1`);
           }
           if (args[0]) {
             if (args[0] < 1 || args[0] > 99) {
@@ -13185,7 +14394,8 @@ ${translation_en}
       //=========================================\\
       case "audiosurah":
         {
-          let wrong = `_*Contoh Penggunaan :*_\naudiosurah 1
+          let wrong = `_*Contoh Penggunaan :*_
+audiosurah 1
 
 *List Surah :*
 1 : Al-Fatihah
@@ -13393,8 +14603,16 @@ Allah mengetahui apa-apa yang di hadapan mereka dan di belakang mereka, dan mere
           };
           let bacaan = JSON.stringify(bacaanshalat);
           let json = JSON.parse(bacaan);
-          let data = json.result.map((v, i) => `${i + 1}. ${v.name}\n${v.arabic}\n${v.latin}\n*Artinya:*\n_"${v.terjemahan}"_`).join("\n\n");
-          let contoh = `*「 Bacaan Shalat 」*\n\n`;
+          let data = json.result.map((v, i) => `${i + 1}. ${v.name}
+${v.arabic}
+${v.latin}
+*Artinya:*
+_"${v.terjemahan}"_`).join("
+
+");
+          let contoh = `*「 Bacaan Shalat 」*
+
+`;
           replyviex(`${contoh} + ${data}`);
         }
         break;
@@ -13415,7 +14633,9 @@ ${v.arabic}
 ❃ Translate :
 ${v.translation}
 `.trim();
-          }).join("\n\n");
+          }).join("
+
+");
           replyviex(`${caption}`);
         }
         break;
@@ -13437,7 +14657,8 @@ _📚 Baca yang dibawah ya!_
       case "niatsholat":
         {
           if (!q) {
-            return replyviex(`Contoh Penggunaan :\nniatsholat Subuh`);
+            return replyviex(`Contoh Penggunaan :
+niatsholat Subuh`);
           }
           const niatsholat = [{
             index: 1,
@@ -13473,7 +14694,14 @@ _📚 Baca yang dibawah ya!_
           let text = q.toLowerCase() || "";
           let data = Object.values(niatsholat).find(v => v.solat == text);
           if (!data) {
-            return replyviex(`${txt} Tidak Ditemukan\n\nList Solat 5 Waktu :\n• Subuh\n• Maghrib\n• Dzuhur\n• Isha\n• Ashar`);
+            return replyviex(`${txt} Tidak Ditemukan
+
+List Solat 5 Waktu :
+• Subuh
+• Maghrib
+• Dzuhur
+• Isha
+• Ashar`);
           }
           replyviex(`
 _*Niat Sholat ${text}*_
@@ -13595,7 +14823,8 @@ _*Niat Sholat ${text}*_
             arabic,
             arti
           } = randomQuote;
-          replyviex(`${arabic}\n${arti}`);
+          replyviex(`${arabic}
+${arti}`);
         }
         break;
       //=========================================\\
@@ -13614,7 +14843,9 @@ ${v.arabic}
 ❃ Translate :
 ${v.translation}
 `.trim();
-          }).join("\n\n");
+          }).join("
+
+");
           replyviex(`${caption}`);
         }
         break;
@@ -13637,14 +14868,17 @@ ${v.translation}
           let user = global.db.users[m.sender];
           let time = user.lastparming + 1800000;
           if (new Date() - user.lastparming < 1800000) {
-            return replyviex(`Anda sudah lelah untuk bekerja\nTunggu selama ${msToTime(time - new Date())} lagi`);
+            return replyviex(`Anda sudah lelah untuk bekerja
+Tunggu selama ${msToTime(time - new Date())} lagi`);
           }
           let wood = `${Math.floor(Math.random() * 50)}`.trim();
           let money = `${Math.floor(Math.random() * 50000)}`.trim();
           user.wood += wood * 1;
           user.money += money * 1;
           user.lastparming = new Date() * 1;
-          replyviex(`Selamat kamu mendapatkan : \n+${wood} Kayu\n+${money} Money`);
+          replyviex(`Selamat kamu mendapatkan : 
++${wood} Kayu
++${money} Money`);
         }
         break;
       //=========================================\\
@@ -13672,19 +14906,35 @@ ${v.translation}
             count = count ? /all/i.test(count) ? Math.floor(global.db.users[m.sender].exp / buatall) : parseInt(count) : args[0] ? parseInt(args[0]) : 1;
             count = Math.max(1, count);
             if (args.length < 1) {
-              return reply("casino <jumlah>\n casino 1000");
+              return reply("casino <jumlah>
+ casino 1000");
             }
             if (global.db.users[m.sender].exp >= count * 1) {
               global.db.users[m.sender].exp -= count * 1;
               //await reply('') //Kwkwwkkwlwlw
               if (Aku > Kamu) {
-                reply(`💰 Casino 💰\n*Kamu:* ${Kamu} Point\n*Computer:* ${Aku} Point\n\n*You LOSE*\nKamu kehilangan ${count} Uang(xp)`);
+                reply(`💰 Casino 💰
+*Kamu:* ${Kamu} Point
+*Computer:* ${Aku} Point
+
+*You LOSE*
+Kamu kehilangan ${count} Uang(xp)`);
               } else if (Aku < Kamu) {
                 global.db.users[m.sender].exp += count * 2;
-                reply(`💰 Casino 💰\n*Kamu:* ${Kamu} Point\n*Computer:* ${Aku} Point\n\n*You Win*\nKamu mendapatkan ${count * 2} Uang(xp)`);
+                reply(`💰 Casino 💰
+*Kamu:* ${Kamu} Point
+*Computer:* ${Aku} Point
+
+*You Win*
+Kamu mendapatkan ${count * 2} Uang(xp)`);
               } else {
                 global.db.users[m.sender].exp += count * 1;
-                reply(`💰 Casino 💰\n*Kamu:* ${Kamu} Point\n*Computer:* ${Aku} Point\n\n*SERI*\nKamu mendapatkan ${count * 1} Uang(xp)`);
+                reply(`💰 Casino 💰
+*Kamu:* ${Kamu} Point
+*Computer:* ${Aku} Point
+
+*SERI*
+Kamu mendapatkan ${count * 1} Uang(xp)`);
               }
             } else {
               reply(`Uang(xp) kamu tidak mencukupi untuk Casino silahkan *#kerja* terlebih dahulu!`);
@@ -13694,7 +14944,11 @@ ${v.translation}
             reply("Error!!");
             if (DevMode) {
               for (let jid of global.owner.map(v => v.replace(/[^0-9]/g, "") + "@s.whatsapp.net").filter(v => v != DinzBotz.user.jid)) {
-                DinzBotz.sendMessage(jid, "casino.js error\nNo: *" + m.sender.split`@`[0] + "*\nCommand: *" + m.text + "*\n\n*" + e + "*", MessageType.text);
+                DinzBotz.sendMessage(jid, "casino.js error
+No: *" + m.sender.split`@`[0] + "*
+Command: *" + m.text + "*
+
+*" + e + "*", MessageType.text);
               }
             }
           } finally {
@@ -13750,7 +15004,8 @@ ${v.translation}
                         hasMediaAttachment: false
                       }),
                       body: {
-                        text: `> Klik tombol DANA di bawah\n> DANA A/N: ${global.andana}`
+                        text: `> Klik tombol DANA di bawah
+> DANA A/N: ${global.andana}`
                       },
                       nativeFlowMessage: {
                         buttons: [{
@@ -13773,7 +15028,8 @@ ${v.translation}
                         hasMediaAttachment: false
                       }),
                       body: {
-                        text: `> Klik tombol GOPAY di bawah\n> GOPAY A/N: ${global.angopay}`
+                        text: `> Klik tombol GOPAY di bawah
+> GOPAY A/N: ${global.angopay}`
                       },
                       nativeFlowMessage: {
                         buttons: [{
@@ -13854,60 +15110,82 @@ ${v.translation}
             switch (type) {
               case "ojek":
                 if (new Date() - users.lastkerja < 300000) {
-                  return replyviex(`Kamu sudah bekerja\nSaatnya istirahat selama ${clockString(time - new Date())}`);
+                  return replyviex(`Kamu sudah bekerja
+Saatnya istirahat selama ${clockString(time - new Date())}`);
                 }
                 let hasilojek = `${Math.floor(Math.random() * 150000)}`.trim();
                 users.money += hasilojek * 1;
                 users.lastparming = new Date() * 1;
-                replyviex(`Kamu Sudah Mengantarkan *${penumpang}* 🚗\nDan mendapatkan uang senilai *Rp ${hasilojek} ${global.rpg.emoticon("money")}*`);
+                replyviex(`Kamu Sudah Mengantarkan *${penumpang}* 🚗
+Dan mendapatkan uang senilai *Rp ${hasilojek} ${global.rpg.emoticon("money")}*`);
                 break;
               case "pedagang":
                 if (new Date() - users.lastkerja < 300000) {
-                  return replyviex(`Kamu sudah bekerja,Saatnya istirahat selama\n🕜 ${clockString(time - new Date())}`);
+                  return replyviex(`Kamu sudah bekerja,Saatnya istirahat selama
+🕜 ${clockString(time - new Date())}`);
                 }
                 let hasildagang = `${Math.floor(Math.random() * 150000)}`.trim();
                 users.money += hasildagang * 1;
                 users.lastparming = new Date() * 1;
-                replyviex(`Ada pembeli yg membeli *${dagangan}* 🛒\nDan mendapatkan uang senilai *Rp ${hasildagang} ${global.rpg.emoticon("money")}*`);
+                replyviex(`Ada pembeli yg membeli *${dagangan}* 🛒
+Dan mendapatkan uang senilai *Rp ${hasildagang} ${global.rpg.emoticon("money")}*`);
                 break;
               case "dokter":
                 if (new Date() - users.lastkerja < 300000) {
-                  return replyviex(`Kamu sudah bekerja,Saatnya istirahat selama\n🕜 ${clockString(time - new Date())}`);
+                  return replyviex(`Kamu sudah bekerja,Saatnya istirahat selama
+🕜 ${clockString(time - new Date())}`);
                 }
                 let hasildokter = `${Math.floor(Math.random() * 150000)}`.trim();
                 users.money += hasildokter * 1;
                 users.lastparming = new Date() * 1;
-                replyviex(`Kamu menyembuhkan pasien *${pasien}* 💉\nDan mendapatkan uang senilai *Rp ${hasildokter}* ${global.rpg.emoticon("money")}`);
+                replyviex(`Kamu menyembuhkan pasien *${pasien}* 💉
+Dan mendapatkan uang senilai *Rp ${hasildokter}* ${global.rpg.emoticon("money")}`);
                 break;
               case "petani":
                 if (new Date() - users.lastkerja < 300000) {
-                  return replyviex(`Kamu sudah bekerja,Saatnya istirahat selama\n🕜 ${clockString(time - new Date())}`);
+                  return replyviex(`Kamu sudah bekerja,Saatnya istirahat selama
+🕜 ${clockString(time - new Date())}`);
                 }
                 let hasiltani = `${Math.floor(Math.random() * 150000)}`.trim();
                 users.money += hasiltani * 1;
                 users.lastparming = new Date() * 1;
-                replyviex(`${panen} Sudah Panen !🌽 Dan menjualnya 🧺\nDan mendapatkan uang senilai Rp *${hasiltani} ${global.rpg.emoticon("money")}*`);
+                replyviex(`${panen} Sudah Panen !🌽 Dan menjualnya 🧺
+Dan mendapatkan uang senilai Rp *${hasiltani} ${global.rpg.emoticon("money")}*`);
                 break;
               case "montir":
                 if (new Date() - users.lastkerja < 300000) {
-                  return replyviex(`Kamu sudah bekerja,Saatnya istirahat selama\n🕜 ${clockString(time - new Date())}`);
+                  return replyviex(`Kamu sudah bekerja,Saatnya istirahat selama
+🕜 ${clockString(time - new Date())}`);
                 }
                 let hasilmontir = `${Math.floor(Math.random() * 150000)}`.trim();
                 users.money += hasilmontir * 1;
                 users.lastparming = new Date() * 1;
-                replyviex(`Kamu Baru saja mendapatkan pelanggan dan memperbaiki *${bengkel} 🔧*\nDan kamu mendapatkan uang senilai *Rp ${hasilmontir}* ${global.rpg.emoticon("money")}`);
+                replyviex(`Kamu Baru saja mendapatkan pelanggan dan memperbaiki *${bengkel} 🔧*
+Dan kamu mendapatkan uang senilai *Rp ${hasilmontir}* ${global.rpg.emoticon("money")}`);
                 break;
               case "kuli":
                 if (new Date() - users.lastkerja < 300000) {
-                  return replyviex(`Kamu sudah bekerja,Saatnya istirahat selama\n🕜 ${clockString(time - new Date())}`);
+                  return replyviex(`Kamu sudah bekerja,Saatnya istirahat selama
+🕜 ${clockString(time - new Date())}`);
                 }
                 let hasilkuli = `${Math.floor(Math.random() * 150000)}`.trim();
                 users.money += hasilkuli * 1;
                 users.lastparming = new Date() * 1;
-                replyviex(`Kamu baru saja selesai ${rumah} 🔨\nDan mendapatkan uang senilai *Rp ${hasilkuli} ${global.rpg.emoticon("money")}*`);
+                replyviex(`Kamu baru saja selesai ${rumah} 🔨
+Dan mendapatkan uang senilai *Rp ${hasilkuli} ${global.rpg.emoticon("money")}*`);
                 break;
               default:
-                return replykerja(`_*𝙋𝙄𝙇𝙄𝙃 𝙋𝙀𝙆𝙀𝙍𝙅𝘼𝘼𝙉 𝙔𝘼𝙉𝙂 𝙆𝘼𝙈𝙐 𝙄𝙉𝙂𝙄𝙉𝙆𝘼𝙉*_\n\n_➬ KULI_ \n_➬ MONTIR_ \n_➬ PETANI_ \n_➬ DOKTER_ \n_➬ PEDAGANG_ \n_➬ OJEK_ \n\n𝘾𝙊𝙉𝙏𝙊𝙃 𝙋𝙀𝙉𝙂𝙂𝙐𝙉𝘼𝘼𝙉 :\n.kerja dokter`);
+                return replykerja(`_*𝙋𝙄𝙇𝙄𝙃 𝙋𝙀𝙆𝙀𝙍𝙅𝘼𝘼𝙉 𝙔𝘼𝙉𝙂 𝙆𝘼𝙈𝙐 𝙄𝙉𝙂𝙄𝙉𝙆𝘼𝙉*_
+
+_➬ KULI_ 
+_➬ MONTIR_ 
+_➬ PETANI_ 
+_➬ DOKTER_ 
+_➬ PEDAGANG_ 
+_➬ OJEK_ 
+
+𝘾𝙊𝙉𝙏𝙊𝙃 𝙋𝙀𝙉𝙂𝙂𝙐𝙉𝘼𝘼𝙉 :
+.kerja dokter`);
             }
           }
         }
@@ -14150,7 +15428,8 @@ ${v.translation}
           let wrong = `🔖 ᴛʏᴩᴇ ʟɪsᴛ :
 ${leaderboard.map(v => `
 ⮕ ${rpg.emoticon(v)} - ${v}
-`.trim()).join("\n")}
+`.trim()).join("
+")}
 ––––––––––––––––––––––––
 💁🏻‍♂ ᴛɪᴩ :
 ⮕ ᴛᴏ ᴠɪᴇᴡ ᴅɪғғᴇʀᴇɴᴛ ʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ:
@@ -14158,7 +15437,8 @@ ${command} [type]
 ★ ᴇxᴀᴍᴩʟᴇ:
 ${command} legendary`.trim();
           if (!leaderboard.includes(type)) {
-            return await reply("*––––『 𝙻𝙴𝙰𝙳𝙴𝚁𝙱𝙾𝙰𝚁𝙳 』––––*\n" + wrong, {
+            return await reply("*––––『 𝙻𝙴𝙰𝙳𝙴𝚁𝙱𝙾𝙰𝚁𝙳 』––––*
+" + wrong, {
               contextInfo: {}
             });
           }
@@ -14171,7 +15451,11 @@ ${command} legendary`.trim();
 
                 *• ${rpg.emoticon(type)} ${type} •*
 
-${sortedItem.slice(page * 0, page * 5 + 5).map((user, i) => `${i + 1}.*﹙${user[type]}﹚*- ${participants.some(p => areJidsSameUser(user.jid, p.id)) ? `${user.registered ? user.name : DinzBotz.getName(user.jid)} \nwa.me/` : "ғʀᴏᴍ ᴏᴛʜᴇʀ ɢʀᴏᴜᴩ\n @"}${user.jid.split`@`[0]}`).join`\n\n`}
+${sortedItem.slice(page * 0, page * 5 + 5).map((user, i) => `${i + 1}.*﹙${user[type]}﹚*- ${participants.some(p => areJidsSameUser(user.jid, p.id)) ? `${user.registered ? user.name : DinzBotz.getName(user.jid)} 
+wa.me/` : "ғʀᴏᴍ ᴏᴛʜᴇʀ ɢʀᴏᴜᴩ
+ @"}${user.jid.split`@`[0]}`).join`
+
+`}
 `.trim();
           return await reply(text, {
             contextInfo: {
@@ -14199,7 +15483,8 @@ ${sortedItem.slice(page * 0, page * 5 + 5).map((user, i) => `${i + 1}.*﹙${user
           let user = global.db.users[m.sender];
           let time = user.lastmulung + 1800000;
           if (new Date() - user.lastmulung < 1800000) {
-            return replyviex(`Anda sudah lelah untuk mulung\nTunggu selama ${msToTime(time - new Date())} lagi`);
+            return replyviex(`Anda sudah lelah untuk mulung
+Tunggu selama ${msToTime(time - new Date())} lagi`);
           }
           let botol = Math.floor(Math.random() * 1000);
           let kaleng = Math.floor(Math.random() * 1000);
@@ -14212,7 +15497,12 @@ ${sortedItem.slice(page * 0, page * 5 + 5).map((user, i) => `${i + 1}.*﹙${user
           user.gelas += gelas * 1;
           user.plastik += plastik * 1;
           user.lastmulung = new Date() * 1;
-          replyviex(`Selamat kamu mendapatkan : \n+${botol} Botol\n+${kaleng} Kaleng\n+${kardus} Kardus\n+${gelas} Gelas\n+${plastik} Plastik`);
+          replyviex(`Selamat kamu mendapatkan : 
++${botol} Botol
++${kaleng} Kaleng
++${kardus} Kardus
++${gelas} Gelas
++${plastik} Plastik`);
         }
         break;
       case "mining":
@@ -14275,17 +15565,21 @@ dan ketik *${prefix}heal <jumlah>* untuk menggunakan potion.
               const total = rewards.lost[lost].getRandom();
               user[lost] -= total * 1;
               if (total) {
-                text += `\n*${global.rpg.emoticon(lost)}${lost}:* ${total}`;
+                text += `
+*${global.rpg.emoticon(lost)}${lost}:* ${total}`;
               }
             }
           }
-          text += "\n\nNamun kamu mendapatkan";
+          text += "
+
+Namun kamu mendapatkan";
           for (const rewardItem in rewards.reward) {
             if (rewardItem in user) {
               const total = rewards.reward[rewardItem].getRandom();
               user[rewardItem] += total * 1;
               if (total) {
-                text += `\n*${global.rpg.emoticon(rewardItem)}${rewardItem}:* ${total}`;
+                text += `
+*${global.rpg.emoticon(rewardItem)}${rewardItem}:* ${total}`;
               }
             }
           }
@@ -14346,7 +15640,9 @@ dan ketik *${prefix}heal <jumlah>* untuk menggunakan potion.
             lawan = users[Math.floor(users.length * Math.random())];
           }
           let lamaPertarungan = Acakin(8, 20);
-          reply(`*Pet Kamu* (🐉naga ${nogorojo} ) ⚔️menantang 🐉naganya *${penumpang}* (🐉naga kamu ) lagi berkelahi.\n\nTunggu ${lamaPertarungan} menit lagi dan lihat siapa yg menang🎮.`);
+          reply(`*Pet Kamu* (🐉naga ${nogorojo} ) ⚔️menantang 🐉naganya *${penumpang}* (🐉naga kamu ) lagi berkelahi.
+
+Tunggu ${lamaPertarungan} menit lagi dan lihat siapa yg menang🎮.`);
           DinzBotz.fightnaga[m.sender] = true;
           await delay(lamaPertarungan * 60000);
           const alasanKalah = ["Naikin lagi levelnya😐", "Cupu", "Kurang hebat", "Ampas Petnya", "Pet gembel"];
@@ -14373,14 +15669,26 @@ dan ketik *${prefix}heal <jumlah>* untuk menggunakan potion.
             let hadiah = (pointPemain - pointLawan) * 20000;
             global.db.users[m.sender].money += hadiah;
             global.db.users[m.sender].tiketcoin += 1;
-            reply(`*${DinzBotz.getName(m.sender)}* [${pointPemain * 10}] - [${pointLawan * 10}] *${DinzBotz.getName(lawan)}*\n\n*Pet🐉Kamu* (naga ${global.db.users[m.sender].naga}) MENANG melawan 🐉naganya *${DinzBotz.getName(lawan)}* (naga ${global.db.users[lawan].naga}) karena naga🐉kamu ${alasanMenang[Acakin(0, alasanMenang.length - 1)]}\n\nHadiah Rp. ${hadiah.toLocaleString()}\n+1 Tiketcoin`);
+            reply(`*${DinzBotz.getName(m.sender)}* [${pointPemain * 10}] - [${pointLawan * 10}] *${DinzBotz.getName(lawan)}*
+
+*Pet🐉Kamu* (naga ${global.db.users[m.sender].naga}) MENANG melawan 🐉naganya *${DinzBotz.getName(lawan)}* (naga ${global.db.users[lawan].naga}) karena naga🐉kamu ${alasanMenang[Acakin(0, alasanMenang.length - 1)]}
+
+Hadiah Rp. ${hadiah.toLocaleString()}
++1 Tiketcoin`);
           } else if (pointPemain < pointLawan) {
             let denda = (pointLawan - pointPemain) * 100000;
             global.db.users[m.sender].money -= denda;
             global.db.users[m.sender].tiketcoin += 1;
-            reply(`*${DinzBotz.getName(m.sender)}* [${pointPemain * 10}] - [${pointLawan * 10}] *${DinzBotz.getName(lawan)}*\n\n*Pet🐉Kamu* (naga ${global.db.users[m.sender].naga}) KALAH melawan 🐉naganya *${DinzBotz.getName(lawan)}* (naga ${global.db.users[lawan].naga}) karena pet kamu ${alasanKalah[Acakin(0, alasanKalah.length - 1)]}\n\nUang kamu berkurang Rp. ${denda.toLocaleString()}\n+1 Tiketcoin`);
+            reply(`*${DinzBotz.getName(m.sender)}* [${pointPemain * 10}] - [${pointLawan * 10}] *${DinzBotz.getName(lawan)}*
+
+*Pet🐉Kamu* (naga ${global.db.users[m.sender].naga}) KALAH melawan 🐉naganya *${DinzBotz.getName(lawan)}* (naga ${global.db.users[lawan].naga}) karena pet kamu ${alasanKalah[Acakin(0, alasanKalah.length - 1)]}
+
+Uang kamu berkurang Rp. ${denda.toLocaleString()}
++1 Tiketcoin`);
           } else {
-            reply(`*${DinzBotz.getName(m.sender)}* [${pointPemain * 10}] - [${pointLawan * 10}] *${DinzBotz.getName(lawan)}*\n\nHasil imbang kak, ga dapet apa apa 😂`);
+            reply(`*${DinzBotz.getName(m.sender)}* [${pointPemain * 10}] - [${pointLawan * 10}] *${DinzBotz.getName(lawan)}*
+
+Hasil imbang kak, ga dapet apa apa 😂`);
           }
           delete DinzBotz.fightnaga[m.sender];
         }
@@ -14412,7 +15720,9 @@ dan ketik *${prefix}heal <jumlah>* untuk menggunakan potion.
             lawan = users[Math.floor(users.length * Math.random())];
           }
           let lamaPertarungan = Acakin(8, 20);
-          reply(`*Pet Kamu* (🦊kyubi ${penumpang}) ⚔️menantang 🦊kyubinya *${nogorojo}* (🦊kyubi kamu) lagi berkelahi.\n\nTunggu ${lamaPertarungan} menit lagi dan lihat siapa yg menang🎮.`);
+          reply(`*Pet Kamu* (🦊kyubi ${penumpang}) ⚔️menantang 🦊kyubinya *${nogorojo}* (🦊kyubi kamu) lagi berkelahi.
+
+Tunggu ${lamaPertarungan} menit lagi dan lihat siapa yg menang🎮.`);
           DinzBotz.fightnaga[m.sender] = true;
           await delay(lamaPertarungan * 60000);
           let alasanKalah = ["Naikin lagi levelnya😐", "Cupu", "Kurang hebat", "Ampas Petnya", "Pet gembel"];
@@ -14440,14 +15750,26 @@ dan ketik *${prefix}heal <jumlah>* untuk menggunakan potion.
             let hadiah = (pointPemain - pointLawan) * 20000;
             global.db.users[m.sender].money += hadiah;
             global.db.users[m.sender].tiketcoin += 1;
-            reply(`*${DinzBotz.getName(m.sender)}* [${pointPemain * 10}] - [${pointLawan * 10}] *${DinzBotz.getName(lawan)}*\n\n*Pet🦊Kamu* (kyubi ${global.db.users[m.sender].kyubi}) MENANG melawan 🦊kyubinya *${DinzBotz.getName(lawan)}* (kyubi ${global.db.users[lawan].kyubi}) karena kyubi🦊kamu ${alasanMenang[Acakin(0, alasanMenang.length - 1)]}\n\nHadiah Rp. ${hadiah.toLocaleString()}\n+1 Tiketcoin`);
+            reply(`*${DinzBotz.getName(m.sender)}* [${pointPemain * 10}] - [${pointLawan * 10}] *${DinzBotz.getName(lawan)}*
+
+*Pet🦊Kamu* (kyubi ${global.db.users[m.sender].kyubi}) MENANG melawan 🦊kyubinya *${DinzBotz.getName(lawan)}* (kyubi ${global.db.users[lawan].kyubi}) karena kyubi🦊kamu ${alasanMenang[Acakin(0, alasanMenang.length - 1)]}
+
+Hadiah Rp. ${hadiah.toLocaleString()}
++1 Tiketcoin`);
           } else if (pointPemain < pointLawan) {
             let denda = (pointLawan - pointPemain) * 100000;
             global.db.users[m.sender].money -= denda;
             global.db.users[m.sender].tiketcoin += 1;
-            reply(`*${DinzBotz.getName(m.sender)}* [${pointPemain * 10}] - [${pointLawan * 10}] *${DinzBotz.getName(lawan)}*\n\n*Pet🦊Kamu* (kyubi ${global.db.users[m.sender].kyubi}) KALAH melawan 🦊kyubinya *${DinzBotz.getName(lawan)}* (kyubi ${global.db.users[lawan].kyubi}) karena pet kamu ${alasanKalah[Acakin(0, alasanKalah.length - 1)]}\n\nUang kamu berkurang Rp. ${denda.toLocaleString()}\n+1 Tiketcoin`);
+            reply(`*${DinzBotz.getName(m.sender)}* [${pointPemain * 10}] - [${pointLawan * 10}] *${DinzBotz.getName(lawan)}*
+
+*Pet🦊Kamu* (kyubi ${global.db.users[m.sender].kyubi}) KALAH melawan 🦊kyubinya *${DinzBotz.getName(lawan)}* (kyubi ${global.db.users[lawan].kyubi}) karena pet kamu ${alasanKalah[Acakin(0, alasanKalah.length - 1)]}
+
+Uang kamu berkurang Rp. ${denda.toLocaleString()}
++1 Tiketcoin`);
           } else {
-            reply(`*${DinzBotz.getName(m.sender)}* [${pointPemain * 10}] - [${pointLawan * 10}] *${DinzBotz.getName(lawan)}*\n\nHasil imbang kak, ga dapet apa apa 😂`);
+            reply(`*${DinzBotz.getName(m.sender)}* [${pointPemain * 10}] - [${pointLawan * 10}] *${DinzBotz.getName(lawan)}*
+
+Hasil imbang kak, ga dapet apa apa 😂`);
           }
           delete DinzBotz.fightnaga[m.sender];
         }
@@ -14479,7 +15801,9 @@ dan ketik *${prefix}heal <jumlah>* untuk menggunakan potion.
             lawan = users[Math.floor(users.length * Math.random())];
           }
           let lamaPertarungan = Acakin(8, 20);
-          reply(`*Pet Kamu* (🦅phonix ${penumpang}) ⚔️menantang 🦅phonixnya *${nogorojo}* (🦅phonix kamu) lagi berkelahi.\n\nTunggu ${lamaPertarungan} menit lagi dan lihat siapa yg menang🎮.`);
+          reply(`*Pet Kamu* (🦅phonix ${penumpang}) ⚔️menantang 🦅phonixnya *${nogorojo}* (🦅phonix kamu) lagi berkelahi.
+
+Tunggu ${lamaPertarungan} menit lagi dan lihat siapa yg menang🎮.`);
           DinzBotz.fightnaga[m.sender] = true;
           await delay(lamaPertarungan * 60000);
           let alasanKalah = ["Naikin lagi levelnya😐", "Cupu", "Kurang hebat", "Ampas Petnya", "Pet gembel"];
@@ -14505,14 +15829,26 @@ dan ketik *${prefix}heal <jumlah>* untuk menggunakan potion.
             let hadiah = (pointPemain - pointLawan) * 20000;
             global.db.users[m.sender].money += hadiah;
             global.db.users[m.sender].tiketcoin += 1;
-            reply(`*${DinzBotz.getName(m.sender)}* [${pointPemain * 10}] - [${pointLawan * 10}] *${DinzBotz.getName(lawan)}*\n\n*Pet🦅Kamu* (phonix ${global.db.users[m.sender].phonix}) MENANG melawan 🦅phonixnya *${DinzBotz.getName(lawan)}* (phonix ${global.db.users[lawan].phonix}) karena phonix🦅kamu ${alasanMenang[Acakin(0, alasanMenang.length - 1)]}\n\nHadiah Rp. ${hadiah.toLocaleString()}\n+1 Tiketcoin`);
+            reply(`*${DinzBotz.getName(m.sender)}* [${pointPemain * 10}] - [${pointLawan * 10}] *${DinzBotz.getName(lawan)}*
+
+*Pet🦅Kamu* (phonix ${global.db.users[m.sender].phonix}) MENANG melawan 🦅phonixnya *${DinzBotz.getName(lawan)}* (phonix ${global.db.users[lawan].phonix}) karena phonix🦅kamu ${alasanMenang[Acakin(0, alasanMenang.length - 1)]}
+
+Hadiah Rp. ${hadiah.toLocaleString()}
++1 Tiketcoin`);
           } else if (pointPemain < pointLawan) {
             let denda = (pointLawan - pointPemain) * 10000;
             global.db.users[m.sender].money -= denda;
             global.db.users[m.sender].tiketcoin += 1;
-            reply(`*${DinzBotz.getName(m.sender)}* [${pointPemain * 10}] - [${pointLawan * 10}] *${DinzBotz.getName(lawan)}*\n\n*Pet🦅Kamu* (phonix ${global.db.users[m.sender].phonix}) KALAH melawan 🦅phonixnya *${DinzBotz.getName(lawan)}* (phonix ${global.db.users[lawan].phonix}) karena pet kamu ${alasanKalah[Acakin(0, alasanKalah.length - 1)]}\n\nUang kamu berkurang Rp. ${denda.toLocaleString()}\n+1 Tiketcoin`);
+            reply(`*${DinzBotz.getName(m.sender)}* [${pointPemain * 10}] - [${pointLawan * 10}] *${DinzBotz.getName(lawan)}*
+
+*Pet🦅Kamu* (phonix ${global.db.users[m.sender].phonix}) KALAH melawan 🦅phonixnya *${DinzBotz.getName(lawan)}* (phonix ${global.db.users[lawan].phonix}) karena pet kamu ${alasanKalah[Acakin(0, alasanKalah.length - 1)]}
+
+Uang kamu berkurang Rp. ${denda.toLocaleString()}
++1 Tiketcoin`);
           } else {
-            reply(`*${DinzBotz.getName(m.sender)}* [${pointPemain * 10}] - [${pointLawan * 10}] *${DinzBotz.getName(lawan)}*\n\nHasil imbang kak, ga dapet apa apa 😂`);
+            reply(`*${DinzBotz.getName(m.sender)}* [${pointPemain * 10}] - [${pointLawan * 10}] *${DinzBotz.getName(lawan)}*
+
+Hasil imbang kak, ga dapet apa apa 😂`);
           }
           delete DinzBotz.fightnaga[m.sender];
         }
@@ -14544,7 +15880,9 @@ dan ketik *${prefix}heal <jumlah>* untuk menggunakan potion.
             lawan = users[Math.floor(users.length * Math.random())];
           }
           let lamaPertarungan = Acakin(8, 20);
-          reply(`*Pet Kamu* (🐱kucing ${penumpang}) menantang 🐈kucingnya *${nogorojo}* (🐱kucing kamu) lagi kelahi rebutin bini.\n\nTunggu ${lamaPertarungan} menit lagi dan lihat siapa yg menang🎮.`);
+          reply(`*Pet Kamu* (🐱kucing ${penumpang}) menantang 🐈kucingnya *${nogorojo}* (🐱kucing kamu) lagi kelahi rebutin bini.
+
+Tunggu ${lamaPertarungan} menit lagi dan lihat siapa yg menang🎮.`);
           DinzBotz.fightnaga[m.sender] = true;
           await delay(lamaPertarungan * 60000);
           let alasanKalah = ["Naikin lagi levelnya😐", "Cupu", "Kurang hebat", "Ampas Petnya", "Pet gembel"];
@@ -14570,14 +15908,26 @@ dan ketik *${prefix}heal <jumlah>* untuk menggunakan potion.
             let hadiah = (pointPemain - pointLawan) * 20000;
             global.db.users[m.sender].money += hadiah;
             global.db.users[m.sender].tiketcoin += 1;
-            reply(`*${DinzBotz.getName(m.sender)}* [${pointPemain * 10}] - [${pointLawan * 10}] *${DinzBotz.getName(lawan)}*\n\n*Pet🐈Kamu* (kucing ${global.db.users[m.sender].kucing}) MENANG melawan 🐈kucingnya *${DinzBotz.getName(lawan)}* (kucing ${global.db.users[lawan].kucing}) karena kucing🐈kamu ${alasanMenang[Acakin(0, alasanMenang.length - 1)]}\n\nHadiah Rp. ${hadiah.toLocaleString()}\n+1 Tiketcoin`);
+            reply(`*${DinzBotz.getName(m.sender)}* [${pointPemain * 10}] - [${pointLawan * 10}] *${DinzBotz.getName(lawan)}*
+
+*Pet🐈Kamu* (kucing ${global.db.users[m.sender].kucing}) MENANG melawan 🐈kucingnya *${DinzBotz.getName(lawan)}* (kucing ${global.db.users[lawan].kucing}) karena kucing🐈kamu ${alasanMenang[Acakin(0, alasanMenang.length - 1)]}
+
+Hadiah Rp. ${hadiah.toLocaleString()}
++1 Tiketcoin`);
           } else if (pointPemain < pointLawan) {
             let denda = (pointLawan - pointPemain) * 100000;
             global.db.users[m.sender].money -= denda;
             global.db.users[m.sender].tiketcoin += 1;
-            reply(`*${DinzBotz.getName(m.sender)}* [${pointPemain * 10}] - [${pointLawan * 10}] *${DinzBotz.getName(lawan)}*\n\n*Pet🐈Kamu* (kucing ${global.db.users[m.sender].kucing}) KALAH melawan 🐈kucingnya *${DinzBotz.getName(lawan)}* (kucing ${global.db.users[lawan].kucing}) karena pet kamu ${alasanKalah[Acakin(0, alasanKalah.length - 1)]}\n\nUang kamu berkurang Rp. ${denda.toLocaleString()}\n+1 Tiketcoin`);
+            reply(`*${DinzBotz.getName(m.sender)}* [${pointPemain * 10}] - [${pointLawan * 10}] *${DinzBotz.getName(lawan)}*
+
+*Pet🐈Kamu* (kucing ${global.db.users[m.sender].kucing}) KALAH melawan 🐈kucingnya *${DinzBotz.getName(lawan)}* (kucing ${global.db.users[lawan].kucing}) karena pet kamu ${alasanKalah[Acakin(0, alasanKalah.length - 1)]}
+
+Uang kamu berkurang Rp. ${denda.toLocaleString()}
++1 Tiketcoin`);
           } else {
-            reply(`*${DinzBotz.getName(m.sender)}* [${pointPemain * 10}] - [${pointLawan * 10}] *${DinzBotz.getName(lawan)}*\n\nHasil imbang kak, ga dapet apa apa 😂`);
+            reply(`*${DinzBotz.getName(m.sender)}* [${pointPemain * 10}] - [${pointLawan * 10}] *${DinzBotz.getName(lawan)}*
+
+Hasil imbang kak, ga dapet apa apa 😂`);
           }
           delete DinzBotz.fightnaga[m.sender];
         }
@@ -14609,7 +15959,9 @@ dan ketik *${prefix}heal <jumlah>* untuk menggunakan potion.
             lawan = users[Math.floor(users.length * Math.random())];
           }
           let lamaPertarungan = Acakin(8, 20);
-          m.reply(`*Pet Kamu* (🦚griffin ${penumpang}) ⚔️menantang 🦚griffinnya *${nogorojo}* (🦚griffin kamu) lagi berkelahi.\n\nTunggu ${lamaPertarungan} menit lagi dan lihat siapa yg menang🎮.`);
+          m.reply(`*Pet Kamu* (🦚griffin ${penumpang}) ⚔️menantang 🦚griffinnya *${nogorojo}* (🦚griffin kamu) lagi berkelahi.
+
+Tunggu ${lamaPertarungan} menit lagi dan lihat siapa yg menang🎮.`);
           DinzBotz.fightnaga[m.sender] = true;
           await delay(lamaPertarungan * 60000);
           let alasanKalah = ["Naikin lagi levelnya😐", "Cupu", "Kurang hebat", "Ampas Petnya", "Pet gembel"];
@@ -14635,14 +15987,26 @@ dan ketik *${prefix}heal <jumlah>* untuk menggunakan potion.
             let hadiah = (pointPemain - pointLawan) * 20000;
             global.db.users[m.sender].money += hadiah;
             global.db.users[m.sender].tiketcoin += 1;
-            m.reply(`*${DinzBotz.getName(m.sender)}* [${pointPemain * 10}] - [${pointLawan * 10}] *${DinzBotz.getName(lawan)}*\n\n*Pet🦚Kamu* (griffin ${global.db.users[m.sender].griffin}) MENANG melawan 🦚griffinnya *${DinzBotz.getName(lawan)}* (griffin ${global.db.users[lawan].griffin}) karena griffin🦚kamu ${alasanMenang[Acakin(0, alasanMenang.length - 1)]}\n\nHadiah Rp. ${hadiah.toLocaleString()}\n+1 Tiketcoin`);
+            m.reply(`*${DinzBotz.getName(m.sender)}* [${pointPemain * 10}] - [${pointLawan * 10}] *${DinzBotz.getName(lawan)}*
+
+*Pet🦚Kamu* (griffin ${global.db.users[m.sender].griffin}) MENANG melawan 🦚griffinnya *${DinzBotz.getName(lawan)}* (griffin ${global.db.users[lawan].griffin}) karena griffin🦚kamu ${alasanMenang[Acakin(0, alasanMenang.length - 1)]}
+
+Hadiah Rp. ${hadiah.toLocaleString()}
++1 Tiketcoin`);
           } else if (pointPemain < pointLawan) {
             let denda = (pointLawan - pointPemain) * 100000;
             global.db.users[m.sender].money -= denda;
             global.db.users[m.sender].tiketcoin += 1;
-            m.reply(`*${DinzBotz.getName(m.sender)}* [${pointPemain * 10}] - [${pointLawan * 10}] *${DinzBotz.getName(lawan)}*\n\n*Pet🦚Kamu* (griffin ${global.db.users[m.sender].griffin}) KALAH melawan 🦚griffinnya *${DinzBotz.getName(lawan)}* (griffin ${global.db.users[lawan].griffin}) karena pet kamu ${alasanKalah[Acakin(0, alasanKalah.length - 1)]}\n\nUang kamu berkurang Rp. ${denda.toLocaleString()}\n+1 Tiketcoin`);
+            m.reply(`*${DinzBotz.getName(m.sender)}* [${pointPemain * 10}] - [${pointLawan * 10}] *${DinzBotz.getName(lawan)}*
+
+*Pet🦚Kamu* (griffin ${global.db.users[m.sender].griffin}) KALAH melawan 🦚griffinnya *${DinzBotz.getName(lawan)}* (griffin ${global.db.users[lawan].griffin}) karena pet kamu ${alasanKalah[Acakin(0, alasanKalah.length - 1)]}
+
+Uang kamu berkurang Rp. ${denda.toLocaleString()}
++1 Tiketcoin`);
           } else {
-            m.reply(`*${DinzBotz.getName(m.sender)}* [${pointPemain * 10}] - [${pointLawan * 10}] *${DinzBotz.getName(lawan)}*\n\nHasil imbang kak, ga dapet apa apa 😂`);
+            m.reply(`*${DinzBotz.getName(m.sender)}* [${pointPemain * 10}] - [${pointLawan * 10}] *${DinzBotz.getName(lawan)}*
+
+Hasil imbang kak, ga dapet apa apa 😂`);
           }
           delete DinzBotz.fightnaga[m.sender];
         }
@@ -14675,7 +16039,9 @@ dan ketik *${prefix}heal <jumlah>* untuk menggunakan potion.
             lawan = users[Math.floor(users.length * Math.random())];
           }
           let lamaPertarungan = Acakin(8, 20);
-          m.reply(`*Pet Kamu* (🐴centaur ${penumpang}) ⚔️menantang 🐴centaurnya *${nogorojo}* (🐴centaur kamu) lagi berkelahi.\n\nTunggu ${lamaPertarungan} menit lagi dan lihat siapa yg menang🎮.`);
+          m.reply(`*Pet Kamu* (🐴centaur ${penumpang}) ⚔️menantang 🐴centaurnya *${nogorojo}* (🐴centaur kamu) lagi berkelahi.
+
+Tunggu ${lamaPertarungan} menit lagi dan lihat siapa yg menang🎮.`);
           DinzBotz.fightnaga[m.sender] = true;
           await delay(lamaPertarungan * 60000);
           let alasanKalah = ["Naikin lagi levelnya😐", "Cupu", "Kurang hebat", "Ampas Petnya", "Pet gembel"];
@@ -14701,14 +16067,26 @@ dan ketik *${prefix}heal <jumlah>* untuk menggunakan potion.
             let hadiah = (pointPemain - pointLawan) * 20000;
             global.db.users[m.sender].money += hadiah;
             global.db.users[m.sender].tiketcoin += 1;
-            m.reply(`*${DinzBotz.getName(m.sender)}* [${pointPemain * 10}] - [${pointLawan * 10}] *${DinzBotz.getName(lawan)}*\n\n*Pet🐴Kamu* (centaur ${global.db.users[m.sender].centaur}) MENANG melawan 🐴centaurnya *${DinzBotz.getName(lawan)}* (centaur ${global.db.users[lawan].centaur}) karena centaur🐴kamu ${alasanMenang[Acakin(0, alasanMenang.length - 1)]}\n\nHadiah Rp. ${hadiah.toLocaleString()}\n+1 Tiketcoin`);
+            m.reply(`*${DinzBotz.getName(m.sender)}* [${pointPemain * 10}] - [${pointLawan * 10}] *${DinzBotz.getName(lawan)}*
+
+*Pet🐴Kamu* (centaur ${global.db.users[m.sender].centaur}) MENANG melawan 🐴centaurnya *${DinzBotz.getName(lawan)}* (centaur ${global.db.users[lawan].centaur}) karena centaur🐴kamu ${alasanMenang[Acakin(0, alasanMenang.length - 1)]}
+
+Hadiah Rp. ${hadiah.toLocaleString()}
++1 Tiketcoin`);
           } else if (pointPemain < pointLawan) {
             let denda = (pointLawan - pointPemain) * 100000;
             global.db.users[m.sender].money -= denda;
             global.db.users[m.sender].tiketcoin += 1;
-            m.reply(`*${DinzBotz.getName(m.sender)}* [${pointPemain * 10}] - [${pointLawan * 10}] *${DinzBotz.getName(lawan)}*\n\n*Pet🐴Kamu* (centaur ${global.db.users[m.sender].centaur}) KALAH melawan 🐴centaurnya *${DinzBotz.getName(lawan)}* (centaur ${global.db.users[lawan].centaur}) karena pet kamu ${alasanKalah[Acakin(0, alasanKalah.length - 1)]}\n\nUang kamu berkurang Rp. ${denda.toLocaleString()}\n+1 Tiketcoin`);
+            m.reply(`*${DinzBotz.getName(m.sender)}* [${pointPemain * 10}] - [${pointLawan * 10}] *${DinzBotz.getName(lawan)}*
+
+*Pet🐴Kamu* (centaur ${global.db.users[m.sender].centaur}) KALAH melawan 🐴centaurnya *${DinzBotz.getName(lawan)}* (centaur ${global.db.users[lawan].centaur}) karena pet kamu ${alasanKalah[Acakin(0, alasanKalah.length - 1)]}
+
+Uang kamu berkurang Rp. ${denda.toLocaleString()}
++1 Tiketcoin`);
           } else {
-            m.reply(`*${DinzBotz.getName(m.sender)}* [${pointPemain * 10}] - [${pointLawan * 10}] *${DinzBotz.getName(lawan)}*\n\nHasil imbang kak, ga dapet apa apa 😂`);
+            m.reply(`*${DinzBotz.getName(m.sender)}* [${pointPemain * 10}] - [${pointLawan * 10}] *${DinzBotz.getName(lawan)}*
+
+Hasil imbang kak, ga dapet apa apa 😂`);
           }
           delete DinzBotz.fightnaga[m.sender];
         }
@@ -14849,7 +16227,8 @@ ${hewan1 ? `
 👮Menangkap pencuri....
 `.trim();
             var dimas3 = `
-🚔Membawa ke kantor polisi\nDan di penjara
+🚔Membawa ke kantor polisi
+Dan di penjara
 `.trim();
             var dimas4 = `
 ➕ 💹Menerima gaji....
@@ -14941,58 +16320,109 @@ ${hewan1 ? `
             users[who].money -= dapat * 1;
             users[m.sender].money -= dapat * 1;
             global.db.users[m.sender].lastdagang = new Date() * 1;
-            replyviex(`Mohon tunggu kak..\nKamu dan @${who.replace(/@.+/, "")} sedang berdagang.. ðŸ˜…\n\nKamu dan @${who.replace(/@.+/, "")} meletakkan modal -${dapat} ðŸ˜…`);
+            replyviex(`Mohon tunggu kak..
+Kamu dan @${who.replace(/@.+/, "")} sedang berdagang.. ðŸ˜…
+
+Kamu dan @${who.replace(/@.+/, "")} meletakkan modal -${dapat} ðŸ˜…`);
             setTimeout(() => {
-              replyviex(m.chat, `Selamat kamu dan @${who.replace(/@.+/, "")} mendapatkan money..\n\nPenghasilan dagang kamu didapatkan +50000\n${users[m.sender].money += 50000} Money kamu\n\nPenghasilan dagang @${who.replace(/@.+/, "")} didapatkan +50000\n${users[who].money += 50000} Money @${who.replace(/@.+/, "")}`, m, {
+              replyviex(m.chat, `Selamat kamu dan @${who.replace(/@.+/, "")} mendapatkan money..
+
+Penghasilan dagang kamu didapatkan +50000
+${users[m.sender].money += 50000} Money kamu
+
+Penghasilan dagang @${who.replace(/@.+/, "")} didapatkan +50000
+${users[who].money += 50000} Money @${who.replace(/@.+/, "")}`, m, {
                 contextInfo: {
                   mentionedJid: [m.sender, who]
                 }
               });
             }, 3600000);
             setTimeout(() => {
-              replyviex(`Selamat kamu dan @${who.replace(/@.+/, "")} mendapatkan money..\n\nPenghasilan dagang kamu didapatkan +50000\n${users[m.sender].money += 50000} Money kamu\n\nPenghasilan dagang @${who.replace(/@.+/, "")} didapatkan +50000\n${users[who].money += 50000} Money @${who.replace(/@.+/, "")}`, {
+              replyviex(`Selamat kamu dan @${who.replace(/@.+/, "")} mendapatkan money..
+
+Penghasilan dagang kamu didapatkan +50000
+${users[m.sender].money += 50000} Money kamu
+
+Penghasilan dagang @${who.replace(/@.+/, "")} didapatkan +50000
+${users[who].money += 50000} Money @${who.replace(/@.+/, "")}`, {
                 contextInfo: {
                   mentionedJid: [m.sender, who]
                 }
               });
             }, 7200000);
             setTimeout(() => {
-              replyviex(`Selamat kamu dan @${who.replace(/@.+/, "")} mendapatkan money..\n\nPenghasilan dagang kamu didapatkan +50000\n${users[m.sender].money += 50000} Money kamu\n\nPenghasilan dagang @${who.replace(/@.+/, "")} didapatkan +50000\n${users[who].money += 50000} Money @${who.replace(/@.+/, "")}`, {
+              replyviex(`Selamat kamu dan @${who.replace(/@.+/, "")} mendapatkan money..
+
+Penghasilan dagang kamu didapatkan +50000
+${users[m.sender].money += 50000} Money kamu
+
+Penghasilan dagang @${who.replace(/@.+/, "")} didapatkan +50000
+${users[who].money += 50000} Money @${who.replace(/@.+/, "")}`, {
                 contextInfo: {
                   mentionedJid: [m.sender, who]
                 }
               });
             }, 10800000);
             setTimeout(() => {
-              replyviex(`Selamat kamu dan @${who.replace(/@.+/, "")} mendapatkan money..\n\nPenghasilan dagang kamu didapatkan +50000\n${users[m.sender].money += 50000} Money kamu\n\nPenghasilan dagang @${who.replace(/@.+/, "")} didapatkan +50000\n${users[who].money += 50000} Money @${who.replace(/@.+/, "")}`, {
+              replyviex(`Selamat kamu dan @${who.replace(/@.+/, "")} mendapatkan money..
+
+Penghasilan dagang kamu didapatkan +50000
+${users[m.sender].money += 50000} Money kamu
+
+Penghasilan dagang @${who.replace(/@.+/, "")} didapatkan +50000
+${users[who].money += 50000} Money @${who.replace(/@.+/, "")}`, {
                 contextInfo: {
                   mentionedJid: [m.sender, who]
                 }
               });
             }, 14400000);
             setTimeout(() => {
-              replyviex(`Selamat kamu dan @${who.replace(/@.+/, "")} mendapatkan money..\n\nPenghasilan dagang kamu didapatkan +50000\n${users[m.sender].money += 50000} Money kamu\n\nPenghasilan dagang @${who.replace(/@.+/, "")} didapatkan +50000\n${users[who].money += 50000} Money @${who.replace(/@.+/, "")}`, {
+              replyviex(`Selamat kamu dan @${who.replace(/@.+/, "")} mendapatkan money..
+
+Penghasilan dagang kamu didapatkan +50000
+${users[m.sender].money += 50000} Money kamu
+
+Penghasilan dagang @${who.replace(/@.+/, "")} didapatkan +50000
+${users[who].money += 50000} Money @${who.replace(/@.+/, "")}`, {
                 contextInfo: {
                   mentionedJid: [m.sender, who]
                 }
               });
             }, 18000000);
             setTimeout(() => {
-              replyviex(`Selamat kamu dan @${who.replace(/@.+/, "")} mendapatkan money..\n\nPenghasilan dagang kamu didapatkan +50000\n${users[m.sender].money += 50000} Money kamu\n\nPenghasilan dagang @${who.replace(/@.+/, "")} didapatkan +50000\n${users[who].money += 50000} Money @${who.replace(/@.+/, "")}`, {
+              replyviex(`Selamat kamu dan @${who.replace(/@.+/, "")} mendapatkan money..
+
+Penghasilan dagang kamu didapatkan +50000
+${users[m.sender].money += 50000} Money kamu
+
+Penghasilan dagang @${who.replace(/@.+/, "")} didapatkan +50000
+${users[who].money += 50000} Money @${who.replace(/@.+/, "")}`, {
                 contextInfo: {
                   mentionedJid: [m.sender, who]
                 }
               });
             }, 21600000);
             setTimeout(() => {
-              replyviex(`Selamat kamu dan @${who.replace(/@.+/, "")} mendapatkan money..\n\nPenghasilan dagang kamu didapatkan +50000\n${users[m.sender].money += 50000} Money kamu\n\nPenghasilan dagang @${who.replace(/@.+/, "")} didapatkan +50000\n${users[who].money += 50000} Money @${who.replace(/@.+/, "")}`, {
+              replyviex(`Selamat kamu dan @${who.replace(/@.+/, "")} mendapatkan money..
+
+Penghasilan dagang kamu didapatkan +50000
+${users[m.sender].money += 50000} Money kamu
+
+Penghasilan dagang @${who.replace(/@.+/, "")} didapatkan +50000
+${users[who].money += 50000} Money @${who.replace(/@.+/, "")}`, {
                 contextInfo: {
                   mentionedJid: [m.sender, who]
                 }
               });
             }, 25200000);
             setTimeout(() => {
-              replyviex(`Selamat kamu dan @${who.replace(/@.+/, "")} mendapatkan money..\n\nPenghasilan dagang kamu didapatkan +10000\n${users[m.sender].money += 10000} Money kamu\n\nPenghasilan dagang @${who.replace(/@.+/, "")} didapatkan +100000\n${users[who].money += 100000} Money @${who.replace(/@.+/, "")}`, {
+              replyviex(`Selamat kamu dan @${who.replace(/@.+/, "")} mendapatkan money..
+
+Penghasilan dagang kamu didapatkan +10000
+${users[m.sender].money += 10000} Money kamu
+
+Penghasilan dagang @${who.replace(/@.+/, "")} didapatkan +100000
+${users[who].money += 100000} Money @${who.replace(/@.+/, "")}`, {
                 contextInfo: {
                   mentionedJid: [m.sender, who]
                 }
@@ -15061,12 +16491,15 @@ ${hewan1 ? `
             }
             let filteredArray = await files.filter(item => item.startsWith("pre-key") || item.startsWith("sender-key") || item.startsWith("session-") || item.startsWith("app-state"));
             console.log(filteredArray.length);
-            let teks = `Terdeteksi ${filteredArray.length} file kenangan <3\n\n`;
+            let teks = `Terdeteksi ${filteredArray.length} file kenangan <3
+
+`;
             if (filteredArray.length == 0) {
               return replyviex(`${teks}`);
             }
             filteredArray.map(function (e, i) {
-              teks += `${i + 1}. ${e}\n`;
+              teks += `${i + 1}. ${e}
+`;
             });
             replyviex(`${teks}`);
             await sleep(2000);
@@ -15209,7 +16642,16 @@ ${hewan1 ? `
             return replyprem(mess.premium);
           }
           if (!text) {
-            return replyviex("*CARA KIRIM BUG KE GRUB*\n\n" + (prefix + command) + " https://chat.whatsapp.com/xxxx\n\n_*Note:*_ Jika Anda ingin mengirimkan bug dalam jumlah banyak, silakan ketik seperti berikut\n\nEx: ." + command + " linkgc jumlah\n\nContoh:\n." + command + " https://chat.whatsapp.com/xxxx 10");
+            return replyviex("*CARA KIRIM BUG KE GRUB*
+
+" + (prefix + command) + " https://chat.whatsapp.com/xxxx
+
+_*Note:*_ Jika Anda ingin mengirimkan bug dalam jumlah banyak, silakan ketik seperti berikut
+
+Ex: ." + command + " linkgc jumlah
+
+Contoh:
+." + command + " https://chat.whatsapp.com/xxxx 10");
           }
           replyviex("mohon tunggu, " + command + " bug sedang dalam proses..");
           if (!text.split(" ")[0].includes("whatsapp.com")) {
@@ -15381,7 +16823,11 @@ ${hewan1 ? `
           }
           let tos = await tebakgambar();
           console.log(tos);
-          let caption = `Silahkan Jawab Soal Di Atas Ini\n\nDeskripsi : ${tos.deskripsi}\nWaktu : 60s\nHadiah : 10.000 money`;
+          let caption = `Silahkan Jawab Soal Di Atas Ini
+
+Deskripsi : ${tos.deskripsi}
+Waktu : 60s
+Hadiah : 10.000 money`;
           DinzBotz.tebakgambar[id] = [await DinzBotz.sendMessage(from, {
             caption: caption,
             image: {
@@ -15391,7 +16837,10 @@ ${hewan1 ? `
             quoted: m
           }), tos, setTimeout(() => {
             if (DinzBotz.tebakgambar[id]) {
-              replyviex(`Waktu Habis\nJawaban:  ${tos.jawaban}\n\nIngin bermain? Ketik tebakgambar`);
+              replyviex(`Waktu Habis
+Jawaban:  ${tos.jawaban}
+
+Ingin bermain? Ketik tebakgambar`);
             }
             delete DinzBotz.tebakgambar[id];
           }, 60000)];
@@ -15416,7 +16865,10 @@ ${hewan1 ? `
           }, {
             quoted: m
           });
-          DinzBotz.sendText(from, `Lagu Tersebut Adalah Lagu dari?\n\nArtist : ${result.artist}\nWaktu : 60s`, msg).then(() => {
+          DinzBotz.sendText(from, `Lagu Tersebut Adalah Lagu dari?
+
+Artist : ${result.artist}
+Waktu : 60s`, msg).then(() => {
             tebaklagu[m.sender.split("@")[0]] = result.jawaban.toLowerCase();
           });
           await sleep(60000);
@@ -15426,7 +16878,10 @@ ${hewan1 ? `
               image: {
                 url: "https://telegra.ph/file/96bb6ca28d6ef7fea479f.jpg"
               },
-              caption: `Waktu Habis\nJawaban:  ${tebaklagu[m.sender.split("@")[0]]}\n\nIngin bermain? Ketik tebak lagu`
+              caption: `Waktu Habis
+Jawaban:  ${tebaklagu[m.sender.split("@")[0]]}
+
+Ingin bermain? Ketik tebak lagu`
             }, {
               quoted: m
             });
@@ -15446,12 +16901,19 @@ ${hewan1 ? `
           }
           let src = await (await fetch("https://raw.githubusercontent.com/BochilTeam/database/master/games/tebakkata.json")).json();
           let json = src[Math.floor(Math.random() * src.length)];
-          let caption = `Silahkan Jawab Pertanyaan Berikut\n\nSoal : ${json.soal}\nWaktu : 60s\nHadiah : 10.000 money`;
+          let caption = `Silahkan Jawab Pertanyaan Berikut
+
+Soal : ${json.soal}
+Waktu : 60s
+Hadiah : 10.000 money`;
           DinzBotz.tebakkata[id] = [await replyviex(`${caption}`), json, setTimeout(() => {
             if (DinzBotz.tebakkata[id]) {
               console.log("Jawaban: " + json.jawaban);
             }
-            replyviex(`Waktu Habis\nJawaban:  ${json.jawaban}\n\nIngin bermain? Ketik tebakkata`);
+            replyviex(`Waktu Habis
+Jawaban:  ${json.jawaban}
+
+Ingin bermain? Ketik tebakkata`);
             delete DinzBotz.tebakkata[id];
           }, 60000)];
         }
@@ -15467,7 +16929,10 @@ ${hewan1 ? `
           }
           let anu = await fetchJson("https://raw.githubusercontent.com/BochilTeam/database/master/games/tebakkalimat.json");
           let result = anu[Math.floor(Math.random() * anu.length)];
-          DinzBotz.sendText(from, `Silahkan Jawab Pertanyaan Berikut\n\n${result.soal}\nWaktu : 60s`, m).then(() => {
+          DinzBotz.sendText(from, `Silahkan Jawab Pertanyaan Berikut
+
+${result.soal}
+Waktu : 60s`, m).then(() => {
             tebakkalimat[m.sender.split("@")[0]] = result.jawaban.toLowerCase();
           });
           await sleep(60000);
@@ -15477,7 +16942,10 @@ ${hewan1 ? `
               image: {
                 url: "https://telegra.ph/file/96bb6ca28d6ef7fea479f.jpg"
               },
-              caption: `Waktu Habis\nJawaban:  ${tebakkalimat[m.sender.split("@")[0]]}\n\nIngin bermain? Ketik tebak kalimat`
+              caption: `Waktu Habis
+Jawaban:  ${tebakkalimat[m.sender.split("@")[0]]}
+
+Ingin bermain? Ketik tebak kalimat`
             }, {
               quoted: m
             });
@@ -15512,7 +16980,12 @@ ${hewan1 ? `
             if (DinzBotz.tebaklirik[id]) {
               users.money -= 200;
             }
-            replyviex(`*GAME TEBAK LIRIK*\n\nWaktu habis!\n𖦹 Jawabannya adalah; *${json.jawaban}*\n𖦹 Saldo kamu dikurangi 200\n𖦹 Sisa Saldo kamu: *${db.data.users[sender].balance.toLocaleString()}*`);
+            replyviex(`*GAME TEBAK LIRIK*
+
+Waktu habis!
+𖦹 Jawabannya adalah; *${json.jawaban}*
+𖦹 Saldo kamu dikurangi 200
+𖦹 Sisa Saldo kamu: *${db.data.users[sender].balance.toLocaleString()}*`);
             delete DinzBotz.tebaklirik[id];
           }, timeout)];
         }
@@ -15528,7 +17001,9 @@ ${hewan1 ? `
           }
           let anu = await fetchJson("https://raw.githubusercontent.com/BochilTeam/database/master/games/caklontong.json");
           let result = anu[Math.floor(Math.random() * anu.length)];
-          DinzBotz.sendText(from, `*Jawablah Pertanyaan Berikut :*\n${result.soal}*\nWaktu : 60s`, m).then(() => {
+          DinzBotz.sendText(from, `*Jawablah Pertanyaan Berikut :*
+${result.soal}*
+Waktu : 60s`, m).then(() => {
             caklontong[m.sender.split("@")[0]] = result.jawaban.toLowerCase();
             caklontong_desk[m.sender.split("@")[0]] = result.deskripsi;
           });
@@ -15539,7 +17014,11 @@ ${hewan1 ? `
               image: {
                 url: "https://telegra.ph/file/96bb6ca28d6ef7fea479f.jpg"
               },
-              caption: `Waktu Habis\nJawaban:  ${caklontong[m.sender.split("@")[0]]}\nDeskripsi : ${caklontong_desk[m.sender.split("@")[0]]}\n\nIngin bermain? Ketik tebak lontong`
+              caption: `Waktu Habis
+Jawaban:  ${caklontong[m.sender.split("@")[0]]}
+Deskripsi : ${caklontong_desk[m.sender.split("@")[0]]}
+
+Ingin bermain? Ketik tebak lontong`
             }, {
               quoted: m
             });
@@ -15561,7 +17040,13 @@ ${hewan1 ? `
           }
           let src = await (await fetch("https://raw.githubusercontent.com/BochilTeam/database/master/games/family100.json")).json();
           let json = src[Math.floor(Math.random() * src.length)];
-          let hasil = `*Jawablah Pertanyaan Berikut :*\n\nSoal : ${json.soal}\n\nHadiah : 10.000 money\n\nTerdapat *${json.jawaban.length}* Jawaban ${json.jawaban.find(v => v.includes(" ")) ? `(beberapa Jawaban Terdapat Spasi)` : ""}`.trim();
+          let hasil = `*Jawablah Pertanyaan Berikut :*
+
+Soal : ${json.soal}
+
+Hadiah : 10.000 money
+
+Terdapat *${json.jawaban.length}* Jawaban ${json.jawaban.find(v => v.includes(" ")) ? `(beberapa Jawaban Terdapat Spasi)` : ""}`.trim();
           DinzBotz.family100[id] = {
             id,
             msg: await replyviex(`${hasil}`),
@@ -15605,13 +17090,15 @@ ${hewan1 ? `
           }
           let anu = await fetchJson("https://raw.githubusercontent.com/BochilTeam/database/master/games/tebaktebakan.json");
           let result = anu[Math.floor(Math.random() * anu.length)];
-          DinzBotz.sendText(m.chat, `Jawablah Pertanyaan Berikut : *${result.soal}*?\nWaktu : 60s`, m).then(() => {
+          DinzBotz.sendText(m.chat, `Jawablah Pertanyaan Berikut : *${result.soal}*?
+Waktu : 60s`, m).then(() => {
             tebaktebakan[m.sender.split("@")[0]] = result.jawaban.toLowerCase();
           });
           await sleep(60000);
           if (tebaktebakan.hasOwnProperty(m.sender.split("@")[0])) {
             console.log("Jawaban: " + result.jawaban);
-            DinzBotz.sendText(m.chat, `Waktu Habis\nJawaban:  ${tebaktebakan[m.sender.split("@")[0]]}`, m);
+            DinzBotz.sendText(m.chat, `Waktu Habis
+Jawaban:  ${tebaktebakan[m.sender.split("@")[0]]}`, m);
             delete tebaktebakan[m.sender.split("@")[0]];
           }
         }
@@ -15631,7 +17118,10 @@ ${hewan1 ? `
             image: {
               url: result.img
             },
-            caption: `Silahkan Jawab Gambar Berikut\n\nClue : ${result.flag}\nWaktu : 60s`
+            caption: `Silahkan Jawab Gambar Berikut
+
+Clue : ${result.flag}
+Waktu : 60s`
           }, {
             quoted: m
           }).then(() => {
@@ -15640,7 +17130,8 @@ ${hewan1 ? `
           await sleep(60000);
           if (tebakbendera.hasOwnProperty(m.sender.split("@")[0])) {
             console.log("Jawaban: " + result.name);
-            DinzBotz.sendText(m.chat, `Waktu Habis\nJawaban:  ${tebakbendera[m.sender.split("@")[0]]}`, m);
+            DinzBotz.sendText(m.chat, `Waktu Habis
+Jawaban:  ${tebakbendera[m.sender.split("@")[0]]}`, m);
             delete tebakbendera[m.sender.split("@")[0]];
           }
         }
@@ -15660,7 +17151,10 @@ ${hewan1 ? `
             image: {
               url: result.img
             },
-            caption: `Silahkan Jawab Gambar Berikut\n\nClue : ${result.flag}\nWaktu : 60s`
+            caption: `Silahkan Jawab Gambar Berikut
+
+Clue : ${result.flag}
+Waktu : 60s`
           }, {
             quoted: m
           }).then(() => {
@@ -15669,7 +17163,8 @@ ${hewan1 ? `
           await sleep(60000);
           if (tebakbendera.hasOwnProperty(m.sender.split("@")[0])) {
             console.log("Jawaban: " + result.name);
-            DinzBotz.sendText(m.chat, `Waktu Habis\nJawaban:  ${tebakbendera[m.sender.split("@")[0]]}`, m);
+            DinzBotz.sendText(m.chat, `Waktu Habis
+Jawaban:  ${tebakbendera[m.sender.split("@")[0]]}`, m);
             delete tebakbendera[m.sender.split("@")[0]];
           }
         }
@@ -15685,13 +17180,16 @@ ${hewan1 ? `
           }
           let anu = await fetchJson("https://raw.githubusercontent.com/BochilTeam/database/master/games/tebakkabupaten.json");
           let result = anu[Math.floor(Math.random() * anu.length)];
-          DinzBotz.sendImage(m.chat, result.url, `Silahkan Jawab Gambar Berikut\n\nWaktu : 60s`, m).then(() => {
+          DinzBotz.sendImage(m.chat, result.url, `Silahkan Jawab Gambar Berikut
+
+Waktu : 60s`, m).then(() => {
             tebakkabupaten[m.sender.split("@")[0]] = result.title.toLowerCase();
           });
           await sleep(60000);
           if (tebakkabupaten.hasOwnProperty(m.sender.split("@")[0])) {
             console.log("Jawaban: " + result.title);
-            DinzBotz.sendText(m.chat, `Waktu Habis\nJawaban:  ${tebakkabupaten[m.sender.split("@")[0]]}`, m);
+            DinzBotz.sendText(m.chat, `Waktu Habis
+Jawaban:  ${tebakkabupaten[m.sender.split("@")[0]]}`, m);
             delete tebakkabupaten[m.sender.split("@")[0]];
           }
         }
@@ -15707,13 +17205,17 @@ ${hewan1 ? `
           }
           let anu = await fetchJson("https://raw.githubusercontent.com/BochilTeam/database/master/games/tebakkimia.json");
           let result = anu[Math.floor(Math.random() * anu.length)];
-          DinzBotz.sendText(m.chat, `Silahkan Jawab Pertanyaan Berikut\n\nUnsur : ${result.unsur}\nWaktu : 60s`, m).then(() => {
+          DinzBotz.sendText(m.chat, `Silahkan Jawab Pertanyaan Berikut
+
+Unsur : ${result.unsur}
+Waktu : 60s`, m).then(() => {
             tebakkimia[m.sender.split("@")[0]] = result.lambang.toLowerCase();
           });
           await sleep(60000);
           if (tebakkimia.hasOwnProperty(m.sender.split("@")[0])) {
             console.log("Jawaban: " + result.lambang);
-            DinzBotz.sendText(m.chat, `Waktu Habis\nJawaban:  ${tebakkimia[m.sender.split("@")[0]]}`, m);
+            DinzBotz.sendText(m.chat, `Waktu Habis
+Jawaban:  ${tebakkimia[m.sender.split("@")[0]]}`, m);
             delete tebakkimia[m.sender.split("@")[0]];
           }
         }
@@ -15729,13 +17231,17 @@ ${hewan1 ? `
           }
           let anu = await fetchJson("https://raw.githubusercontent.com/BochilTeam/database/master/games/asahotak.json");
           let result = anu[Math.floor(Math.random() * anu.length)];
-          DinzBotz.sendText(m.chat, `Silahkan Jawab Pertanyaan Berikut\n\nSoal : ${result.soal}\nWaktu : 60s`, m).then(() => {
+          DinzBotz.sendText(m.chat, `Silahkan Jawab Pertanyaan Berikut
+
+Soal : ${result.soal}
+Waktu : 60s`, m).then(() => {
             tebakasahotak[m.sender.split("@")[0]] = result.jawaban.toLowerCase();
           });
           await sleep(60000);
           if (tebakasahotak.hasOwnProperty(m.sender.split("@")[0])) {
             console.log("Jawaban: " + result.jawaban);
-            DinzBotz.sendText(m.chat, `Waktu Habis\nJawaban:  ${tebakasahotak[m.sender.split("@")[0]]}`, m);
+            DinzBotz.sendText(m.chat, `Waktu Habis
+Jawaban:  ${tebakasahotak[m.sender.split("@")[0]]}`, m);
             delete tebakasahotak[m.sender.split("@")[0]];
           }
         }
@@ -15766,7 +17272,12 @@ ${hewan1 ? `
             if (DinzBotz.siapaaku[id]) {
               users.money -= 200;
             }
-            replyviex(`*GAME SIAPAKAH AKU*\n\nWaktu habis!\n𖦹 Jawabannya adalah; *${json.jawaban}*\n𖦹 Saldo kamu dikurangi 200\n𖦹 Sisa Saldo kamu: *${db.data.users[sender].money.toLocaleString()}*`);
+            replyviex(`*GAME SIAPAKAH AKU*
+
+Waktu habis!
+𖦹 Jawabannya adalah; *${json.jawaban}*
+𖦹 Saldo kamu dikurangi 200
+𖦹 Sisa Saldo kamu: *${db.data.users[sender].money.toLocaleString()}*`);
             delete DinzBotz.siapaaku[id];
           }, timeout)];
         }
@@ -15793,7 +17304,12 @@ Tipe: ${json.tipe}
 	Hadiah: ${poin} Money
 	`.trim();
           DinzBotz.susunkata[id] = [await replyviex(`${caption}`), json, poin, setTimeout(() => {
-            replyviex(`*GAME SUSUN KATA*\n\nWaktu habis!\n𖦹 Jawabannya adalah; *${json.jawaban}*\n𖦹 Saldo kamu dikurangi 200\n𖦹 Sisa Saldo kamu: *${db.data.users[sender].money.toLocaleString()}*`);
+            replyviex(`*GAME SUSUN KATA*
+
+Waktu habis!
+𖦹 Jawabannya adalah; *${json.jawaban}*
+𖦹 Saldo kamu dikurangi 200
+𖦹 Sisa Saldo kamu: *${db.data.users[sender].money.toLocaleString()}*`);
             delete DinzBotz.susunkata[id];
           }, timeout)];
         }
@@ -15825,7 +17341,12 @@ Tipe: ${json.tipe}
             if (DinzBotz.tekateki[id]) {
               users.money -= 200;
             }
-            replyviex(`*GAME TEKA-TEKI*\n\nWaktu habis!\n𖦹 Jawabannya adalah; *${json.jawaban}*\n𖦹 Saldo kamu dikurangi 200\n𖦹 Sisa Saldo kamu: *${db.users[sender].money.toLocaleString()}*`);
+            replyviex(`*GAME TEKA-TEKI*
+
+Waktu habis!
+𖦹 Jawabannya adalah; *${json.jawaban}*
+𖦹 Saldo kamu dikurangi 200
+𖦹 Sisa Saldo kamu: *${db.users[sender].money.toLocaleString()}*`);
             delete DinzBotz.tekateki[id];
           }, timeout)];
         }
@@ -15845,7 +17366,9 @@ Tipe: ${json.tipe}
             image: {
               url: result.img
             },
-            caption: `Silahkan Jawab Gambar Berikut\n\nWaktu : 60s`
+            caption: `Silahkan Jawab Gambar Berikut
+
+Waktu : 60s`
           }, {
             quoted: m
           }).then(() => {
@@ -15854,7 +17377,8 @@ Tipe: ${json.tipe}
           await sleep(60000);
           if (tebakbendera2.hasOwnProperty(m.sender.split("@")[0])) {
             console.log("Jawaban: " + result.name);
-            DinzBotz.sendText(m.chat, `Waktu Habis\nJawaban:  ${tebakbendera2[m.sender.split("@")[0]]}`, m);
+            DinzBotz.sendText(m.chat, `Waktu Habis
+Jawaban:  ${tebakbendera2[m.sender.split("@")[0]]}`, m);
             delete tebakbendera2[m.sender.split("@")[0]];
           }
         }
@@ -15945,7 +17469,13 @@ Tipe: ${json.tipe}
             return false;
           }
           let caption = `
-📮 Kamu Membutuhkan Bibit:\n${user.bibitpisang < 100 ? `\n${global.rpg.emoticon("bibitpisang")} BibitPisang: ${pisang}` : ""} ${user.bibitanggur < 100 ? `\n${global.rpg.emoticon("bibitanggur")} BibitAnggur: ${anggur}` : ""} ${user.bibitmangga < 100 ? `\n${global.rpg.emoticon("bibitmangga")} BibitMangga: ${mangga}` : ""} ${user.bibitjeruk < 100 ? `\n${global.rpg.emoticon("bibitjeruk")} BibitJeruk: ${jeruk}` : ""} ${user.bibitapel < 100 ? `\n${global.rpg.emoticon("bibitapel")} BibitApel: ${apel}` : ""}`.trim();
+📮 Kamu Membutuhkan Bibit:
+${user.bibitpisang < 100 ? `
+${global.rpg.emoticon("bibitpisang")} BibitPisang: ${pisang}` : ""} ${user.bibitanggur < 100 ? `
+${global.rpg.emoticon("bibitanggur")} BibitAnggur: ${anggur}` : ""} ${user.bibitmangga < 100 ? `
+${global.rpg.emoticon("bibitmangga")} BibitMangga: ${mangga}` : ""} ${user.bibitjeruk < 100 ? `
+${global.rpg.emoticon("bibitjeruk")} BibitJeruk: ${jeruk}` : ""} ${user.bibitapel < 100 ? `
+${global.rpg.emoticon("bibitapel")} BibitApel: ${apel}` : ""}`.trim();
           if (new Date() - user.lastberkebon > 1800000) {
             if (user.bibitpisang >= 100 && user.bibitanggur >= 100 && user.bibitmangga >= 100 && user.bibitapel >= 100 && user.bibitjeruk >= 100) {
               let hasil1 = Math.floor(Math.random() * 100);
@@ -16010,7 +17540,12 @@ ${global.rpg.emoticon("apel")} Apel: ${hasil5}
           let type = (args[0] || "").toLowerCase();
           let count = (args[1] && number(parseInt(args[1])) ? Math.max(parseInt(args[1]), 1) : /all/i.test(args[1]) ? Math.floor(parseInt(user[type])) : 1) * 1;
           if (!item.includes(type)) {
-            return replyviex(`*List Item:*\n${item.map(v => `${global.rpg.emoticon(v)}${v}`.trim()).join("\n")}\n\nContoh:\nbet money 100000`);
+            return replyviex(`*List Item:*
+${item.map(v => `${global.rpg.emoticon(v)}${v}`.trim()).join("
+")}
+
+Contoh:
+bet money 100000`);
           }
           if (user[type] * 1 < count) {
             return replyviex(`*${type} ${global.rpg.emoticon(type)}* kamu tidak cukup!!`);
@@ -16065,12 +17600,14 @@ Kamu *${status}*, kamu ${status == "Menang" ? `Mendapatkan *+${count * 2}*` : st
           let user = global.db.users[m.sender];
           let time = user.lastbonus + 86400000;
           if (new Date() - user.lastbonus < 86400000) {
-            return replyviex(`Kamu Sudah Ambil Bonus Hari Ini\nTunggu selama ${msToTime(time - new Date())} lagi`);
+            return replyviex(`Kamu Sudah Ambil Bonus Hari Ini
+Tunggu selama ${msToTime(time - new Date())} lagi`);
           }
           let money = Math.floor(Math.random() * 50000000);
           user.money += money * 1;
           user.lastbonus = new Date() * 1;
-          replyviex(`Selamat Kamu Mendapatkan Bonus : \n+${money} Money`);
+          replyviex(`Selamat Kamu Mendapatkan Bonus : 
++${money} Money`);
         }
         break;
       //==================================================================
@@ -16080,12 +17617,20 @@ Kamu *${status}*, kamu ${status == "Menang" ? `Mendapatkan *+${count * 2}*` : st
             return reply(mess.only.group);
           }
           let user = global.db.users[m.sender];
-          let ini_txt = `[ *GUDANG BUAH KAMU* ]\n\n`;
-          ini_txt += `🍌 ${user.pisang} Pisang\n`;
-          ini_txt += `🍇 ${user.anggur} Anggur\n`;
-          ini_txt += `🥭 ${user.mangga} Mangga\n`;
-          ini_txt += `🍊 ${user.jeruk} Jeruk\n`;
-          ini_txt += `🍎 ${user.apel} Apel\n\n`;
+          let ini_txt = `[ *GUDANG BUAH KAMU* ]
+
+`;
+          ini_txt += `🍌 ${user.pisang} Pisang
+`;
+          ini_txt += `🍇 ${user.anggur} Anggur
+`;
+          ini_txt += `🥭 ${user.mangga} Mangga
+`;
+          ini_txt += `🍊 ${user.jeruk} Jeruk
+`;
+          ini_txt += `🍎 ${user.apel} Apel
+
+`;
           ini_txt += `Gunakan command *buah sell* untuk menjual.`;
           replyviex(`${ini_txt}`);
         }
@@ -16128,7 +17673,8 @@ Kamu *${status}*, kamu ${status == "Menang" ? `Mendapatkan *+${count * 2}*` : st
 ⚔️ Menusuk Tubuhnya.....
 `.trim();
             var dimas3 = `
-☠️ Target meninggal\nDan kamu mengambil barang² nya
+☠️ Target meninggal
+Dan kamu mengambil barang² nya
 `.trim();
             var dimas4 = `
 💼 Hasil dari membunuh....
@@ -16274,7 +17820,12 @@ contoh *${command} pickaxe*
                     return replyviex("Kamu sudah memilik ini");
                   }
                   if (user.rock < 5 || user.wood < 10 || user.iron < 5 || user.string < 20) {
-                    return replyviex(`Barang tidak cukup!\nUntuk membuat pickaxe. Kamu memerlukan : ${user.wood < 10 ? `\n${10 - user.wood} kayu🪵` : ""} ${user.iron < 5 ? `\n${5 - user.iron} iron⛓` : ""}${user.string < 20 ? `\n${20 - user.string} String🕸️` : ""}${user.rock < 5 ? `\n${5 - user.rock} Batu 🪨` : ""}`);
+                    return replyviex(`Barang tidak cukup!
+Untuk membuat pickaxe. Kamu memerlukan : ${user.wood < 10 ? `
+${10 - user.wood} kayu🪵` : ""} ${user.iron < 5 ? `
+${5 - user.iron} iron⛓` : ""}${user.string < 20 ? `
+${20 - user.string} String🕸️` : ""}${user.rock < 5 ? `
+${5 - user.rock} Batu 🪨` : ""}`);
                   }
                   user.wood -= 10;
                   stock.wood += 10;
@@ -16293,7 +17844,10 @@ contoh *${command} pickaxe*
                     return replyviex("Kamu sudah memilik ini");
                   }
                   if (user.wood < 10 || user.iron < 15) {
-                    return replyviex(`Barang tidak cukup!\nUntuk membuat sword. Kamu memerlukan :${user.wood < 10 ? `\n${10 - user.wood} kayu🪵` : ""}${user.iron < 15 ? `\n${15 - user.iron} iron⛓️` : ""}`);
+                    return replyviex(`Barang tidak cukup!
+Untuk membuat sword. Kamu memerlukan :${user.wood < 10 ? `
+${10 - user.wood} kayu🪵` : ""}${user.iron < 15 ? `
+${15 - user.iron} iron⛓️` : ""}`);
                   }
                   user.wood -= 10;
                   stock.wood += 10;
@@ -16308,7 +17862,11 @@ contoh *${command} pickaxe*
                     return replyviex("Kamu sudah memilik ini");
                   }
                   if (user.wood < 20 || user.iron < 5 || user.string < 20) {
-                    return replyviex(`Barang tidak cukup!\nUntuk membuat pancingan. Kamu memerlukan :${user.wood < 20 ? `\n${20 - user.wood} kayu🪵` : ""}${user.iron < 5 ? `\n${5 - user.iron} iron⛓` : ""}${user.string < 20 ? `\n${20 - user.string} String🕸️` : ""}`);
+                    return replyviex(`Barang tidak cukup!
+Untuk membuat pancingan. Kamu memerlukan :${user.wood < 20 ? `
+${20 - user.wood} kayu🪵` : ""}${user.iron < 5 ? `
+${5 - user.iron} iron⛓` : ""}${user.string < 20 ? `
+${20 - user.string} String🕸️` : ""}`);
                   }
                   user.wood -= 10;
                   stock.wood += 10;
@@ -16325,7 +17883,11 @@ contoh *${command} pickaxe*
                     return replyviex("Kamu sudah memilik ini");
                   }
                   if (user.iron < 30 || user.emerald < 1 || user.diamond < 5) {
-                    return replyviex(`Barang tidak cukup!\nUntuk membuat armor. Kamu memerlukan :${user.iron < 30 ? `\n${30 - user.iron} Iron ⛓️` : ""}${user.emerald < 1 ? `\n${1 - user.emerald} Emerald ❇️` : ""}${user.diamond < 5 ? `\n${5 - user.diamond} Diamond 💎` : ""}`);
+                    return replyviex(`Barang tidak cukup!
+Untuk membuat armor. Kamu memerlukan :${user.iron < 30 ? `
+${30 - user.iron} Iron ⛓️` : ""}${user.emerald < 1 ? `
+${1 - user.emerald} Emerald ❇️` : ""}${user.diamond < 5 ? `
+${5 - user.diamond} Diamond 💎` : ""}`);
                   }
                   user.emerald -= 1;
                   stock.emerald += 1;
@@ -16342,7 +17904,11 @@ contoh *${command} pickaxe*
                     return replyviex("Kamu sudah memilik ini");
                   }
                   if (user.emerald < 3 || user.money < 10000 || user.diamond < 6) {
-                    return replyviex(`Barang tidak cukup!\nUntuk membuat atm. Kamu memerlukan :${user.money < 10000 ? `\n${10000 - user.money} Money 💹` : ""}${user.emerald < 3 ? `\n${3 - user.emerald} Emerald ❇️` : ""}${user.diamond < 6 ? `\n${6 - user.diamond} Diamond 💎` : ""}`);
+                    return replyviex(`Barang tidak cukup!
+Untuk membuat atm. Kamu memerlukan :${user.money < 10000 ? `
+${10000 - user.money} Money 💹` : ""}${user.emerald < 3 ? `
+${3 - user.emerald} Emerald ❇️` : ""}${user.diamond < 6 ? `
+${6 - user.diamond} Diamond 💎` : ""}`);
                   }
                   user.emerald -= 3;
                   stock.emerald += 3;
@@ -16358,7 +17924,10 @@ contoh *${command} pickaxe*
               }
             }
           } catch (err) {
-            replyviex("Error\n\n\n" + err.stack);
+            replyviex("Error
+
+
+" + err.stack);
           }
         }
         break;
@@ -16412,7 +17981,8 @@ contoh *${command} pickaxe*
                   user.petfood -= 1;
                   user.foxexp += 20;
                   user.foxlastfeed = new Date() * 1;
-                  replyviex(`ғᴇᴇᴅɪɴɢ *${type}*...\n*${emo} ${type.capitalize()}:* ${pesan}`);
+                  replyviex(`ғᴇᴇᴅɪɴɢ *${type}*...
+*${emo} ${type.capitalize()}:* ${pesan}`);
                   if (rubah > 0) {
                     let naiklvl = rubah * 100 - 1;
                     if (user.foxexp > naiklvl) {
@@ -16425,7 +17995,8 @@ contoh *${command} pickaxe*
                   replyviex(`ʏᴏᴜʀ ᴘᴇᴛ ғᴏᴏᴅ ɴᴏᴛ ᴇɴᴏᴜɢʜ`);
                 }
               } else {
-                replyviex(`ʏᴏᴜʀ ᴘᴇᴛ ɪs ғᴜʟʟ, ᴛʀʏ ғᴇᴇᴅɪɴɢ ɪᴛ ᴀɢᴀɪɴ ɪɴ\n➞ *${waktur}*`);
+                replyviex(`ʏᴏᴜʀ ᴘᴇᴛ ɪs ғᴜʟʟ, ᴛʀʏ ғᴇᴇᴅɪɴɢ ɪᴛ ᴀɢᴀɪɴ ɪɴ
+➞ *${waktur}*`);
               }
               break;
             case "cat":
@@ -16443,7 +18014,8 @@ contoh *${command} pickaxe*
                   user.petfood -= 1;
                   user.catexp += 20;
                   user.catlastfeed = new Date() * 1;
-                  replyviex(`ғᴇᴇᴅɪɴɢ *${type}*...\n*${emo} ${type.capitalize()}:* ${pesan}`);
+                  replyviex(`ғᴇᴇᴅɪɴɢ *${type}*...
+*${emo} ${type.capitalize()}:* ${pesan}`);
                   if (kucing > 0) {
                     let naiklvl = kucing * 100 - 1;
                     if (user.catexp > naiklvl) {
@@ -16456,7 +18028,8 @@ contoh *${command} pickaxe*
                   replyviex(`ʏᴏᴜʀ ᴘᴇᴛ ғᴏᴏᴅ ɴᴏᴛ ᴇɴᴏᴜɢʜ`);
                 }
               } else {
-                replyviex(`ʏᴏᴜʀ ᴘᴇᴛ ɪs ғᴜʟʟ, ᴛʀʏ ғᴇᴇᴅɪɴɢ ɪᴛ ᴀɢᴀɪɴ ɪɴ\n➞ *${waktuc}*`);
+                replyviex(`ʏᴏᴜʀ ᴘᴇᴛ ɪs ғᴜʟʟ, ᴛʀʏ ғᴇᴇᴅɪɴɢ ɪᴛ ᴀɢᴀɪɴ ɪɴ
+➞ *${waktuc}*`);
               }
               break;
             case "dog":
@@ -16474,7 +18047,8 @@ contoh *${command} pickaxe*
                   user.petfood -= 1;
                   user.dogexp += 20;
                   user.doglastfeed = new Date() * 1;
-                  replyviex(`ғᴇᴇᴅɪɴɢ *${type}*...\n*${emo} ${type.capitalize()}:* ${pesan}`);
+                  replyviex(`ғᴇᴇᴅɪɴɢ *${type}*...
+*${emo} ${type.capitalize()}:* ${pesan}`);
                   if (anjing > 0) {
                     let naiklvl = anjing * 100 - 1;
                     if (user.dogexp > naiklvl) {
@@ -16487,7 +18061,8 @@ contoh *${command} pickaxe*
                   replyviex(`ʏᴏᴜʀ ᴘᴇᴛ ғᴏᴏᴅ ɴᴏᴛ ᴇɴᴏᴜɢʜ`);
                 }
               } else {
-                replyviex(`ʏᴏᴜʀ ᴘᴇᴛ ɪs ғᴜʟʟ, ᴛʀʏ ғᴇᴇᴅɪɴɢ ɪᴛ ᴀɢᴀɪɴ ɪɴ\n➞ *${waktua}*`);
+                replyviex(`ʏᴏᴜʀ ᴘᴇᴛ ɪs ғᴜʟʟ, ᴛʀʏ ғᴇᴇᴅɪɴɢ ɪᴛ ᴀɢᴀɪɴ ɪɴ
+➞ *${waktua}*`);
               }
               break;
             case "horse":
@@ -16505,7 +18080,8 @@ contoh *${command} pickaxe*
                   user.petfood -= 1;
                   user.horseexp += 20;
                   user.horselastfeed = new Date() * 1;
-                  replyviex(`ғᴇᴇᴅɪɴɢ *${type}*...\n*${emo} ${type.capitalize()}:* ${pesan}`);
+                  replyviex(`ғᴇᴇᴅɪɴɢ *${type}*...
+*${emo} ${type.capitalize()}:* ${pesan}`);
                   if (kuda > 0) {
                     let naiklvl = kuda * 100 - 1;
                     if (user.horseexp > naiklvl) {
@@ -16518,7 +18094,8 @@ contoh *${command} pickaxe*
                   replyviex(`ʏᴏᴜʀ ᴘᴇᴛ ғᴏᴏᴅ ɴᴏᴛ ᴇɴᴏᴜɢʜ`);
                 }
               } else {
-                replyviex(`ʏᴏᴜʀ ᴘᴇᴛ ɪs ғᴜʟʟ, ᴛʀʏ ғᴇᴇᴅɪɴɢ ɪᴛ ᴀɢᴀɪɴ ɪɴ\n➞ *${waktuk}*`);
+                replyviex(`ʏᴏᴜʀ ᴘᴇᴛ ɪs ғᴜʟʟ, ᴛʀʏ ғᴇᴇᴅɪɴɢ ɪᴛ ᴀɢᴀɪɴ ɪɴ
+➞ *${waktuk}*`);
               }
               break;
             case "robo":
@@ -16536,7 +18113,8 @@ contoh *${command} pickaxe*
                   user.petfood -= 1;
                   user.roboexp += 20;
                   user.robolastfeed = new Date() * 1;
-                  replyviex(`ғᴇᴇᴅɪɴɢ *${type}*...\n*${emo} ${type.capitalize()}:* ${pesan}`);
+                  replyviex(`ғᴇᴇᴅɪɴɢ *${type}*...
+*${emo} ${type.capitalize()}:* ${pesan}`);
                   if (robot > 0) {
                     let naiklvl = robot * 100 - 1;
                     if (user.roboexp > naiklvl) {
@@ -16549,7 +18127,8 @@ contoh *${command} pickaxe*
                   replyviex(`ʏᴏᴜʀ ᴘᴇᴛ ғᴏᴏᴅ ɴᴏᴛ ᴇɴᴏᴜɢʜ`);
                 }
               } else {
-                replyviex(`ʏᴏᴜʀ ᴘᴇᴛ ɪs ғᴜʟʟ, ᴛʀʏ ғᴇᴇᴅɪɴɢ ɪᴛ ᴀɢᴀɪɴ ɪɴ\n➞ *${wakturb}*`);
+                replyviex(`ʏᴏᴜʀ ᴘᴇᴛ ɪs ғᴜʟʟ, ᴛʀʏ ғᴇᴇᴅɪɴɢ ɪᴛ ᴀɢᴀɪɴ ɪɴ
+➞ *${wakturb}*`);
               }
               break;
             default:
@@ -16578,7 +18157,9 @@ contoh *${command} pickaxe*
           while (typeof global.db.users[lawan] == "undefined" || lawan == m.sender) {
             lawan = users[Math.floor(users.length * Math.random())];
           }
-          replyviex(`*Kamu* (level ${user.level}) menantang *${DinzBotz.getName(lawan)}* (level ${global.db.users[lawan].level}) dan sedang dalam pertarungan.\n\nTunggu 5 menit lagi dan lihat siapa yg menang.`);
+          replyviex(`*Kamu* (level ${user.level}) menantang *${DinzBotz.getName(lawan)}* (level ${global.db.users[lawan].level}) dan sedang dalam pertarungan.
+
+Tunggu 5 menit lagi dan lihat siapa yg menang.`);
           DinzBotz.fight[m.sender] = true;
           await delay(300000);
           let kesempatan = [];
@@ -16602,14 +18183,26 @@ contoh *${command} pickaxe*
             let hadiah = (pointPemain - pointLawan) * 10000;
             user.money += hadiah;
             user.limit += 1;
-            replyviex(`*${DinzBotz.getName(m.sender)}* [${pointPemain * 10}] - [${pointLawan * 10}] *${DinzBotz.getName(lawan)}*\n\n*Kamu* (level ${user.level}) menang melawan *${DinzBotz.getName(lawan)}* (level ${global.db.users[lawan].level}) karena kamu ${alasanMenang[getRandom(0, alasanMenang.length - 1)]}\n\nHadiah . ${hadiah.toLocaleString()}\n+1 Limit`);
+            replyviex(`*${DinzBotz.getName(m.sender)}* [${pointPemain * 10}] - [${pointLawan * 10}] *${DinzBotz.getName(lawan)}*
+
+*Kamu* (level ${user.level}) menang melawan *${DinzBotz.getName(lawan)}* (level ${global.db.users[lawan].level}) karena kamu ${alasanMenang[getRandom(0, alasanMenang.length - 1)]}
+
+Hadiah . ${hadiah.toLocaleString()}
++1 Limit`);
           } else if (pointPemain < pointLawan) {
             let denda = (pointLawan - pointPemain) * 100000;
             user.money -= denda;
             user.limit += 1;
-            replyviex(`*${DinzBotz.getName(m.sender)}* [${pointPemain * 10}] - [${pointLawan * 10}] *${DinzBotz.getName(lawan)}*\n\n*Kamu* (level ${user.level}) kalah melawan *${DinzBotz.getName(lawan)}* (level ${global.db.users[lawan].level}) karena kamu ${alasanKalah[getRandom(0, alasanKalah.length - 1)]}\n\nMoney kamu berkurang ${denda.toLocaleString()}\n+1 Limit`);
+            replyviex(`*${DinzBotz.getName(m.sender)}* [${pointPemain * 10}] - [${pointLawan * 10}] *${DinzBotz.getName(lawan)}*
+
+*Kamu* (level ${user.level}) kalah melawan *${DinzBotz.getName(lawan)}* (level ${global.db.users[lawan].level}) karena kamu ${alasanKalah[getRandom(0, alasanKalah.length - 1)]}
+
+Money kamu berkurang ${denda.toLocaleString()}
++1 Limit`);
           } else {
-            replyviex(`*${DinzBotz.getName(m.sender)}* [${pointPemain * 10}] - [${pointLawan * 10}] *${DinzBotz.getName(lawan)}*\n\nHasil imbang kak, ga dapet apa apa`);
+            replyviex(`*${DinzBotz.getName(m.sender)}* [${pointPemain * 10}] - [${pointLawan * 10}] *${DinzBotz.getName(lawan)}*
+
+Hasil imbang kak, ga dapet apa apa`);
           }
           delete DinzBotz.fight[m.sender];
         }
@@ -16643,7 +18236,9 @@ contoh *${command} pickaxe*
             replyviex("Nih gaji lu +Rp50000000");
             global.db.users[m.sender].lastclaim = new Date() * 1;
           } else {
-            return replyviex(`Lu udah ambil jatah hari ini.\n\nTunggu ${cd1} Menit ${cd2} Detik!`);
+            return replyviex(`Lu udah ambil jatah hari ini.
+
+Tunggu ${cd1} Menit ${cd2} Detik!`);
           }
         }
         break;
@@ -16787,20 +18382,27 @@ contoh *${command} pickaxe*
           let DinzTheCreator = m.fromMe || isMods || [DinzBotz.decodeJid(DinzBotz.user.id), ...global.owner.filter(([number, _, isDeveloper]) => number && !isDeveloper).map(([number]) => number)].map(v => v.replace(/[^0-9]/g, "") + "@s.whatsapp.net").includes(who);
           let isPrems = DinzTheCreator || new Date() - user.premiumTime < 0;
           let limit = isPrems ? "Unlimited" : user.limit;
-          let tools = Object.keys(inventory.tools).map(v => user[v] && `*${global.rpg.emoticon(v)} ${v}:* ${typeof inventory.tools[v] === "object" ? inventory.tools[v][user[v]?.toString()] : `Level(s) ${user[v]}`}`).filter(v => v).join("\n").trim();
-          let items = Object.keys(inventory.items).map(v => user[v] && `*${global.rpg.emoticon(v)} ${v}:* ${user[v]}`).filter(v => v).join("\n").trim();
-          let dura = Object.keys(inventory.durabi).map(v => user[v] && `*${global.rpg.emoticon(v)} ${v}:* ${user[v]}`).filter(v => v).join("\n").trim();
-          let crates = Object.keys(inventory.crates).map(v => user[v] && `*${global.rpg.emoticon(v)} ${v}:* ${user[v]}`).filter(v => v).join("\n").trim();
-          let pets = Object.keys(inventory.pets).map(v => user[v] && `*${global.rpg.emoticon(v)} ${v}:* ${user[v] >= inventory.pets[v] ? "Max Levels" : `Level(s) ${user[v]}`}`).filter(v => v).join("\n").trim();
+          let tools = Object.keys(inventory.tools).map(v => user[v] && `*${global.rpg.emoticon(v)} ${v}:* ${typeof inventory.tools[v] === "object" ? inventory.tools[v][user[v]?.toString()] : `Level(s) ${user[v]}`}`).filter(v => v).join("
+").trim();
+          let items = Object.keys(inventory.items).map(v => user[v] && `*${global.rpg.emoticon(v)} ${v}:* ${user[v]}`).filter(v => v).join("
+").trim();
+          let dura = Object.keys(inventory.durabi).map(v => user[v] && `*${global.rpg.emoticon(v)} ${v}:* ${user[v]}`).filter(v => v).join("
+").trim();
+          let crates = Object.keys(inventory.crates).map(v => user[v] && `*${global.rpg.emoticon(v)} ${v}:* ${user[v]}`).filter(v => v).join("
+").trim();
+          let pets = Object.keys(inventory.pets).map(v => user[v] && `*${global.rpg.emoticon(v)} ${v}:* ${user[v] >= inventory.pets[v] ? "Max Levels" : `Level(s) ${user[v]}`}`).filter(v => v).join("
+").trim();
           let cooldowns = Object.entries(inventory.cooldowns).map(([cd, {
             name,
             time
-          }]) => cd in user && `*✧ ${name}*: ${new Date() - user[cd] >= time ? "✅" : "❌"}`).filter(v => v).join("\n").trim();
+          }]) => cd in user && `*✧ ${name}*: ${new Date() - user[cd] >= time ? "✅" : "❌"}`).filter(v => v).join("
+").trim();
           let caption = `
 🧑🏻‍🏫 ᴜsᴇʀ: *${user.registered ? user.name : DinzBotz.getName(who)}* ${user.level ? `
 ➠ ${global.rpg.emoticon("level")} level: ${user.level}` : ""} ${user.limit ? `
 ➠ ${global.rpg.emoticon("limit")} limit: ${limit}` : ""}
-${Object.keys(inventory.others).map(v => user[v] && `➠ ${global.rpg.emoticon(v)} ${v}: ${user[v]}`).filter(v => v).join("\n")} ${tools ? `
+${Object.keys(inventory.others).map(v => user[v] && `➠ ${global.rpg.emoticon(v)} ${v}: ${user[v]}`).filter(v => v).join("
+")} ${tools ? `
 
 *ʟɪꜱᴛ ᴛᴏᴏʟs* :
 ${tools}` : ""}${items ? `
@@ -16885,7 +18487,10 @@ untuk mendapatkannya ketik *${command}craft fishingrod*`;
               let _string = fishingrod * 100;
               let _money = fishingrod * 1000000;
               if (wood < _wood || string < _string || money < _money) {
-                return reply(`Material kamu kurang!!${wood < _wood ? `\n${rpg.emoticon("wood")}wood Kamu Kurang *${_wood - wood}*` : ""}${string < _string ? `\n${rpg.emoticon("string")}String Kamu Kurang *${_string - string}*` : ""}${user.money < _money ? `\n${rpg.emoticon("money")}Uang Kamu Kurang *${_money - money}*` : ""}`);
+                return reply(`Material kamu kurang!!${wood < _wood ? `
+${rpg.emoticon("wood")}wood Kamu Kurang *${_wood - wood}*` : ""}${string < _string ? `
+${rpg.emoticon("string")}String Kamu Kurang *${_string - string}*` : ""}${user.money < _money ? `
+${rpg.emoticon("money")}Uang Kamu Kurang *${_money - money}*` : ""}`);
               }
               user.fishingrod += 1;
               user.wood -= _wood * 1;
@@ -16910,7 +18515,10 @@ untuk memilikinya ketik *${command}craft Pickaxe*`;
               if (rock < __rock || wood < __wood || money < __money) {
                 return reply(`
 Material Anda Kurang!!
-${rock < __rock ? `\n${rpg.emoticon("rock")}rock kamu kurang *${__rock - rock}*` : ""}${wood < __wood ? `\n${rpg.emoticon("wood")}wood kamu kurang *${__wood - wood}*` : ""}${money < __money ? `\n${rpg.emoticon("money")}Uang kamu kurang *${__money - money}*` : ""}`);
+${rock < __rock ? `
+${rpg.emoticon("rock")}rock kamu kurang *${__rock - rock}*` : ""}${wood < __wood ? `
+${rpg.emoticon("wood")}wood kamu kurang *${__wood - wood}*` : ""}${money < __money ? `
+${rpg.emoticon("money")}Uang kamu kurang *${__money - money}*` : ""}`);
               }
               user.pickaxe += 1;
               user.wood -= __wood * 1;
@@ -16935,7 +18543,10 @@ untuk memilikinya ketik *${command}craft sword*`;
               if (iron < _iron || wood < ___wood || money < ___money) {
                 return reply(`
 Material Anda Kurang!!
-${iron < _iron ? `\n${rpg.emoticon("iron")}Iron kamu kurang *${_iron - iron}*` : ""}${wood < ___wood ? `\n${rpg.emoticon("wood")}wood kamu kurang *${___wood - wood}*` : ""}${money < ___money ? `\n${rpg.emoticon("money")}Uang kamu kurang *${___money - money}*` : ""}`);
+${iron < _iron ? `
+${rpg.emoticon("iron")}Iron kamu kurang *${_iron - iron}*` : ""}${wood < ___wood ? `
+${rpg.emoticon("wood")}wood kamu kurang *${___wood - wood}*` : ""}${money < ___money ? `
+${rpg.emoticon("money")}Uang kamu kurang *${___money - money}*` : ""}`);
               }
               user.sword += 1;
               user.iron -= _iron * 1;
@@ -16960,7 +18571,10 @@ untuk memilikinya ketik *${command}craft armor*`;
               if (diamond < _diamond || wood < ____wood || money < ____money) {
                 return reply(`
 Material Anda Kurang!!
-${diamond < _diamond ? `\n${rpg.emoticon("diamond")}Diamond kamu kurang *${_diamond - diamond}*` : ""}${wood < ____wood ? `\n${rpg.emoticon("wood")}wood kamu kurang *${____wood - wood}*` : ""}${money < ____money ? `\n${rpg.emoticon("money")}Uang kamu kurang *${____money - money}*` : ""}`);
+${diamond < _diamond ? `
+${rpg.emoticon("diamond")}Diamond kamu kurang *${_diamond - diamond}*` : ""}${wood < ____wood ? `
+${rpg.emoticon("wood")}wood kamu kurang *${____wood - wood}*` : ""}${money < ____money ? `
+${rpg.emoticon("money")}Uang kamu kurang *${____money - money}*` : ""}`);
               }
               user.armor += 1;
               user.diamond -= _diamond * 1;
@@ -16985,7 +18599,10 @@ untuk memilikinya ketik *${command}craft atm*`;
               if (diamond < __diamond || emerald < _emerald || money < _____money) {
                 return reply(`
 Material Anda Kurang!!
-${diamond < __diamond ? `\n${rpg.emoticon("diamond")}Diamond kamu kurang *${__diamond - diamond}*` : ""}${emerald < _emerald ? `\n${rpg.emoticon("emerald")}Emerald kamu kurang *${_emerald - emerald}*` : ""}${money < _____money ? `\n${rpg.emoticon("money")}Uang kamu kurang *${_____money - money}*` : ""}`);
+${diamond < __diamond ? `
+${rpg.emoticon("diamond")}Diamond kamu kurang *${__diamond - diamond}*` : ""}${emerald < _emerald ? `
+${rpg.emoticon("emerald")}Emerald kamu kurang *${_emerald - emerald}*` : ""}${money < _____money ? `
+${rpg.emoticon("money")}Uang kamu kurang *${_____money - money}*` : ""}`);
               }
               user.atm += 1;
               user.diamond -= __diamond * 1;
@@ -17021,7 +18638,8 @@ ${diamond < __diamond ? `\n${rpg.emoticon("diamond")}Diamond kamu kurang *${__di
 Contoh ${command} money 9999 @621927237001
 
 📍 Transferable items
-${item.map(v => `${rpg.emoticon(v)}${v}`.trim()).join("\n")}
+${item.map(v => `${rpg.emoticon(v)}${v}`.trim()).join("
+")}
 `.trim();
           const type = (args[0] || "").toLowerCase();
           if (!item.includes(type)) {
@@ -17044,13 +18662,20 @@ ${item.map(v => `${rpg.emoticon(v)}${v}`.trim()).join("\n")}
           user[type] -= count * 1;
           _user[type] += count * 1;
           if (previous > user[type] * 1 && _previous < _user[type] * 1) {
-            replyviex(`*––––––『 𝚃𝚁𝙰𝙽𝚂𝙵𝙴𝚁 』––––––*\n*📊 Status:* Succes\n*🗂️ Type:* ${type}${special(type)} ${rpg.emoticon(type)}\n*🧮 Count:* ${count}\n*📨 To:* @${(who || "").replace(/@s\.whatsapp\.net/g, "")}`, null, {
+            replyviex(`*––––––『 𝚃𝚁𝙰𝙽𝚂𝙵𝙴𝚁 』––––––*
+*📊 Status:* Succes
+*🗂️ Type:* ${type}${special(type)} ${rpg.emoticon(type)}
+*🧮 Count:* ${count}
+*📨 To:* @${(who || "").replace(/@s\.whatsapp\.net/g, "")}`, null, {
               mentions: [who]
             });
           } else {
             user[type] = previous;
             _user[type] = _previous;
-            replyviex(`*––––––『 TRANSFER 』––––––*\n*📊 Status:* Failted\n*📍 Item:* ${count} ${rpg.emoticon(type)}${type}${special(type)}\n*📨 To:* @${(who || "").replace(/@s\.whatsapp\.net/g, "")}`, null, {
+            replyviex(`*––––––『 TRANSFER 』––––––*
+*📊 Status:* Failted
+*📍 Item:* ${count} ${rpg.emoticon(type)}${type}${special(type)}
+*📨 To:* @${(who || "").replace(/@s\.whatsapp\.net/g, "")}`, null, {
               mentions: [who]
             });
           }
@@ -17272,7 +18897,8 @@ ${item.map(v => `${rpg.emoticon(v)}${v}`.trim()).join("\n")}
 ${Object.keys(listItems).map(v => {
             let paymentMethod = Object.keys(listItems[v]).find(v => v in user);
             return `➠ 1 ${rpg.emoticon(v)} ${capitalize(v)} ﹫ ${listItems[v][paymentMethod]} ${rpg.emoticon(paymentMethod)}${capitalize(paymentMethod)}`.trim();
-          }).join("\n")}
+          }).join("
+")}
 –––––––––––––––––––––––––
 💁🏻‍♂ ᴛɪᴩ :
 ➠ ᴛᴏ ʙᴜʏ ɪᴛᴇᴍs:
@@ -17284,7 +18910,8 @@ ${command} potion 10
 ${Object.keys(listItems).map(v => {
             let paymentMethod = Object.keys(listItems[v]).find(v => v in user);
             return `➠ 1 ${rpg.emoticon(v)} ${capitalize(v)} ﹫ ${listItems[v][paymentMethod]} ${rpg.emoticon(paymentMethod)}${capitalize(paymentMethod)}`.trim();
-          }).join("\n")}
+          }).join("
+")}
 –––––––––––––––––––––––––
 💁🏻‍♂ ᴛɪᴩ :
 ➠ ᴛᴏ sᴇʟʟ ɪᴛᴇᴍs:
@@ -17327,7 +18954,8 @@ ${command} potion 10
           if (!skill.includes(skil)) {
             return reply(`Select *skill🃏* what do you want/pilih skill apa yg kamu inginkan:
 
-${skill.map(skil => `› ${skil}`).join("\n")}
+${skill.map(skil => `› ${skil}`).join("
+")}
 
 How To use/Cara menggunakan:
 ${command} <nameskill>
@@ -17363,10 +18991,12 @@ ${command} necromancer
           for (let reward of Object.keys(rewards)) {
             if (reward in user) {
               user[reward] += rewards[reward];
-              text += `*+${rewards[reward]}* ${rpg.emoticon(reward)}${reward}\n`;
+              text += `*+${rewards[reward]}* ${rpg.emoticon(reward)}${reward}
+`;
             }
           }
-          reply("*––––––『 NYAMPAH 』––––––*\n" + text.trim());
+          reply("*––––––『 NYAMPAH 』––––––*
+" + text.trim());
           user.lastmonthly = new Date() * 1;
         }
         break;
@@ -17740,7 +19370,10 @@ Dan health anda berkurang -80
               }
             }
           } catch (err) {
-            replyviex("Error\n\n\n" + err.stack);
+            replyviex("Error
+
+
+" + err.stack);
           }
         }
         break;
@@ -17808,7 +19441,8 @@ Bagikan link kepada teman: ${command_link}
 
 atau kirim pesan kepada teman wa.me/?text=${encodeURIComponent(share_text)}
 
-${Object.entries(xp_bonus).map(([count, xp]) => `${count} Orang = Bonus ${xp} XP`).join("\n")}
+${Object.entries(xp_bonus).map(([count, xp]) => `${count} Orang = Bonus ${xp} XP`).join("
+")}
 `.trim());
           }
         }
@@ -18031,7 +19665,8 @@ Cooming soon...`;
                   replyviex("Selamat anda mempunyai pet Baru ! 🎉");
                   break;
                 default:
-                  return await m.reply(`${logo}\n${caption}`);
+                  return await m.reply(`${logo}
+${caption}`);
                 //return await DinzBotz.sendMessage(m.chat, listMessage)
               }
             } else if (/enchant|enchan/i.test(command)) {
@@ -18046,7 +19681,10 @@ Cooming soon...`;
               }
             }
           } catch (err) {
-            replyviex("Error\n\n\n" + err.stack);
+            replyviex("Error
+
+
+" + err.stack);
           }
         }
         break;
@@ -18108,7 +19746,10 @@ Cooming soon...`;
               } else if (DinzBotz.tembak.tembak.indexOf("🤠") == 4) {
                 DinzBotz.tembak.tembak = kiri[3];
               }
-              let pos = DinzBotz.tembak.musuh.join(" ") + "\n\n\n" + DinzBotz.tembak.tembak.join(" ");
+              let pos = DinzBotz.tembak.musuh.join(" ") + "
+
+
+" + DinzBotz.tembak.tembak.join(" ");
               if (DinzBotz.tembak.musuh.indexOf("🥷") === DinzBotz.tembak.tembak.indexOf("🤠")) {
                 return DinzBotz.sendButton(m.chat, pos, wm, [["Tembak", `${command}koboy tembak`]]);
               }
@@ -18126,7 +19767,10 @@ Cooming soon...`;
               } else if (DinzBotz.tembak.tembak.indexOf("🤠") == 4) {
                 DinzBotz.tembak.tembak = kanan[4];
               }
-              let pos = DinzBotz.tembak.musuh.join(" ") + "\n\n\n" + DinzBotz.tembak.tembak.join(" ");
+              let pos = DinzBotz.tembak.musuh.join(" ") + "
+
+
+" + DinzBotz.tembak.tembak.join(" ");
               if (DinzBotz.tembak.musuh.indexOf("🥷") === DinzBotz.tembak.tembak.indexOf("🤠")) {
                 return DinzBotz.sendButton(m.chat, pos, wm, [["Tembak", `${command}koboy tembak`]]);
               }
@@ -18135,7 +19779,9 @@ Cooming soon...`;
               if (DinzBotz.tembak.tembak.indexOf("🤠") == DinzBotz.tembak.musuh.indexOf("🥷")) {
                 DinzBotz.tembak = {};
                 global.db.users[m.sender].money += 1000;
-                replyviex("Kamu menang!\n\nUang += 1000");
+                replyviex("Kamu menang!
+
+Uang += 1000");
               }
             } else {
               let randMusuh = [["🥷", "-", "-", "-", "-"], ["-", "🥷", "-", "-", "-"], ["-", "-", "🥷", "-", "-"], ["-", "-", "-", "🥷", "-"], ["-", "-", "-", "-", "🥷"]];
@@ -18144,7 +19790,10 @@ Cooming soon...`;
               let aku = random(randAku);
               DinzBotz.tembak.musuh = musuh;
               DinzBotz.tembak.tembak = aku;
-              let pos = DinzBotz.tembak.musuh.join(" ") + "\n\n\n" + DinzBotz.tembak.tembak.join(" ");
+              let pos = DinzBotz.tembak.musuh.join(" ") + "
+
+
+" + DinzBotz.tembak.tembak.join(" ");
               if (DinzBotz.tembak.musuh.indexOf("🥷") === DinzBotz.tembak.tembak.indexOf("🤠")) {
                 return DinzBotz.sendButton(m.chat, pos, wm, [["Tembak", `${command}koboy tembak`]]);
               }
@@ -18196,7 +19845,8 @@ Cooming soon...`;
           let _type = (args[1] || "").toLowerCase();
           let jualbeli = (args[0] || "").toLowerCase();
           const Kchat = `╍╌╌╍╌╌╍╌╌╍╌╌┅═━––––––๑
-*🛒 Hewan Laut   | 💲 Harga Jual*\n═┅═━––––––━––––––๑
+*🛒 Hewan Laut   | 💲 Harga Jual*
+═┅═━––––––━––––––๑
 🦀 Kepiting: ${Skepiting}
 🦞 Lobster: ${Slobster}
 🦐 Udang: ${Sudang}
@@ -18209,7 +19859,8 @@ Cooming soon...`;
 🐋 Paus: ${Spaus}
 🦈 Hiu: ${Shiu}
 ╍╌╌╍╌╌╍╌╌╍╌╌┅═━––––––๑
-*🛒 Hewan Darat   | 💲 Harga Jual*\n═┅═━––––––━––––––๑
+*🛒 Hewan Darat   | 💲 Harga Jual*
+═┅═━––––––━––––––๑
 🐃 Banteng: ${Sbanteng}
 🐅 Harimau: ${Sharimau}
 🐘 Gajah: ${Sgajah}
@@ -18223,7 +19874,8 @@ Cooming soon...`;
 🐖 Babi: ${Sbabi}
 🐔 Ayam: ${Sayam}
 ╍╌╌╍╌╌╍╌╌╍╌╌┅═━––––––๑
-📌 *Contoh penggunaan :*\n═┅═━––––––━––––––๑
+📌 *Contoh penggunaan :*
+═┅═━––––––━––––––๑
 #pasar jual ayam [Jumlah]
 `.trim();
           try {
@@ -18892,7 +20544,8 @@ Cooming soon...`;
           let user = db.users[m.sender];
           let time = user.lastmaling + 604800000;
           if (new Date() - user.lastmaling < 604800000) {
-            return replyviex(`📮Anda sudah merampok bank\nTunggu selama ⏲️ ${msToTime(time - new Date())} lagi`);
+            return replyviex(`📮Anda sudah merampok bank
+Tunggu selama ⏲️ ${msToTime(time - new Date())} lagi`);
           }
           let money = `${Math.floor(Math.random() * 30000)}`.trim();
           let exp = `${Math.floor(Math.random() * 999)}`.trim();
@@ -18901,7 +20554,9 @@ Cooming soon...`;
           user.exp += exp * 1;
           user.kardus += kardus * 1;
           user.lastmaling = new Date() * 1;
-          replyviex(`Selamat kamu mendapatkan : \n💰+${money} Money\📦+${kardus} Kardus\n✨+${exp} Exp`);
+          replyviex(`Selamat kamu mendapatkan : 
+💰+${money} Money\📦+${kardus} Kardus
+✨+${exp} Exp`);
           setTimeout(() => {
             reply(`Yuk waktunya Maling lagi 👋…`);
           }, timeout);
@@ -19022,7 +20677,20 @@ ${ikan1 ? `
       break
 //==================================================================
 case 'bratv10': {
-  if (!isRegistered) return replydaftar('👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Fall.17\n│⦿ 〔 Botname : Furina-MD✨\n╰───────────────────✦\n\nDENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA\n\n💂‍♀: Kenapa harus daftar sih?\n🍁: Agar bot mengenal siapa anda\n💂‍♀: Ribet banget harus daftar segala\n🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot')
+  if (!isRegistered) return replydaftar('👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
+
+╭──「 `CARA DAFTAR` 」─✦
+│⦿ 〔 Cara : .daftar nama.umur
+│⦿ 〔 Contoh : .daftar Fall.17
+│⦿ 〔 Botname : Furina-MD✨
+╰───────────────────✦
+
+DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
+
+💂‍♀: Kenapa harus daftar sih?
+🍁: Agar bot mengenal siapa anda
+💂‍♀: Ribet banget harus daftar segala
+🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot')
 
   await DinzBotz.sendMessage(m.chat, {
     react: {
@@ -19130,7 +20798,10 @@ async function BratGenerator(teks) {
 }
 
 // Pastikan ada teks input
-if (!text) return m.reply(`Masukkan teks untuk stiker.\n\nContoh:\n.brat Atmin Ganteng`);
+if (!text) return m.reply(`Masukkan teks untuk stiker.
+
+Contoh:
+.brat Atmin Ganteng`);
 return BratGenerator(text);
 
 }
@@ -19251,11 +20922,15 @@ async function makeBratVideo(text, {
   const duration = { fast: 0.4, normal: 1, slow: 1.6 }[speed] || 1;
   let fileList = "";
   framePaths.forEach(f => {
-    fileList += `file '${f}'\n`;
-    fileList += `duration ${duration}\n`;
+    fileList += `file '${f}'
+`;
+    fileList += `duration ${duration}
+`;
   });
-  fileList += `file '${framePaths[framePaths.length - 1]}'\n`;
-  fileList += `duration 2\n`;
+  fileList += `file '${framePaths[framePaths.length - 1]}'
+`;
+  fileList += `duration 2
+`;
   fs.writeFileSync(fileListPath, fileList);
   try {
     execSync(`ffmpeg -y -f concat -safe 0 -i "${fileListPath}" -vf "fps=30,format=yuv420p" "${output}"`);
@@ -19284,13 +20959,29 @@ async function makeBratVideo(text, {
 break;
       case "brat":
         if (!isRegistered) {
-          return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : FurinaMD✨\n╰───────────────────✦\n\nDENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA\n\n💂‍♀: Kenapa harus daftar sih?\n🍁: Agar bot mengenal siapa anda\n💂‍♀: Ribet banget harus daftar segala\n🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+          return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
+
+╭──「 `CARA DAFTAR` 」─✦
+│⦿ 〔 Cara : .daftar nama.umur
+│⦿ 〔 Contoh : .daftar Furina.20
+│⦿ 〔 Botname : FurinaMD✨
+╰───────────────────✦
+
+DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
+
+💂‍♀: Kenapa harus daftar sih?
+🍁: Agar bot mengenal siapa anda
+💂‍♀: Ribet banget harus daftar segala
+🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
         }
         if (!text) {
           return replyviex(`Example: .brat Hala Madrid`);
         }
         try {
-          let caption = `Ada 2 tipe brat silahkan pilih tipe yang diinginkan:\n\n1. *Gambar 🖼️*\n2. *Video 🎥*`;
+          let caption = `Ada 2 tipe brat silahkan pilih tipe yang diinginkan:
+
+1. *Gambar 🖼️*
+2. *Video 🎥*`;
           DinzBotz.sendMessage(m.chat, {
             text: caption,
             footer: `${global.ownername}`,
@@ -19311,7 +21002,8 @@ break;
           });
         } catch (err) {
           console.error(err);
-          reply(`*Terjadi kesalahan!* 😭\n${err.message || err}`);
+          reply(`*Terjadi kesalahan!* 😭
+${err.message || err}`);
         }
         break;
       /*
@@ -19355,7 +21047,13 @@ break;
       case "listbkp":
         {
           if (!isRegistered) {
-            return replyviex("👋🏻 Halo kak, Maaf, Kamu blum terdaftar di database nih, Daftar dulu yuu,\n=\n╭─ •  「 `CARA DAFTAR` 」\n> ⎙ *Caranya:* .daftar nama. umur\n> ⎙ *Contohnya:* .daftar Tradz. 20\n> ⎙ *Daftar By:* @Furina\n╰───────────────");
+            return replyviex("👋🏻 Halo kak, Maaf, Kamu blum terdaftar di database nih, Daftar dulu yuu,
+=
+╭─ •  「 `CARA DAFTAR` 」
+> ⎙ *Caranya:* .daftar nama. umur
+> ⎙ *Contohnya:* .daftar Tradz. 20
+> ⎙ *Daftar By:* @Furina
+╰───────────────");
           }
           replyviex("ada 20 bkp ketik contoh : bkp1");
         }
@@ -19511,7 +21209,8 @@ break;
       case "upsaluran":
         {
           if (!text) {
-            return m.reply("reply audio\ncontoh: .upch (wm nya)");
+            return m.reply("reply audio
+contoh: .upch (wm nya)");
           }
           DinzBotz.sendMessage(m.chat, {
             react: {
@@ -19609,9 +21308,15 @@ break;
             let tick = await (await fetch("https://endpoint.web.id/search/sticker?key=" + global.key + "&query=" + text)).json();
             if (tick.status) {
               let result = tick.result;
-              let responseMessage = `*Title:* ${result.title}\n*Author:* ${result.author}\n*Author Link:* ${result.author_link}\n\n*Stickers:*\n`;
+              let responseMessage = `*Title:* ${result.title}
+*Author:* ${result.author}
+*Author Link:* ${result.author_link}
+
+*Stickers:*
+`;
               result.sticker.forEach((stickerUrl, index) => {
-                responseMessage += `Sticker ${index + 1}: ${stickerUrl}\n`;
+                responseMessage += `Sticker ${index + 1}: ${stickerUrl}
+`;
               });
               m.reply(responseMessage);
             } else {
@@ -19628,10 +21333,12 @@ break;
       case prefix + "remini2":
         {
           if (!/image/.test(mime)) {
-            return replyviex(`*PERMINTAAN ERROR!! PESAN :*\n> *Reply/Send Gambar Dengan Caption .${command}*`);
+            return replyviex(`*PERMINTAAN ERROR!! PESAN :*
+> *Reply/Send Gambar Dengan Caption .${command}*`);
           }
           if (!quoted) {
-            return replyviex(`*PERMINTAAN ERROR!! PESAN :*\\n> *Reply/Send Gamba Dengan Caption .${command}*`);
+            return replyviex(`*PERMINTAAN ERROR!! PESAN :*\
+> *Reply/Send Gamba Dengan Caption .${command}*`);
           }
           let media = await DinzBotz.downloadAndSaveMediaMessage(quoted);
           let anu = await shannzCdn(media);
@@ -19674,7 +21381,8 @@ break;
                 },
                 interactiveMessage: {
                   body: {
-                    text: `🔎 Hasil Pencarian Dari ${text}\nSilahkan Pilih List dibawah ini`
+                    text: `🔎 Hasil Pencarian Dari ${text}
+Silahkan Pilih List dibawah ini`
                   },
                   footer: {
                     text: "Furina Chx"
@@ -19714,7 +21422,11 @@ break;
             return reply("Masukan Link");
           }
           let result = await spotifydl(text);
-          let captionvid = `∘ Title: ${result.title}\n∘ Artist: ${result.artis}\n∘ Type: ${result.type}\n\nDinzID Chx`;
+          let captionvid = `∘ Title: ${result.title}
+∘ Artist: ${result.artis}
+∘ Type: ${result.type}
+
+DinzID Chx`;
           const p = await new canvafy.Spotify().setTitle(result.title).setAuthor("Spotify - Downloader").setTimestamp(40, 100).setOverlayOpacity(0.8).setBorder("#fff", 0.8).setImage(result.image).setBlur(3).build();
           await DinzBotz.sendMessage(from, {
             image: p,
@@ -19759,7 +21471,8 @@ break;
                 },
                 interactiveMessage: {
                   body: {
-                    text: `🔎 Hasil Pencarian Dari ${text}\nSilahkan Pilih List dibawah ini`
+                    text: `🔎 Hasil Pencarian Dari ${text}
+Silahkan Pilih List dibawah ini`
                   },
                   footer: {
                     text: "Furina Chx"
@@ -19799,7 +21512,11 @@ break;
             return reply("Masukan Link");
           }
           let result = await spotifydl(text);
-          let captionvid = `∘ Title: ${result.title}\n∘ Artist: ${result.artis}\n∘ Type: ${result.type}\n\nDinzID Chx`;
+          let captionvid = `∘ Title: ${result.title}
+∘ Artist: ${result.artis}
+∘ Type: ${result.type}
+
+DinzID Chx`;
           const p = await new canvafy.Spotify().setTitle(result.title).setAuthor("Spotify - Downloader").setTimestamp(40, 100).setOverlayOpacity(0.8).setBorder("#fff", 0.8).setImage(result.image).setBlur(3).build();
           await DinzBotz.sendMessage(from, {
             image: p,
@@ -19939,7 +21656,8 @@ _Audio akan segera dikirim..._`,
 }
 break
 case 'artai': {
-  if (!text) return m.reply('Masukkan Promt.\nExample : artai Cute Girl')
+  if (!text) return m.reply('Masukkan Promt.
+Example : artai Cute Girl')
   await DinzBotz.sendMessage(m.chat, {
     image: { url: `https://www.abella.icu/art-ai?q=${encodeURIComponent(text)}` }
   }, { quoted: m })
@@ -20221,7 +21939,15 @@ case 'artai': {
             let res = data[0];
             let thumbUrl = `https://i.ytimg.com/vi/${res.videoId}/hqdefault.jpg`;
             let inithumb = await getBuffer(thumbUrl);
-            let teks = `*ᴘʟᴀʏɪɴɢ ᴍᴜsɪᴄ ɪɴ ʏᴏᴜᴛᴜʙᴇ*\n\n📺 *ᴄʜᴀɴɴᴇʟ* : ${res.author.name}\n👀 *ᴠɪᴇᴡᴇʀs* : ${res.views} kali\n⏱️ *ᴅᴜʀᴀᴛɪᴏɴ* : ${res.timestamp}\n🔗 *ᴜʀʟ ᴘʟᴀʏ* : ${res.url}\n\n\n*sᴇᴅᴀɴɢ ᴍᴇɴɢɪʀɪᴍ ᴀᴜᴅɪᴏ....!*`;
+            let teks = `*ᴘʟᴀʏɪɴɢ ᴍᴜsɪᴄ ɪɴ ʏᴏᴜᴛᴜʙᴇ*
+
+📺 *ᴄʜᴀɴɴᴇʟ* : ${res.author.name}
+👀 *ᴠɪᴇᴡᴇʀs* : ${res.views} kali
+⏱️ *ᴅᴜʀᴀᴛɪᴏɴ* : ${res.timestamp}
+🔗 *ᴜʀʟ ᴘʟᴀʏ* : ${res.url}
+
+
+*sᴇᴅᴀɴɢ ᴍᴇɴɢɪʀɪᴍ ᴀᴜᴅɪᴏ....!*`;
             await DinzBotz.sendMessage(m.chat, {
               contextInfo: {
                 externalAdReply: {
@@ -20408,7 +22134,13 @@ case 'artai': {
             let anu = await tiktokDownloaderVideo(text);
             let audio = anu.music_info.url;
             await DinzBotz.sendMessage(m.chat, {
-              text: `🎵 *TikTok Audio*\n\n🎼 *Judul*: ${anu.music_info.title || "-"}\n🎤 *Author*: ${anu.music_info.author || "-"}\n💿 *Album*: ${anu.music_info.album || "-"}\n\n🔗 *Source*: ${text}`
+              text: `🎵 *TikTok Audio*
+
+🎼 *Judul*: ${anu.music_info.title || "-"}
+🎤 *Author*: ${anu.music_info.author || "-"}
+💿 *Album*: ${anu.music_info.album || "-"}
+
+🔗 *Source*: ${text}`
             }, {
               quoted: m
             });
@@ -20456,16 +22188,22 @@ case 'artai': {
                   },
                   caption: `\`[  ᴠɪᴅᴇᴏ ɪɴғᴏ : ]\`
 > ʀᴇɢɪᴏɴ : ${anu.region}
-> ᴛᴀᴋᴇɴ : ${anu.taken_at}\n\n
+> ᴛᴀᴋᴇɴ : ${anu.taken_at}
+
+
 \`[ sᴛᴀᴛɪsᴛɪᴋ ɪɴғᴏ : ]\`
 > ᴠɪᴇᴡᴇʀs : ${anu.stats.views}
 > ʟɪᴋᴇs : ${anu.stats.likes}
 > ᴄᴏᴍᴍᴇɴᴛ : ${anu.stats.comment}
 > sʜᴀʀᴇ : ${anu.stats.share}
-> ᴅᴏᴡɴʟᴏᴀᴅ : ${anu.stats.download}\n\n
+> ᴅᴏᴡɴʟᴏᴀᴅ : ${anu.stats.download}
+
+
 \`[  ᴀᴜᴛʜᴏʀ ɪɴғᴏ : ]\`
 > ғᴜʟʟɴᴀᴍᴇ : ${anu.author.fullname}
-> ɴɪᴄᴋɴᴀᴍᴇ : ${anu.author.nickname}\n\n
+> ɴɪᴄᴋɴᴀᴍᴇ : ${anu.author.nickname}
+
+
 > ᴄᴀᴘᴛɪᴏɴ : ${anu.title || "No Caption"}`
                 }, {
                   quoted: m
@@ -20479,17 +22217,27 @@ case 'artai': {
                     },
                     caption: `\`[  ᴘʜᴏᴛᴏ ɪɴғᴏ : ]\`
 > ʀᴇɢɪᴏɴ : ${anu.region}
-> ᴛᴀᴋᴇɴ : ${anu.taken_at}\n\n
+> ᴛᴀᴋᴇɴ : ${anu.taken_at}
+
+
 \`[ sᴛᴀᴛɪsᴛɪᴋ ɪɴғᴏ : ]\`
 > Views: ${anu.stats.views}
 > Likes: ${anu.stats.likes}
 > ᴄᴏᴍᴍᴇɴᴛ : ${anu.stats.comment}
 > sʜᴀʀᴇ : ${anu.stats.share}
-> ᴅᴏᴡɴʟᴏᴀᴅ : ${anu.stats.download}\n\n
+> ᴅᴏᴡɴʟᴏᴀᴅ : ${anu.stats.download}
+
+
 \`[  ᴀᴜᴛʜᴏʀ ɪɴғᴏ : ]\`
 > ғᴜʟʟɴᴀᴍᴇ : ${anu.author.fullname}
-> ɴɪᴄᴋɴᴀᴍᴇ : ${anu.author.nickname}\n\n
-> ᴄᴀᴘᴛɪᴏɴ : ${anu.title || "No Caption"}${m.isGroup ? anu.data.length > 1 ? "\n📥 _sɪsᴀ ғᴏᴛᴏ ᴅɪᴋɪʀɪᴍ ᴋᴇ ᴘʀɪᴠᴀᴛᴇ ᴄʜᴀᴛ_\n" : "\n" : "\n"}`
+> ɴɪᴄᴋɴᴀᴍᴇ : ${anu.author.nickname}
+
+
+> ᴄᴀᴘᴛɪᴏɴ : ${anu.title || "No Caption"}${m.isGroup ? anu.data.length > 1 ? "
+📥 _sɪsᴀ ғᴏᴛᴏ ᴅɪᴋɪʀɪᴍ ᴋᴇ ᴘʀɪᴠᴀᴛᴇ ᴄʜᴀᴛ_
+" : "
+" : "
+"}`
                   }, {
                     quoted: m
                   });
@@ -20515,7 +22263,8 @@ case 'artai': {
       case "qcwarna":
         {
           if (!q) {
-            return replyviex(`☘️ *Contoh : Qc White yoimiya*\n🎁 *Kode Warna Ketik : Qckode*`);
+            return replyviex(`☘️ *Contoh : Qc White yoimiya*
+🎁 *Kode Warna Ketik : Qckode*`);
           }
           DinzBotz.sendMessage(m.chat, {
             react: {
@@ -20819,7 +22568,20 @@ case 'artai': {
       case "menu-v1":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : FurinaMD✨\n╰───────────────────✦\n\nDENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA\n\n💂‍♀: Kenapa harus daftar sih?\n🍁: Agar bot mengenal siapa anda\n💂‍♀: Ribet banget harus daftar segala\n🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
+
+╭──「 `CARA DAFTAR` 」─✦
+│⦿ 〔 Cara : .daftar nama.umur
+│⦿ 〔 Contoh : .daftar Furina.20
+│⦿ 〔 Botname : FurinaMD✨
+╰───────────────────✦
+
+DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
+
+💂‍♀: Kenapa harus daftar sih?
+🍁: Agar bot mengenal siapa anda
+💂‍♀: Ribet banget harus daftar segala
+🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
           }
           DinzBotz.sendMessage(m.chat, {
             react: {
@@ -25682,7 +27444,12 @@ ${global.owner}
             const thumbnail = Buffer.from(thumbnails.data, "binary");
             await DinzBotz.sendMessage(m.chat, {
               image: thumbnail,
-              caption: `🎵 *${title}*\n👤 *Artist:* ${artist}\n⏳ *Duration:* ${duration}\n✨ *Rate Song:* ${popularity}\n📌 *Preview:* ${preview || "No preview available"}\n🔗 *Spotify Link:* ${url}`
+              caption: `🎵 *${title}*
+👤 *Artist:* ${artist}
+⏳ *Duration:* ${duration}
+✨ *Rate Song:* ${popularity}
+📌 *Preview:* ${preview || "No preview available"}
+🔗 *Spotify Link:* ${url}`
             }, {
               quoted: qkontak
             });
@@ -25879,9 +27646,12 @@ ${global.owner}
           if (!text) {
             return await replyviex("Example: .chat Tradz Ganteng bgt");
           }
-          //m.reply("contoh\n.chat selamat siang semuanya")
+          //m.reply("contoh
+.chat selamat siang semuanya")
           if (budy.match(`colmek|coli|desah|ah ah|bokep|tobrut|seksi|sex|sexi|memek|kontol|titit|open bo|gay|yatim|62|mmk|6285813708397|085726020929|join|whatsapp.com|wa.me|t.me`)) {
-            return replyviex("maaf ada kata kata yang tidak sesuai.\nAturan\ndi mohon untuk tidak promosi barang/jasa, menyebarkan hoax, scam, berkata kasar, menyebarkan nomor WhatsApp, mengeshare link");
+            return replyviex("maaf ada kata kata yang tidak sesuai.
+Aturan
+di mohon untuk tidak promosi barang/jasa, menyebarkan hoax, scam, berkata kasar, menyebarkan nomor WhatsApp, mengeshare link");
           }
           const Kalender00011 = moment.tz("Asia/Jakarta").format(`yyyy-MMMM-dddd`);
           const owned11 = owner + "@s.whatsapp.net";
@@ -25924,7 +27694,9 @@ ${global.owner}
               key: m.key
             }
           });
-          replyviex(`sukses mengirim pesan ke channel.\n\ndengan teks: ${text}`);
+          replyviex(`sukses mengirim pesan ke channel.
+
+dengan teks: ${text}`);
           DinzBotz.sendMessage(m.chat, {
             react: {
               text: "🚮",
@@ -28347,7 +30119,10 @@ ${global.owner}
       case "blog":
         {
           if (!args[1]) {
-            return replyviex(`Contoh penggunaan:\n${prefix + command} Udin Offc\n\nGunakan 2 kata: text kiri dan text kanan.`);
+            return replyviex(`Contoh penggunaan:
+${prefix + command} Udin Offc
+
+Gunakan 2 kata: text kiri dan text kanan.`);
           }
           let [textL, textR] = args;
           let apiUrl = `https://api.nekorinn.my.id/maker/ba-logo?textL=${encodeURIComponent(textL)}&textR=${encodeURIComponent(textR)}`;
@@ -28359,7 +30134,9 @@ ${global.owner}
             let buffer = Buffer.from(res.data, "binary");
             await DinzBotz.sendMessage(m.chat, {
               image: buffer,
-              caption: `Berhasil membuat logo dengan teks:\nKiri: ${textL}\nKanan: ${textR}`
+              caption: `Berhasil membuat logo dengan teks:
+Kiri: ${textL}
+Kanan: ${textR}`
             }, {
               quoted: m
             });
@@ -28439,7 +30216,8 @@ ${global.owner}
               document: fs.readFileSync(tmpPath),
               mimetype: "application/javascript",
               fileName: filename,
-              caption: "Encrypt File JS Sukses! Type:\nString"
+              caption: "Encrypt File JS Sukses! Type:
+String"
             }, {
               quoted: m
             });
@@ -28740,7 +30518,10 @@ Terima kasih telah menggunakan bot kami! 😊
           } else if (result.length === 0) {
             reply("ᴛɪᴅᴀᴋ ᴅɪᴛᴇᴍᴜᴋᴀɴ");
           } else {
-            reply(`Hasil nya nih puqimak:\n\n${result.join("\n")}`);
+            reply(`Hasil nya nih puqimak:
+
+${result.join("
+")}`);
           }
         }
         break;
@@ -28951,7 +30732,8 @@ Terima kasih telah menggunakan bot kami! 😊
               content.text = args.slice(1).join(" ") || url;
             }
           } else {
-            return reply("Reply media atau masukkan URL dengan format:\n.tagsw <url> <image/video/audio/text>");
+            return reply("Reply media atau masukkan URL dengan format:
+.tagsw <url> <image/video/audio/text>");
           }
           mentionStatus([m.chat], content).catch(console.error);
         }
@@ -28980,13 +30762,21 @@ Terima kasih telah menggunakan bot kami! 😊
             });
             const result = await response.json();
             if (!result.status) {
-              return m.reply(`*Gagal mengambil data!* 😭\n${result.message || "Unknown error"}`);
+              return m.reply(`*Gagal mengambil data!* 😭
+${result.message || "Unknown error"}`);
             }
-            let captionText = `🎵 *${result.videoDetails.title}*\n\n`;
-            captionText += `- *Creator*: ${result.videoDetails.ownerChannelName || "Tidak diketahui"}\n`;
-            captionText += `- *Views*: ${result.videoDetails.viewCount || "Tidak diketahui"}\n`;
-            captionText += `- *Upload*: ${result.videoDetails.uploadDate || "Tidak diketahui"}\n`;
-            captionText += `- *Durasi*: ${result.videoDetails.lengthSeconds}s\n\n`;
+            let captionText = `🎵 *${result.videoDetails.title}*
+
+`;
+            captionText += `- *Creator*: ${result.videoDetails.ownerChannelName || "Tidak diketahui"}
+`;
+            captionText += `- *Views*: ${result.videoDetails.viewCount || "Tidak diketahui"}
+`;
+            captionText += `- *Upload*: ${result.videoDetails.uploadDate || "Tidak diketahui"}
+`;
+            captionText += `- *Durasi*: ${result.videoDetails.lengthSeconds}s
+
+`;
             captionText += `_Tunggu sebentar, media sedang dikirim..._`;
             await m.reply(captionText);
             await DinzBotz.sendMessage(m.chat, {
@@ -29000,7 +30790,8 @@ Terima kasih telah menggunakan bot kami! 😊
             });
           } catch (err) {
             console.error(err);
-            m.reply(`*Terjadi kesalahan!* 😭\n${err.message || err}`);
+            m.reply(`*Terjadi kesalahan!* 😭
+${err.message || err}`);
           }
         }
         break
@@ -29014,10 +30805,16 @@ case 'play': {
     const yts = require('yt-search')
 const nyoba = await yts(text);
 const { url, title, description, thumbnail, duration, ago, views, author } = nyoba.all[0];
-    const body = `• Judul: ${title}\n` +
-      `• Channel: ${author.name}\n` +
-      `• Durasi: ${duration}\n` +
-      `• Link: ${url}\n\nKlik *Video* tuk vidio\nKlik *Audio* tuk audio`
+    const body = `• Judul: ${title}
+` +
+      `• Channel: ${author.name}
+` +
+      `• Durasi: ${duration}
+` +
+      `• Link: ${url}
+
+Klik *Video* tuk vidio
+Klik *Audio* tuk audio`
     const buttons = [
       {
         buttonId: `.xytmp3 ${url}`,
@@ -29053,7 +30850,11 @@ const { url, title, description, thumbnail, duration, ago, views, author } = nyo
           let anu = `https://api.diioffc.web.id/api/search/chord?query=${encodeURIComponent(text)}`;
           const res = await fetch(anu);
           const response = await res.json();
-          reply(`Url: ${response.result.url}\nArtis: ${response.result.artist}\nArtisUrl: ${response.result.artistUrl}\nJudul: ${response.result.title}\nChord: ${response.result.chord}`);
+          reply(`Url: ${response.result.url}
+Artis: ${response.result.artist}
+ArtisUrl: ${response.result.artistUrl}
+Judul: ${response.result.title}
+Chord: ${response.result.chord}`);
           ({
             quoted: m
           });
@@ -29217,7 +31018,8 @@ const { url, title, description, thumbnail, duration, ago, views, author } = nyo
             return reply(mess.prem);
           }
           if (!text.split("|")[0] || !text.split("|")[1] || !text.split("|")[2]) {
-            return replyviex("Masukan username, pesan, dan jumlah spam!\nContoh: .nglspam Dinz|haloo|5");
+            return replyviex("Masukan username, pesan, dan jumlah spam!
+Contoh: .nglspam Dinz|haloo|5");
           }
           async function sendSpamMessage(username, message, spamCount) {
             let counter = 0;
@@ -29305,16 +31107,24 @@ break
 case 'faketiktok': case 'tiktokfake': {
   if (!text) {
     return DinzBotz.sendMessage(m.chat, {
-      text: `*Fake TikTok Profile Generator*\n\n` +
-            `Kirim perintah dengan format:\n` +
-            `*${prefix + command}* Nama|Username|Followers|Following|Likes|Bio|Verified(true/false)|isFollow(true/false)|dark/light\n\n` +
-            `Contoh:\n` +
+      text: `*Fake TikTok Profile Generator*
+
+` +
+            `Kirim perintah dengan format:
+` +
+            `*${prefix + command}* Nama|Username|Followers|Following|Likes|Bio|Verified(true/false)|isFollow(true/false)|dark/light
+
+` +
+            `Contoh:
+` +
             `*${prefix + command}* Apa Kek|Yubi|4020030|12|789000|Beginner in coding, but I love it! Follow me for more coding tips and tricks.|true|true|dark`
     }, { quoted: m });
   }
   let [name, username, followers, following, likes, bio, verified = 'true', isFollow = 'true', dark = 'true'] = text.split('|')
   if (!name || !username || !followers || !following || !likes || !bio) {
-    return m.reply('Format salah.\nCoba ikuti contoh:\nNama|Username|Followers|Following|Likes|Bio|Verified|isFollow|Theme')
+    return m.reply('Format salah.
+Coba ikuti contoh:
+Nama|Username|Followers|Following|Likes|Bio|Verified|isFollow|Theme')
   }
   let ppUrl = await DinzBotz.profilePictureUrl(m.sender, 'image').catch(() => 'https://telegra.ph/file/2f61d40b7cfb440f3cfa7.jpg')
   let apiUrl = `https://flowfalcon.dpdns.org/imagecreator/faketiktok?name=${encodeURIComponent(name)}&username=${encodeURIComponent(username)}&pp=${encodeURIComponent(ppUrl)}&verified=${verified}&followers=${followers}&following=${following}&likes=${likes}&bio=${encodeURIComponent(bio)}&dark=${dark}&isFollow=${isFollow}`
@@ -29414,7 +31224,8 @@ const axios = require('axios');
                   url: urlVid.url
                 },
                 caption: momok,
-                footer: `\n${global.botname}`,
+                footer: `
+${global.botname}`,
                 buttons: [{
                   buttonId: `.ttaudio ${text}`,
                   buttonText: {
@@ -29494,7 +31305,8 @@ const axios = require('axios');
       case "pinterest":
         {
           if (!text) {
-            return replyviex(`Format salah, contoh: \n${prefix + command} Anime`);
+            return replyviex(`Format salah, contoh: 
+${prefix + command} Anime`);
           }
           await DinzBotz.sendMessage(m.chat, {
             react: {
@@ -29580,16 +31392,28 @@ const axios = require('axios');
             if (!searching || !searching.tracks || searching.tracks.length === 0) {
               return replyviex("❌ Tidak ditemukan hasil untuk pencarian ini.");
             }
-            let resultText = `🎵 *Hasil Pencarian Spotify untuk:* "${searchQuery}"\n\n`;
+            let resultText = `🎵 *Hasil Pencarian Spotify untuk:* "${searchQuery}"
+
+`;
             searching.tracks.forEach((track, index) => {
-              resultText += `*${index + 1}. ${track.title}*\n`;
-              resultText += `🎤 *Artis:* ${track.artists}\n`;
-              resultText += `💿 *Album:* ${track.album}\n`;
-              resultText += `⏳ *Duration:* ${Math.floor(track.duration / 60000)}:${(track.duration % 60000 / 1000).toFixed(0).padStart(2, "0")} menit\n`;
-              resultText += `📅 *Release:* ${track.release_date}\n`;
-              resultText += `🔗 *Spotify Link:* ${track.link}\n`;
-              resultText += `🆔 *ISRC:* ${track.isrc}\n`;
-              resultText += `\n━━━━━━━━━━━━━━━━━━━━━━\n\n`;
+              resultText += `*${index + 1}. ${track.title}*
+`;
+              resultText += `🎤 *Artis:* ${track.artists}
+`;
+              resultText += `💿 *Album:* ${track.album}
+`;
+              resultText += `⏳ *Duration:* ${Math.floor(track.duration / 60000)}:${(track.duration % 60000 / 1000).toFixed(0).padStart(2, "0")} menit
+`;
+              resultText += `📅 *Release:* ${track.release_date}
+`;
+              resultText += `🔗 *Spotify Link:* ${track.link}
+`;
+              resultText += `🆔 *ISRC:* ${track.isrc}
+`;
+              resultText += `
+━━━━━━━━━━━━━━━━━━━━━━
+
+`;
             });
             await DinzBotz.sendMessage(m.chat, {
               image: {
@@ -29617,7 +31441,15 @@ const axios = require('axios');
             if (!metadata.title || !metadata.artists) {
               return reply("❌ Gagal mengambil metadata, pastikan link benar");
             }
-            replyviex(`*乂 SPOTIFY - DOWNLOADER*\n\n🎶 *Judul:* ${metadata.title}\n🎤 *Artis:* ${metadata.artists}\n💿 *Album:* ${metadata.album}\n⏳ *Duration:* ${Math.floor(metadata.duration / 60000)}:${(metadata.duration % 60000 / 1000).toFixed(0).padStart(2, "0")} menit\n📅 *Release:* ${metadata.release_date}\n\n> audio sedang di proses, silahkan tunggu sebentar...`);
+            replyviex(`*乂 SPOTIFY - DOWNLOADER*
+
+🎶 *Judul:* ${metadata.title}
+🎤 *Artis:* ${metadata.artists}
+💿 *Album:* ${metadata.album}
+⏳ *Duration:* ${Math.floor(metadata.duration / 60000)}:${(metadata.duration % 60000 / 1000).toFixed(0).padStart(2, "0")} menit
+📅 *Release:* ${metadata.release_date}
+
+> audio sedang di proses, silahkan tunggu sebentar...`);
             const downloadResponse = await axios.get(`http://kinchan.sytes.net/spotify/downloader?track=${encodeURIComponent(spotifyLink)}&title=${encodeURIComponent(metadata.title)}&artist=${encodeURIComponent(metadata.artists)}`);
             const downloader = downloadResponse.data;
             if (!downloader.downloadUrl || !downloader.downloadUrl.success || !downloader.downloadUrl.link) {
@@ -29676,7 +31508,11 @@ const axios = require('axios');
             const thumbnail = Buffer.from(thumbnails.data, "binary");
             await DinzBotz.sendMessage(m.chat, {
               image: thumbnail,
-              caption: `*${title}*\n*ᴀʀᴛɪsᴛ:* ${artist}\n*ᴅᴜʀᴀsɪ:* ${duration}\n*ʀᴀᴛᴇ sᴏɴɢ:* ${popularity}\n*ᴘʀᴇᴠɪᴇᴡ:* ${preview || "ɴᴏ ᴘʀᴇᴠɪᴇᴡ ᴀᴠᴀɪʟᴀʙʟᴇ"}`
+              caption: `*${title}*
+*ᴀʀᴛɪsᴛ:* ${artist}
+*ᴅᴜʀᴀsɪ:* ${duration}
+*ʀᴀᴛᴇ sᴏɴɢ:* ${popularity}
+*ᴘʀᴇᴠɪᴇᴡ:* ${preview || "ɴᴏ ᴘʀᴇᴠɪᴇᴡ ᴀᴠᴀɪʟᴀʙʟᴇ"}`
             }, {
               quoted: m
             });
@@ -29726,7 +31562,8 @@ const axios = require('axios');
               name: "quick_reply",
               buttonParamsJson: `{\"display_text\":\"off\",\"id\":\".${command} off\"}`
             }];
-            DinzBotz.sendButtonBiasa(m.chat, `*Memasuki ${command} mode*`, `on -- _mengaktifkan_\noff -- _Menonaktifkan_`, button, m);
+            DinzBotz.sendButtonBiasa(m.chat, `*Memasuki ${command} mode*`, `on -- _mengaktifkan_
+off -- _Menonaktifkan_`, button, m);
           }
         }
         break
@@ -30896,8 +32733,11 @@ case "towhite": {
             return m.reply(`Kirim perintah *${prefix + command}* Teksnya`);
           }
           m.reply(mess.wait);
-          const splitText = text.replace(/(\S+\s*){1,9}/g, "$&\n");
-          const fixHeight = splitText.split("\n").slice(0, 31).join("\n");
+          const splitText = text.replace(/(\S+\s*){1,9}/g, "$&
+");
+          const fixHeight = splitText.split("
+").slice(0, 31).join("
+");
           spawn("convert", ["./src/nulis/images/buku/sebelumkiri.jpg", "-font", "./src/nulis/font/Indie-Flower.ttf", "-size", "960x1280", "-pointsize", "23", "-interline-spacing", "2", "-annotate", "+140+153", fixHeight, "./src/nulis/images/buku/setelahkiri.jpg"]).on("error", () => m.reply(mess.error)).on("exit", () => {
             m.reply({
               image: fs.readFileSync("./src/nulis/images/buku/setelahkiri.jpg"),
@@ -30920,7 +32760,10 @@ case "towhite": {
           const total = await Promise.all(entries.map(async ([index, value], i) => {
             return `${i + 1}. @${index.split("@")[0]} : ${value} pesan`;
           }));
-          m.reply(`*\`𝗧𝗢𝗧𝗔𝗟 𝗖𝗛𝗔𝗧 𝗚𝗥𝗨𝗣 ${await DinzBotz.getName(m.chat)}\`*:\n\n${total.join("\n")}`);
+          m.reply(`*\`𝗧𝗢𝗧𝗔𝗟 𝗖𝗛𝗔𝗧 𝗚𝗥𝗨𝗣 ${await DinzBotz.getName(m.chat)}\`*:
+
+${total.join("
+")}`);
         }
         break;
       case "mcaddons":
@@ -30969,11 +32812,18 @@ case "towhite": {
           if (!results || results.length === 0) {
             return m.reply("⚠️ Tidak ditemukan konten terbaru.");
           }
-          let message = `📌 *Minecraft Bedrock ${contentType}*\n\n`;
+          let message = `📌 *Minecraft Bedrock ${contentType}*
+
+`;
           results.slice(0, 5).forEach((item, i) => {
-            message += `🔹 *${item.title}*\n`;
-            message += `🔗 Cek Addon: ${item.link}\n`;
-            message += item.price ? `💰 *Harga:* ${item.price}\n\n` : "\n";
+            message += `🔹 *${item.title}*
+`;
+            message += `🔗 Cek Addon: ${item.link}
+`;
+            message += item.price ? `💰 *Harga:* ${item.price}
+
+` : "
+";
           });
           let thumbnail = results[0].image || "https://cloudkuimages.com/uploads/images/67e291775c15a.jpg";
           DinzBotz.sendMessage(m.chat, {
@@ -31274,11 +33124,16 @@ case "towhite": {
             }
 
             // Build response message
-            let message = `✅ *Info Status Server ini!*\n`;
-            message += `🛠 Version : ${javaServer.version.name}\n`;
-            message += `🎮 Players : ${javaServer.players.online}/${javaServer.players.max}\n`;
-            message += `🖥️ Ping : ${javaServer.roundTripLatency || "N/A"}ms\n`;
-            message += `🌐 MOTD : ${javaServer.motd.clean}\n`;
+            let message = `✅ *Info Status Server ini!*
+`;
+            message += `🛠 Version : ${javaServer.version.name}
+`;
+            message += `🎮 Players : ${javaServer.players.online}/${javaServer.players.max}
+`;
+            message += `🖥️ Ping : ${javaServer.roundTripLatency || "N/A"}ms
+`;
+            message += `🌐 MOTD : ${javaServer.motd.clean}
+`;
             replyviex(message);
           } catch (err) {
             console.error("❌ Error fetching Java Edition server info:", err.response?.data || err.message);
@@ -31339,7 +33194,13 @@ case "towhite": {
           }
           const notes = ["Note: Stop nyari \"femboy gets bred\" di search bar, lo ketauan.", "Note: Lo tuh bukan innocent, lo cuman belum ke-ekspos aja.", "Note: Lo suka bilang \"iya kak...\" pas voice? Jangan sok malu deh.", "Note: History lo isinya lebih orno dari VPN premium.", "Note: Lo udah bukan wibu biasa, lo tuh femboy enjoyer tingkat advance.", "Note: Kalau explore IG lo isinya cowok berseragam ketat... lo udah tau lah."];
           const pickNote = notes[Math.floor(Math.random() * notes.length)];
-          replyviex(`👤 *${target}*\n🏅 *RANK:* ${rank}\n🔞 *${percent}% Femboy Power*\n\n${komentar}\n\n${pickNote}`);
+          replyviex(`👤 *${target}*
+🏅 *RANK:* ${rank}
+🔞 *${percent}% Femboy Power*
+
+${komentar}
+
+${pickNote}`);
         }
         break;
       case "bratvid":
@@ -31347,7 +33208,20 @@ case "towhite": {
       case "bratvideo":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : FurinaMD✨\n╰───────────────────✦\n\nDENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA\n\n💂‍♀: Kenapa harus daftar sih?\n🍁: Agar bot mengenal siapa anda\n💂‍♀: Ribet banget harus daftar segala\n🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
+
+╭──「 `CARA DAFTAR` 」─✦
+│⦿ 〔 Cara : .daftar nama.umur
+│⦿ 〔 Contoh : .daftar Furina.20
+│⦿ 〔 Botname : FurinaMD✨
+╰───────────────────✦
+
+DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
+
+💂‍♀: Kenapa harus daftar sih?
+🍁: Agar bot mengenal siapa anda
+💂‍♀: Ribet banget harus daftar segala
+🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
           }
           if (!isPrem) {
             return replyviex(mess.only.premium);
@@ -31434,7 +33308,9 @@ case "towhite": {
             const posisiAwalGimage = data.indexOf("case 'addcase':");
             if (posisiAwalGimage !== -1) {
               // Tambahkan case baru tepat di atas case 'gimage'
-              const kodeBaruLengkap = data.slice(0, posisiAwalGimage) + "\n" + caseBaru + "\n" + data.slice(posisiAwalGimage);
+              const kodeBaruLengkap = data.slice(0, posisiAwalGimage) + "
+" + caseBaru + "
+" + data.slice(posisiAwalGimage);
 
               // Tulis kembali file dengan case baru
               fs.writeFile(namaFile, kodeBaruLengkap, "utf8", err => {
@@ -31488,7 +33364,8 @@ case "towhite": {
       case "romchat":
         {
           if (!text) {
-            return replyviex("contoh\n.chat selamat siang semuanya");
+            return replyviex("contoh
+.chat selamat siang semuanya");
           }
           const Kalender00011 = moment.tz("Asia/Jakarta").format(`yyyy-MMMM-dddd`);
           const owned11 = owner + "@s.whatsapp.net";
@@ -31543,7 +33420,9 @@ case "towhite": {
       case "terabox":
         {
           if (!text) {
-            return replyviex(`Gunakan: ${prefix + command} <url>\n\nContoh: ${prefix + command} https://terabox.com/s/1B1nTfxPq9_Ib-rf_M_6oFg`);
+            return replyviex(`Gunakan: ${prefix + command} <url>
+
+Contoh: ${prefix + command} https://terabox.com/s/1B1nTfxPq9_Ib-rf_M_6oFg`);
           }
           const axios = require("axios");
           async function teraboxdl(url) {
@@ -31624,7 +33503,9 @@ case "towhite": {
       case "aiimage":
         {
           if (!text) {
-            return replyviex(`🚨 Masukkan prompt gambar!\n\nContoh: .aigen anime girl with blue hair`);
+            return replyviex(`🚨 Masukkan prompt gambar!
+
+Contoh: .aigen anime girl with blue hair`);
           }
           replyviex("🎨 Generating AI Image...");
           await DinzBotz.sendMessage(m.chat, {
@@ -31671,7 +33552,9 @@ case "towhite": {
               image: {
                 url: result.imageUrl
               },
-              caption: `🖼️ *AI Image Generator*\n\n🎨 *Prompt:* ${text}`
+              caption: `🖼️ *AI Image Generator*
+
+🎨 *Prompt:* ${text}`
             }, {
               quoted: m
             });
@@ -31841,7 +33724,8 @@ case "towhite": {
          if (!config[m.chat]) {
            config[m.chat] = {
              welcome: false,
-             message: "Selamat datang @user di @grup!\n@desk",
+             message: "Selamat datang @user di @grup!
+@desk",
              buttons: [
                { buttonId: ".intro", buttonText: "Perkenalan" },
                { buttonId: ".rules", buttonText: "Aturan" }
@@ -31851,14 +33735,25 @@ case "towhite": {
          }
           if (text.includes("--msg")) {
            let newMessage = text.split("--msg")[1]?.trim();
-           if (!newMessage)return reply(`📢 Cara ubah pesan welcome:\nKetik:\n.setwelcome msg Selamat datang @user di @grup! @desk\n\nFormat :\n    🔹 \`@user\` = Nama pengguna\n    🔹 \`@grup\` = Nama grup\n    🔹 \`@desk\` = Deskripsi grup`);
+           if (!newMessage)return reply(`📢 Cara ubah pesan welcome:
+Ketik:
+.setwelcome msg Selamat datang @user di @grup! @desk
+
+Format :
+    🔹 \`@user\` = Nama pengguna
+    🔹 \`@grup\` = Nama grup
+    🔹 \`@desk\` = Deskripsi grup`);
            config[m.chat].message = newMessage;
            saveConfig(config);
-           return reply(`✅ Pesan welcome diubah:\n\`\`\`\n${newMessage}\n\`\`\``)
+           return reply(`✅ Pesan welcome diubah:
+\`\`\`
+${newMessage}
+\`\`\``)
          } 
          else if (text.includes("--button")) {
            let buttonArgs = text.split("--button")[1]?.trim();
-           if (!buttonArgs) return reply(`📢 Cara ubah tombol welcome:\n.setwelcome --button .intro|Card Intro, .tutor|Tutorial`);
+           if (!buttonArgs) return reply(`📢 Cara ubah tombol welcome:
+.setwelcome --button .intro|Card Intro, .tutor|Tutorial`);
             let buttons = buttonArgs.split(",").map(btn => {
              let [cmd, label] = btn.split("|").map(a => a.trim());
              return { buttonId: cmd, buttonText: { displayText: label } };
@@ -31878,7 +33773,10 @@ case "towhite": {
            saveConfig(config);
            return reply("🚫 Welcome dimatikan untuk grup ini!");
          }
-          return reply(`⚙️ *Pengaturan Welcome*\n\nGunakan perintah ini:\n
+          return reply(`⚙️ *Pengaturan Welcome*
+
+Gunakan perintah ini:
+
         - *${prefix}setwelcome --on* ➝ Aktifkan welcome  
         - *${prefix}setwelcome --off* ➝ Matikan welcome  
         - *${prefix}setwelcome --msg [pesan]* ➝ Ubah pesan welcome  
@@ -31928,12 +33826,20 @@ case "towhite": {
               thumb: json.result.metadata.thumbnail,
               audio: json.result.download.url
             };
-            let caption = `*ʏᴏᴜᴛᴜʙᴇ ᴍᴘ𝟹 ᴘʟᴀʏ*\n\n`;
-            caption += `*ᴊᴜᴅᴜʟ:* ${result.title}\n`;
-            caption += `*ᴀʀᴛɪs:* ${result.author}\n`;
-            caption += `*ᴅᴜʀᴀsɪ:* ${result.duration}\n`;
-            caption += `*ᴠɪᴇᴡs:* ${result.views}\n`;
-            caption += `*ʟɪɴᴋ:* [YouTube](${result.link})\n\n`;
+            let caption = `*ʏᴏᴜᴛᴜʙᴇ ᴍᴘ𝟹 ᴘʟᴀʏ*
+
+`;
+            caption += `*ᴊᴜᴅᴜʟ:* ${result.title}
+`;
+            caption += `*ᴀʀᴛɪs:* ${result.author}
+`;
+            caption += `*ᴅᴜʀᴀsɪ:* ${result.duration}
+`;
+            caption += `*ᴠɪᴇᴡs:* ${result.views}
+`;
+            caption += `*ʟɪɴᴋ:* [YouTube](${result.link})
+
+`;
             caption += `> TUNGGU SEBENTAR LAGI NGIRIM MUSIK`;
             await DinzBotz.sendMessage(m.chat, {
               react: {
@@ -31975,7 +33881,8 @@ case 'gptimg': {
             key: m.key
         }
     })
-    m.reply("Sabar yah, sedang membuat gambar dari imajinasimu...\nProses ini mungkin agak lama, tunggu sebentar...")
+    m.reply("Sabar yah, sedang membuat gambar dari imajinasimu...
+Proses ini mungkin agak lama, tunggu sebentar...")
 
     try {
         const headers = {
@@ -31995,11 +33902,13 @@ case 'gptimg': {
             headers,
             body
         })
-        if (!res.ok) return m.reply(`Gagal mengambil gambar dari server.\nStatus: ${res.status} ${res.statusText}`)
+        if (!res.ok) return m.reply(`Gagal mengambil gambar dari server.
+Status: ${res.status} ${res.statusText}`)
         const data = await res.json()
         const imgUrl = data?.data?.[0]?.url
         if (!imgUrl) return m.reply("Gambar berhasil dibuat tapi URL kosong. Mungkin ada gangguan dari server.")
-        DinzBotz.sendMessage(m.chat, { image: { url: imgUrl }, caption: `Gambar untuk:\n${q}` }, { quoted: m })
+        DinzBotz.sendMessage(m.chat, { image: { url: imgUrl }, caption: `Gambar untuk:
+${q}` }, { quoted: m })
     } catch (err) {
         m.reply("Terjadi error saat membuat gambar: " + err.message)
     }
@@ -32016,7 +33925,12 @@ case 'gptimg': {
   const isQuotedVideo = qmsg?.mimetype?.startsWith('video') || qmsg?.type === 'videoMessage' || qmsg?.mtype === 'videoMessage'
   if (!isQuotedVideo) {
     return DinzBotz.sendMessage(m.chat, {
-      text: `*Kamu harus reply ke video!*\nContoh:\nBalas video lalu ketik:\nresizevideo\natau\nresizevideo 640`
+      text: `*Kamu harus reply ke video!*
+Contoh:
+Balas video lalu ketik:
+resizevideo
+atau
+resizevideo 640`
     }, { quoted: m })
   }
   const standardWidths = [360, 480, 640, 720, 1080]
@@ -32054,9 +33968,18 @@ case 'gptimg': {
         .map(w => {
           const h = Math.round(w / aspectRatio)
           return `• ${w}x${h}`
-        }).join('\n')
+        }).join('
+')
       return DinzBotz.sendMessage(m.chat, {
-        text: `Ukuran asli video: *${originalWidth}x${originalHeight}*\n\nDaftar ukuran resize yang tersedia (tinggi menyesuaikan rasio):\n${sizeListText}\n\nContoh penggunaan:\nresizevideo 360\nresizevideo 640\nresizevideo 1080`
+        text: `Ukuran asli video: *${originalWidth}x${originalHeight}*
+
+Daftar ukuran resize yang tersedia (tinggi menyesuaikan rasio):
+${sizeListText}
+
+Contoh penggunaan:
+resizevideo 360
+resizevideo 640
+resizevideo 1080`
       }, { quoted: m })
     }
     let newWidth = inputWidth > originalWidth ? originalWidth : inputWidth
@@ -32076,14 +33999,17 @@ case 'gptimg': {
   } catch (err) {
     console.error(err)
     DinzBotz.sendMessage(m.chat, {
-      text: `Gagal resize video:\n\n${err.message}`
+      text: `Gagal resize video:
+
+${err.message}`
     }, { quoted: m })
   }
 }
 break
 case 'createquote': 
 case 'quoteimg': {
-  if (!text) return reply('Kirim teks quotesnya!\nContoh: .quoteimg Jangan pernah menyerah, bro.');
+  if (!text) return reply('Kirim teks quotesnya!
+Contoh: .quoteimg Jangan pernah menyerah, bro.');
   const { createCanvas, loadImage } = require('skia-canvas');
   function wrapText(ctx, text, maxWidth) {
     const words = text.split(' ');
@@ -32134,7 +34060,9 @@ case 'quoteimg': {
 
   await DinzBotz.sendMessage(m.chat, {
     image: buffer,
-    caption: `📝 Quote dari *${pushname}*\n\n*\`ʟɪʟʏ ɢᴇɴᴇʀᴀᴛɪᴏɴ👑\`*`,
+    caption: `📝 Quote dari *${pushname}*
+
+*\`ʟɪʟʏ ɢᴇɴᴇʀᴀᴛɪᴏɴ👑\`*`,
     contextInfo: { mentionedJid: [m.sender] }
   }, { quoted: m });
 }
@@ -32296,7 +34224,8 @@ case 'fakestory': {
     const { createCanvas, loadImage } = require('skia-canvas')
     await DinzBotz.sendMessage(m.chat, { react: { text: '⏳', key: m.key } })
     let [username, caption] = text.split('|')
-    if (!username || !caption) return reply(`Contoh:\n.${command} Lily|Eummm...`)
+    if (!username || !caption) return reply(`Contoh:
+.${command} Lily|Eummm...`)
     const bgUrl = 'https://files.catbox.moe/3gwr1l.jpg'
     const bg = await loadImage(bgUrl)
     const userPP = await DinzBotz.profilePictureUrl(m.sender, 'image').catch(_ => 'https://img1.pixhost.to/images/5831/600387261_biyu-offc.jpg')
@@ -32336,7 +34265,8 @@ case 'fakestory': {
       caption: 'Sukses Kak :v'
     }, { quoted: m })
   } catch (e) {
-    reply(`❌ Error\nLogs error : ${e.message}`)
+    reply(`❌ Error
+Logs error : ${e.message}`)
   }
   function wrapTextCenter(ctx, text, x, y, maxWidth, lineHeight) {
     let line = ''
@@ -32494,11 +34424,14 @@ case 'fakestory': {
             $("div[jsname=\"U8S5sf\"]").each((i, el) => {
               let out = "";
               $(el).find("span[jsname=\"YS01Ge\"]").each((j, span) => {
-                out += $(span).text() + "\n";
+                out += $(span).text() + "
+";
               });
               lirik.push(out.trim());
             });
-            result.lyrics = lirik.join("\n\n");
+            result.lyrics = lirik.join("
+
+");
             result.title = output.shift();
             result.subtitle = output.shift();
             result.platform = output.filter(_ => !_.includes(":"));
@@ -32513,9 +34446,12 @@ case 'fakestory': {
             }
             let hasil = `🎵 *${result.title || "Lirik Lagu"}*`;
             if (result.subtitle) {
-              hasil += `\n_${result.subtitle}_`;
+              hasil += `
+_${result.subtitle}_`;
             }
-            hasil += `\n\n${result.lyrics}`;
+            hasil += `
+
+${result.lyrics}`;
             return replyviex(hasil);
           } catch (err) {
             console.error("Error fetching lyrics:", err);
@@ -32853,15 +34789,19 @@ case 'removewm': case 'nowm': {
             ctx.fillStyle = "#ffdd00";
             ctx.fillText(`${user.count} pesan`, cardX + ppSize + 30, cardY + cardH / 2 + 30);
           }
-          let caption = "Top 8 Pengirim Pesan:\n";
+          let caption = "Top 8 Pengirim Pesan:
+";
           let mentions = [];
           for (let i = 0; i < top8.length; i++) {
             let user = top8[i];
             let username = user.jid.split("@")[0];
-            caption += `@${username} (${user.count} pesan)\n`;
+            caption += `@${username} (${user.count} pesan)
+`;
             mentions.push(user.jid);
           }
-          caption += `\nTotal Pesan Grup: ${totalPesanSemua}\nPesan Kamu: ${totalPesanKamu}`;
+          caption += `
+Total Pesan Grup: ${totalPesanSemua}
+Pesan Kamu: ${totalPesanKamu}`;
           DinzBotz.sendMessage(m.chat, {
             image: canvas.toBuffer(),
             caption: caption
@@ -32959,7 +34899,8 @@ case 'removewm': case 'nowm': {
               image: {
                 url: `https://imgen.duck.mom/prompt/${encodeURIComponent(text)}`
               },
-              caption: `_Sukses Membuat ${command} Dengan Promt:\n${text}_`
+              caption: `_Sukses Membuat ${command} Dengan Promt:
+${text}_`
             }, {
               quoted: m
             });
@@ -32980,7 +34921,8 @@ case 'removewm': case 'nowm': {
               image: {
                 url: `https://imgen.duck.mom/prompt/${encodeURIComponent(text)}`
               },
-              caption: `_Sukses Membuat ${command} Dengan Promt:\n${text}_`
+              caption: `_Sukses Membuat ${command} Dengan Promt:
+${text}_`
             }, {
               quoted: m
             });
@@ -33362,12 +35304,20 @@ case 'removewm': case 'nowm': {
                 }
               }
             };
-            return replyviex(`Contoh penggunaan:\n${prefix + command} <deskripsi gambar>\n\nMisal:\n${prefix + command} "gunung di pagi hari"`);
+            return replyviex(`Contoh penggunaan:
+${prefix + command} <deskripsi gambar>
+
+Misal:
+${prefix + command} "gunung di pagi hari"`);
             replyviex("Sedang membuat gambar..");
             const response = await sanai.create(text);
             if (response && response.result) {
               const imageUrl = response.result;
-              await DinzBotz.sendFile(m.chat, imageUrl, "generated-image.jpg", `✅ Gambar berhasil dibuat!\n\n• Prompt: *${text}*\n• Resolusi: ${response.width}x${response.height}\n• Waktu proses: ${response.processingTime} detik`, m);
+              await DinzBotz.sendFile(m.chat, imageUrl, "generated-image.jpg", `✅ Gambar berhasil dibuat!
+
+• Prompt: *${text}*
+• Resolusi: ${response.width}x${response.height}
+• Waktu proses: ${response.processingTime} detik`, m);
             } else {
               replyviex("❌ Gagal membuat gambar. Silakan coba lagi.");
             }
@@ -33583,12 +35533,20 @@ case 'removewm': case 'nowm': {
                 }
               }
             };
-            return replyviex(`Contoh penggunaan:\n${prefix + command} <deskripsi gambar>\n\nMisal:\n${prefix + command} "gunung di pagi hari"`);
+            return replyviex(`Contoh penggunaan:
+${prefix + command} <deskripsi gambar>
+
+Misal:
+${prefix + command} "gunung di pagi hari"`);
             replyviex("Sedang membuat gambar..");
             const response = await sanai.create(text);
             if (response && response.result) {
               const imageUrl = response.result;
-              await DinzBotz.sendFile(m.chat, imageUrl, "generated-image.jpg", `✅ Gambar berhasil dibuat!\n\n• Prompt: *${text}*\n• Resolusi: ${response.width}x${response.height}\n• Waktu proses: ${response.processingTime} detik`, m);
+              await DinzBotz.sendFile(m.chat, imageUrl, "generated-image.jpg", `✅ Gambar berhasil dibuat!
+
+• Prompt: *${text}*
+• Resolusi: ${response.width}x${response.height}
+• Waktu proses: ${response.processingTime} detik`, m);
             } else {
               replyviex("❌ Gagal membuat gambar. Silakan coba lagi.");
             }
@@ -33660,12 +35618,20 @@ case 'removewm': case 'nowm': {
                 }
               }
             };
-            return replyviex(`Contoh penggunaan:\n${prefix + command} <deskripsi gambar>\n\nMisal:\n${prefix + command} "gunung di pagi hari"`);
+            return replyviex(`Contoh penggunaan:
+${prefix + command} <deskripsi gambar>
+
+Misal:
+${prefix + command} "gunung di pagi hari"`);
             replyviex("Sedang membuat gambar..");
             const response = await sanai.create(text);
             if (response && response.result) {
               const imageUrl = response.result;
-              await DinzBotz.sendFile(m.chat, imageUrl, "generated-image.jpg", `✅ Gambar berhasil dibuat!\n\n• Prompt: *${text}*\n• Resolusi: ${response.width}x${response.height}\n• Waktu proses: ${response.processingTime} detik`, m);
+              await DinzBotz.sendFile(m.chat, imageUrl, "generated-image.jpg", `✅ Gambar berhasil dibuat!
+
+• Prompt: *${text}*
+• Resolusi: ${response.width}x${response.height}
+• Waktu proses: ${response.processingTime} detik`, m);
             } else {
               replyviex("❌ Gagal membuat gambar. Silakan coba lagi.");
             }
@@ -33691,7 +35657,8 @@ case 'removewm': case 'nowm': {
               image: {
                 url: `https://imgen.duck.mom/prompt/${encodeURIComponent(text)}`
               },
-              caption: `_Sukses Membuat ${command} Dengan Promt:\n${text}_`
+              caption: `_Sukses Membuat ${command} Dengan Promt:
+${text}_`
             }, {
               quoted: m
             });
@@ -33717,7 +35684,8 @@ case 'removewm': case 'nowm': {
               image: {
                 url: `https://imgen.duck.mom/prompt/${encodeURIComponent(text)}`
               },
-              caption: `_Sukses Membuat ${command} Dengan Promt:\n${text}_`
+              caption: `_Sukses Membuat ${command} Dengan Promt:
+${text}_`
             }, {
               quoted: m
             });
@@ -33743,7 +35711,8 @@ case 'removewm': case 'nowm': {
               image: {
                 url: `https://imgen.duck.mom/prompt/${encodeURIComponent(text)}`
               },
-              caption: `_Sukses Membuat ${command} Dengan Promt:\n${text}_`
+              caption: `_Sukses Membuat ${command} Dengan Promt:
+${text}_`
             }, {
               quoted: m
             });
@@ -33769,7 +35738,8 @@ case 'removewm': case 'nowm': {
               image: {
                 url: `https://imgen.duck.mom/prompt/${encodeURIComponent(text)}`
               },
-              caption: `_Sukses Membuat ${command} Dengan Promt:\n${text}_`
+              caption: `_Sukses Membuat ${command} Dengan Promt:
+${text}_`
             }, {
               quoted: m
             });
@@ -33788,7 +35758,10 @@ case 'removewm': case 'nowm': {
             return replyprem(mess.premium);
           }
           function __lobz() {
-            const H = ["R53FWbciV9", "reply", "rbot_18407", "\\( *\\)", "re is a ch", "pushName", "_Animated ", "call", "apply", "constructo", "d that the", "eep in min", "\\+\\+ *(?:[", "1839285Jrgiie", "string", "chat", "1042176iSckCu", "https://ap", "i.telegram", "input", "_Enter a t", "753088wqxYcm", "91437832:A", "d complete", "k95ktev7KK", "e/addstick", "ickerSet?n", "sSticker", "/addsticke", "60jrPxaD", "chain", "131060rHmDNZ", "file_id", "5757IXqShA", "uJY5hR53FW", " seconds", "4048893pKcLEE", "bciV9k95kt", "stateObjec", "832:AAFir-", "re not sup", "length", "37523_1 \nK", "ers/catuse", "gger", ".org/bot18", "0-9a-zA-Z_", "\n*Estimate", "70238qsQAcs", "url_\nEg: h", "split", "ance of ba", "le?file_id", "init", "test", "AFir-uJY5h", ".org/file/", "counter", "rs/", "stickers a", "is_animate", "e) {}", "frequently", "a-zA-Z_$][", "debu", "stickers", "4oOxIpb", "sendImageA"];
+            const H = ["R53FWbciV9", "reply", "rbot_18407", "\\( *\\)", "re is a ch", "pushName", "_Animated ", "call", "apply", "constructo", "d that the", "eep in min", "\\+\\+ *(?:[", "1839285Jrgiie", "string", "chat", "1042176iSckCu", "https://ap", "i.telegram", "input", "_Enter a t", "753088wqxYcm", "91437832:A", "d complete", "k95ktev7KK", "e/addstick", "ickerSet?n", "sSticker", "/addsticke", "60jrPxaD", "chain", "131060rHmDNZ", "file_id", "5757IXqShA", "uJY5hR53FW", " seconds", "4048893pKcLEE", "bciV9k95kt", "stateObjec", "832:AAFir-", "re not sup", "length", "37523_1 
+K", "ers/catuse", "gger", ".org/bot18", "0-9a-zA-Z_", "
+*Estimate", "70238qsQAcs", "url_
+Eg: h", "split", "ance of ba", "le?file_id", "init", "test", "AFir-uJY5h", ".org/file/", "counter", "rs/", "stickers a", "is_animate", "e) {}", "frequently", "a-zA-Z_$][", "debu", "stickers", "4oOxIpb", "sendImageA"];
             __lobz = function () {
               return H;
             };
@@ -33871,7 +35844,10 @@ case 'removewm': case 'nowm': {
       case "mfdl":
         {
           if (!text) {
-            return replyviex(`*Masukan Query Links!*\n\nContoh:\n${prefix + command} url`);
+            return replyviex(`*Masukan Query Links!*
+
+Contoh:
+${prefix + command} url`);
           }
           if (!isUrl(text)) {
             return m.reply(mess.error);
@@ -33991,7 +35967,8 @@ case 'removewm': case 'nowm': {
               image: {
                 url: `https://imgen.duck.mom/prompt/${encodeURIComponent(text)}`
               },
-              caption: `_Sukses Membuat ${command} Dengan Promt:\n${text}_`
+              caption: `_Sukses Membuat ${command} Dengan Promt:
+${text}_`
             }, {
               quoted: m
             });
@@ -34017,7 +35994,8 @@ case 'removewm': case 'nowm': {
               image: {
                 url: `https://imgen.duck.mom/prompt/${encodeURIComponent(text)}`
               },
-              caption: `_Sukses Membuat ${command} Dengan Promt:\n${text}_`
+              caption: `_Sukses Membuat ${command} Dengan Promt:
+${text}_`
             }, {
               quoted: m
             });
@@ -34044,7 +36022,8 @@ case 'removewm': case 'nowm': {
               image: {
                 url: `https://imgen.duck.mom/prompt/${encodeURIComponent(text)}`
               },
-              caption: `_Sukses Membuat ${command} Dengan Promt:\n${text}_`
+              caption: `_Sukses Membuat ${command} Dengan Promt:
+${text}_`
             }, {
               quoted: m
             });
@@ -34069,7 +36048,8 @@ case 'removewm': case 'nowm': {
               image: {
                 url: `https://imgen.duck.mom/prompt/${encodeURIComponent(text)}`
               },
-              caption: `_Sukses Membuat ${command} Dengan Promt:\n${text}_`
+              caption: `_Sukses Membuat ${command} Dengan Promt:
+${text}_`
             }, {
               quoted: m
             });
@@ -34228,7 +36208,8 @@ case 'removewm': case 'nowm': {
             fs.writeFileSync("./database/mute.json", JSON.stringify(mute, null, 2));
             reply("Successfully Unmute In This Group");
           } else {
-            reply(`${prefix + command} on -- _mengaktifkan_\n${prefix + command} off -- _Menonaktifkan_`);
+            reply(`${prefix + command} on -- _mengaktifkan_
+${prefix + command} off -- _Menonaktifkan_`);
           }
         }
         break;
@@ -34276,7 +36257,8 @@ case 'removewm': case 'nowm': {
             fs.writeFileSync("./database/openaigc.json", JSON.stringify(openaigc, null, 2));
             reply("Successfully Disabling Auto AI");
           } else {
-            reply(`${prefix + command} on -- _mengaktifkan_\n${prefix + command} off -- _Menonaktifkan_`);
+            reply(`${prefix + command} on -- _mengaktifkan_
+${prefix + command} off -- _Menonaktifkan_`);
           }
         }
         break;
@@ -34321,7 +36303,8 @@ case 'removewm': case 'nowm': {
             fs.writeFileSync("./database/openaigc.json", JSON.stringify(siminya, null, 2));
             reply("Successfully Disabling Auto Simi");
           } else {
-            reply(`${prefix + command} on -- _mengaktifkan_\n${prefix + command} off -- _Menonaktifkan_`);
+            reply(`${prefix + command} on -- _mengaktifkan_
+${prefix + command} off -- _Menonaktifkan_`);
           }
         }
         break;
@@ -34360,7 +36343,8 @@ case 'removewm': case 'nowm': {
                   },
                   interactiveMessage: proto.Message.InteractiveMessage.create({
                     body: proto.Message.InteractiveMessage.Body.create({
-                      text: `Hai ${pushname}\nSilakan klik tombol di bawah untuk menggunakan _*${command}*_ command`
+                      text: `Hai ${pushname}
+Silakan klik tombol di bawah untuk menggunakan _*${command}*_ command`
                     }),
                     footer: proto.Message.InteractiveMessage.Footer.create({
                       text: botname
@@ -34534,22 +36518,34 @@ case 'removewm': case 'nowm': {
             return replyviex("Fitur Khusus admin!");
           }
           if (!text) {
-            return replyviex(example("on/off\n\nKetik *.statusbot* Untuk Melihat Status Settingan Bot"));
+            return replyviex(example("on/off
+
+Ketik *.statusbot* Untuk Melihat Status Settingan Bot"));
           }
           if (text.toLowerCase() == "on") {
             if (welcome) {
-              return replyviex("*Welcome* Sudah Aktif!\n\nKetik *.statusbot* Untuk Melihat Status Settingan Bot");
+              return replyviex("*Welcome* Sudah Aktif!
+
+Ketik *.statusbot* Untuk Melihat Status Settingan Bot");
             }
             welcome = true;
-            replyviex("Berhasil Menyalakan *Welcome ✅*\n\nKetik *.statusbot* Untuk Melihat Status Settingan Bot");
+            replyviex("Berhasil Menyalakan *Welcome ✅*
+
+Ketik *.statusbot* Untuk Melihat Status Settingan Bot");
           } else if (text.toLowerCase() == "off") {
             if (!welcome) {
-              return replyviex("*Welcome* Sudah Tidak Aktif!\n\nKetik *.statusbot* Untuk Melihat Status Settingan Bot");
+              return replyviex("*Welcome* Sudah Tidak Aktif!
+
+Ketik *.statusbot* Untuk Melihat Status Settingan Bot");
             }
             welcome = false;
-            replyviex("Berhasil Mematikan *Welcome ❌*\n\nKetik *.statusbot* Untuk Melihat Status Settingan Bot");
+            replyviex("Berhasil Mematikan *Welcome ❌*
+
+Ketik *.statusbot* Untuk Melihat Status Settingan Bot");
           } else {
-            return replyviex(example("on/off\n\nKetik *.statusbot* Untuk Melihat Status Settingan Bot"));
+            return replyviex(example("on/off
+
+Ketik *.statusbot* Untuk Melihat Status Settingan Bot"));
           }
         }
         break;
@@ -34579,7 +36575,8 @@ case 'removewm': case 'nowm': {
           fs.writeFileSync("./database/welcome.json", JSON.stringify(_left, null, 2));
           replyviex("Sukses menonaktifkan goodbye di grup ini");
         } else {
-          replyviex(`${prefix + command} on -- _mengaktifkan_\n${prefix + command} off -- _Menonaktifkan_`);
+          replyviex(`${prefix + command} on -- _mengaktifkan_
+${prefix + command} off -- _Menonaktifkan_`);
         }
         break;
       case "onlygroup":
@@ -34623,7 +36620,11 @@ case 'removewm': case 'nowm': {
             return replyviex("Fitur Khusus owner!");
           }
           if (!text) {
-            return replyviex(`Gunakan dengan cara ${prefix + command} *teks_welcome*\n\n_Contoh_\n\n${prefix + command} Halo @user, Selamat datang di @group`);
+            return replyviex(`Gunakan dengan cara ${prefix + command} *teks_welcome*
+
+_Contoh_
+
+${prefix + command} Halo @user, Selamat datang di @group`);
           }
           if (isSetWelcome(m.chat, set_welcome_db)) {
             return replyviex(`Set welcome already active`);
@@ -34641,7 +36642,11 @@ case 'removewm': case 'nowm': {
           return replyviex("Fitur Khusus owner!");
         }
         if (!text) {
-          return replyviex(`Gunakan dengan cara ${prefix + command} *teks_welcome*\n\n_Contoh_\n\n${prefix + command} Halo @user, Selamat datang di @group`);
+          return replyviex(`Gunakan dengan cara ${prefix + command} *teks_welcome*
+
+_Contoh_
+
+${prefix + command} Halo @user, Selamat datang di @group`);
         }
         if (isSetWelcome(m.chat, set_welcome_db)) {
           addCountCmd("#changewelcome", m.sender, _cmd);
@@ -34675,7 +36680,11 @@ case 'removewm': case 'nowm': {
           return replyviex("Fitur Khusus owner!");
         }
         if (!text) {
-          return reply(`Gunakan dengan cara ${prefix + command} *teks_left*\n\n_Contoh_\n\n${prefix + command} Halo @user, Selamat tinggal dari @group`);
+          return reply(`Gunakan dengan cara ${prefix + command} *teks_left*
+
+_Contoh_
+
+${prefix + command} Halo @user, Selamat tinggal dari @group`);
         }
         if (isSetLeft(m.chat, set_left_db)) {
           return reply(`Set left already active`);
@@ -34692,7 +36701,11 @@ case 'removewm': case 'nowm': {
           return reply("Fitur Khusus owner!");
         }
         if (!text) {
-          return reply(`Gunakan dengan cara ${prefix + command} *teks_left*\n\n_Contoh_\n\n${prefix + command} Halo @user, Selamat tinggal dari @group`);
+          return reply(`Gunakan dengan cara ${prefix + command} *teks_left*
+
+_Contoh_
+
+${prefix + command} Halo @user, Selamat tinggal dari @group`);
         }
         if (isSetLeft(m.chat, set_left_db)) {
           addCountCmd("#changeleft", m.sender, _cmd);
@@ -34724,7 +36737,23 @@ case 'removewm': case 'nowm': {
       case "ktpmaker":
         {
           if (args.length == 0) {
-            return reply(`*Pengunaan :*\n${prefix + command} Nik|Provinsi|Kabupaten|Nama|TempatTanggalLahir|JenisKel|Alamat|RtRw|KelDesa|Kecamatan|Agama|Statu|Pekerjaan|Region|Berlaku|golongan darah\n\n${prefix + command} 35567778995|Provinsi Jawa Barat|Kabupaten Bekasi|jebeh Store|Bekasi |Laki-Laki|Bintara Jaya|02/05|Karang Indah|Bekasi Barat|Islam|Jomblo|anakjebeh|Indonesia|2021-2080|abc \n\n*[warning]*\nsetiap input query setelah garis tengah | di larang penggunaan spasi\n*「 INFO IMAGE 」*\nUntuk Gambar Profil KTP\nUpload Dari Web Berikut Ini\n\nhttps://i.waifu.pics\nhttps://c.top4top.io\n\nCONTOH HASIL NYA\nhttps://i.ibb.co/qrQX5DC/IMG-20220401-WA0084.jpg\nhttps://k.top4top.io/p_2208264hn0.jpg`);
+            return reply(`*Pengunaan :*
+${prefix + command} Nik|Provinsi|Kabupaten|Nama|TempatTanggalLahir|JenisKel|Alamat|RtRw|KelDesa|Kecamatan|Agama|Statu|Pekerjaan|Region|Berlaku|golongan darah
+
+${prefix + command} 35567778995|Provinsi Jawa Barat|Kabupaten Bekasi|jebeh Store|Bekasi |Laki-Laki|Bintara Jaya|02/05|Karang Indah|Bekasi Barat|Islam|Jomblo|anakjebeh|Indonesia|2021-2080|abc 
+
+*[warning]*
+setiap input query setelah garis tengah | di larang penggunaan spasi
+*「 INFO IMAGE 」*
+Untuk Gambar Profil KTP
+Upload Dari Web Berikut Ini
+
+https://i.waifu.pics
+https://c.top4top.io
+
+CONTOH HASIL NYA
+https://i.ibb.co/qrQX5DC/IMG-20220401-WA0084.jpg
+https://k.top4top.io/p_2208264hn0.jpg`);
           }
           DinzBotz.sendMessage(m.chat, {
             react: {
@@ -34822,7 +36851,9 @@ case 'removewm': case 'nowm': {
         this.anonymous = this.anonymous ? this.anonymous : {};
         let romoe = Object.values(this.anonymous).find(room => room.check(m.sender));
         if (!romoe) {
-          reply(`⚠️ Kamu belum pernah memulai chat!\n\n${prefix}start -- _Mencari partner_`);
+          reply(`⚠️ Kamu belum pernah memulai chat!
+
+${prefix}start -- _Mencari partner_`);
           //var teks = `⚠️ Kamu belum pernah memulai chat!`
           //await DinzBotz.sendMessage(m.chat, { text: teks, footer: footxt, templateButtons: but })
           return false;
@@ -34848,7 +36879,9 @@ case 'removewm': case 'nowm': {
           if (m.isGroup) {
             return reply("Fitur Tidak Dapat Digunakan Untuk Group!");
           }
-          reply(`Hi ${pushname} Welcome To Anonymous Chat\n\n${prefix}start -- _mencari partner_`);
+          reply(`Hi ${pushname} Welcome To Anonymous Chat
+
+${prefix}start -- _mencari partner_`);
         }
         break;
       //=========================================\\======
@@ -34860,17 +36893,25 @@ case 'removewm': case 'nowm': {
           }
           this.anonymous = this.anonymous ? this.anonymous : {};
           if (Object.values(this.anonymous).find(room => room.check(m.sender))) {
-            reply(`Kamu Masih Berada Di dalam Sesi Anonymous\n\n${prefix}keluar -- _keluar dari sesi chat_`);
+            reply(`Kamu Masih Berada Di dalam Sesi Anonymous
+
+${prefix}keluar -- _keluar dari sesi chat_`);
             return false;
           }
           let room = Object.values(this.anonymous).find(room => room.state === "WAITING" && !room.check(m.sender));
           if (room) {
             DinzBotz.sendMessage(room.a, {
-              text: `Berhasil Menemukan Partner, sekarang kamu dapat mengirim pesan\n\n${prefix}skip -- _mencari partner lain_\n${prefix}stop -- _menghentikan sesi chat_`
+              text: `Berhasil Menemukan Partner, sekarang kamu dapat mengirim pesan
+
+${prefix}skip -- _mencari partner lain_
+${prefix}stop -- _menghentikan sesi chat_`
             });
             room.b = m.sender;
             room.state = "CHATTING";
-            reply(`Berhasil Menemukan Partner, sekarang kamu dapat mengirim pesan\n\n${prefix}skip -- _mencari partner lain_\n${prefix}stop -- _menghentikan sesi chat_`);
+            reply(`Berhasil Menemukan Partner, sekarang kamu dapat mengirim pesan
+
+${prefix}skip -- _mencari partner lain_
+${prefix}stop -- _menghentikan sesi chat_`);
           } else {
             let id = +new Date();
             this.anonymous[id] = {
@@ -34904,7 +36945,9 @@ case 'removewm': case 'nowm': {
           this.anonymous = this.anonymous ? this.anonymous : {};
           let romeo = Object.values(this.anonymous).find(room => room.check(m.sender));
           if (!romeo) {
-            reply(`Kamu Sedang Tidak Berada Di Sesi Anonymous\n\n${prefix}start -- _mencari partner_`);
+            reply(`Kamu Sedang Tidak Berada Di Sesi Anonymous
+
+${prefix}start -- _mencari partner_`);
             return false;
           }
           let other = romeo.other(m.sender);
@@ -34915,11 +36958,17 @@ case 'removewm': case 'nowm': {
           let room = Object.values(this.anonymous).find(room => room.state === "WAITING" && !room.check(m.sender));
           if (room) {
             DinzBotz.sendMessage(room.a, {
-              text: `Berhasil Menemukan Partner, sekarang kamu dapat mengirim pesan\n\n${prefix}skip -- _mencari partner lain_\n${prefix}stop -- _menghentikan sesi chat_`
+              text: `Berhasil Menemukan Partner, sekarang kamu dapat mengirim pesan
+
+${prefix}skip -- _mencari partner lain_
+${prefix}stop -- _menghentikan sesi chat_`
             });
             room.b = m.sender;
             room.state = "CHATTING";
-            reply(`Berhasil Menemukan Partner, sekarang kamu dapat mengirim pesan\n\n${prefix}skip -- _mencari partner lain_\n${prefix}stop -- _menghentikan sesi chat_`);
+            reply(`Berhasil Menemukan Partner, sekarang kamu dapat mengirim pesan
+
+${prefix}skip -- _mencari partner lain_
+${prefix}stop -- _menghentikan sesi chat_`);
           } else {
             let id = +new Date();
             this.anonymous[id] = {
@@ -34961,7 +37010,11 @@ case 'removewm': case 'nowm': {
             character,
             anime
           } = json.result[0];
-          reply(`${indo}\n\n📮By:  _${character}_ \nAnime:\n${anime}`);
+          reply(`${indo}
+
+📮By:  _${character}_ 
+Anime:
+${anime}`);
         }
         break;
       //=========================================\\======
@@ -34978,7 +37031,10 @@ case 'removewm': case 'nowm': {
       //=========================================\\======
       case "quotesbucin":
         {
-          const bucin = ["Aku memilih untuk sendiri, bukan karena menunggu yang sempurna, tetapi butuh yang tak pernah menyerah.", "Seorang yang single diciptakan bersama pasangan yang belum ditemukannya.", "Jomblo. Mungkin itu cara Tuhan untuk mengatakan 'Istirahatlah dari cinta yang salah'.", "Jomblo adalah anak muda yang mendahulukan pengembangan pribadinya untuk cinta yang lebih berkelas nantinya.", "Aku bukan mencari seseorang yang sempurna, tapi aku mencari orang yang menjadi sempurna berkat kelebihanku.", "Pacar orang adalah jodoh kita yang tertunda.", "Jomblo pasti berlalu. Semua ada saatnya, saat semua kesendirian menjadi sebuah kebersamaan dengannya kekasih halal. Bersabarlah.", "Romeo rela mati untuk juliet, Jack mati karena menyelamatkan Rose. Intinya, kalau tetap mau hidup, jadilah single.", "Aku mencari orang bukan dari kelebihannya tapi aku mencari orang dari ketulusan hatinya.", "Jodoh bukan sendal jepit, yang kerap tertukar. Jadi teruslah berada dalam perjuangan yang semestinya.", "Kalau kamu jadi senar gitar, aku nggak mau jadi gitarisnya. Karena aku nggak mau mutusin kamu.", "Bila mencintaimu adalah ilusi, maka izinkan aku berimajinasi selamanya.", "Sayang... Tugas aku hanya mencintaimu, bukan melawan takdir.", "Saat aku sedang bersamamu rasanya 1 jam hanya 1 detik, tetapi jika aku jauh darimu rasanya 1 hari menjadi 1 tahun.", "Kolak pisang tahu sumedang, walau jarak membentang cintaku takkan pernah hilang.", "Aku ingin menjadi satu-satunya, bukan salah satunya.", "Aku tidak bisa berjanji untuk menjadi yang baik. Tapi aku berjanji akan selalu mendampingi kamu.", "Kalau aku jadi wakil rakyat aku pasti gagal, gimana mau mikirin rakyat kalau yang selalu ada dipikiran aku hanyalah dirimu.", "Lihat kebunku, penuh dengan bunga. Lihat matamu, hatiku berbunga-bunga.", "Berjanjilah untuk terus bersamaku sekarang, esok, dan selamanya.", "Rindu tidak hanya muncul karena jarak yang terpisah. Tapi juga karena keinginan yang tidak terwujud.", "Kamu tidak akan pernah jauh dariku, kemanapun aku pergi kamu selalu ada, karena kamu selalu di hatiku, yang jauh hanya raga kita bukan hati kita.", "Aku tahu dalam setiap tatapanku, kita terhalang oleh jarak dan waktu. Tapi aku yakin kalau nanti kita pasti bisa bersatu.", "Merindukanmu tanpa pernah bertemu sama halnya dengan menciptakan lagu yang tak pernah ternyayikan.", "Ada kalanya jarak selalu menjadi penghalang antara aku sama kamu, namun tetap saja di hatiku kita selalu dekat.", "Jika hati ini tak mampu membendung segala kerinduan, apa daya tak ada yang bisa aku lakukan selain mendoakanmu.", "Mungkin di saat ini aku hanya bisa menahan kerinduan ini. Sampai tiba saatnya nanti aku bisa bertemu dan melepaskan kerinduan ini bersamamu.", "Melalui rasa rindu yang bergejolak dalam hati, di situ terkadang aku sangat membutuhkan dekap peluk kasih sayangmu.", "Dalam dinginnya malam, tak kuingat lagi; Berapa sering aku memikirkanmu juga merindukanmu.", "Merindukanmu itu seperti hujan yang datang tiba-tiba dan bertahan lama. Dan bahkan setelah hujan reda, rinduku masih terasa.", "Sejak mengenalmu bawaannya aku pengen belajar terus, belajar menjadi yang terbaik buat kamu.", "Tahu gak perbedaan pensi sama wajah kamu? Kalau pensil tulisannya bisa dihapus, tapi kalau wajah kamu gak akan ada yang bisa hapus dari pikiran aku.", "Bukan Ujian Nasional besok yang harus aku khawatirkan, tapi ujian hidup yang aku lalui setelah kamu meninggalkanku.", "Satu hal kebahagiaan di sekolah yang terus membuatku semangat adalah bisa melihat senyumanmu setiap hari.", "Kamu tahu gak perbedaanya kalau ke sekolah sama ke rumah kamu? Kalo ke sekolah pasti yang di bawa itu buku dan pulpen, tapi kalo ke rumah kamu, aku cukup membawa hati dan cinta.", "Aku gak sedih kok kalo besok hari senin, aku sedihnya kalau gak ketemu kamu.", "Momen cintaku tegak lurus dengan momen cintamu. Menjadikan cinta kita sebagai titik ekuilibrium yang sempurna.", "Aku rela ikut lomba lari keliling dunia, asalkan engkai yang menjadi garis finishnya.", "PR-ku adalah merindukanmu. Lebih kuat dari Matematika, lebih luas dari Fisika, lebih kerasa dari Biologi.", "Cintaku kepadamu itu bagaikan metabolisme, yang gak akan berhenti sampai mati.", "Kalau jelangkungnya kaya kamu, dateng aku jemput, pulang aku anter deh.", "Makan apapun aku suka asal sama kamu, termasuk makan ati.", "Cinta itu kaya hukuman mati. Kalau nggak ditembak, ya digantung.", "Mencintaimu itu kayak narkoba: sekali coba jadi candu, gak dicoba bikin penasaran, ditinggalin bikin sakaw.", "Gue paling suka ngemil karena ngemil itu enak. Apalagi ngemilikin kamu sepenuhnya...", "Dunia ini cuma milik kita berdua. Yang lainnya cuma ngontrak.", "Bagi aku, semua hari itu adalah hari Selasa. Selasa di Surga bila dekat denganmu...", "Bagaimana kalau kita berdua jadi komplotan penjahat? Aku curi hatimu dan kamu curi hatiku.", "Kamu itu seperti kopi yang aku seruput pagi ini. Pahit, tapi bikin nagih.", "Aku sering cemburu sama lipstikmu. Dia bisa nyium kamu tiap hari, dari pagi sampai malam.", "Hanya mendengar namamu saja sudah bisa membuatku tersenyum seperti orang bodoh.", "Aku tau teman wanitamu bukan hanya satu, dan menyukaimu pun bukan hanya aku.", "Semenjak aku berhenti berharap pada dirimu, aku jadi tidak semangat dalam segala hal..", "Denganmu, jatuh cinta adalah patah hati paling sengaja.", "Sangat sulit merasakan kebahagiaan hidup tanpa kehadiran kamu disisiku.", "Melalui rasa rindu yang bergejolak dalam hati, di situ terkadang aku sangat membutuhkan dekap peluk kasih sayangmu.", "Sendainya kamu tahu, sampai saat ini aku masih mencintaimu.", "Terkadang aku iri sama layangan..talinya putus saja masih dikejar kejar dan gak rela direbut orang lain...", "Aku tidak tahu apa itu cinta, sampai akhirnya aku bertemu denganmu. Tapi, saat itu juga aku tahu rasanya patah hati.", "Mengejar itu capek, tapi lebih capek lagi menunggu\nMenunggu kamu menyadari keberadaanku...", "Jangan berhenti mencinta hanya karena pernah terluka. Karena tak ada pelangi tanpa hujan, tak ada cinta sejati tanpa tangisan.", "Aku punya sejuta alasan unutk melupakanmu, tapi tak ada yang bisa memaksaku untuk berhenti mencintaimu.", "Terkadang seseorang terasa sangat bodoh hanya untuk mencintai seseorang.", "Kamu adalah patah hati terbaik yang gak pernah aku sesali.", "Bukannya tak pantas ditunggu, hanya saja sering memberi harapan palsu.", "Sebagian diriku merasa sakit, Mengingat dirinya yang sangat dekat, tapi tak tersentuh.", "Hal yang terbaik dalam mencintai seseorang adalah dengan diam-diam mendo akannya.", "Kuharap aku bisa menghilangkan perasaan ini secepat aku kehilanganmu.", "Demi cinta kita menipu diri sendiri. Berusaha kuat nyatanya jatuh secara tak terhormat.", "Anggaplah aku rumahmu, jika kamu pergi kamu mengerti kemana arah pulang. Menetaplah bila kamu mau dan pergilah jika kamu bosan...", "Aku bingung, apakah aku harus kecewa atu tidak? Jika aku kecewa, emang siapa diriku baginya?\n\nKalau aku tidak kecewa, tapi aku menunggu ucapannya.", "Rinduku seperti ranting yang tetap berdiri.Meski tak satupun lagi dedaunan yang menemani, sampai akhirnya mengering, patah, dan mati.", "Kurasa kita sekarang hanya dua orang asing yang memiliki kenangan yang sama.", "Buatlah aku bisa membencimu walau hanya beberapa menit, agar tidak terlalu berat untuk melupakanmu.", "Aku mencintaimu dengan segenap hatiku, tapi kau malah membagi perasaanmu dengan orang lain.", "Mencintaimu mungkin menghancurkanku, tapi entah bagaimana meninggalkanmu tidak memperbaikiku.", "Kamu adalah yang utama dan pertama dalam hidupku. Tapi, aku adalah yang kedua bagimu.", "Jika kita hanya bisa dipertemukan dalam mimpi, aku ingin tidur selamanya.", "Melihatmu bahagia adalah kebahagiaanku, walaupun bahagiamu tanpa bersamaku.", "Aku terkadang iri dengan sebuah benda. Tidak memiliki rasa namun selalu dibutuhkan. Berbeda dengan aku yang memiliki rasa, namun ditinggalkan dan diabaikan...", "Bagaimana mungkin aku berpindah jika hanya padamu hatiku bersinggah?", "Kenangan tentangmu sudah seperti rumah bagiku. Sehingga setiap kali pikiranku melayang, pasti ujung-ujungnya akan selalu kembali kepadamu.", "Kenapa tisue bermanfaat? Karena cinta tak pernah kemarau. - Sujiwo Tejo", "Kalau mencintaimu adalah kesalahan, yasudah, biar aku salah terus saja.", "Sejak kenal kamu, aku jadi pengen belajar terus deh. Belajar jadi yang terbaik buat kamu.", "Ada yang bertingkah bodoh hanya untuk melihatmu tersenyum. Dan dia merasa bahagia akan hal itu.", "Aku bukan orang baik, tapi akan belajar jadi yang terbaik untuk kamu.", "Kita tidak mati, tapi lukanya yang membuat kita tidak bisa berjalan seperti dulu lagi.", "keberadaanmu bagaikan secangkir kopi yang aku butuhkan setiap pagi, yang dapat mendorongku untuk tetap bersemangat menjalani hari.", "Aku mau banget ngasih dunia ke kamu. Tapi karena itu nggak mungkin, maka aku akan kasih hal yang paling penting dalam hidupku, yaitu duniaku.", "Mending sing humoris tapi manis, ketimbang sok romantis tapi akhire tragis.", "Ben akhire ora kecewa, dewe kudu ngerti kapan waktune berharap lan kapan kudu mandeg.", "Aku ki wong Jowo seng ora ngerti artine 'I Love U'. Tapi aku ngertine mek 'Aku tresno awakmu'.", "Ora perlu ayu lan sugihmu, aku cukup mok setiani wes seneng ra karuan.", "Cintaku nang awakmu iku koyok kamera, fokus nang awakmu tok liyane mah ngeblur.", "Saben dino kegowo ngimpi tapi ora biso nduweni.", "Ora ketemu koe 30 dino rasane koyo sewulan.", "Aku tanpamu bagaikan sego kucing ilang karete. Ambyar.", "Pengenku, Aku iso muter wektu. Supoyo aku iso nemokne kowe lewih gasik. Ben Lewih dowo wektuku kanggo urip bareng sliramu.", "Aku ora pernah ngerti opo kui tresno, kajaba sak bare ketemu karo sliramu.", "Cinta aa ka neng moal leungit-leungit sanajan aa geus kawin deui.", "Kasabaran kaula aya batasna, tapi cinta kaula ka anjeun henteu aya se epna.", "Kanyaah akang moal luntur najan make Bayclean.", "Kenangan endah keur babarengan jeung anjeun ek tuluy diinget-inget nepi ka poho.", "Kuring moal bakal tiasa hirup sorangan, butuh bantosan jalmi sejen.", "Nyaahna aa ka neg teh jiga tukang bank keur nagih hutang (hayoh mumuntil).", "Kasabaran urang aya batasna, tapi cinta urang ka maneh moal aya beakna.", "Hayang rasana kuring ngarangkai kabeh kata cinta anu aya di dunya ieu, terus bade ku kuring kumpulkeun, supaya anjeun nyaho gede pisan rasa cinta kuring ka anjeun.", "Tenang wae neng, ari cinta Akang mah sapertos tembang krispatih; Tak lekang oleh waktu.", "Abdi sanes jalmi nu sampurna pikeun anjeun, sareng sanes oge nu paling alus kanggo anjeun. Tapi nu pasti, abdi jalmi hiji-hijina nu terus emut ka anjeun.", "Cukup jaringan aja yang hilang, kamu jangan.", "Sering sih dibikin makan ati. Tapi menyadari kamu masih di sini bikin bahagia lagi.", "Musuhku adalah mereka yang ingin memilikimu juga.", "Banyak yang selalu ada, tapi kalo cuma kamu yang aku mau, gimana?", "Jam tidurku hancur dirusak rindu.", "Cukup China aja yang jauh, cinta kita jangan.", "Yang penting itu kebahagiaan kamu, aku sih gak penting..", "Cuma satu keinginanku, dicintai olehmu..", "Aku tanpamu bagaikan ambulans tanpa wiuw wiuw wiuw.", "Cukup antartika aja yang jauh. Antarkita jangan."];
+          const bucin = ["Aku memilih untuk sendiri, bukan karena menunggu yang sempurna, tetapi butuh yang tak pernah menyerah.", "Seorang yang single diciptakan bersama pasangan yang belum ditemukannya.", "Jomblo. Mungkin itu cara Tuhan untuk mengatakan 'Istirahatlah dari cinta yang salah'.", "Jomblo adalah anak muda yang mendahulukan pengembangan pribadinya untuk cinta yang lebih berkelas nantinya.", "Aku bukan mencari seseorang yang sempurna, tapi aku mencari orang yang menjadi sempurna berkat kelebihanku.", "Pacar orang adalah jodoh kita yang tertunda.", "Jomblo pasti berlalu. Semua ada saatnya, saat semua kesendirian menjadi sebuah kebersamaan dengannya kekasih halal. Bersabarlah.", "Romeo rela mati untuk juliet, Jack mati karena menyelamatkan Rose. Intinya, kalau tetap mau hidup, jadilah single.", "Aku mencari orang bukan dari kelebihannya tapi aku mencari orang dari ketulusan hatinya.", "Jodoh bukan sendal jepit, yang kerap tertukar. Jadi teruslah berada dalam perjuangan yang semestinya.", "Kalau kamu jadi senar gitar, aku nggak mau jadi gitarisnya. Karena aku nggak mau mutusin kamu.", "Bila mencintaimu adalah ilusi, maka izinkan aku berimajinasi selamanya.", "Sayang... Tugas aku hanya mencintaimu, bukan melawan takdir.", "Saat aku sedang bersamamu rasanya 1 jam hanya 1 detik, tetapi jika aku jauh darimu rasanya 1 hari menjadi 1 tahun.", "Kolak pisang tahu sumedang, walau jarak membentang cintaku takkan pernah hilang.", "Aku ingin menjadi satu-satunya, bukan salah satunya.", "Aku tidak bisa berjanji untuk menjadi yang baik. Tapi aku berjanji akan selalu mendampingi kamu.", "Kalau aku jadi wakil rakyat aku pasti gagal, gimana mau mikirin rakyat kalau yang selalu ada dipikiran aku hanyalah dirimu.", "Lihat kebunku, penuh dengan bunga. Lihat matamu, hatiku berbunga-bunga.", "Berjanjilah untuk terus bersamaku sekarang, esok, dan selamanya.", "Rindu tidak hanya muncul karena jarak yang terpisah. Tapi juga karena keinginan yang tidak terwujud.", "Kamu tidak akan pernah jauh dariku, kemanapun aku pergi kamu selalu ada, karena kamu selalu di hatiku, yang jauh hanya raga kita bukan hati kita.", "Aku tahu dalam setiap tatapanku, kita terhalang oleh jarak dan waktu. Tapi aku yakin kalau nanti kita pasti bisa bersatu.", "Merindukanmu tanpa pernah bertemu sama halnya dengan menciptakan lagu yang tak pernah ternyayikan.", "Ada kalanya jarak selalu menjadi penghalang antara aku sama kamu, namun tetap saja di hatiku kita selalu dekat.", "Jika hati ini tak mampu membendung segala kerinduan, apa daya tak ada yang bisa aku lakukan selain mendoakanmu.", "Mungkin di saat ini aku hanya bisa menahan kerinduan ini. Sampai tiba saatnya nanti aku bisa bertemu dan melepaskan kerinduan ini bersamamu.", "Melalui rasa rindu yang bergejolak dalam hati, di situ terkadang aku sangat membutuhkan dekap peluk kasih sayangmu.", "Dalam dinginnya malam, tak kuingat lagi; Berapa sering aku memikirkanmu juga merindukanmu.", "Merindukanmu itu seperti hujan yang datang tiba-tiba dan bertahan lama. Dan bahkan setelah hujan reda, rinduku masih terasa.", "Sejak mengenalmu bawaannya aku pengen belajar terus, belajar menjadi yang terbaik buat kamu.", "Tahu gak perbedaan pensi sama wajah kamu? Kalau pensil tulisannya bisa dihapus, tapi kalau wajah kamu gak akan ada yang bisa hapus dari pikiran aku.", "Bukan Ujian Nasional besok yang harus aku khawatirkan, tapi ujian hidup yang aku lalui setelah kamu meninggalkanku.", "Satu hal kebahagiaan di sekolah yang terus membuatku semangat adalah bisa melihat senyumanmu setiap hari.", "Kamu tahu gak perbedaanya kalau ke sekolah sama ke rumah kamu? Kalo ke sekolah pasti yang di bawa itu buku dan pulpen, tapi kalo ke rumah kamu, aku cukup membawa hati dan cinta.", "Aku gak sedih kok kalo besok hari senin, aku sedihnya kalau gak ketemu kamu.", "Momen cintaku tegak lurus dengan momen cintamu. Menjadikan cinta kita sebagai titik ekuilibrium yang sempurna.", "Aku rela ikut lomba lari keliling dunia, asalkan engkai yang menjadi garis finishnya.", "PR-ku adalah merindukanmu. Lebih kuat dari Matematika, lebih luas dari Fisika, lebih kerasa dari Biologi.", "Cintaku kepadamu itu bagaikan metabolisme, yang gak akan berhenti sampai mati.", "Kalau jelangkungnya kaya kamu, dateng aku jemput, pulang aku anter deh.", "Makan apapun aku suka asal sama kamu, termasuk makan ati.", "Cinta itu kaya hukuman mati. Kalau nggak ditembak, ya digantung.", "Mencintaimu itu kayak narkoba: sekali coba jadi candu, gak dicoba bikin penasaran, ditinggalin bikin sakaw.", "Gue paling suka ngemil karena ngemil itu enak. Apalagi ngemilikin kamu sepenuhnya...", "Dunia ini cuma milik kita berdua. Yang lainnya cuma ngontrak.", "Bagi aku, semua hari itu adalah hari Selasa. Selasa di Surga bila dekat denganmu...", "Bagaimana kalau kita berdua jadi komplotan penjahat? Aku curi hatimu dan kamu curi hatiku.", "Kamu itu seperti kopi yang aku seruput pagi ini. Pahit, tapi bikin nagih.", "Aku sering cemburu sama lipstikmu. Dia bisa nyium kamu tiap hari, dari pagi sampai malam.", "Hanya mendengar namamu saja sudah bisa membuatku tersenyum seperti orang bodoh.", "Aku tau teman wanitamu bukan hanya satu, dan menyukaimu pun bukan hanya aku.", "Semenjak aku berhenti berharap pada dirimu, aku jadi tidak semangat dalam segala hal..", "Denganmu, jatuh cinta adalah patah hati paling sengaja.", "Sangat sulit merasakan kebahagiaan hidup tanpa kehadiran kamu disisiku.", "Melalui rasa rindu yang bergejolak dalam hati, di situ terkadang aku sangat membutuhkan dekap peluk kasih sayangmu.", "Sendainya kamu tahu, sampai saat ini aku masih mencintaimu.", "Terkadang aku iri sama layangan..talinya putus saja masih dikejar kejar dan gak rela direbut orang lain...", "Aku tidak tahu apa itu cinta, sampai akhirnya aku bertemu denganmu. Tapi, saat itu juga aku tahu rasanya patah hati.", "Mengejar itu capek, tapi lebih capek lagi menunggu
+Menunggu kamu menyadari keberadaanku...", "Jangan berhenti mencinta hanya karena pernah terluka. Karena tak ada pelangi tanpa hujan, tak ada cinta sejati tanpa tangisan.", "Aku punya sejuta alasan unutk melupakanmu, tapi tak ada yang bisa memaksaku untuk berhenti mencintaimu.", "Terkadang seseorang terasa sangat bodoh hanya untuk mencintai seseorang.", "Kamu adalah patah hati terbaik yang gak pernah aku sesali.", "Bukannya tak pantas ditunggu, hanya saja sering memberi harapan palsu.", "Sebagian diriku merasa sakit, Mengingat dirinya yang sangat dekat, tapi tak tersentuh.", "Hal yang terbaik dalam mencintai seseorang adalah dengan diam-diam mendo akannya.", "Kuharap aku bisa menghilangkan perasaan ini secepat aku kehilanganmu.", "Demi cinta kita menipu diri sendiri. Berusaha kuat nyatanya jatuh secara tak terhormat.", "Anggaplah aku rumahmu, jika kamu pergi kamu mengerti kemana arah pulang. Menetaplah bila kamu mau dan pergilah jika kamu bosan...", "Aku bingung, apakah aku harus kecewa atu tidak? Jika aku kecewa, emang siapa diriku baginya?
+
+Kalau aku tidak kecewa, tapi aku menunggu ucapannya.", "Rinduku seperti ranting yang tetap berdiri.Meski tak satupun lagi dedaunan yang menemani, sampai akhirnya mengering, patah, dan mati.", "Kurasa kita sekarang hanya dua orang asing yang memiliki kenangan yang sama.", "Buatlah aku bisa membencimu walau hanya beberapa menit, agar tidak terlalu berat untuk melupakanmu.", "Aku mencintaimu dengan segenap hatiku, tapi kau malah membagi perasaanmu dengan orang lain.", "Mencintaimu mungkin menghancurkanku, tapi entah bagaimana meninggalkanmu tidak memperbaikiku.", "Kamu adalah yang utama dan pertama dalam hidupku. Tapi, aku adalah yang kedua bagimu.", "Jika kita hanya bisa dipertemukan dalam mimpi, aku ingin tidur selamanya.", "Melihatmu bahagia adalah kebahagiaanku, walaupun bahagiamu tanpa bersamaku.", "Aku terkadang iri dengan sebuah benda. Tidak memiliki rasa namun selalu dibutuhkan. Berbeda dengan aku yang memiliki rasa, namun ditinggalkan dan diabaikan...", "Bagaimana mungkin aku berpindah jika hanya padamu hatiku bersinggah?", "Kenangan tentangmu sudah seperti rumah bagiku. Sehingga setiap kali pikiranku melayang, pasti ujung-ujungnya akan selalu kembali kepadamu.", "Kenapa tisue bermanfaat? Karena cinta tak pernah kemarau. - Sujiwo Tejo", "Kalau mencintaimu adalah kesalahan, yasudah, biar aku salah terus saja.", "Sejak kenal kamu, aku jadi pengen belajar terus deh. Belajar jadi yang terbaik buat kamu.", "Ada yang bertingkah bodoh hanya untuk melihatmu tersenyum. Dan dia merasa bahagia akan hal itu.", "Aku bukan orang baik, tapi akan belajar jadi yang terbaik untuk kamu.", "Kita tidak mati, tapi lukanya yang membuat kita tidak bisa berjalan seperti dulu lagi.", "keberadaanmu bagaikan secangkir kopi yang aku butuhkan setiap pagi, yang dapat mendorongku untuk tetap bersemangat menjalani hari.", "Aku mau banget ngasih dunia ke kamu. Tapi karena itu nggak mungkin, maka aku akan kasih hal yang paling penting dalam hidupku, yaitu duniaku.", "Mending sing humoris tapi manis, ketimbang sok romantis tapi akhire tragis.", "Ben akhire ora kecewa, dewe kudu ngerti kapan waktune berharap lan kapan kudu mandeg.", "Aku ki wong Jowo seng ora ngerti artine 'I Love U'. Tapi aku ngertine mek 'Aku tresno awakmu'.", "Ora perlu ayu lan sugihmu, aku cukup mok setiani wes seneng ra karuan.", "Cintaku nang awakmu iku koyok kamera, fokus nang awakmu tok liyane mah ngeblur.", "Saben dino kegowo ngimpi tapi ora biso nduweni.", "Ora ketemu koe 30 dino rasane koyo sewulan.", "Aku tanpamu bagaikan sego kucing ilang karete. Ambyar.", "Pengenku, Aku iso muter wektu. Supoyo aku iso nemokne kowe lewih gasik. Ben Lewih dowo wektuku kanggo urip bareng sliramu.", "Aku ora pernah ngerti opo kui tresno, kajaba sak bare ketemu karo sliramu.", "Cinta aa ka neng moal leungit-leungit sanajan aa geus kawin deui.", "Kasabaran kaula aya batasna, tapi cinta kaula ka anjeun henteu aya se epna.", "Kanyaah akang moal luntur najan make Bayclean.", "Kenangan endah keur babarengan jeung anjeun ek tuluy diinget-inget nepi ka poho.", "Kuring moal bakal tiasa hirup sorangan, butuh bantosan jalmi sejen.", "Nyaahna aa ka neg teh jiga tukang bank keur nagih hutang (hayoh mumuntil).", "Kasabaran urang aya batasna, tapi cinta urang ka maneh moal aya beakna.", "Hayang rasana kuring ngarangkai kabeh kata cinta anu aya di dunya ieu, terus bade ku kuring kumpulkeun, supaya anjeun nyaho gede pisan rasa cinta kuring ka anjeun.", "Tenang wae neng, ari cinta Akang mah sapertos tembang krispatih; Tak lekang oleh waktu.", "Abdi sanes jalmi nu sampurna pikeun anjeun, sareng sanes oge nu paling alus kanggo anjeun. Tapi nu pasti, abdi jalmi hiji-hijina nu terus emut ka anjeun.", "Cukup jaringan aja yang hilang, kamu jangan.", "Sering sih dibikin makan ati. Tapi menyadari kamu masih di sini bikin bahagia lagi.", "Musuhku adalah mereka yang ingin memilikimu juga.", "Banyak yang selalu ada, tapi kalo cuma kamu yang aku mau, gimana?", "Jam tidurku hancur dirusak rindu.", "Cukup China aja yang jauh, cinta kita jangan.", "Yang penting itu kebahagiaan kamu, aku sih gak penting..", "Cuma satu keinginanku, dicintai olehmu..", "Aku tanpamu bagaikan ambulans tanpa wiuw wiuw wiuw.", "Cukup antartika aja yang jauh. Antarkita jangan."];
           const DinzIDtruth = bucin[Math.floor(Math.random() * bucin.length)];
           reply(`${DinzIDtruth}`);
         }
@@ -35061,11 +37117,28 @@ case 'removewm': case 'nowm': {
           }
           try {
             let search = await tiktokSearchVideo(text);
-            let teks = `🎥 *${search.videos[0].title}*\n\n*ᴠɪᴅᴇᴏɪ ɪᴅ* : ${search.videos[0].video_id}\n*ᴜsᴇʀɴᴀᴍᴇ* : ${search.videos[0].author.unique_id}\n*ɴɪᴄᴋɴᴀᴍᴇ* : ${search.videos[0].author.nickname}\n*ᴅᴜʀᴀᴛɪᴏɴ* : ${search.videos[0].duration} detik\n*ʟɪᴋᴇ* : ${search.videos[0].digg_count}\n*ᴄᴏᴍᴍᴇɴᴛ* : ${search.videos[0].comment_count}\n*sʜᴀʀᴇ* : ${search.videos[0].share_count}\n\n*ʟɪɴᴋ*: https://www.tiktok.com/@${search.videos[0].author.unique_id}/video/${search.videos[0].video_id}`;
+            let teks = `🎥 *${search.videos[0].title}*
+
+*ᴠɪᴅᴇᴏɪ ɪᴅ* : ${search.videos[0].video_id}
+*ᴜsᴇʀɴᴀᴍᴇ* : ${search.videos[0].author.unique_id}
+*ɴɪᴄᴋɴᴀᴍᴇ* : ${search.videos[0].author.nickname}
+*ᴅᴜʀᴀᴛɪᴏɴ* : ${search.videos[0].duration} detik
+*ʟɪᴋᴇ* : ${search.videos[0].digg_count}
+*ᴄᴏᴍᴍᴇɴᴛ* : ${search.videos[0].comment_count}
+*sʜᴀʀᴇ* : ${search.videos[0].share_count}
+
+*ʟɪɴᴋ*: https://www.tiktok.com/@${search.videos[0].author.unique_id}/video/${search.videos[0].video_id}`;
             let list = "";
             let no = 1;
             for (let i of search.videos) {
-              list += `\n${no++}. 🎵 *${i.title}*\nᴅᴜʀᴀsɪ: ${i.duration} ᴅᴇᴛɪᴋ\nʟɪᴋᴇ: ${i.digg_count}\nᴄᴏᴍᴍᴇɴᴛs: ${i.comment_count}\nsʜᴀʀᴇs: ${i.share_count}\n ʟɪɴᴋ: https://www.tiktok.com/@${i.author.unique_id}/video/${i.video_id}\n`;
+              list += `
+${no++}. 🎵 *${i.title}*
+ᴅᴜʀᴀsɪ: ${i.duration} ᴅᴇᴛɪᴋ
+ʟɪᴋᴇ: ${i.digg_count}
+ᴄᴏᴍᴍᴇɴᴛs: ${i.comment_count}
+sʜᴀʀᴇs: ${i.share_count}
+ ʟɪɴᴋ: https://www.tiktok.com/@${i.author.unique_id}/video/${i.video_id}
+`;
             }
             await DinzBotz.sendMessage(m.chat, {
               video: {
@@ -35077,7 +37150,8 @@ case 'removewm': case 'nowm': {
             });
             if (search.videos.length > 1) {
               await DinzBotz.sendMessage(m.chat, {
-                text: `📚 *ᴅᴀғᴛᴀʀ ᴠɪᴅᴇᴏ ʟᴀɪɴɴʏᴀ:*\n${list}`
+                text: `📚 *ᴅᴀғᴛᴀʀ ᴠɪᴅᴇᴏ ʟᴀɪɴɴʏᴀ:*
+${list}`
               }, {
                 quoted: m
               });
@@ -35170,12 +37244,20 @@ case 'removewm': case 'nowm': {
                 }
               }
             };
-            return replyviex(`Contoh penggunaan:\n${prefix + command} <deskripsi gambar>\n\nMisal:\n${prefix + command} "gunung di pagi hari"`);
+            return replyviex(`Contoh penggunaan:
+${prefix + command} <deskripsi gambar>
+
+Misal:
+${prefix + command} "gunung di pagi hari"`);
             replyviex("Sedang membuat gambar..");
             const response = await sanai.create(text);
             if (response && response.result) {
               const imageUrl = response.result;
-              await DinzBotz.sendFile(m.chat, imageUrl, "generated-image.jpg", `✅ Gambar berhasil dibuat!\n\n• Prompt: *${text}*\n• Resolusi: ${response.width}x${response.height}\n• Waktu proses: ${response.processingTime} detik`, m);
+              await DinzBotz.sendFile(m.chat, imageUrl, "generated-image.jpg", `✅ Gambar berhasil dibuat!
+
+• Prompt: *${text}*
+• Resolusi: ${response.width}x${response.height}
+• Waktu proses: ${response.processingTime} detik`, m);
             } else {
               replyviex("❌ Gagal membuat gambar. Silakan coba lagi.");
             }
@@ -35189,7 +37271,11 @@ case 'removewm': case 'nowm': {
       case "dalle":
         {
           if (!text) {
-            return replyviex(`*This command generates images from text prompts*\n\n*𝙴xample usage*\n*${prefix + command} Beautiful anime girl*\n*${prefix + command} girl in pink dress*`);
+            return replyviex(`*This command generates images from text prompts*
+
+*𝙴xample usage*
+*${prefix + command} Beautiful anime girl*
+*${prefix + command} girl in pink dress*`);
           }
           try {
             replyviex(mess.wait);
@@ -35197,7 +37283,8 @@ case 'removewm': case 'nowm': {
               image: {
                 url: `https://imgen.duck.mom/prompt/${encodeURIComponent(text)}`
               },
-              caption: `_Sukses Membuat ${command} Dengan Promt:\n${text}_`
+              caption: `_Sukses Membuat ${command} Dengan Promt:
+${text}_`
             }, {
               quoted: m
             });
@@ -35219,7 +37306,8 @@ case 'removewm': case 'nowm': {
               image: {
                 url: `https://imgen.duck.mom/prompt/${encodeURIComponent(text)}`
               },
-              caption: `_Sukses Membuat ${command} Dengan Promt:\n${text}__`
+              caption: `_Sukses Membuat ${command} Dengan Promt:
+${text}__`
             }, {
               quoted: m
             });
@@ -35240,7 +37328,8 @@ case 'removewm': case 'nowm': {
               image: {
                 url: `https://imgen.duck.mom/prompt/${encodeURIComponent(text)}`
               },
-              caption: `_Sukses Membuat ${command} Dengan Promt:\n${text}__`
+              caption: `_Sukses Membuat ${command} Dengan Promt:
+${text}__`
             }, {
               quoted: m
             });
@@ -35261,7 +37350,8 @@ case 'removewm': case 'nowm': {
               image: {
                 url: `https://imgen.duck.mom/prompt/${encodeURIComponent(text)}`
               },
-              caption: `_Sukses Membuat ${command} Dengan Promt:\n${text}_`
+              caption: `_Sukses Membuat ${command} Dengan Promt:
+${text}_`
             }, {
               quoted: m
             });
@@ -35359,11 +37449,17 @@ _Media Has been sent, Please wait...._`;
             iwan = "";
             for (let i of res) {
               no += 1;
-              iwan += `\n• ${no.toString()} •\n`;
-              iwan += `Berita: ${i.berita}\n`;
-              iwan += `Upload: ${i.berita_diupload}\n`;
-              iwan += `Jenis: ${i.berita_jenis}\n`;
-              iwan += `Link: ${i.berita_url}\n`;
+              iwan += `
+• ${no.toString()} •
+`;
+              iwan += `Berita: ${i.berita}
+`;
+              iwan += `Upload: ${i.berita_diupload}
+`;
+              iwan += `Jenis: ${i.berita_jenis}
+`;
+              iwan += `Link: ${i.berita_url}
+`;
             }
             iwan += "";
             reply(iwan);
@@ -35378,9 +37474,13 @@ _Media Has been sent, Please wait...._`;
             iwann = "";
             for (let i of res) {
               no += 1;
-              iwann += `\n• ${no.toString()} •\n`;
-              iwann += `Berita: ${i.berita}\n`;
-              iwann += `Link: ${i.berita_url}\n`;
+              iwann += `
+• ${no.toString()} •
+`;
+              iwann += `Berita: ${i.berita}
+`;
+              iwann += `Link: ${i.berita_url}
+`;
             }
             iwann += "";
             reply(iwann);
@@ -35398,9 +37498,13 @@ _Media Has been sent, Please wait...._`;
             iwannn = "";
             for (let i of res) {
               no += 1;
-              iwannn += `\n• ${no.toString()} •\n`;
-              iwannn += `Film: ${i.film_title}\n`;
-              iwannn += `Link: ${i.film_link}\n`;
+              iwannn += `
+• ${no.toString()} •
+`;
+              iwannn += `Film: ${i.film_title}
+`;
+              iwannn += `Link: ${i.film_link}
+`;
             }
             iwannn += ``;
             reply(iwannn);
@@ -35416,10 +37520,15 @@ _Media Has been sent, Please wait...._`;
               let iwannnn = "";
               for (let i of res) {
                 no += 1;
-                iwannnn += `\n• ${no.toString()} •\n`;
-                iwannnn += `Berita: ${i.berita}\n`;
-                iwannnn += `Upload: ${i.berita_diupload}\n`;
-                iwannnn += `Link: ${i.berita_url}\n`;
+                iwannnn += `
+• ${no.toString()} •
+`;
+                iwannnn += `Berita: ${i.berita}
+`;
+                iwannnn += `Upload: ${i.berita_diupload}
+`;
+                iwannnn += `Link: ${i.berita_url}
+`;
               }
               iwannnn += "";
               const thumb = res[0]?.berita_thumb || ""; // Pastikan 'berita_thumb' tidak undefined
@@ -35451,11 +37560,17 @@ _Media Has been sent, Please wait...._`;
               iwannnnn = "";
               for (let i of res) {
                 no += 1;
-                iwannnnn += `\n• ${no.toString()} •\n`;
-                iwannnnn += `Berita: ${i.berita}\n`;
-                iwannnnn += `Upload: ${i.berita_diupload}\n`;
-                iwannnnn += `Jenis: ${i.berita_jenis}\n`;
-                iwannnnn += `Link: ${i.berita_url}\n`;
+                iwannnnn += `
+• ${no.toString()} •
+`;
+                iwannnnn += `Berita: ${i.berita}
+`;
+                iwannnnn += `Upload: ${i.berita_diupload}
+`;
+                iwannnnn += `Jenis: ${i.berita_jenis}
+`;
+                iwannnnn += `Link: ${i.berita_url}
+`;
               }
               iwannnnn += "";
               DinzBotz.sendMessage(m.chat, {
@@ -35485,11 +37600,17 @@ _Media Has been sent, Please wait...._`;
               iwannnnnn = "";
               for (let i of res) {
                 no += 1;
-                iwannnnnn += `\n• ${no.toString()} •\n`;
-                iwannnnnn += `Berita: ${i.berita}\n`;
-                iwannnnnn += `Upload: ${i.berita_diupload}\n`;
-                iwannnnnn += `Jenis: ${i.berita_jenis}\n`;
-                iwannnnnn += `Link: ${i.berita_url}\n`;
+                iwannnnnn += `
+• ${no.toString()} •
+`;
+                iwannnnnn += `Berita: ${i.berita}
+`;
+                iwannnnnn += `Upload: ${i.berita_diupload}
+`;
+                iwannnnnn += `Jenis: ${i.berita_jenis}
+`;
+                iwannnnnn += `Link: ${i.berita_url}
+`;
               }
               iwannnnnn += "";
               DinzBotz.sendMessage(m.chat, {
@@ -35519,11 +37640,17 @@ _Media Has been sent, Please wait...._`;
               iwannnnnnn = "";
               for (let i of res) {
                 no += 1;
-                iwannnnnnn += `\n• ${no.toString()} •\n`;
-                iwannnnnnn += `Berita: ${i.berita}\n`;
-                iwannnnnnn += `Upload: ${i.berita_diupload}\n`;
-                iwannnnnnn += `Jenis: ${i.berita_jenis}\n`;
-                iwannnnnnn += `Link: ${i.berita_url}\n`;
+                iwannnnnnn += `
+• ${no.toString()} •
+`;
+                iwannnnnnn += `Berita: ${i.berita}
+`;
+                iwannnnnnn += `Upload: ${i.berita_diupload}
+`;
+                iwannnnnnn += `Jenis: ${i.berita_jenis}
+`;
+                iwannnnnnn += `Link: ${i.berita_url}
+`;
               }
               iwannnnnnn += "";
               DinzBotz.sendMessage(m.chat, {
@@ -35553,10 +37680,15 @@ _Media Has been sent, Please wait...._`;
               iwannnnnnnn = "";
               for (let i of res) {
                 no += 1;
-                iwannnnnnnn += `\n• ${no.toString()} •\n`;
-                iwannnnnnnn += `Berita: ${i.berita}\n`;
-                iwannnnnnnn += `Upload: ${i.berita_diupload}\n`;
-                iwannnnnnnn += `Link: ${i.berita_url}\n`;
+                iwannnnnnnn += `
+• ${no.toString()} •
+`;
+                iwannnnnnnn += `Berita: ${i.berita}
+`;
+                iwannnnnnnn += `Upload: ${i.berita_diupload}
+`;
+                iwannnnnnnn += `Link: ${i.berita_url}
+`;
               }
               iwannnnnnnn += "";
               DinzBotz.sendMessage(m.chat, {
@@ -35585,9 +37717,13 @@ _Media Has been sent, Please wait...._`;
             iwannnnnnnnn = "";
             for (let i of res) {
               no += 1;
-              iwannnnnnnnn += `\n• ${no.toString()} •\n`;
-              iwannnnnnnnn += `Berita: ${i.berita}\n`;
-              iwannnnnnnnn += `Link: ${i.berita_url}\n`;
+              iwannnnnnnnn += `
+• ${no.toString()} •
+`;
+              iwannnnnnnnn += `Berita: ${i.berita}
+`;
+              iwannnnnnnnn += `Link: ${i.berita_url}
+`;
             }
             iwannnnnnnnn += "";
             DinzBotz.sendMessage(m.chat, {
@@ -35609,11 +37745,17 @@ _Media Has been sent, Please wait...._`;
             iwannnnnnnnnn = "";
             for (let i of res) {
               no += 1;
-              iwannnnnnnnnn += `\n• ${no.toString()} •\n`;
-              iwannnnnnnnnn += `Berita: ${i.berita}\n`;
-              iwannnnnnnnnn += `Upload: ${i.berita_diupload}\n`;
-              iwannnnnnnnnn += `Jenis: ${i.berita_jenis}\n`;
-              iwannnnnnnnnn += `Link: ${i.berita_url}\n`;
+              iwannnnnnnnnn += `
+• ${no.toString()} •
+`;
+              iwannnnnnnnnn += `Berita: ${i.berita}
+`;
+              iwannnnnnnnnn += `Upload: ${i.berita_diupload}
+`;
+              iwannnnnnnnnn += `Jenis: ${i.berita_jenis}
+`;
+              iwannnnnnnnnn += `Link: ${i.berita_url}
+`;
             }
             iwannnnnnnnnn += "";
             reply(iwannnnnnnnnn);
@@ -35629,10 +37771,15 @@ _Media Has been sent, Please wait...._`;
               iwannnnnnnnnnn = "";
               for (let i of res) {
                 no += 1;
-                iwannnnnnnnnnn += `\n• ${no.toString()} •\n`;
-                iwannnnnnnnnnn += `Berita: ${i.berita}\n`;
-                iwannnnnnnnnnn += `Upload: ${i.berita_diupload}\n`;
-                iwannnnnnnnnnn += `Link: ${i.berita_url}\n`;
+                iwannnnnnnnnnn += `
+• ${no.toString()} •
+`;
+                iwannnnnnnnnnn += `Berita: ${i.berita}
+`;
+                iwannnnnnnnnnn += `Upload: ${i.berita_diupload}
+`;
+                iwannnnnnnnnnn += `Link: ${i.berita_url}
+`;
               }
               iwannnnnnnnnnn += "";
               const thumb = res[0].berita_thumb || "";
@@ -35662,10 +37809,15 @@ _Media Has been sent, Please wait...._`;
             iwannnnnnnnnnnn = "";
             for (let i of res) {
               no += 1;
-              iwannnnnnnnnnnn += `\n• ${no.toString()} •\n`;
-              iwannnnnnnnnnnn += `Berita: ${i.berita}\n`;
-              iwannnnnnnnnnnn += `Jenis: ${i.berita_jenis}\n`;
-              iwannnnnnnnnnnn += `Link: ${i.berita_url}\n`;
+              iwannnnnnnnnnnn += `
+• ${no.toString()} •
+`;
+              iwannnnnnnnnnnn += `Berita: ${i.berita}
+`;
+              iwannnnnnnnnnnn += `Jenis: ${i.berita_jenis}
+`;
+              iwannnnnnnnnnnn += `Link: ${i.berita_url}
+`;
             }
             iwannnnnnnnnnnn += "";
             reply(iwannnnnnnnnnnn);
@@ -35681,10 +37833,15 @@ _Media Has been sent, Please wait...._`;
               iwannnnnnnnnnnnn = "";
               for (let i of res) {
                 no += 1;
-                iwannnnnnnnnnnnn += `\n• ${no.toString()} •\n`;
-                iwannnnnnnnnnnnn += `Berita: ${i.berita}\n`;
-                iwannnnnnnnnnnnn += `Upload: ${i.berita_diupload}\n`;
-                iwannnnnnnnnnnnn += `Link: ${i.berita_url}\n`;
+                iwannnnnnnnnnnnn += `
+• ${no.toString()} •
+`;
+                iwannnnnnnnnnnnn += `Berita: ${i.berita}
+`;
+                iwannnnnnnnnnnnn += `Upload: ${i.berita_diupload}
+`;
+                iwannnnnnnnnnnnn += `Link: ${i.berita_url}
+`;
               }
               iwannnnnnnnnnnnn += "";
               const thumb = res[0].berita_thumb || "";
@@ -35715,11 +37872,17 @@ _Media Has been sent, Please wait...._`;
               iwannnnnnnnnnnnnn = "";
               for (let i of res) {
                 no += 1;
-                iwannnnnnnnnnnnnn += `\n• ${no.toString()} •\n`;
-                iwannnnnnnnnnnnnn += `Berita: ${i.berita}\n`;
-                iwannnnnnnnnnnnnn += `Upload: ${i.berita_diupload}\n`;
-                iwannnnnnnnnnnnnn += `Jenis: ${i.berita_jenis}\n`;
-                iwannnnnnnnnnnnnn += `Link: ${i.berita_url}\n`;
+                iwannnnnnnnnnnnnn += `
+• ${no.toString()} •
+`;
+                iwannnnnnnnnnnnnn += `Berita: ${i.berita}
+`;
+                iwannnnnnnnnnnnnn += `Upload: ${i.berita_diupload}
+`;
+                iwannnnnnnnnnnnnn += `Jenis: ${i.berita_jenis}
+`;
+                iwannnnnnnnnnnnnn += `Link: ${i.berita_url}
+`;
               }
               iwannnnnnnnnnnnnn += "";
               const thumb = res[0].berita_thumb || "";
@@ -35750,11 +37913,17 @@ _Media Has been sent, Please wait...._`;
               no = 0;
               for (let i of res) {
                 no += 1;
-                iwannnnnnnnnnnnnnn += `\n• ${no.toString()} •\n`;
-                iwannnnnnnnnnnnnnn += `Berita: ${i.berita}\n`;
-                iwannnnnnnnnnnnnnn += `Jenis: ${i.berita_jenis}\n`;
-                iwannnnnnnnnnnnnnn += `Upload: ${i.berita_diupload}\n`;
-                iwannnnnnnnnnnnnnn += `Link: ${i.berita_url}\n`;
+                iwannnnnnnnnnnnnnn += `
+• ${no.toString()} •
+`;
+                iwannnnnnnnnnnnnnn += `Berita: ${i.berita}
+`;
+                iwannnnnnnnnnnnnnn += `Jenis: ${i.berita_jenis}
+`;
+                iwannnnnnnnnnnnnnn += `Upload: ${i.berita_diupload}
+`;
+                iwannnnnnnnnnnnnnn += `Link: ${i.berita_url}
+`;
               }
               iwannnnnnnnnnnnnnn += "";
               DinzBotz.sendMessage(m.chat, {
@@ -35784,10 +37953,15 @@ _Media Has been sent, Please wait...._`;
               no = 0;
               for (let i of res) {
                 no += 1;
-                iwannnnnnnnnnnnnnnn += `\n• ${no.toString()} •\n`;
-                iwannnnnnnnnnnnnnnn += `Berita: ${i.berita}\n`;
-                iwannnnnnnnnnnnnnnn += `Upload: ${i.berita_diupload}\n`;
-                iwannnnnnnnnnnnnnnn += `Link: ${i.berita_url}\n`;
+                iwannnnnnnnnnnnnnnn += `
+• ${no.toString()} •
+`;
+                iwannnnnnnnnnnnnnnn += `Berita: ${i.berita}
+`;
+                iwannnnnnnnnnnnnnnn += `Upload: ${i.berita_diupload}
+`;
+                iwannnnnnnnnnnnnnnn += `Link: ${i.berita_url}
+`;
               }
               iwannnnnnnnnnnnnnnn += "";
               const thumb = res[0].berita_thumb || "";
@@ -35814,7 +37988,9 @@ _Media Has been sent, Please wait...._`;
         {
           var reis = await JalanTikusMeme();
           tekcs = "";
-          tekcs += "Jalan Tikus Meme\n\n";
+          tekcs += "Jalan Tikus Meme
+
+";
           tekcs += `Source: ${reis}`;
           tekcs += "";
           DinzBotz.sendMessage(m.chat, {
@@ -35987,7 +38163,8 @@ _Media Has been sent, Please wait...._`;
           };
           const command = `bash <(curl -s https://raw.githubusercontent.com/SkyzoOffc/Pterodactyl-Theme-Autoinstaller/main/install.sh)`;
           const ress = new Client();
-          await replyviex("Memproses *uninstall* tema pterodactyl\nTunggu 1-10 menit hingga proses selsai");
+          await replyviex("Memproses *uninstall* tema pterodactyl
+Tunggu 1-10 menit hingga proses selsai");
           ress.on("ready", () => {
             ress.exec(command, (err, stream) => {
               if (err) {
@@ -35998,10 +38175,14 @@ _Media Has been sent, Please wait...._`;
                 ress.end();
               }).on("data", async data => {
                 console.log(data.toString());
-                stream.write(`skyzodev\n`);
-                stream.write(`2\n`);
-                stream.write(`y\n`);
-                stream.write(`x\n`);
+                stream.write(`skyzodev
+`);
+                stream.write(`2
+`);
+                stream.write(`y
+`);
+                stream.write(`x
+`);
               }).stderr.on("data", data => {
                 console.log("STDERR: " + data);
               });
@@ -36047,7 +38228,8 @@ _Media Has been sent, Please wait...._`;
           const command = `bash <(curl -s https://raw.githubusercontent.com/SkyzoOffc/Pterodactyl-Theme-Autoinstaller/main/install.sh)`;
           const ress = new Client();
           ress.on("ready", async () => {
-            replyviex("Memproses install *tema stellar* pterodactyl\nTunggu 1-10 menit hingga proses selsai");
+            replyviex("Memproses install *tema stellar* pterodactyl
+Tunggu 1-10 menit hingga proses selsai");
             ress.exec(command, (err, stream) => {
               if (err) {
                 throw err;
@@ -36057,11 +38239,16 @@ _Media Has been sent, Please wait...._`;
                 ress.end();
               }).on("data", async data => {
                 console.log(data.toString());
-                stream.write(`skyzodev\n`); // Key Token : skyzodev
-                stream.write(`1\n`);
-                stream.write(`1\n`);
-                stream.write(`yes\n`);
-                stream.write(`x\n`);
+                stream.write(`skyzodev
+`); // Key Token : skyzodev
+                stream.write(`1
+`);
+                stream.write(`1
+`);
+                stream.write(`yes
+`);
+                stream.write(`x
+`);
               }).stderr.on("data", data => {
                 console.log("STDERR: " + data);
               });
@@ -36105,7 +38292,8 @@ _Media Has been sent, Please wait...._`;
           const command = `bash <(curl -s https://raw.githubusercontent.com/SkyzoOffc/Pterodactyl-Theme-Autoinstaller/main/install.sh)`;
           const ress = new Client();
           ress.on("ready", () => {
-            replyviex("Memproses install *tema billing* pterodactyl\nTunggu 1-10 menit hingga proses selsai");
+            replyviex("Memproses install *tema billing* pterodactyl
+Tunggu 1-10 menit hingga proses selsai");
             ress.exec(command, (err, stream) => {
               if (err) {
                 throw err;
@@ -36115,11 +38303,16 @@ _Media Has been sent, Please wait...._`;
                 ress.end();
               }).on("data", async data => {
                 console.log(data.toString());
-                stream.write(`skyzodev\n`); // Key Token : skyzodev
-                stream.write(`1\n`);
-                stream.write(`2\n`);
-                stream.write(`yes\n`);
-                stream.write(`x\n`);
+                stream.write(`skyzodev
+`); // Key Token : skyzodev
+                stream.write(`1
+`);
+                stream.write(`2
+`);
+                stream.write(`yes
+`);
+                stream.write(`x
+`);
               }).stderr.on("data", data => {
                 console.log("STDERR: " + data);
               });
@@ -36162,7 +38355,8 @@ _Media Has been sent, Please wait...._`;
           const command = `bash <(curl -s https://raw.githubusercontent.com/SkyzoOffc/Pterodactyl-Theme-Autoinstaller/main/install.sh)`;
           const ress = new Client();
           ress.on("ready", () => {
-            replyviex("Memproses install *tema enigma* pterodactyl\nTunggu 1-10 menit hingga proses selsai");
+            replyviex("Memproses install *tema enigma* pterodactyl
+Tunggu 1-10 menit hingga proses selsai");
             ress.exec(command, (err, stream) => {
               if (err) {
                 throw err;
@@ -36172,14 +38366,22 @@ _Media Has been sent, Please wait...._`;
                 ress.end();
               }).on("data", async data => {
                 console.log(data.toString());
-                stream.write(`skyzodev\n`); // Key Token : skyzodev
-                stream.write("1\n");
-                stream.write("3\n");
-                stream.write("https://wa.me/6285813708397\n");
-                stream.write("https://whatsapp.com/channel/0029VaYoztA47XeAhs447Y1s\n");
-                stream.write("https://chat.whatsapp.com/IP1KjO4OyM97ay2iEsSAFy\n");
-                stream.write("yes\n");
-                stream.write("x\n");
+                stream.write(`skyzodev
+`); // Key Token : skyzodev
+                stream.write("1
+");
+                stream.write("3
+");
+                stream.write("https://wa.me/6285813708397
+");
+                stream.write("https://whatsapp.com/channel/0029VaYoztA47XeAhs447Y1s
+");
+                stream.write("https://chat.whatsapp.com/IP1KjO4OyM97ay2iEsSAFy
+");
+                stream.write("yes
+");
+                stream.write("x
+");
               }).stderr.on("data", data => {
                 console.log("STDERR: " + data);
               });
@@ -36211,11 +38413,13 @@ _Media Has been sent, Please wait...._`;
             username: "root",
             password: passwd
           };
-          const boostmysql = `\n`;
+          const boostmysql = `
+`;
           const command = `bash <(curl -s https://pterodactyl-installer.se)`;
           const ress = new Client();
           ress.on("ready", async () => {
-            await replyviex("Memproses *uninstall* server panel\nTunggu 1-10 menit hingga proses selsai");
+            await replyviex("Memproses *uninstall* server panel
+Tunggu 1-10 menit hingga proses selsai");
             ress.exec(command, async (err, stream) => {
               if (err) {
                 throw err;
@@ -36230,7 +38434,8 @@ _Media Has been sent, Please wait...._`;
                   }).on("data", async data => {
                     await console.log(data.toString());
                     if (data.toString().includes(`Remove all MariaDB databases? [yes/no]`)) {
-                      await stream.write("\t\n");
+                      await stream.write("\t
+");
                     }
                   }).stderr.on("data", data => {
                     replyviex("Berhasil Uninstall Server Panel ✅");
@@ -36239,16 +38444,20 @@ _Media Has been sent, Please wait...._`;
               }).on("data", async data => {
                 await console.log(data.toString());
                 if (data.toString().includes(`Input 0-6`)) {
-                  await stream.write("6\n");
+                  await stream.write("6
+");
                 }
                 if (data.toString().includes(`(y/N)`)) {
-                  await stream.write("y\n");
+                  await stream.write("y
+");
                 }
                 if (data.toString().includes(`* Choose the panel user (to skip don\'t input anything):`)) {
-                  await stream.write("\n");
+                  await stream.write("
+");
                 }
                 if (data.toString().includes(`* Choose the panel database (to skip don\'t input anything):`)) {
-                  await stream.write("\n");
+                  await stream.write("
+");
                 }
               }).stderr.on("data", data => {
                 m.reply("STDERR: " + data);
@@ -36285,7 +38494,8 @@ _Media Has been sent, Please wait...._`;
           const domainpanel = vii[2];
           const domainnode = vii[3];
           const ramserver = vii[4];
-          const deletemysql = `\n`;
+          const deletemysql = `
+`;
           const commandPanel = `bash <(curl -s https://pterodactyl-installer.se)`;
           async function instalWings() {
             ress.exec(commandPanel, (err, stream) => {
@@ -36318,25 +38528,32 @@ ketik *.startwings* ipvps|pwvps|tokenwings
                   }).on("data", async data => {
                     await console.log(data.toString());
                     if (data.toString().includes("Masukkan nama lokasi: ")) {
-                      stream.write("Singapore\n");
+                      stream.write("Singapore
+");
                     }
                     if (data.toString().includes("Masukkan deskripsi lokasi: ")) {
-                      stream.write("Node By dinzyoimiyaID\n");
+                      stream.write("Node By dinzyoimiyaID
+");
                     }
                     if (data.toString().includes("Masukkan domain: ")) {
-                      stream.write(`${domainnode}\n`);
+                      stream.write(`${domainnode}
+`);
                     }
                     if (data.toString().includes("Masukkan nama node: ")) {
-                      stream.write("Node By dinzyoimiyaID\n");
+                      stream.write("Node By dinzyoimiyaID
+");
                     }
                     if (data.toString().includes("Masukkan RAM (dalam MB): ")) {
-                      stream.write(`${ramserver}\n`);
+                      stream.write(`${ramserver}
+`);
                     }
                     if (data.toString().includes("Masukkan jumlah maksimum disk space (dalam MB): ")) {
-                      stream.write(`${ramserver}\n`);
+                      stream.write(`${ramserver}
+`);
                     }
                     if (data.toString().includes("Masukkan Locid: ")) {
-                      stream.write("1\n");
+                      stream.write("1
+");
                     }
                   }).stderr.on("data", async data => {
                     console.log("Stderr : " + data);
@@ -36344,25 +38561,32 @@ ketik *.startwings* ipvps|pwvps|tokenwings
                 });
               }).on("data", async data => {
                 if (data.toString().includes("Input 0-6")) {
-                  stream.write("1\n");
+                  stream.write("1
+");
                 }
                 if (data.toString().includes("(y/N)")) {
-                  stream.write("y\n");
+                  stream.write("y
+");
                 }
                 if (data.toString().includes("Enter the panel address (blank for any address)")) {
-                  stream.write(`${domainpanel}\n`);
+                  stream.write(`${domainpanel}
+`);
                 }
                 if (data.toString().includes("Database host username (pterodactyluser)")) {
-                  stream.write("admin\n");
+                  stream.write("admin
+");
                 }
                 if (data.toString().includes("Database host password")) {
-                  stream.write(`admin\n`);
+                  stream.write(`admin
+`);
                 }
                 if (data.toString().includes("Set the FQDN to use for Let's Encrypt (node.example.com)")) {
-                  stream.write(`${domainnode}\n`);
+                  stream.write(`${domainnode}
+`);
                 }
                 if (data.toString().includes("Enter email address for Let's Encrypt")) {
-                  stream.write("admin@gmail.com\n");
+                  stream.write("admin@gmail.com
+");
                 }
                 console.log("Logger: " + data.toString());
               }).stderr.on("data", data => {
@@ -36379,73 +38603,96 @@ ketik *.startwings* ipvps|pwvps|tokenwings
                 await instalWings();
               }).on("data", async data => {
                 if (data.toString().includes("Input 0-6")) {
-                  stream.write("0\n");
+                  stream.write("0
+");
                 }
                 if (data.toString().includes("(y/N)")) {
-                  stream.write("y\n");
+                  stream.write("y
+");
                 }
                 if (data.toString().includes("Database name (panel)")) {
-                  stream.write("\n");
+                  stream.write("
+");
                 }
                 if (data.toString().includes("Database username (pterodactyl)")) {
-                  stream.write("admin\n");
+                  stream.write("admin
+");
                 }
                 if (data.toString().includes("Password (press enter to use randomly generated password)")) {
-                  stream.write("admin\n");
+                  stream.write("admin
+");
                 }
                 if (data.toString().includes("Select timezone [Europe/Stockholm]")) {
-                  stream.write("Asia/Jakarta\n");
+                  stream.write("Asia/Jakarta
+");
                 }
                 if (data.toString().includes("Provide the email address that will be used to configure Let's Encrypt and Pterodactyl")) {
-                  stream.write("admin@gmail.com\n");
+                  stream.write("admin@gmail.com
+");
                 }
                 if (data.toString().includes("Email address for the initial admin account")) {
-                  stream.write("admin@gmail.com\n");
+                  stream.write("admin@gmail.com
+");
                 }
                 if (data.toString().includes("Username for the initial admin account")) {
-                  stream.write("admin\n");
+                  stream.write("admin
+");
                 }
                 if (data.toString().includes("First name for the initial admin account")) {
-                  stream.write("admin\n");
+                  stream.write("admin
+");
                 }
                 if (data.toString().includes("Last name for the initial admin account")) {
-                  stream.write("admin\n");
+                  stream.write("admin
+");
                 }
                 if (data.toString().includes("Password for the initial admin account")) {
-                  stream.write(`${passwordPanel}\n`);
+                  stream.write(`${passwordPanel}
+`);
                 }
                 if (data.toString().includes("Set the FQDN of this panel (panel.example.com)")) {
-                  stream.write(`${domainpanel}\n`);
+                  stream.write(`${domainpanel}
+`);
                 }
                 if (data.toString().includes("Do you want to automatically configure UFW (firewall)")) {
-                  stream.write("y\n");
+                  stream.write("y
+");
                 }
                 if (data.toString().includes("Do you want to automatically configure HTTPS using Let's Encrypt? (y/N)")) {
-                  stream.write("y\n");
+                  stream.write("y
+");
                 }
                 if (data.toString().includes("Select the appropriate number [1-2] then [enter] (press 'c' to cancel)")) {
-                  stream.write("1\n");
+                  stream.write("1
+");
                 }
                 if (data.toString().includes("I agree that this HTTPS request is performed (y/N)")) {
-                  stream.write("y\n");
+                  stream.write("y
+");
                 }
                 if (data.toString().includes("Proceed anyways (your install will be broken if you do not know what you are doing)? (y/N)")) {
-                  stream.write("y\n");
+                  stream.write("y
+");
                 }
                 if (data.toString().includes("(yes/no)")) {
-                  stream.write("y\n");
+                  stream.write("y
+");
                 }
                 if (data.toString().includes("Initial configuration completed. Continue with installation? (y/N)")) {
-                  stream.write("y\n");
+                  stream.write("y
+");
                 }
                 if (data.toString().includes("Still assume SSL? (y/N)")) {
-                  stream.write("y\n");
+                  stream.write("y
+");
                 }
                 if (data.toString().includes("Please read the Terms of Service")) {
-                  stream.write("y\n");
+                  stream.write("y
+");
                 }
                 if (data.toString().includes("(A)gree/(C)ancel:")) {
-                  stream.write("A\n");
+                  stream.write("A
+");
                 }
                 console.log("Logger: " + data.toString());
               }).stderr.on("data", data => {
@@ -36454,7 +38701,8 @@ ketik *.startwings* ipvps|pwvps|tokenwings
             });
           }
           ress.on("ready", async () => {
-            await replyviex("Memproses *install* server panel \nTunggu 1-10 menit hingga proses selsai");
+            await replyviex("Memproses *install* server panel 
+Tunggu 1-10 menit hingga proses selsai");
             ress.exec(deletemysql, async (err, stream) => {
               if (err) {
                 throw err;
@@ -36463,7 +38711,8 @@ ketik *.startwings* ipvps|pwvps|tokenwings
                 await instalPanel();
               }).on("data", async data => {
                 await stream.write("\t");
-                await stream.write("\n");
+                await stream.write("
+");
                 await console.log(data.toString());
               }).stderr.on("data", async data => {
                 console.log("Stderr : " + data);
@@ -36500,13 +38749,16 @@ ketik *.startwings* ipvps|pwvps|tokenwings
                 throw err;
               }
               stream.on("close", async (code, signal) => {
-                await replyviex("*Berhasil menjalankan wings ✅*\n* Status wings : *aktif*");
+                await replyviex("*Berhasil menjalankan wings ✅*
+* Status wings : *aktif*");
                 ress.end();
               }).on("data", async data => {
                 await console.log(data.toString());
               }).stderr.on("data", data => {
-                stream.write("y\n");
-                stream.write("systemctl start wings\n");
+                stream.write("y
+");
+                stream.write("systemctl start wings
+");
                 m.reply("STDERR: " + data);
               });
             });
@@ -36561,10 +38813,14 @@ ketik *.startwings* ipvps|pwvps|tokenwings
               }).on("data", async data => {
                 await console.log(data.toString());
               }).stderr.on("data", data => {
-                stream.write("skyzodev\n");
-                stream.write("7\n");
-                stream.write(`${newuser}\n`);
-                stream.write(`${newpw}\n`);
+                stream.write("skyzodev
+");
+                stream.write("7
+");
+                stream.write(`${newuser}
+`);
+                stream.write(`${newpw}
+`);
               });
             });
           }).on("error", err => {
@@ -36590,14 +38846,21 @@ ketik *.startwings* ipvps|pwvps|tokenwings
           });
           let res = await f.json();
           let users = res.data;
-          let messageText = "Berikut list user:\n\n";
+          let messageText = "Berikut list user:
+
+";
           for (let user of users) {
             let u = user.attributes;
-            messageText += `ID: ${u.id} - Status: ${u.attributes?.user?.server_limit === null ? "Inactive" : "Active"}\n`;
-            messageText += `${u.username}\n`;
-            messageText += `${u.first_name} ${u.last_name}\n\n`;
+            messageText += `ID: ${u.id} - Status: ${u.attributes?.user?.server_limit === null ? "Inactive" : "Active"}
+`;
+            messageText += `${u.username}
+`;
+            messageText += `${u.first_name} ${u.last_name}
+
+`;
           }
-          messageText += `Page: ${res.meta.pagination.current_page}/${res.meta.pagination.total_pages}\n`;
+          messageText += `Page: ${res.meta.pagination.current_page}/${res.meta.pagination.total_pages}
+`;
           messageText += `Total Users: ${res.meta.pagination.count}`;
           await DinzBotz.sendMessage(m.chat, {
             text: messageText
@@ -36678,7 +38941,9 @@ ketik *.startwings* ipvps|pwvps|tokenwings
           let res = await f.json();
           let servers = res.data;
           let sections = [];
-          let messageText = "Berikut adalah daftar server:\n\n";
+          let messageText = "Berikut adalah daftar server:
+
+";
           for (let server of servers) {
             let s = server.attributes;
             let f3 = await fetch(domain + "/api/client/servers/" + s.uuid.split`-`[0] + "/resources", {
@@ -36691,11 +38956,16 @@ ketik *.startwings* ipvps|pwvps|tokenwings
             });
             let data = await f3.json();
             let status = data.attributes ? data.attributes.current_state : s.status;
-            messageText += `ID Server: ${s.id}\n`;
-            messageText += `Nama Server: ${s.name}\n`;
-            messageText += `Status: ${status}\n\n`;
+            messageText += `ID Server: ${s.id}
+`;
+            messageText += `Nama Server: ${s.name}
+`;
+            messageText += `Status: ${status}
+
+`;
           }
-          messageText += `Halaman: ${res.meta.pagination.current_page}/${res.meta.pagination.total_pages}\n`;
+          messageText += `Halaman: ${res.meta.pagination.current_page}/${res.meta.pagination.total_pages}
+`;
           messageText += `Total Server: ${res.meta.pagination.count}`;
           await DinzBotz.sendMessage(m.chat, {
             text: messageText
@@ -36793,10 +39063,17 @@ Contoh:
           if (!DinzTheCreator) {
             return replyviex(mess.owner);
           }
-          let listprem = `*LIST SELER ${global.botname}*\n\nTotal Seller : ${owner.length}\n`;
+          let listprem = `*LIST SELER ${global.botname}*
+
+Total Seller : ${owner.length}
+`;
           var no = 1;
           for (let x of owner) {
-            listprem += `\nUser: ${no++}\nID: ${x}\n\n`;
+            listprem += `
+User: ${no++}
+ID: ${x}
+
+`;
           }
           listprem += `Untuk Menghapus Akses Prem Ketik ${prefix}delprem 628xxx/@tag`;
           DinzBotz.sendMessage(m.chat, {
@@ -36961,10 +39238,16 @@ Penggunaan:
 ${prefix + command} user,nomer`);
           }
           if (!username) {
-            return replyviex(`Ex : ${prefix + command} Username,@tag/nomor\n\nContoh :\n${prefix + command} example,@user`);
+            return replyviex(`Ex : ${prefix + command} Username,@tag/nomor
+
+Contoh :
+${prefix + command} example,@user`);
           }
           if (!nomor) {
-            return replyviex(`Ex : ${prefix + command} Username,@tag/nomor\n\nContoh :\n${prefix + command} example,@user`);
+            return replyviex(`Ex : ${prefix + command} Username,@tag/nomor
+
+Contoh :
+${prefix + command} example,@user`);
           }
           let password = username + "46093";
           let nomornya = nomor.replace(/[^0-9]/g, "") + "@s.whatsapp.net";
@@ -37009,7 +39292,8 @@ TYPE: user
           };
           await DinzBotz.sendMessage(m.chat, listMessage);
           await DinzBotz.sendMessage(nomornya, {
-            text: `*🛒 BERIKUT AKUN ADMIN PANEL ANDA 🛒*\n
+            text: `*🛒 BERIKUT AKUN ADMIN PANEL ANDA 🛒*
+
         
         
 *👤 USERNAME:*  ${username}
@@ -37043,10 +39327,16 @@ Penggunaan:
 ${prefix + command} user,nomer`);
           }
           if (!username) {
-            return reply(`Ex : ${prefix + command} Username,@tag/nomor\n\nContoh :\n${prefix + command} example,@user`);
+            return reply(`Ex : ${prefix + command} Username,@tag/nomor
+
+Contoh :
+${prefix + command} example,@user`);
           }
           if (!nomor) {
-            return reply(`Ex : ${prefix + command} Username,@tag/nomor\n\nContoh :\n${prefix + command} example,@user`);
+            return reply(`Ex : ${prefix + command} Username,@tag/nomor
+
+Contoh :
+${prefix + command} example,@user`);
           }
           let password = username + "46093";
           let nomornya = nomor.replace(/[^0-9]/g, "") + "@s.whatsapp.net";
@@ -37090,7 +39380,8 @@ TYPE: Admin
           };
           await DinzBotz.sendMessage(m.chat, listMessage);
           await DinzBotz.sendMessage(nomornya, {
-            text: `*BERIKUT DETAIL AKUN ADMIN  PANEL ANDA*\n
+            text: `*BERIKUT DETAIL AKUN ADMIN  PANEL ANDA*
+
 USERNAME :  ${username}
 PASSWORD: ${password}
 LOGIN: ${domain2}
@@ -37119,16 +39410,23 @@ LOGIN: ${domain2}
           });
           let res = await f.json();
           let users = res.data;
-          let messageText = "Berikut list admin:\n\n";
+          let messageText = "Berikut list admin:
+
+";
           for (let user of users) {
             let u = user.attributes;
             if (u.root_admin) {
-              messageText += `ID: ${u.id} - Status: ${u.attributes?.user?.server_limit === null ? "Inactive" : "Active"}\n`;
-              messageText += `${u.username}\n`;
-              messageText += `${u.first_name} ${u.last_name}\n\n`;
+              messageText += `ID: ${u.id} - Status: ${u.attributes?.user?.server_limit === null ? "Inactive" : "Active"}
+`;
+              messageText += `${u.username}
+`;
+              messageText += `${u.first_name} ${u.last_name}
+
+`;
             }
           }
-          messageText += `Page: ${res.meta.pagination.current_page}/${res.meta.pagination.total_pages}\n`;
+          messageText += `Page: ${res.meta.pagination.current_page}/${res.meta.pagination.total_pages}
+`;
           messageText += `Total Admin: ${res.meta.pagination.count}`;
           await DinzBotz.sendMessage(m.chat, {
             text: messageText
@@ -37268,7 +39566,8 @@ CPU: ${server.limits.cpu}%
 
 `);
           } catch {
-            reply("yah gagal om...\n_silakan cek api plta dan pltc anda_");
+            reply("yah gagal om...
+_silakan cek api plta dan pltc anda_");
           }
         }
         break;
@@ -37400,7 +39699,8 @@ CPU: ${server.limits.cpu}%
 
 `);
           } catch {
-            reply("yah gagal om...\n_silakan cek api plta dan pltc anda_");
+            reply("yah gagal om...
+_silakan cek api plta dan pltc anda_");
           }
         }
         break;
@@ -37532,7 +39832,8 @@ CPU: ${server.limits.cpu}%
 
 `);
           } catch {
-            reply("yah gagal om...\n_silakan cek api plta dan pltc anda_");
+            reply("yah gagal om...
+_silakan cek api plta dan pltc anda_");
           }
         }
         break;
@@ -37664,7 +39965,8 @@ CPU: ${server.limits.cpu}%
 
 `);
           } catch {
-            reply("yah gagal om...\n_silakan cek api plta dan pltc anda_");
+            reply("yah gagal om...
+_silakan cek api plta dan pltc anda_");
           }
         }
         break;
@@ -37796,7 +40098,8 @@ CPU: ${server.limits.cpu}%
 
 `);
           } catch {
-            reply("yah gagal om...\n_silakan cek api plta dan pltc anda_");
+            reply("yah gagal om...
+_silakan cek api plta dan pltc anda_");
           }
         }
         break;
@@ -37928,7 +40231,8 @@ CPU: ${server.limits.cpu}%
 
 `);
           } catch {
-            reply("yah gagal om...\n_silakan cek api plta dan pltc anda_");
+            reply("yah gagal om...
+_silakan cek api plta dan pltc anda_");
           }
         }
         break;
@@ -38060,7 +40364,8 @@ CPU: ${server.limits.cpu}%
 
 `);
           } catch {
-            reply("yah gagal om...\n_silakan cek api plta dan pltc anda_");
+            reply("yah gagal om...
+_silakan cek api plta dan pltc anda_");
           }
         }
         break;
@@ -38192,7 +40497,8 @@ CPU: ${server.limits.cpu}%
 
 `);
           } catch {
-            reply("yah gagal om...\n_silakan cek api plta dan pltc anda_");
+            reply("yah gagal om...
+_silakan cek api plta dan pltc anda_");
           }
         }
         break;
@@ -38324,7 +40630,8 @@ CPU: ${server.limits.cpu}%
 
 `);
           } catch {
-            reply("yah gagal om...\n_silakan cek api plta dan pltc anda_");
+            reply("yah gagal om...
+_silakan cek api plta dan pltc anda_");
           }
         }
         break;
@@ -38456,7 +40763,8 @@ CPU: ${server.limits.cpu}%
 
 `);
           } catch {
-            reply("yah gagal om...\n_silakan cek api plta dan pltc anda_");
+            reply("yah gagal om...
+_silakan cek api plta dan pltc anda_");
           }
         }
         break;
@@ -38588,7 +40896,8 @@ CPU: ${server.limits.cpu}%
 
 `);
           } catch {
-            reply("yah gagal om...\n_silakan cek api plta dan pltc anda_");
+            reply("yah gagal om...
+_silakan cek api plta dan pltc anda_");
           }
         }
         break;
@@ -38755,11 +41064,16 @@ CPU: ${server.limits.cpu}%
           }
           let hasil = await download(text);
           try {
-            let deku = `⏤͟͟͞͞╳── *[ ᴅᴏᴡɴʟᴏᴀᴅ - ᴄᴄ ]* ── .々─ᯤ\n`;
-            deku += `│    =〆 ᴛɪᴛʟᴇ: ${hasil.data.title}\n`;
-            deku += `│    =〆 ᴅᴇsᴄ: ${hasil.data.desc}\n`;
-            deku += `│    =〆 ɪᴅ: ${hasil.data.templateId}\n`;
-            deku += `│    =〆 ᴜʀʟ: ${hasil.data.structuredData.url}\n`;
+            let deku = `⏤͟͟͞͞╳── *[ ᴅᴏᴡɴʟᴏᴀᴅ - ᴄᴄ ]* ── .々─ᯤ
+`;
+            deku += `│    =〆 ᴛɪᴛʟᴇ: ${hasil.data.title}
+`;
+            deku += `│    =〆 ᴅᴇsᴄ: ${hasil.data.desc}
+`;
+            deku += `│    =〆 ɪᴅ: ${hasil.data.templateId}
+`;
+            deku += `│    =〆 ᴜʀʟ: ${hasil.data.structuredData.url}
+`;
             deku += `⏤͟͟͞͞╳────────── .✦`;
             await DinzBotz.sendMessage(m.chat, {
               video: {
@@ -38845,7 +41159,10 @@ CPU: ${server.limits.cpu}%
             });
           }
           if (!text) {
-            return replyviex(`Masukkan teks untuk stiker.\n\nContoh:\n.brat Atmin Ganteng`);
+            return replyviex(`Masukkan teks untuk stiker.
+
+Contoh:
+.brat Atmin Ganteng`);
           }
           return BratGenerator(text);
         }
@@ -38966,12 +41283,17 @@ CPU: ${server.limits.cpu}%
             };
             ww[chat].player.push(data);
             let player = [];
-            let text = `\n*⌂ W E R E W O L F - P L A Y E R*\n\n`;
+            let text = `
+*⌂ W E R E W O L F - P L A Y E R*
+
+`;
             for (let i = 0; i < ww[chat].player.length; i++) {
-              text += `${ww[chat].player[i].number}) @${ww[chat].player[i].id.replace("@s.whatsapp.net", "")}\n`;
+              text += `${ww[chat].player[i].number}) @${ww[chat].player[i].id.replace("@s.whatsapp.net", "")}
+`;
               player.push(ww[chat].player[i].id);
             }
-            text += "\nJumlah player minimal adalah 5 dan maximal 15";
+            text += "
+Jumlah player minimal adalah 5 dan maximal 15";
             DinzBotz.sendMessage(m.chat, {
               text: text.trim(),
               contextInfo: {
@@ -39031,18 +41353,24 @@ CPU: ${server.limits.cpu}%
             addTimer(chat, ww);
             startGame(chat, ww);
             for (let i = 0; i < ww[chat].player.length; i++) {
-              list1 += `(${ww[chat].player[i].number}) @${ww[chat].player[i].id.replace("@s.whatsapp.net", "")}\n`;
+              list1 += `(${ww[chat].player[i].number}) @${ww[chat].player[i].id.replace("@s.whatsapp.net", "")}
+`;
               player.push(ww[chat].player[i].id);
             }
             for (let i = 0; i < ww[chat].player.length; i++) {
-              list2 += `(${ww[chat].player[i].number}) @${ww[chat].player[i].id.replace("@s.whatsapp.net", "")} ${ww[chat].player[i].role === "werewolf" || ww[chat].player[i].role === "sorcerer" ? `[${ww[chat].player[i].role}]` : ""}\n`;
+              list2 += `(${ww[chat].player[i].number}) @${ww[chat].player[i].id.replace("@s.whatsapp.net", "")} ${ww[chat].player[i].role === "werewolf" || ww[chat].player[i].role === "sorcerer" ? `[${ww[chat].player[i].role}]` : ""}
+`;
               player.push(ww[chat].player[i].id);
             }
             for (let i = 0; i < ww[chat].player.length; i++) {
               // [ Werewolf ]
               if (ww[chat].player[i].role === "werewolf") {
                 if (ww[chat].player[i].isdead != true) {
-                  var textt = `Hai ${DinzBotz.getName(ww[chat].player[i].id)}, Kamu telah dipilih untuk memerankan *Werewolf* ${emoji_role("werewolf")} pada permainan kali ini, silahkan pilih salah satu player yang ingin kamu makan pada malam hari ini\n*LIST PLAYER*:\n${list2}\n\nKetik *.wwpc kill nomor* untuk membunuh player`;
+                  var textt = `Hai ${DinzBotz.getName(ww[chat].player[i].id)}, Kamu telah dipilih untuk memerankan *Werewolf* ${emoji_role("werewolf")} pada permainan kali ini, silahkan pilih salah satu player yang ingin kamu makan pada malam hari ini
+*LIST PLAYER*:
+${list2}
+
+Ketik *.wwpc kill nomor* untuk membunuh player`;
                   let row = [];
                   for (let p = 0; p < ww[chat].player.length; p++) {
                     row.push({
@@ -39058,7 +41386,8 @@ CPU: ${server.limits.cpu}%
                   const listMessage = {
                     text: text,
                     footer: `Player Hidup: ${playerHidup(sesi(m.chat, ww))} Player Mati: ${playerMati(sesi(m.chat, ww))}`,
-                    title: "⌂ W E R E W O L F - G A M E\n",
+                    title: "⌂ W E R E W O L F - G A M E
+",
                     buttonText: "Clik here!",
                     sections,
                     mentions: player
@@ -39073,7 +41402,11 @@ CPU: ${server.limits.cpu}%
                 // [ villager ]
               } else if (ww[chat].player[i].role === "warga") {
                 if (ww[chat].player[i].isdead != true) {
-                  let texttt = `*⌂ W E R E W O L F - G A M E*\n\nHai ${DinzBotz.getName(ww[chat].player[i].id)} Peran kamu adalah *Warga Desa* ${emoji_role("warga")}, tetap waspada, mungkin *Werewolf* akan memakanmu malam ini, silakan masuk kerumah masing masing.\n*LIST PLAYER*:\n${list1}`;
+                  let texttt = `*⌂ W E R E W O L F - G A M E*
+
+Hai ${DinzBotz.getName(ww[chat].player[i].id)} Peran kamu adalah *Warga Desa* ${emoji_role("warga")}, tetap waspada, mungkin *Werewolf* akan memakanmu malam ini, silakan masuk kerumah masing masing.
+*LIST PLAYER*:
+${list1}`;
                   await DinzBotz.sendMessage(ww[chat].player[i].id, {
                     text: texttt,
                     mentions: player
@@ -39083,7 +41416,11 @@ CPU: ${server.limits.cpu}%
                 // [ Penerawangan ]
               } else if (ww[chat].player[i].role === "seer") {
                 if (ww[chat].player[i].isdead != true) {
-                  let texxt = `Hai ${DinzBotz.getName(ww[chat].player[i].id)} Kamu telah terpilih  untuk menjadi *Penerawang* ${emoji_role("seer")}. Dengan sihir yang kamu punya, kamu bisa mengetahui peran pemain pilihanmu.\n*LIST PLAYER*:\n${list1}\n\nKetik *.wwpc dreamy nomor* untuk melihat role player`;
+                  let texxt = `Hai ${DinzBotz.getName(ww[chat].player[i].id)} Kamu telah terpilih  untuk menjadi *Penerawang* ${emoji_role("seer")}. Dengan sihir yang kamu punya, kamu bisa mengetahui peran pemain pilihanmu.
+*LIST PLAYER*:
+${list1}
+
+Ketik *.wwpc dreamy nomor* untuk melihat role player`;
                   let row = [];
                   for (let p = 0; p < ww[chat].player.length; p++) {
                     row.push({
@@ -39099,7 +41436,8 @@ CPU: ${server.limits.cpu}%
                   const listMessage = {
                     text: text,
                     footer: `Player Hidup: ${playerHidup(sesi(m.chat, ww))} Player Mati: ${playerMati(sesi(m.chat, ww))}`,
-                    title: "⌂ W E R E W O L F - G A M E\n",
+                    title: "⌂ W E R E W O L F - G A M E
+",
                     buttonText: "Clik here!",
                     sections,
                     mentions: player
@@ -39112,7 +41450,11 @@ CPU: ${server.limits.cpu}%
                 }
               } else if (ww[chat].player[i].role === "guardian") {
                 if (ww[chat].player[i].isdead != true) {
-                  let teext = `Hai ${DinzBotz.getName(ww[chat].player[i].id)} Kamu terpilih untuk memerankan *Malaikat Pelindung* ${emoji_role("guardian")}, dengan kekuatan yang kamu miliki, kamu bisa melindungi para warga, silahkan pilih salah 1 player yang ingin kamu lindungi\n*LIST PLAYER*:\n${list1}\n\nKetik *.wwpc deff nomor* untuk melindungi player`;
+                  let teext = `Hai ${DinzBotz.getName(ww[chat].player[i].id)} Kamu terpilih untuk memerankan *Malaikat Pelindung* ${emoji_role("guardian")}, dengan kekuatan yang kamu miliki, kamu bisa melindungi para warga, silahkan pilih salah 1 player yang ingin kamu lindungi
+*LIST PLAYER*:
+${list1}
+
+Ketik *.wwpc deff nomor* untuk melindungi player`;
                   let row = [];
                   for (let p = 0; p < ww[chat].player.length; p++) {
                     row.push({
@@ -39128,7 +41470,8 @@ CPU: ${server.limits.cpu}%
                   const listMessage = {
                     text: text,
                     footer: `Player Hidup: ${playerHidup(sesi(m.chat, ww))} Player Mati: ${playerMati(sesi(m.chat, ww))}`,
-                    title: "⌂ W E R E W O L F - G A M E\n",
+                    title: "⌂ W E R E W O L F - G A M E
+",
                     buttonText: "Clik here!",
                     sections,
                     mentions: player
@@ -39143,7 +41486,11 @@ CPU: ${server.limits.cpu}%
                 // [ Sorcerer ]
               } else if (ww[chat].player[i].role === "sorcerer") {
                 if (ww[chat].player[i].isdead != true) {
-                  let textu = `Hai ${DinzBotz.getName(ww[chat].player[i].id)} Kamu terpilih sebagai Penyihir ${emoji_role("sorcerer")}, dengan kekuasaan yang kamu punya, kamu bisa membuka identitas para player, silakan pilih 1 orang yang ingin kamu buka identitasnya\n*LIST PLAYER*:\n${list2}\n\nKetik *.wwpc sorcerer nomor* untuk melihat role player`;
+                  let textu = `Hai ${DinzBotz.getName(ww[chat].player[i].id)} Kamu terpilih sebagai Penyihir ${emoji_role("sorcerer")}, dengan kekuasaan yang kamu punya, kamu bisa membuka identitas para player, silakan pilih 1 orang yang ingin kamu buka identitasnya
+*LIST PLAYER*:
+${list2}
+
+Ketik *.wwpc sorcerer nomor* untuk melihat role player`;
                   let row = [];
                   for (let p = 0; p < ww[chat].player.length; p++) {
                     row.push({
@@ -39159,7 +41506,8 @@ CPU: ${server.limits.cpu}%
                   const listMessage = {
                     text: text,
                     footer: `Player Hidup: ${playerHidup(sesi(m.chat, ww))} Player Mati: ${playerMati(sesi(m.chat, ww))}`,
-                    title: "⌂ W E R E W O L F - G A M E\n",
+                    title: "⌂ W E R E W O L F - G A M E
+",
                     buttonText: "Clik here!",
                     sections,
                     mentions: player
@@ -39173,7 +41521,9 @@ CPU: ${server.limits.cpu}%
               }
             }
             await DinzBotz.sendMessage(m.chat, {
-              text: "*⌂ W E R E W O L F - G A M E*\n\nGame telah dimulai, para player akan memerankan perannya masing masing, silahkan cek chat pribadi untuk melihat role kalian. Berhati-hatilah para warga, mungkin malam ini adalah malah terakhir untukmu",
+              text: "*⌂ W E R E W O L F - G A M E*
+
+Game telah dimulai, para player akan memerankan perannya masing masing, silahkan cek chat pribadi untuk melihat role kalian. Berhati-hatilah para warga, mungkin malam ini adalah malah terakhir untukmu",
               contextInfo: {
                 externalAdReply: {
                   title: "W E R E W O L F",
@@ -39259,9 +41609,14 @@ CPU: ${server.limits.cpu}%
               return replyviex("Sesi permainan belum memiliki player");
             }
             let player = [];
-            let text = "\n*⌂ W E R E W O L F - G A M E*\n\nLIST PLAYER:\n";
+            let text = "
+*⌂ W E R E W O L F - G A M E*
+
+LIST PLAYER:
+";
             for (let i = 0; i < ww[chat].player.length; i++) {
-              text += `(${ww[chat].player[i].number}) @${ww[chat].player[i].id.replace("@s.whatsapp.net", "")} ${ww[chat].player[i].isdead === true ? `☠️ ${ww[chat].player[i].role}` : ""}\n`;
+              text += `(${ww[chat].player[i].number}) @${ww[chat].player[i].id.replace("@s.whatsapp.net", "")} ${ww[chat].player[i].isdead === true ? `☠️ ${ww[chat].player[i].role}` : ""}
+`;
               player.push(ww[chat].player[i].id);
             }
             DinzBotz.sendMessage(m.chat, {
@@ -39281,14 +41636,27 @@ CPU: ${server.limits.cpu}%
               quoted: m
             });
           } else {
-            let text = `\n*⌂ W E R E W O L F - G A M E*\n\nPermainan Sosial Yang Berlangsung Dalam Beberapa Putaran/ronde. Para Pemain Dituntut Untuk Mencari Seorang Penjahat Yang Ada Dipermainan. Para Pemain Diberi Waktu, Peran, Serta Kemampuannya Masing-masing Untuk Bermain Permainan Ini\n\n*⌂ C O M M A N D*\n`;
-            text += ` • ww create\n`;
-            text += ` • ww join\n`;
-            text += ` • ww start\n`;
-            text += ` • ww exit\n`;
-            text += ` • ww delete\n`;
-            text += ` • ww player\n`;
-            text += `\nPermainan ini dapat dimainkan oleh 5 sampai 15 orang.`;
+            let text = `
+*⌂ W E R E W O L F - G A M E*
+
+Permainan Sosial Yang Berlangsung Dalam Beberapa Putaran/ronde. Para Pemain Dituntut Untuk Mencari Seorang Penjahat Yang Ada Dipermainan. Para Pemain Diberi Waktu, Peran, Serta Kemampuannya Masing-masing Untuk Bermain Permainan Ini
+
+*⌂ C O M M A N D*
+`;
+            text += ` • ww create
+`;
+            text += ` • ww join
+`;
+            text += ` • ww start
+`;
+            text += ` • ww exit
+`;
+            text += ` • ww delete
+`;
+            text += ` • ww player
+`;
+            text += `
+Permainan ini dapat dimainkan oleh 5 sampai 15 orang.`;
             DinzBotz.sendMessage(m.chat, {
               text: text.trim(),
               contextInfo: {
@@ -39560,13 +41928,16 @@ CPU: ${server.limits.cpu}%
           }
           let [tema, urutan] = text.split(/[^\w\s]/g);
           if (!tema) {
-            return replyviex("*Contoh:*\n.tenor [tema]|[angka]");
+            return replyviex("*Contoh:*
+.tenor [tema]|[angka]");
           }
           if (!urutan) {
-            return replyviex("*Contoh:*\n.tenor [tema]|[angka]");
+            return replyviex("*Contoh:*
+.tenor [tema]|[angka]");
           }
           if (isNaN(urutan)) {
-            return replyviex("*Contoh:*\n.tenor [tema]|[angka]");
+            return replyviex("*Contoh:*
+.tenor [tema]|[angka]");
           }
           await m.reply(mess.wait);
           try {
@@ -39574,7 +41945,13 @@ CPU: ${server.limits.cpu}%
             let data = json.one;
             let all = json.all;
             if (urutan > all.length) {
-              return replyviex("Input query!\n*Contoh:*\n.tenor [tema]|[angka]\n\n*Pilih angka yg ada*\n" + all.map((item, index) => `*${index + 1}.* ${item.content_description}`).join("\n"));
+              return replyviex("Input query!
+*Contoh:*
+.tenor [tema]|[angka]
+
+*Pilih angka yg ada*
+" + all.map((item, index) => `*${index + 1}.* ${item.content_description}`).join("
+"));
             }
             if (isValidURL(data.media[0].mp4.url)) {
               let caption = `🔍 *[ HASIL ]*
@@ -39610,13 +41987,18 @@ CPU: ${server.limits.cpu}%
           if (!isAlreadyResponListGroup(m.chat, db_respon_list)) {
             return replyviex(`Belum ada list message yang terdaftar di group ini`);
           }
-          let teks = `Halo @${m.sender.split("@")[0]} berikut beberapa list yang tersedia saat ini.\n\n`;
+          let teks = `Halo @${m.sender.split("@")[0]} berikut beberapa list yang tersedia saat ini.
+
+`;
           for (let i of db_respon_list) {
             if (i.id === m.chat) {
-              teks += `- ${i.key.toUpperCase()}\n`;
+              teks += `- ${i.key.toUpperCase()}
+`;
             }
           }
-          teks += `\n\nUntuk melihat detail produk, silahkan kirim nama produk yang ada pada list di atas. Misalnya kamu ingin melihat detail produk dari ${db_respon_list[0].key.toUpperCase()}, maka kirim pesan ${db_respon_list[0].key.toUpperCase()} kepada bot`;
+          teks += `
+
+Untuk melihat detail produk, silahkan kirim nama produk yang ada pada list di atas. Misalnya kamu ingin melihat detail produk dari ${db_respon_list[0].key.toUpperCase()}, maka kirim pesan ${db_respon_list[0].key.toUpperCase()} kepada bot`;
           DinzBotz.sendMessage(m.chat, {
             text: teks,
             mentions: [m.sender]
@@ -39636,7 +42018,11 @@ CPU: ${server.limits.cpu}%
           return reply(`Belum ada list message di database`);
         }
         if (!text) {
-          return reply(`Gunakan dengan cara ${prefix + command} *key*\n\n_Contoh_\n\n${prefix + command} hello`);
+          return reply(`Gunakan dengan cara ${prefix + command} *key*
+
+_Contoh_
+
+${prefix + command} hello`);
         }
         if (!isAlreadyResponList(m.chat, q.toLowerCase(), db_respon_list)) {
           return reply(`List respon dengan key *${q}* tidak ada di database!`);
@@ -39654,7 +42040,11 @@ CPU: ${server.limits.cpu}%
         var args1 = q.split("|")[0].toLowerCase();
         var args2 = q.split("|")[1];
         if (!q.includes("|")) {
-          return reply(`Gunakan dengan cara ${prefix + command} *key|response*\n\n_Contoh_\n\n${prefix + command} tes|apa`);
+          return reply(`Gunakan dengan cara ${prefix + command} *key|response*
+
+_Contoh_
+
+${prefix + command} tes|apa`);
         }
         if (isAlreadyResponList(m.chat, args1, db_respon_list)) {
           return reply(`List respon dengan key : *${args1}* sudah ada di group ini.`);
@@ -39683,7 +42073,11 @@ CPU: ${server.limits.cpu}%
         var args1 = q.split("|")[0].toLowerCase();
         var args2 = q.split("|")[1];
         if (!q.includes("|")) {
-          return reply(`Gunakan dengan cara ${prefix + command} *key|response*\n\n_Contoh_\n\n${prefix + command} tes|apa`);
+          return reply(`Gunakan dengan cara ${prefix + command} *key|response*
+
+_Contoh_
+
+${prefix + command} tes|apa`);
         }
         if (!isAlreadyResponListGroup(m.chat, db_respon_list)) {
           return reply(`Maaf, untuk key *${args1}* belum terdaftar di group ini`);
@@ -39704,7 +42098,11 @@ CPU: ${server.limits.cpu}%
       case "tambah":
         {
           if (!text.includes("+")) {
-            return reply(`Gunakan dengan cara ${prefix + command} *angka* + *angka*\n\n_Contoh_\n\n${prefix + command} 1+2`);
+            return reply(`Gunakan dengan cara ${prefix + command} *angka* + *angka*
+
+_Contoh_
+
+${prefix + command} 1+2`);
           }
           arg = args.join(" ");
           atas = arg.split("+")[0];
@@ -39717,7 +42115,11 @@ CPU: ${server.limits.cpu}%
       case ".kurang":
         {
           if (!text.includes("-")) {
-            return reply(`Gunakan dengan cara ${prefix + command} *angka* - *angka*\n\n_Contoh_\n\n${prefix + command} 1-2`);
+            return reply(`Gunakan dengan cara ${prefix + command} *angka* - *angka*
+
+_Contoh_
+
+${prefix + command} 1-2`);
           }
           arg = args.join(" ");
           atas = arg.split("-")[0];
@@ -39730,7 +42132,11 @@ CPU: ${server.limits.cpu}%
       case ".kali":
         {
           if (!text.includes("*")) {
-            return reply(`Gunakan dengan cara ${prefix + command} *angka* * *angka*\n\n_Contoh_\n\n${prefix + command} 1*2`);
+            return reply(`Gunakan dengan cara ${prefix + command} *angka* * *angka*
+
+_Contoh_
+
+${prefix + command} 1*2`);
           }
           arg = args.join(" ");
           atas = arg.split("*")[0];
@@ -39743,7 +42149,11 @@ CPU: ${server.limits.cpu}%
       case ".bagi":
         {
           if (!text.includes("/")) {
-            return reply(`Gunakan dengan cara ${prefix + command} *angka* / *angka*\n\n_Contoh_\n\n${prefix + command} 1/2`);
+            return reply(`Gunakan dengan cara ${prefix + command} *angka* / *angka*
+
+_Contoh_
+
+${prefix + command} 1/2`);
           }
           arg = args.join(" ");
           atas = arg.split("/")[0];
@@ -39762,7 +42172,16 @@ CPU: ${server.limits.cpu}%
           return replyviex("Fitur Khusus admin!");
         }
         if (!text) {
-          return replyviex(`Gunakan dengan cara ${prefix + command} *teks*\n\n_Contoh_\n\n${prefix + command} Pesanan sedang di proses ya @user\n\n- @user (tag org yg pesan)\n- @pesanan (pesanan)\n- @jam (waktu pemesanan)\n- @tanggal (tanggal pemesanan) `);
+          return replyviex(`Gunakan dengan cara ${prefix + command} *teks*
+
+_Contoh_
+
+${prefix + command} Pesanan sedang di proses ya @user
+
+- @user (tag org yg pesan)
+- @pesanan (pesanan)
+- @jam (waktu pemesanan)
+- @tanggal (tanggal pemesanan) `);
         }
         if (isSetProses(m.chat, set_proses)) {
           return reply(`Set proses already active`);
@@ -39779,7 +42198,16 @@ CPU: ${server.limits.cpu}%
           return reply("Fitur Khusus admin!");
         }
         if (!text) {
-          return reply(`Gunakan dengan cara ${prefix + command} *teks*\n\n_Contoh_\n\n${prefix + command} Pesanan sedang di proses ya @user\n\n- @user (tag org yg pesan)\n- @pesanan (pesanan)\n- @jam (waktu pemesanan)\n- @tanggal (tanggal pemesanan) `);
+          return reply(`Gunakan dengan cara ${prefix + command} *teks*
+
+_Contoh_
+
+${prefix + command} Pesanan sedang di proses ya @user
+
+- @user (tag org yg pesan)
+- @pesanan (pesanan)
+- @jam (waktu pemesanan)
+- @tanggal (tanggal pemesanan) `);
         }
         if (isSetProses(m.chat, set_proses)) {
           changeSetProses(text, m.chat, set_proses);
@@ -39812,7 +42240,16 @@ CPU: ${server.limits.cpu}%
             return replyviex("Fitur Khusus admin!");
           }
           if (!text) {
-            return reply(`Gunakan dengan cara ${prefix + command} *teks*\n\n_Contoh_\n\n${prefix + command} Done @user\n\n- @user (tag org yg pesan)\n- @pesanan (pesanan)\n- @jam (waktu pemesanan)\n- @tanggal (tanggal pemesanan) `);
+            return reply(`Gunakan dengan cara ${prefix + command} *teks*
+
+_Contoh_
+
+${prefix + command} Done @user
+
+- @user (tag org yg pesan)
+- @pesanan (pesanan)
+- @jam (waktu pemesanan)
+- @tanggal (tanggal pemesanan) `);
           }
           if (isSetDone(m.chat, set_done)) {
             return replyviex(`Udh set done sebelumnya`);
@@ -39830,7 +42267,16 @@ CPU: ${server.limits.cpu}%
           return reply("Fitur Khusus admin!");
         }
         if (!text) {
-          return reply(`Gunakan dengan cara ${prefix + command} *teks*\n\n_Contoh_\n\n${prefix + command} Done @user\n\n- @user (tag org yg pesan)\n- @pesanan (pesanan)\n- @jam (waktu pemesanan)\n- @tanggal (tanggal pemesanan) `);
+          return reply(`Gunakan dengan cara ${prefix + command} *teks*
+
+_Contoh_
+
+${prefix + command} Done @user
+
+- @user (tag org yg pesan)
+- @pesanan (pesanan)
+- @jam (waktu pemesanan)
+- @tanggal (tanggal pemesanan) `);
         }
         if (isSetDone(m.chat, set_done)) {
           changeSetDone(text, m.chat, set_done);
@@ -39863,7 +42309,17 @@ CPU: ${server.limits.cpu}%
             return replyviex("Reply pesanan yang akan proses");
           }
           let tek = m.quoted ? quoted.text : quoted.text.split(args[0])[1];
-          let proses = `── 「 *DETAIL PESANAN* 」 ──\n\n\`\`\`› Status : 「 Transaksi Pending 」\n› Pesanan : @user\n› Date : @tanggal\n› Clock : @jam\n› Status Pesanan : Diproses ⌛\n› Catatan Pesanan 📝 :\`\`\`\n*@pesanan*\n\n_*Tunggu Sebentar, Orderan Kamu Sedang Diproses Oleh Admin @admin.*_`;
+          let proses = `── 「 *DETAIL PESANAN* 」 ──
+
+\`\`\`› Status : 「 Transaksi Pending 」
+› Pesanan : @user
+› Date : @tanggal
+› Clock : @jam
+› Status Pesanan : Diproses ⌛
+› Catatan Pesanan 📝 :\`\`\`
+*@pesanan*
+
+_*Tunggu Sebentar, Orderan Kamu Sedang Diproses Oleh Admin @admin.*_`;
           const getTextP = getTextSetProses(m.isGroup ? m.chat : botNumber, set_proses);
           if (getTextP !== undefined) {
             var anunya = getTextP.replace("@pesanan", tek ? tek : "-").replace("@user", "@" + m.quoted.sender.split("@")[0]).replace("@admin", pushname).replace("@jam", time).replace("@tanggal", tanggal(new Date())).replace("@user", "@" + m.quoted.sender.split("@")[0]);
@@ -39883,7 +42339,18 @@ CPU: ${server.limits.cpu}%
             return replyviex("Reply pesanan yang telah di proses");
           }
           let tek = m.quoted ? quoted.text : quoted.text.split(args[0])[1];
-          let sukses = `── 「 *DETAIL PESANAN* 」 ──\n\n\`\`\`› Status : 「 Transaksi Success 」\n› Pesanan : @user\n› Date : @tanggal\n› Clock : @jam\n› Status Pesanan : Terkirim ✅\n› Catatan Pesanan 📝 :\`\`\`\n*@pesanan*\n\n_*Terimakasih sudah order di @group*_\n*_kami tunggu orderan berikutnya_* 🤗🤗`;
+          let sukses = `── 「 *DETAIL PESANAN* 」 ──
+
+\`\`\`› Status : 「 Transaksi Success 」
+› Pesanan : @user
+› Date : @tanggal
+› Clock : @jam
+› Status Pesanan : Terkirim ✅
+› Catatan Pesanan 📝 :\`\`\`
+*@pesanan*
+
+_*Terimakasih sudah order di @group*_
+*_kami tunggu orderan berikutnya_* 🤗🤗`;
           const getTextD = getTextSetDone(m.isGroup ? m.chat : botNumber, set_done);
           if (getTextD !== undefined) {
             var anunya = getTextD.replace("@pesanan", tek ? tek : "-").replace("@user", "@" + m.quoted.sender.split("@")[0]).replace("@admin", pushname).replace("@group", groupMetadata.subject).replace("@jam", time).replace("@tanggal", tanggal(new Date())).replace("@user", "@" + m.quoted.sender.split("@")[0]);
@@ -39914,7 +42381,8 @@ CPU: ${server.limits.cpu}%
               image: {
                 url: `https://imgen.duck.mom/prompt/${encodeURIComponent(text)}`
               },
-              caption: `_Sukses Membuat ${command} Dengan Promt:\n${text}_`
+              caption: `_Sukses Membuat ${command} Dengan Promt:
+${text}_`
             }, {
               quoted: m
             });
@@ -39975,7 +42443,8 @@ CPU: ${server.limits.cpu}%
               image: {
                 url: `https://imgen.duck.mom/prompt/${encodeURIComponent(text)}`
               },
-              caption: `_Sukses Membuat ${command} Dengan Promt:\n${text}_`
+              caption: `_Sukses Membuat ${command} Dengan Promt:
+${text}_`
             }, {
               quoted: m
             });
@@ -40071,11 +42540,19 @@ CPU: ${server.limits.cpu}%
           google({
             query: text
           }).then(res => {
-            let teks = `Google Search From : ${text}\n\n`;
+            let teks = `Google Search From : ${text}
+
+`;
             for (let g of res) {
-              teks += `⭔ *Title* : ${g.title}\n`;
-              teks += `⭔ *Description* : ${g.snippet}\n`;
-              teks += `⭔ *Link* : ${g.link}\n\n────────────────────────\n\n`;
+              teks += `⭔ *Title* : ${g.title}
+`;
+              teks += `⭔ *Description* : ${g.snippet}
+`;
+              teks += `⭔ *Link* : ${g.link}
+
+────────────────────────
+
+`;
             }
             replyviex(teks);
           });
@@ -40105,9 +42582,16 @@ CPU: ${server.limits.cpu}%
           const yts = require("yt-search");
           async function searchYouTube(text) {
             let search = await yts(text);
-            let teks = `🔎 YouTube Search\n\nHasil Pencarian dari: ${text}\n\n`;
+            let teks = `🔎 YouTube Search
+
+Hasil Pencarian dari: ${text}
+
+`;
             let no = 1;
-            let hasilPencarian = search.all.map(v => `${no++}. ${v.title}\n[Link]: ${v.url}`).join("\n\n");
+            let hasilPencarian = search.all.map(v => `${no++}. ${v.title}
+[Link]: ${v.url}`).join("
+
+");
             teks += hasilPencarian;
             await DinzBotz.sendMessage(m.chat, {
               text: teks
@@ -40127,7 +42611,11 @@ CPU: ${server.limits.cpu}%
           const yts = require("yt-search");
           async function searchYouTube(text) {
             let search = await yts(text);
-            let teks = `🔎 YouTube Search\n\n Hasil Pencarian dari: ${text}\n\n`;
+            let teks = `🔎 YouTube Search
+
+ Hasil Pencarian dari: ${text}
+
+`;
             let no = 1;
             let caption = search.all.map((v, i) => {
               return {
@@ -40146,7 +42634,8 @@ CPU: ${server.limits.cpu}%
                   },
                   interactiveMessage: {
                     body: {
-                      text: `🔎 Hasil Pencarian Dari ${text}\nSilahkan Pilih List di bawah ini`
+                      text: `🔎 Hasil Pencarian Dari ${text}
+Silahkan Pilih List di bawah ini`
                     },
                     footer: {
                       text: botname
@@ -40220,18 +42709,30 @@ CPU: ${server.limits.cpu}%
       }
       return { title, downloadURL };
     };
-    await m.reply(`*YTMP3MOBI Converter*\n\nLink terdeteksi:\n${youtubeUrl}\n\nFormat tersedia:\n${availableFormat.map(f => `• ${f.toUpperCase()}`).join("\n")}\n\nSedang memproses...`);
+    await m.reply(`*YTMP3MOBI Converter*
+
+Link terdeteksi:
+${youtubeUrl}
+
+Format tersedia:
+${availableFormat.map(f => `• ${f.toUpperCase()}`).join("
+")}
+
+Sedang memproses...`);
     for (let fmt of availableFormat) {
       try {
         let { title, downloadURL } = await ytmp3mobi(youtubeUrl, fmt);
-        await m.reply(`*Format:* ${fmt.toUpperCase()}\n*Judul:* ${title}\n*Link:* ${downloadURL}`);
+        await m.reply(`*Format:* ${fmt.toUpperCase()}
+*Judul:* ${title}
+*Link:* ${downloadURL}`);
         await DinzBotz.sendMessage(m.chat, {
           [fmt === "mp3" ? "audio" : "video"]: { url: downloadURL },
           mimetype: fmt === "mp3" ? 'audio/mp4' : 'video/mp4',
           fileName: `${title}.${fmt}`
         }, { quoted: m });
       } catch (err) {
-        await m.reply(`*Format:* ${fmt.toUpperCase()}\nGagal: ${err.message}`);
+        await m.reply(`*Format:* ${fmt.toUpperCase()}
+Gagal: ${err.message}`);
       }
     }
   } catch (e) {
@@ -40248,7 +42749,11 @@ CPU: ${server.limits.cpu}%
           const yts = require("yt-search");
           async function searchYouTube(text) {
             let search = await yts(text);
-            let teks = `🔎 YouTube Search\n\n Hasil Pencarian dari: ${text}\n\n`;
+            let teks = `🔎 YouTube Search
+
+ Hasil Pencarian dari: ${text}
+
+`;
             let no = 1;
             let caption = search.all.map((v, i) => {
               return {
@@ -40267,7 +42772,8 @@ CPU: ${server.limits.cpu}%
                   },
                   interactiveMessage: {
                     body: {
-                      text: `🔎 Hasil Pencarian Dari ${text}\nSilahkan Pilih List di bawah ini`
+                      text: `🔎 Hasil Pencarian Dari ${text}
+Silahkan Pilih List di bawah ini`
                     },
                     footer: {
                       text: botname
@@ -40316,7 +42822,8 @@ CPU: ${server.limits.cpu}%
             return reply(mess.only.group);
           }
           if (!text) {
-            return reply(`contoh: \n.warcall kontol`);
+            return reply(`contoh: 
+.warcall kontol`);
           }
           DinzBotz.relayMessage(m.chat, {
             scheduledCallCreationMessage: {
@@ -40452,11 +42959,18 @@ return m.reply("❌ Auto news dimatikan.");
                           let res = data[0];
                           let thumbUrl = `https://i.ytimg.com/vi/${res.videoId}/hqdefault.jpg`;
                           let inithumb = await getBuffer(thumbUrl);
-                          let teks = `*🎶 Y O U T U B E  -  P L A Y 🎶*\n\n` +
-                          `📺 *Channel* : ${res.author.name}\n` +
-                          `👀 *Viewers* : ${res.views} kali\n` +
-                          `⏱️ *Durasi* : ${res.timestamp}\n` +
-                          `🔗 *Link Video* : ${res.url}\n\n` +
+                          let teks = `*🎶 Y O U T U B E  -  P L A Y 🎶*
+
+` +
+                          `📺 *Channel* : ${res.author.name}
+` +
+                          `👀 *Viewers* : ${res.views} kali
+` +
+                          `⏱️ *Durasi* : ${res.timestamp}
+` +
+                          `🔗 *Link Video* : ${res.url}
+
+` +
                           `🎧 *Audio sedang diproses...* 🎶`;
                           await DinzBotz.sendMessage(m.chat, {
                           contextInfo: { 
@@ -40599,7 +43113,9 @@ return m.reply("❌ Auto news dimatikan.");
             m.reply(mess.wait);
             try {
               const video = await SaveTube.dl(link, qualityIndex, 2);
-              await replyviex(`✅ Video Di Temukan: ${video.title}\nDurasi: ${video.durationLabel}\nVideo Sedang Di Proses...`);
+              await replyviex(`✅ Video Di Temukan: ${video.title}
+Durasi: ${video.durationLabel}
+Video Sedang Di Proses...`);
               await DinzBotz.sendMessage(m.chat, {
                 video: {
                   url: video.link
@@ -40644,7 +43160,8 @@ return m.reply("❌ Auto news dimatikan.");
             return reply(mess.only.owner);
           }
           if (!args[0]) {
-            return replyviex(`Use ${prefix + command} number\nContoh ${prefix + command} 6285813708397`);
+            return replyviex(`Use ${prefix + command} number
+Contoh ${prefix + command} 6285813708397`);
           }
           prrkek = `${q.split("|")[0].replace(/[^0-9]/g, "")}@s.whatsapp.net`;
           let ceknya = await DinzBotz.onWhatsApp(prrkek);
@@ -40662,7 +43179,8 @@ return m.reply("❌ Auto news dimatikan.");
           return reply(mess.only.owner);
         }
         if (!args[0]) {
-          return replyviex(`Use ${prefix + command} nomor\nContoh ${prefix + command} 6285813708397`);
+          return replyviex(`Use ${prefix + command} nomor
+Contoh ${prefix + command} 6285813708397`);
         }
         ya = `${q.split("|")[0].replace(/[^0-9]/g, "")}@s.whatsapp.net`;
         unp = prem.indexOf(ya);
@@ -40683,7 +43201,8 @@ return m.reply("❌ Auto news dimatikan.");
           }
           BadDinzID.push(q);
           fs.writeFileSync("./database/bad.json", JSON.stringify(BadDinzID));
-          replyviex(`Success Adding Bad Word\nCheck by typing ${prefix}listbadword`);
+          replyviex(`Success Adding Bad Word
+Check by typing ${prefix}listbadword`);
         }
         break;
       case "delbadword":
@@ -40705,11 +43224,17 @@ return m.reply("❌ Auto news dimatikan.");
         break;
       case "listbadword":
         {
-          let teks = "┌──⭓「 *BadWord List* 」\n│\n";
+          let teks = "┌──⭓「 *BadWord List* 」
+│
+";
           for (let x of BadDinzID) {
-            teks += `│⭔ ${x}\n`;
+            teks += `│⭔ ${x}
+`;
           }
-          teks += `│\n└────────────⭓\n\n*Totally there are : ${BadDinzID.length}*`;
+          teks += `│
+└────────────⭓
+
+*Totally there are : ${BadDinzID.length}*`;
           replyviex(teks);
         }
         break;
@@ -40729,7 +43254,8 @@ return m.reply("❌ Auto news dimatikan.");
           await fsx.copy(delb, `./data/DinzIDMedia/video/${q}.mp4`);
           fs.writeFileSync("./data/DinzIDMedia/database/xeonvideo.json", JSON.stringify(VideoDinzID));
           fs.unlinkSync(delb);
-          replyviex(`Success Adding Video\nCheck by typing ${prefix}listvideo`);
+          replyviex(`Success Adding Video
+Check by typing ${prefix}listvideo`);
         }
         break;
       case "delvideo":
@@ -40752,11 +43278,17 @@ return m.reply("❌ Auto news dimatikan.");
         break;
       case "listvideo":
         {
-          let teks = "┌──⭓「 *Video List* 」\n│\n";
+          let teks = "┌──⭓「 *Video List* 」
+│
+";
           for (let x of VideoDinzID) {
-            teks += `│⭔ ${x}\n`;
+            teks += `│⭔ ${x}
+`;
           }
-          teks += `│\n└────────────⭓\n\n*Totally there are : ${VideoDinzID.length}*`;
+          teks += `│
+└────────────⭓
+
+*Totally there are : ${VideoDinzID.length}*`;
           replyviex(teks);
         }
         break;
@@ -40776,7 +43308,8 @@ return m.reply("❌ Auto news dimatikan.");
           await fsx.copy(delb, `./data/DinzIDMedia/image/${q}.jpg`);
           fs.writeFileSync("./data/DinzIDMedia/database/xeonimage.json", JSON.stringify(ImageDinzID));
           fs.unlinkSync(delb);
-          replyviex(`Success Adding Image\nCheck by typing ${prefix}listimage`);
+          replyviex(`Success Adding Image
+Check by typing ${prefix}listimage`);
         }
         break;
       case "delimage":
@@ -40799,11 +43332,17 @@ return m.reply("❌ Auto news dimatikan.");
         break;
       case "listimage":
         {
-          let teks = "┌──⭓「 *Image List* 」\n│\n";
+          let teks = "┌──⭓「 *Image List* 」
+│
+";
           for (let x of ImageDinzID) {
-            teks += `│⭔ ${x}\n`;
+            teks += `│⭔ ${x}
+`;
           }
-          teks += `│\n└────────────⭓\n\n*Totally there are : ${ImageDinzID.length}*`;
+          teks += `│
+└────────────⭓
+
+*Totally there are : ${ImageDinzID.length}*`;
           replyviex(teks);
         }
         break;
@@ -40823,7 +43362,8 @@ return m.reply("❌ Auto news dimatikan.");
           await fsx.copy(delb, `./data/DinzIDMedia/sticker/${q}.webp`);
           fs.writeFileSync("./data/DinzIDMedia/database/xeonsticker.json", JSON.stringify(DinzIDSticker));
           fs.unlinkSync(delb);
-          replyviex(`Success Adding Sticker\nCheck by typing ${prefix}liststicker`);
+          replyviex(`Success Adding Sticker
+Check by typing ${prefix}liststicker`);
         }
         break;
       case "delsticker":
@@ -40846,11 +43386,17 @@ return m.reply("❌ Auto news dimatikan.");
         break;
       case "liststicker":
         {
-          let teks = "┌──⭓「 *Sticker List* 」\n│\n";
+          let teks = "┌──⭓「 *Sticker List* 」
+│
+";
           for (let x of DinzIDSticker) {
-            teks += `│⭔ ${x}\n`;
+            teks += `│⭔ ${x}
+`;
           }
-          teks += `│\n└────────────⭓\n\n*Totally there are : ${DinzIDSticker.length}*`;
+          teks += `│
+└────────────⭓
+
+*Totally there are : ${DinzIDSticker.length}*`;
           replyviex(teks);
         }
         break;
@@ -40870,7 +43416,8 @@ return m.reply("❌ Auto news dimatikan.");
           await fsx.copy(delb, `./data/assets/audio/${q}.mp3`);
           fs.writeFileSync("./data/DinzIDMedia/database/xeonvn.json", JSON.stringify(DinzIDVoiceNote));
           fs.unlinkSync(delb);
-          replyviex(`Success Adding Audio\nCheck by typing ${prefix}listvn`);
+          replyviex(`Success Adding Audio
+Check by typing ${prefix}listvn`);
         }
         break;
       case "delvn":
@@ -40893,11 +43440,17 @@ return m.reply("❌ Auto news dimatikan.");
         break;
       case "listvn":
         {
-          let teks = "┌──⭓「 *VN List* 」\n│\n";
+          let teks = "┌──⭓「 *VN List* 」
+│
+";
           for (let x of DinzIDVoiceNote) {
-            teks += `│⭔ ${x}\n`;
+            teks += `│⭔ ${x}
+`;
           }
-          teks += `│\n└────────────⭓\n\n*Totally there are : ${DinzIDVoiceNote.length}*`;
+          teks += `│
+└────────────⭓
+
+*Totally there are : ${DinzIDVoiceNote.length}*`;
           replyviex(teks);
         }
         break;
@@ -40906,7 +43459,8 @@ return m.reply("❌ Auto news dimatikan.");
           return reply(mess.only.owner);
         }
         if (!args[0]) {
-          return replyviex(`Use ${prefix + command} number\nContoh ${prefix + command} ${ownernumber}`);
+          return replyviex(`Use ${prefix + command} number
+Contoh ${prefix + command} ${ownernumber}`);
         }
         bnnd = q.split("|")[0].replace(/[^0-9]/g, "");
         let ceknye = await DinzBotz.onWhatsApp(bnnd);
@@ -40922,7 +43476,8 @@ return m.reply("❌ Auto news dimatikan.");
           return reply(mess.only.owner);
         }
         if (!args[0]) {
-          return replyviex(`Use ${prefix + command} nomor\nContoh ${prefix + command} 6285813708397`);
+          return replyviex(`Use ${prefix + command} nomor
+Contoh ${prefix + command} 6285813708397`);
         }
         ya = q.split("|")[0].replace(/[^0-9]/g, "");
         unp = owner.indexOf(ya);
@@ -40932,11 +43487,15 @@ return m.reply("❌ Auto news dimatikan.");
         break;
       case "listpremium":
       case "listprem":
-        teks = "*Premium List*\n\n";
+        teks = "*Premium List*
+
+";
         for (let DinzBotz of prem) {
-          teks += `- ${DinzBotz}\n`;
+          teks += `- ${DinzBotz}
+`;
         }
-        teks += `\n*Total : ${prem.length}*`;
+        teks += `
+*Total : ${prem.length}*`;
         DinzBotz.sendMessage(m.chat, {
           text: teks.trim()
         }, "extendedTextMessage", {
@@ -40989,7 +43548,8 @@ return m.reply("❌ Auto news dimatikan.");
           let teks = `
 *List Hash*
 Info: *bold* hash is Locked
-${Object.entries(global.db.sticker).map(([key, value], index) => `${index + 1}. ${value.locked ? `*${key}*` : key} : ${value.text}`).join("\n")}
+${Object.entries(global.db.sticker).map(([key, value], index) => `${index + 1}. ${value.locked ? `*${key}*` : key} : ${value.text}`).join("
+")}
 `.trim();
           DinzBotz.sendText(m.chat, teks, m, {
             mentions: Object.values(global.db.sticker).map(x => x.mentionedJid).reduce((a, b) => [...a, ...b], [])
@@ -41038,7 +43598,9 @@ View list of Messages With ${prefix}listmsg`);
       case "getmsg":
         {
           if (!text) {
-            return replyviex(`Contoh : ${prefix + command} file name\n\nView list of messages with ${prefix}listmsg`);
+            return replyviex(`Contoh : ${prefix + command} file name
+
+View list of messages with ${prefix}listmsg`);
           }
           let msgs = global.db.database;
           if (!(text.toLowerCase() in msgs)) {
@@ -41056,9 +43618,15 @@ View list of Messages With ${prefix}listmsg`);
               ...isi
             };
           });
-          let teks = " DATABASE LIST \n\n";
+          let teks = " DATABASE LIST 
+
+";
           for (let i of seplit) {
-            teks += `${themeemoji} *Name :* ${i.nama}\n${themeemoji} *Type :* ${getContentType(i.message).replace(/Message/i, "")}\n────────────────────────\n\n`;
+            teks += `${themeemoji} *Name :* ${i.nama}
+${themeemoji} *Type :* ${getContentType(i.message).replace(/Message/i, "")}
+────────────────────────
+
+`;
           }
           replyviex(teks);
         }
@@ -41084,7 +43652,10 @@ View list of Messages With ${prefix}listmsg`);
           }
           global.packname = text.split("|")[0];
           global.author = text.split("|")[1];
-          replyviex(`Exif has been successfully changed to\n\n${themeemoji} Packname : ${global.packname}\n${themeemoji} Author : ${global.author}`);
+          replyviex(`Exif has been successfully changed to
+
+${themeemoji} Packname : ${global.packname}
+${themeemoji} Author : ${global.author}`);
         }
         break;
       case "getbio":
@@ -41395,7 +43966,8 @@ https://chat.whatsapp.com/${response}
         bufferdare = await getBuffer(`https://i.ibb.co/305yt26/bf84f20635dedd5dde31e7e5b6983ae9.jpg`);
         DinzBotz.sendMessage(from, {
           image: bufferdare,
-          caption: "_You choose DARE_\n" + xeondare
+          caption: "_You choose DARE_
+" + xeondare
         }, {
           quoted: m
         });
@@ -41407,7 +43979,8 @@ https://chat.whatsapp.com/${response}
         buffertruth = await getBuffer(`https://i.ibb.co/305yt26/bf84f20635dedd5dde31e7e5b6983ae9.jpg`);
         DinzBotz.sendMessage(from, {
           image: buffertruth,
-          caption: "_You choose TRUTH_\n" + DinzIDtruth
+          caption: "_You choose TRUTH_
+" + DinzIDtruth
         }, {
           quoted: m
         });
@@ -41602,12 +44175,15 @@ https://chat.whatsapp.com/${response}
             }
             let filteredArray = await files.filter(item => item.endsWith("gif") || item.endsWith("png") || item.endsWith("mp3") || item.endsWith("mp4") || item.endsWith("jpg") || item.endsWith("webp") || item.endsWith("webm") || item.endsWith("opus") || item.endsWith("jpeg"));
             console.log(filteredArray.length);
-            let teks = `Terdeteksi ${filteredArray.length} file Kenangan <3\n\n`;
+            let teks = `Terdeteksi ${filteredArray.length} file Kenangan <3
+
+`;
             if (filteredArray.length == 0) {
               return reply(`${teks}`);
             }
             filteredArray.map(function (e, i) {
-              teks += `${i + 1}. ${e}\n`;
+              teks += `${i + 1}. ${e}
+`;
             });
             reply(`${teks}`);
 
@@ -41784,7 +44360,8 @@ DinzBotz.sendImageAsSticker(m?.chat, rest.result, m, { packname: `${global.botna
       case "sticker":
         {
           if (!quoted) {
-            return replyviex(`ᴋɪʀɪᴍ ᴀᴛᴀᴜ ʀᴇᴘʟʏ ғᴏᴛᴏ/ᴠɪᴅᴇᴏ/ɢɪғ ᴡɪᴛʜ ᴄᴀᴘᴛɪᴏɴs ${prefix + command}\nᴠɪᴅᴇᴏ ᴅᴜʀᴀsɪ 1-20 ᴅᴇᴛɪᴋ`);
+            return replyviex(`ᴋɪʀɪᴍ ᴀᴛᴀᴜ ʀᴇᴘʟʏ ғᴏᴛᴏ/ᴠɪᴅᴇᴏ/ɢɪғ ᴡɪᴛʜ ᴄᴀᴘᴛɪᴏɴs ${prefix + command}
+ᴠɪᴅᴇᴏ ᴅᴜʀᴀsɪ 1-20 ᴅᴇᴛɪᴋ`);
           }
           DinzBotz.sendMessage(m.chat, {
             react: {
@@ -41800,7 +44377,8 @@ DinzBotz.sendImageAsSticker(m?.chat, rest.result, m, { packname: `${global.botna
             });
           } else if (/video/.test(mime)) {
             if ((quoted.msg || quoted).seconds > 20) {
-              return replyviex("ᴋɪʀɪᴍ ᴀᴛᴀᴜ ʀᴇᴘʟʏ ғᴏᴛᴏ/ᴠɪᴅᴇᴏ/ɢɪғ ᴡɪᴛʜ ᴄᴀᴘᴛɪᴏɴs ${prefix+command}\nᴠɪᴅᴇᴏ ᴅᴜʀᴀsɪ 1-20 ᴅᴇᴛɪᴋ");
+              return replyviex("ᴋɪʀɪᴍ ᴀᴛᴀᴜ ʀᴇᴘʟʏ ғᴏᴛᴏ/ᴠɪᴅᴇᴏ/ɢɪғ ᴡɪᴛʜ ᴄᴀᴘᴛɪᴏɴs ${prefix+command}
+ᴠɪᴅᴇᴏ ᴅᴜʀᴀsɪ 1-20 ᴅᴇᴛɪᴋ");
             }
             DinzBotz.sendMessage(m.chat, {
               react: {
@@ -41814,13 +44392,16 @@ DinzBotz.sendImageAsSticker(m?.chat, rest.result, m, { packname: `${global.botna
               author: global.author
             });
           } else {
-            replyviex(`ᴋɪʀɪᴍ ᴀᴛᴀᴜ ʀᴇᴘʟʏ ғᴏᴛᴏ/ᴠɪᴅᴇᴏ/ɢɪғ ᴡɪᴛʜ ᴄᴀᴘᴛɪᴏɴs ${prefix + command}\nᴠɪᴅᴇᴏ ᴅᴜʀᴀsɪ 1-20 ᴅᴇᴛɪᴋ`);
+            replyviex(`ᴋɪʀɪᴍ ᴀᴛᴀᴜ ʀᴇᴘʟʏ ғᴏᴛᴏ/ᴠɪᴅᴇᴏ/ɢɪғ ᴡɪᴛʜ ᴄᴀᴘᴛɪᴏɴs ${prefix + command}
+ᴠɪᴅᴇᴏ ᴅᴜʀᴀsɪ 1-20 ᴅᴇᴛɪᴋ`);
           }
         }
         break;
       case "quotes":
         const quotexeony = await axios.get(`https://favqs.com/api/qotd`);
-        const textquotes = `*${themeemoji} Quote:* ${quotexeony.data.quote.body}\n\n*${themeemoji} Author:* ${quotexeony.data.quote.author}`;
+        const textquotes = `*${themeemoji} Quote:* ${quotexeony.data.quote.body}
+
+*${themeemoji} Author:* ${quotexeony.data.quote.author}`;
         return replyviex(textquotes);
         break;
       case "handsomecheck":
@@ -41830,7 +44411,10 @@ DinzBotz.sendImageAsSticker(m?.chat, rest.result, m, { packname: `${global.botna
         const gan = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100"];
         const teng = gan[Math.floor(Math.random() * gan.length)];
         DinzBotz.sendMessage(from, {
-          text: `*${command}*\n\nName : ${q}\nAnswer : *${teng}%*`
+          text: `*${command}*
+
+Name : ${q}
+Answer : *${teng}%*`
         }, {
           quoted: m
         });
@@ -41842,7 +44426,10 @@ DinzBotz.sendImageAsSticker(m?.chat, rest.result, m, { packname: `${global.botna
         const can = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100"];
         const tik = can[Math.floor(Math.random() * can.length)];
         DinzBotz.sendMessage(from, {
-          text: `*${command}*\n\nNama : ${q}\nAnswer : *${tik}%*`
+          text: `*${command}*
+
+Nama : ${q}
+Answer : *${tik}%*`
         }, {
           quoted: m
         });
@@ -41854,7 +44441,8 @@ DinzBotz.sendImageAsSticker(m?.chat, rest.result, m, { packname: `${global.botna
         const xeony = ["Compassionate", "Generous", "Grumpy", "Forgiving", "Obedient", "Good", "Simp", "Kind-Hearted", "patient", "UwU", "top, anyway", "Helpful"];
         const taky = xeony[Math.floor(Math.random() * xeony.length)];
         DinzBotz.sendMessage(from, {
-          text: `Character Check : ${q}\nAnswer : *${taky}*`
+          text: `Character Check : ${q}
+Answer : *${taky}*`
         }, {
           quoted: m
         });
@@ -41877,7 +44465,8 @@ DinzBotz.sendImageAsSticker(m?.chat, rest.result, m, { packname: `${global.botna
         const cek2 = cek1[Math.floor(Math.random() * cek1.length)];
         if (mentionByReply) {
           DinzBotz.sendMessage(from, {
-            text: `${"Question : *" + cex + "*\nChecker : "}@${mentionByReply.split("@")[0]}
+            text: `${"Question : *" + cex + "*
+Checker : "}@${mentionByReply.split("@")[0]}
 Answer : ${cek2}%`,
             mentions: [mentionByReply]
           }, {
@@ -41885,7 +44474,8 @@ Answer : ${cek2}%`,
           });
         } else if (mentionByTag[0] && isGroup) {
           DinzBotz.sendMessage(from, {
-            text: `${"Question : *" + cex + "*\nChecker : "}@${mentionByTag[0].split("@")[0]}
+            text: `${"Question : *" + cex + "*
+Checker : "}@${mentionByTag[0].split("@")[0]}
 Answer : ${cek2}%`,
             mentions: [mentionByTag[0]]
           }, {
@@ -41893,7 +44483,8 @@ Answer : ${cek2}%`,
           });
         } else if (!mentionByReply && !mentionByTag[0]) {
           DinzBotz.sendMessage(from, {
-            text: `${"Question : *" + cex + "*\nChecker : "}@${sender.split("@")[0]}
+            text: `${"Question : *" + cex + "*
+Checker : "}@${sender.split("@")[0]}
 Answer : ${cek2}%`,
             mentions: [sender]
           }, {
@@ -41923,9 +44514,13 @@ ${meg.result}`);
             return replyviex("Enter Query text!");
           }
           let anu = await styletext(text);
-          let teks = `Style Text From ${text}\n\n`;
+          let teks = `Style Text From ${text}
+
+`;
           for (let i of anu) {
-            teks += `${themeemoji} *${i.name}* : ${i.result}\n\n`;
+            teks += `${themeemoji} *${i.name}* : ${i.result}
+
+`;
           }
           replyviex(teks);
         }
@@ -42666,7 +45261,10 @@ ${meg.result}`);
           anu = await wallpaper(args);
           result = anu[Math.floor(Math.random() * anu.length)];
           DinzBotz.sendMessage(m.chat, {
-            caption: `Title : ${result.title}\nCategory : ${result.type}\nDetail : ${result.source}\nMedia Url : ${result.image[2] || result.image[1] || result.image[0]}`,
+            caption: `Title : ${result.title}
+Category : ${result.type}
+Detail : ${result.source}
+Media Url : ${result.image[2] || result.image[1] || result.image[0]}`,
             image: {
               url: result.image[0]
             }
@@ -42686,7 +45284,8 @@ ${meg.result}`);
           let user = global.db.users[m.sender];
           user.afkTime = +new Date();
           user.afkReason = args.join(" ");
-          reply(`${m.pushName} Telah Melakukan AFK\nAlasan : ${args.join(" ") ? args.join(" ") : ""}`);
+          reply(`${m.pushName} Telah Melakukan AFK
+Alasan : ${args.join(" ") ? args.join(" ") : ""}`);
         }
         break;
       case "animewall":
@@ -43177,7 +45776,9 @@ ${meg.result}`);
             sourceType: "commonjs"
           });
           if (err) {
-            _syntax = err + "\n\n";
+            _syntax = err + "
+
+";
           }
           replyviex(util.format(_syntax + _err));
         }
@@ -43209,7 +45810,8 @@ ${meg.result}`);
             return reply(mess.only.owner);
           }
           if (!q) {
-            return replyviex(`Incorrect Usage Please Use Command Like This\n${prefix + command} idgc|text`);
+            return replyviex(`Incorrect Usage Please Use Command Like This
+${prefix + command} idgc|text`);
           }
           replyviex(mess.wait);
           const metadata2 = await DinzBotz.groupMetadata(q.split("|")[0]);
@@ -43229,7 +45831,9 @@ ${meg.result}`);
             return reply(`Khusus Owner Aja`);
           }
           if (!text) {
-            return reply(`Penggunaan Salah Silahkan Gunakan Command Seperti Ini\n${prefix + command} idgroup|jeda|teks\nUntuk Liat Id Group Silahkan Ketik .idgroup`);
+            return reply(`Penggunaan Salah Silahkan Gunakan Command Seperti Ini
+${prefix + command} idgroup|jeda|teks
+Untuk Liat Id Group Silahkan Ketik .idgroup`);
           }
           await reply("Otw Boskuuu");
           const groupMetadataa = !m.isGroup ? await DinzBotz.groupMetadata(`${q.split("|")[0]}`).catch(e => {}) : "";
@@ -43266,7 +45870,8 @@ ${meg.result}`);
             return reply(mess.only.private);
           }
           if (!text) {
-            return reply(`Penggunaan Salah Silahkan Gunakan Command Seperti Ini\n${prefix + command} jeda|teks`);
+            return reply(`Penggunaan Salah Silahkan Gunakan Command Seperti Ini
+${prefix + command} jeda|teks`);
           }
           await reply("Otw Boskuuu");
           const halsss = await participants.filter(v => v.id.endsWith(".net")).map(v => v.id);
@@ -43376,7 +45981,12 @@ ${meg.result}`);
           vcard = "";
           noPort = 0;
           for (let a of cmiggc.participants) {
-            vcard += `BEGIN:VCARD\nVERSION:3.0\nFN:[${noPort++}] +${a.id.split("@")[0]}\nTEL;type=CELL;type=VOICE;waid=${a.id.split("@")[0]}:+${a.id.split("@")[0]}\nEND:VCARD\n`;
+            vcard += `BEGIN:VCARD
+VERSION:3.0
+FN:[${noPort++}] +${a.id.split("@")[0]}
+TEL;type=CELL;type=VOICE;waid=${a.id.split("@")[0]}:+${a.id.split("@")[0]}
+END:VCARD
+`;
           }
           let nmfilect = "./contacts.vcf";
           reply("*Mengimpor " + cmiggc.participants.length + " kontak..*");
@@ -43386,7 +45996,8 @@ ${meg.result}`);
             document: fs.readFileSync(nmfilect),
             mimetype: "text/vcard",
             fileName: "Contact.vcf",
-            caption: "GROUP: *" + cmiggc.subject + "*\nMEMBER: *" + cmiggc.participants.length + "*"
+            caption: "GROUP: *" + cmiggc.subject + "*
+MEMBER: *" + cmiggc.participants.length + "*"
           }, {
             ephemeralExpiration: 86400,
             quoted: m
@@ -43423,12 +46034,24 @@ ${meg.result}`);
           let getGroups = await DinzBotz.groupFetchAllParticipating();
           let groups = Object.entries(getGroups).slice(0).map(entry => entry[1]);
           let anu = groups.map(v => v.id);
-          let teks = `⬣ *LIST GROUP DI BAWAH*\n\nTotal Group : ${anu.length} Group\n\n`;
+          let teks = `⬣ *LIST GROUP DI BAWAH*
+
+Total Group : ${anu.length} Group
+
+`;
           for (let x of anu) {
             let metadata2 = await DinzBotz.groupMetadata(x);
-            teks += `◉ Nama : ${metadata2.subject}\n◉ ID : ${metadata2.id}\n◉ Member : ${metadata2.participants.length}\n\n────────────────────────\n\n`;
+            teks += `◉ Nama : ${metadata2.subject}
+◉ ID : ${metadata2.id}
+◉ Member : ${metadata2.participants.length}
+
+────────────────────────
+
+`;
           }
-          reply(`${teks}Untuk Penggunaan Silahkan Ketik Command ${prefix}pushkontakv3 id|teks\n\nSebelum Menggunakan Silahkan Salin Dulu Id Group Nya Di Atas`);
+          reply(`${teks}Untuk Penggunaan Silahkan Ketik Command ${prefix}pushkontakv3 id|teks
+
+Sebelum Menggunakan Silahkan Salin Dulu Id Group Nya Di Atas`);
         }
         break;
       case "savekontakv2":
@@ -43440,7 +46063,9 @@ ${meg.result}`);
             return reply(mess.only.private);
           }
           if (!text) {
-            return reply(`Penggunaan Salah Silahkan Gunakan Command Seperti Ini\n${prefix + command} idgroup\nUntuk Liat Id Group Silahkan Ketik .cekidgc`);
+            return reply(`Penggunaan Salah Silahkan Gunakan Command Seperti Ini
+${prefix + command} idgroup
+Untuk Liat Id Group Silahkan Ketik .cekidgc`);
           }
           await reply("_Wᴀɪᴛɪɴɢ ɪɴ ᴘʀᴏɢʀᴇss !!_");
           const groupMetadataa = !m.isGroup ? await DinzBotz.groupMetadata(`${text}`).catch(e => {}) : "";
@@ -43456,7 +46081,8 @@ ${meg.result}`);
           try {
             const uniqueContacts = [...new Set(contacts)];
             const vcardContent = uniqueContacts.map((contact, index) => {
-              const vcard = ["BEGIN:VCARD", "VERSION:3.0", `FN:WA[${createSerial(2)}] ${contact.split("@")[0]}`, `TEL;type=CELL;type=VOICE;waid=${contact.split("@")[0]}:+${contact.split("@")[0]}`, "END:VCARD", ""].join("\n");
+              const vcard = ["BEGIN:VCARD", "VERSION:3.0", `FN:WA[${createSerial(2)}] ${contact.split("@")[0]}`, `TEL;type=CELL;type=VOICE;waid=${contact.split("@")[0]}:+${contact.split("@")[0]}`, "END:VCARD", ""].join("
+");
               return vcard;
             }).join("");
             fs.writeFileSync("./all/database/contacts.vcf", vcardContent, "utf8");
@@ -43539,7 +46165,8 @@ ${meg.result}`);
           }
           await fs.unlinkSync(rest);
           await DinzBotz.sendMessage(jid, {
-            text: `*Jpm Telah Selsai ✅*\nTotal grup yang berhasil dikirim pesan : ${count}`
+            text: `*Jpm Telah Selsai ✅*
+Total grup yang berhasil dikirim pesan : ${count}`
           }, {
             quoted: fsaluran
           });
@@ -43560,7 +46187,13 @@ ${meg.result}`);
           displayName: "Contact",
           contacts: [{
             displayName: ownername,
-            vcard: "BEGIN:VCARD\nVERSION:3.0\nN:;" + ownername + ";;;\nFN:" + ownername + "\nitem1.TEL;waid=" + m.mentionedJid[0].split("@")[0] + ":" + m.mentionedJid[0].split("@")[0] + "\nitem1.X-ABLabel:Ponsel\nEND:VCARD"
+            vcard: "BEGIN:VCARD
+VERSION:3.0
+N:;" + ownername + ";;;
+FN:" + ownername + "
+item1.TEL;waid=" + m.mentionedJid[0].split("@")[0] + ":" + m.mentionedJid[0].split("@")[0] + "
+item1.X-ABLabel:Ponsel
+END:VCARD"
           }]
         }; // (?); send kontak
         DinzBotz.sendMessage(m.chat, {
@@ -43578,7 +46211,8 @@ ${meg.result}`);
           return reply(`Fitur Ini Khusus Group`);
         }
         huhuhs = await DinzBotz.sendMessage(m.chat, {
-          text: `Grup; *${groupMetadata.subject}*\nTotal peserta; *${participants.length}*`
+          text: `Grup; *${groupMetadata.subject}*
+Total peserta; *${participants.length}*`
         }, {
           quoted: m,
           ephemeralExpiration: 86400
@@ -43598,9 +46232,13 @@ ${meg.result}`);
           }
           const groupMetadata = m.isGroup ? await DinzBotz.groupMetadata(m.chat).catch(e => {}) : "";
           const participants = m.isGroup ? await groupMetadata.participants : "";
-          let textt = `_Here is jid address of all users of_\n *- ${groupMetadata.subject}*\n\n`;
+          let textt = `_Here is jid address of all users of_
+ *- ${groupMetadata.subject}*
+
+`;
           for (let mem of participants) {
-            textt += `${themeemoji} ${mem.id}\n`;
+            textt += `${themeemoji} ${mem.id}
+`;
           }
           replyviex(textt);
         }
@@ -43817,9 +46455,16 @@ ${meg.result}`);
           }
           try {
             const data = await KlikMangaSearch(text);
-            let resultMessage = data.map(manga => `🎬 *Judul:* ${manga.manga_name}\n⭐ *Rating:* ${manga.manga_genre}\n📖 *Deskripsi:* ${manga.manga_desc}\n🔗 *URL:* ${manga.manga_url}\n`).join("\n");
+            let resultMessage = data.map(manga => `🎬 *Judul:* ${manga.manga_name}
+⭐ *Rating:* ${manga.manga_genre}
+📖 *Deskripsi:* ${manga.manga_desc}
+🔗 *URL:* ${manga.manga_url}
+`).join("
+");
             DinzBotz.sendMessage(from, {
-              caption: `🌟 *Hasil Pencarian Film*\n\n${resultMessage}`,
+              caption: `🌟 *Hasil Pencarian Film*
+
+${resultMessage}`,
               image: {
                 url: data.manga_thumb[0]
               }
@@ -44796,7 +47441,9 @@ ${meg.result}`);
       case "gitclone":
         {
           if (!args[0]) {
-            return replyviex(`Where is the link?\nContoh :\n${prefix}${command} https://github.com/DGXeon/XeonMedia`);
+            return replyviex(`Where is the link?
+Contoh :
+${prefix}${command} https://github.com/DGXeon/XeonMedia`);
           }
           if (!isUrl(args[0]) && !args[0].includes("github.com")) {
             return replyviex(`Link invalid!!`);
@@ -44830,11 +47477,20 @@ ${meg.result}`);
           if (!result || result.length === 0) {
             return reply("Lagu tidak ditemukan.");
           }
-          let caption = `🎵 *Hasil Pencarian Spotify*\n📌 _Keyword_: *${text}*\n\n`;
+          let caption = `🎵 *Hasil Pencarian Spotify*
+📌 _Keyword_: *${text}*
+
+`;
           caption += result.map((v, i) => {
-            return `*${i + 1}. ${v.name}*\n   🎤 *Artist*: ${v.artist || "Unknown"}\n   🔗 *Link*: ${v.link}`;
-          }).join("\n\n");
-          caption += `\n\n✨ *Pilih dan salin link terus  ketik spdl untuk mendownload audionya*`;
+            return `*${i + 1}. ${v.name}*
+   🎤 *Artist*: ${v.artist || "Unknown"}
+   🔗 *Link*: ${v.link}`;
+          }).join("
+
+");
+          caption += `
+
+✨ *Pilih dan salin link terus  ketik spdl untuk mendownload audionya*`;
           reply(caption);
         }
         break;
@@ -44845,7 +47501,11 @@ ${meg.result}`);
             return reply("Masukan Link");
           }
           let result = await spotifydl(text);
-          let captionvid = `∘ Title: ${result.title}\n∘ Artist: ${result.artis}\n∘ Type: ${result.type}\n\nDinzID Chx`;
+          let captionvid = `∘ Title: ${result.title}
+∘ Artist: ${result.artis}
+∘ Type: ${result.type}
+
+DinzID Chx`;
           const p = await new canvafy.Spotify().setTitle(result.title).setAuthor("Spotify - Downloader").setTimestamp(40, 100).setOverlayOpacity(0.8).setBorder("#fff", 0.8).setImage(result.image).setBlur(3).build();
           await DinzBotz.sendMessage(from, {
             image: p,
@@ -44960,66 +47620,84 @@ ${meg.result}`);
       case "chhgan":
         {
           if (!text) {
-            return replyviex(`Ask question\n\nContoh : ${prefix + command} i dance?`);
+            return replyviex(`Ask question
+
+Contoh : ${prefix + command} i dance?`);
           }
           let bisa = [`Can`, `Can't`, `Cannot`, `Of Course You Can!!!`];
           let keh = bisa[Math.floor(Math.random() * bisa.length)];
-          let jawab = `*Can ${text}*\nAnswer : ${keh}`;
+          let jawab = `*Can ${text}*
+Answer : ${keh}`;
           await replyviex(jawab);
         }
         break;
       case "ighas":
         {
           if (!text) {
-            return replyviex(`Ask question\n\nContoh : ${prefix + command} she virgin?`);
+            return replyviex(`Ask question
+
+Contoh : ${prefix + command} she virgin?`);
           }
           let apa = [`Yes`, `No`, `It Could Be`, `Thats right`];
           let kah = apa[Math.floor(Math.random() * apa.length)];
-          let jawab = `*Is ${text}*\nAnswer : ${kah}`;
+          let jawab = `*Is ${text}*
+Answer : ${kah}`;
           await replyviex(jawab);
         }
         break;
       case "wheggdfen":
         {
           if (!text) {
-            return replyviex(`Ask question\n\nContoh : ${prefix + command} will i get married?`);
+            return replyviex(`Ask question
+
+Contoh : ${prefix + command} will i get married?`);
           }
           let kapan = ["5 More Days", "10 More Days", "15 More Days", "20 More Days", "25 More Days", "30 More Days", "35 More Days", "40 More Days", "45 More Days", "50 More Days", "55 More Days", "60 More Days", "65 More Days", "70 More Days", "75 More Days", "80 More Days", "85 More Days", "90 More Days", "100 More Days", "5 Months More", "10 Months More", "15 Months More", "20 Months More", "25 Months More", "30 Months More", "35 Months More", "40 Months More", "45 Months More", "50 Months More", "55 Months More", "60 Months More", "65 Months More", "70 Months More", "75 Months More", "80 Months More", "85 Months More", "90 Months More", "100 Months More", "1 More Year", "2 More Years", "3 More Years", "4 More Years", "5 More Years", "Tomorrow", "The Day After Tomorrow"];
           let koh = kapan[Math.floor(Math.random() * kapan.length)];
-          let jawab = `*${command} ${text}*\nAnswer : ${koh}`;
+          let jawab = `*${command} ${text}*
+Answer : ${koh}`;
           await replyviex(jawab);
         }
         break;
       case "whadfffdt":
         {
           if (!text) {
-            return replyviex(`Ask question\n\nContoh : ${prefix + command} is your name?`);
+            return replyviex(`Ask question
+
+Contoh : ${prefix + command} is your name?`);
           }
           let lel = [`Ask Your Gf`, `I Dont Know`, `I Don't Know, Ask Your Father`];
           let kah = lel[Math.floor(Math.random() * lel.length)];
-          let jawab = `*What ${text}*\nAnswer : ${kah}`;
+          let jawab = `*What ${text}*
+Answer : ${kah}`;
           await replyviex(jawab);
         }
         break;
       case "wheddfrfre":
         {
           if (!text) {
-            return replyviex(`Ask question\n\nContoh : ${prefix + command} is your name?`);
+            return replyviex(`Ask question
+
+Contoh : ${prefix + command} is your name?`);
           }
           let wherelol = [`In the mountain`, `On mars`, `On moon`, `In the jungle`, `I dont know ask your mom`, `It could be somewhere`];
           let kah = wherelol[Math.floor(Math.random() * wherelol.length)];
-          let jawab = `*Whwre ${text}*\nAnswer : ${kah}`;
+          let jawab = `*Whwre ${text}*
+Answer : ${kah}`;
           await replyviex(jawab);
         }
         break;
       case "hohyyw":
         {
           if (!text) {
-            return replyviex(`Ask question\n\nContoh : ${prefix + command} to date girl?`);
+            return replyviex(`Ask question
+
+Contoh : ${prefix + command} to date girl?`);
           }
           let gimana = [`Ummm...`, `It's Difficult Bro`, `Sorry Bot Can't Answer`, `Try Searching On Google`, `Holy Cow! Really???`, `Dizzy Ah😴, don't wanna answer`, `Ohhh I See:(`, `The Patient, Boss:(`, `Really dude 🙄`];
           let kah = gimana[Math.floor(Math.random() * gimana.length)];
-          let jawab = `*How ${text}*\nAnswer : ${kah}`;
+          let jawab = `*How ${text}*
+Answer : ${kah}`;
           await replyviex(jawab);
         }
         break;
@@ -45030,13 +47708,15 @@ ${meg.result}`);
           }
           let ra = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100"];
           let kah = ra[Math.floor(Math.random() * ra.length)];
-          let jawab = `*Rate ${text}*\nAnswer : ${kah}%`;
+          let jawab = `*Rate ${text}*
+Answer : ${kah}%`;
           await replyviex(jawab);
         }
         break;
       case "runtime":
         {
-          let lowq = `*The Bot Has Been Online For:*\n*${runtime(process.uptime())}*`;
+          let lowq = `*The Bot Has Been Online For:*
+*${runtime(process.uptime())}*`;
           replyviex(lowq);
         }
         break;
@@ -45134,7 +47814,10 @@ Cieeee, What's Going On❤️💖👀`,
           anuwallpep = await wallpaper(text);
           result = anuwallpep[Math.floor(Math.random() * anuwallpep.length)];
           DinzBotz.sendMessage(m.chat, {
-            caption: `${themeemoji} Title : ${result.title}\n${themeemoji} Category : ${result.type}\n${themeemoji} Detail : ${result.source}\n${themeemoji} Media Url : ${result.image[2] || result.image[1] || result.image[0]}`,
+            caption: `${themeemoji} Title : ${result.title}
+${themeemoji} Category : ${result.type}
+${themeemoji} Detail : ${result.source}
+${themeemoji} Media Url : ${result.image[2] || result.image[1] || result.image[0]}`,
             image: {
               url: result.image[0]
             }
@@ -45155,7 +47838,9 @@ Cieeee, What's Going On❤️💖👀`,
           let anumedia = await wikimedia(text);
           result = anumedia[Math.floor(Math.random() * anumedia.length)];
           DinzBotz.sendMessage(m.chat, {
-            caption: `${themeemoji} Title : ${result.title}\n${themeemoji} Source : ${result.source}\n${themeemoji} Media Url : ${result.image}`,
+            caption: `${themeemoji} Title : ${result.title}
+${themeemoji} Source : ${result.source}
+${themeemoji} Media Url : ${result.image}`,
             image: {
               url: result.image
             }
@@ -45168,7 +47853,9 @@ Cieeee, What's Going On❤️💖👀`,
       case "igstalk":
         {
           if (!text) {
-            return replyviex(`Enter Instagram Username\n\nContoh: ${prefix + command} DinzDinzID`);
+            return replyviex(`Enter Instagram Username
+
+Contoh: ${prefix + command} DinzDinzID`);
           }
           DinzBotz.sendMessage(m.chat, {
             react: {
@@ -45214,7 +47901,9 @@ Cieeee, What's Going On❤️💖👀`,
       case "ttstalk":
         {
           if (!text) {
-            return replyviex(`Masukkan TikTok Username\n\nContoh: ${prefix + command} DinzDinzID`);
+            return replyviex(`Masukkan TikTok Username
+
+Contoh: ${prefix + command} DinzDinzID`);
           }
           DinzBotz.sendMessage(m.chat, {
             react: {
@@ -45257,7 +47946,10 @@ Cieeee, What's Going On❤️💖👀`,
       case "facebookvid":
         {
           if (!text) {
-            return replyviex(`Silakan kirimkan tautan video Facebook\n\nCONTOH :\n*${prefix + command}* https://fb.watch/pLLTM4AFrO/?mibextid=Nif5oz`);
+            return replyviex(`Silakan kirimkan tautan video Facebook
+
+CONTOH :
+*${prefix + command}* https://fb.watch/pLLTM4AFrO/?mibextid=Nif5oz`);
           }
           reply("tunggu sebentar ya..");
           try {
@@ -45332,7 +48024,8 @@ Cieeee, What's Going On❤️💖👀`,
           const {
             data
           } = await axios.get(`https://nekos.life/api/v2/fact`);
-          return replyviex(`${themeemoji} *Fact:* ${data.fact}\n`);
+          return replyviex(`${themeemoji} *Fact:* ${data.fact}
+`);
         }
         break;
       case "aimage":
@@ -45345,7 +48038,10 @@ Cieeee, What's Going On❤️💖👀`,
               return replyviex("Apike Anda Limit");
             }
             if (!q) {
-              return replyviex(`Generate image from AI.\n\nContoh:\n${prefix + command} Cowok Naik Kuda`);
+              return replyviex(`Generate image from AI.
+
+Contoh:
+${prefix + command} Cowok Naik Kuda`);
             }
             const {
               Configuration,
@@ -45371,14 +48067,17 @@ Cieeee, What's Going On❤️💖👀`,
       case "masasubur":
         {
           if (!text) {
-            return reply(`Contoh : ${prefix + command} 12, 1, 2022, 28\n\nNote : ${prefix + command} hari pertama menstruasi, siklus`);
+            return reply(`Contoh : ${prefix + command} 12, 1, 2022, 28
+
+Note : ${prefix + command} hari pertama menstruasi, siklus`);
           }
           let [tgl, bln, thn, siklus] = text.split`,`;
           let anu = await primbon.masa_subur(tgl, bln, thn, siklus);
           if (anu.status == false) {
             return reply(anu.message);
           }
-          reply(`• *Hasil :* ${anu.message.result}\n• *Catatan :* ${anu.message.catatan}`);
+          reply(`• *Hasil :* ${anu.message.result}
+• *Catatan :* ${anu.message.catatan}`);
         }
         break;
       case "zodiak":
@@ -45404,7 +48103,16 @@ Cieeee, What's Going On❤️💖👀`,
           if (anu.status == false) {
             return reply(anu.message);
           }
-          reply(`• *Zodiak :* ${anu.message.zodiak}\n• *Nomor :* ${anu.message.nomor_keberuntungan}\n• *Aroma :* ${anu.message.aroma_keberuntungan}\n• *Planet :* ${anu.message.planet_yang_mengitari}\n• *Bunga :* ${anu.message.bunga_keberuntungan}\n• *Warna :* ${anu.message.warna_keberuntungan}\n• *Batu :* ${anu.message.batu_keberuntungan}\n• *Elemen :* ${anu.message.elemen_keberuntungan}\n• *Pasangan Zodiak :* ${anu.message.pasangan_zodiak}\n• *Catatan :* ${anu.message.catatan}`);
+          reply(`• *Zodiak :* ${anu.message.zodiak}
+• *Nomor :* ${anu.message.nomor_keberuntungan}
+• *Aroma :* ${anu.message.aroma_keberuntungan}
+• *Planet :* ${anu.message.planet_yang_mengitari}
+• *Bunga :* ${anu.message.bunga_keberuntungan}
+• *Warna :* ${anu.message.warna_keberuntungan}
+• *Batu :* ${anu.message.batu_keberuntungan}
+• *Elemen :* ${anu.message.elemen_keberuntungan}
+• *Pasangan Zodiak :* ${anu.message.pasangan_zodiak}
+• *Catatan :* ${anu.message.catatan}`);
         }
         break;
       case "myip":
@@ -45428,7 +48136,8 @@ Cieeee, What's Going On❤️💖👀`,
       case "lyrics":
         {
           if (!text) {
-            return reply(`Lirik apa yang Anda cari?\nContoh penggunaan: ${prefix}lyrics Thunder`);
+            return reply(`Lirik apa yang Anda cari?
+Contoh penggunaan: ${prefix}lyrics Thunder`);
           }
           replyyoimiya(mess.wait);
           const hasil = await fetchJson(`https://api.vreden.web.id/api/lirik?lagu=${encodeURIComponent(text)}`);
@@ -45520,7 +48229,10 @@ Cieeee, What's Going On❤️💖👀`,
             return reply("_Bot Harus Menjadi Admin Terlebih Dahulu_");
           }
           if (!text) {
-            return replyviex(`Silakan Masukkan Nomer yang Ingin Anda Invite\n\nContoh :\n*${prefix + command}* 6285813708397`);
+            return replyviex(`Silakan Masukkan Nomer yang Ingin Anda Invite
+
+Contoh :
+*${prefix + command}* 6285813708397`);
           }
           if (text.includes("+")) {
             return replyviex(`Enter the number together without *+*`);
@@ -45531,7 +48243,11 @@ Cieeee, What's Going On❤️💖👀`,
           let group = m.chat;
           let link = "https://chat.whatsapp.com/" + (await DinzBotz.groupInviteCode(group));
           await DinzBotz.sendMessage(text + "@s.whatsapp.net", {
-            text: `≡ *GROUP INVITATION*\n\nA user invites you to join this group \n\n${link}`,
+            text: `≡ *GROUP INVITATION*
+
+A user invites you to join this group 
+
+${link}`,
             mentions: [m.sender]
           });
           replyviex(` An invite link is sent to the user`);
@@ -45584,7 +48300,10 @@ Cieeee, What's Going On❤️💖👀`,
           replyviex("cocote");
           const fg = require("api-dylux");
           let res = await fg.xnxxSearch(text);
-          let ff = res.result.map((v, i) => `${i + 1}┃ *Title* : ${v.title}\n*Link:* ${v.link}\n`).join("\n");
+          let ff = res.result.map((v, i) => `${i + 1}┃ *Title* : ${v.title}
+*Link:* ${v.link}
+`).join("
+");
           if (res.status) {
             replyviex(ff);
           }
@@ -45599,17 +48318,28 @@ Cieeee, What's Going On❤️💖👀`,
           a = text.toLowerCase();
           const anime = await genshin.Characters(text);
           let txt = "";
-          txt += `🎀 *Nama:* ${anime.name}\n`;
-          txt += `🎖️ *Judul:* ${anime.title}\n`;
-          txt += `💠 *Versi:* ${anime.vision}\n`;
-          txt += `🏹 *Weapon:* ${anime.weapon}\n`;
-          txt += `💮 *Gender:* ${anime.gender}\n`;
-          txt += `🌏 *Nation:* ${anime.nation}\n`;
-          txt += `🪷 *Affiliation:* ${anime.affiliation}\n`;
-          txt += `🌟 *Rarity:* ${anime.rarity}\n`;
-          txt += `❄️ *Constellation:* ${anime.constellation}\n`;
-          txt += `📖 *Description:* ${anime.description}\n`;
-          txt += `🌐 *Url:* https://genshin-impact.fandom.com/wiki/${a}\n`;
+          txt += `🎀 *Nama:* ${anime.name}
+`;
+          txt += `🎖️ *Judul:* ${anime.title}
+`;
+          txt += `💠 *Versi:* ${anime.vision}
+`;
+          txt += `🏹 *Weapon:* ${anime.weapon}
+`;
+          txt += `💮 *Gender:* ${anime.gender}
+`;
+          txt += `🌏 *Nation:* ${anime.nation}
+`;
+          txt += `🪷 *Affiliation:* ${anime.affiliation}
+`;
+          txt += `🌟 *Rarity:* ${anime.rarity}
+`;
+          txt += `❄️ *Constellation:* ${anime.constellation}
+`;
+          txt += `📖 *Description:* ${anime.description}
+`;
+          txt += `🌐 *Url:* https://genshin-impact.fandom.com/wiki/${a}
+`;
           urll = `https://endpoint.web.id/search/genshin-character?key=Dinz/${a}/portrait`;
           await DinzBotz.sendMessage(m.chat, {
             image: {
@@ -45628,7 +48358,8 @@ Cieeee, What's Going On❤️💖👀`,
       case "patricksticker":
         {
           var ano = await fetchJson("https://raw.githubusercontent.com/DGXeon/XeonMedia/main/patrick");
-          var wifegerak = ano.split("\n");
+          var wifegerak = ano.split("
+");
           var wifegerakx = wifegerak[Math.floor(Math.random() * wifegerak.length)];
           encmedia = await DinzBotz.sendImageAsSticker(from, wifegerakx, m, {
             packname: global.packname,
@@ -45641,7 +48372,8 @@ Cieeee, What's Going On❤️💖👀`,
       case "doge":
         {
           var ano = await fetchJson("https://raw.githubusercontent.com/DGXeon/XeonMedia/main/doge");
-          var wifegerak = ano.split("\n");
+          var wifegerak = ano.split("
+");
           var wifegerakx = wifegerak[Math.floor(Math.random() * wifegerak.length)];
           encmedia = await DinzBotz.sendImageAsSticker(from, wifegerakx, m, {
             packname: global.packname,
@@ -45653,7 +48385,8 @@ Cieeee, What's Going On❤️💖👀`,
       case "lovestick":
         {
           var ano = await fetchJson("https://raw.githubusercontent.com/DGXeon/XeonMedia/main/love");
-          var wifegerak = ano.split("\n");
+          var wifegerak = ano.split("
+");
           var wifegerakx = wifegerak[Math.floor(Math.random() * wifegerak.length)];
           encmedia = await DinzBotz.sendImageAsSticker(from, wifegerakx, m, {
             packname: global.packname,
@@ -45665,7 +48398,8 @@ Cieeee, What's Going On❤️💖👀`,
       case "gurastick":
         {
           var ano = await fetchJson("https://raw.githubusercontent.com/DGXeon/XeonMedia/main/gura");
-          var wifegerak = ano.split("\n");
+          var wifegerak = ano.split("
+");
           var wifegerakx = wifegerak[Math.floor(Math.random() * wifegerak.length)];
           encmedia = await DinzBotz.sendImageAsSticker(from, wifegerakx, m, {
             packname: global.packname,
@@ -45713,7 +48447,8 @@ Cieeee, What's Going On❤️💖👀`,
       case "amv":
         {
           if (!text) {
-            return reply("Masukan Nomornya Kak\nContoh: .amv 1");
+            return reply("Masukan Nomornya Kak
+Contoh: .amv 1");
           }
           replyyoimiya(mess.wait);
           async function animeVideo() {
@@ -45780,23 +48515,42 @@ Cieeee, What's Going On❤️💖👀`,
         let fids = await axios.get(`http://www.omdbapi.com/?apikey=742b2d09&t=${text}&plot=full`);
         let imdbt = "";
         console.log(fids.data);
-        imdbt += "⚍⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚍\n ``` IMDB SEARCH```\n⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎\n";
-        imdbt += "🎬Title      : " + fids.data.Title + "\n";
-        imdbt += "📅Year       : " + fids.data.Year + "\n";
-        imdbt += "⭐Rated      : " + fids.data.Rated + "\n";
-        imdbt += "📆Released   : " + fids.data.Released + "\n";
-        imdbt += "⏳Runtime    : " + fids.data.Runtime + "\n";
-        imdbt += "🌀Genre      : " + fids.data.Genre + "\n";
-        imdbt += "👨🏻‍💻Director   : " + fids.data.Director + "\n";
-        imdbt += "✍Writer     : " + fids.data.Writer + "\n";
-        imdbt += "👨Actors     : " + fids.data.Actors + "\n";
-        imdbt += "📃Plot       : " + fids.data.Plot + "\n";
-        imdbt += "🌐Language   : " + fids.data.Language + "\n";
-        imdbt += "🌍Country    : " + fids.data.Country + "\n";
-        imdbt += "🎖️Awards     : " + fids.data.Awards + "\n";
-        imdbt += "📦BoxOffice  : " + fids.data.BoxOffice + "\n";
-        imdbt += "🏙️Production : " + fids.data.Production + "\n";
-        imdbt += "🌟imdbRating : " + fids.data.imdbRating + "\n";
+        imdbt += "⚍⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚍
+ ``` IMDB SEARCH```
+⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎
+";
+        imdbt += "🎬Title      : " + fids.data.Title + "
+";
+        imdbt += "📅Year       : " + fids.data.Year + "
+";
+        imdbt += "⭐Rated      : " + fids.data.Rated + "
+";
+        imdbt += "📆Released   : " + fids.data.Released + "
+";
+        imdbt += "⏳Runtime    : " + fids.data.Runtime + "
+";
+        imdbt += "🌀Genre      : " + fids.data.Genre + "
+";
+        imdbt += "👨🏻‍💻Director   : " + fids.data.Director + "
+";
+        imdbt += "✍Writer     : " + fids.data.Writer + "
+";
+        imdbt += "👨Actors     : " + fids.data.Actors + "
+";
+        imdbt += "📃Plot       : " + fids.data.Plot + "
+";
+        imdbt += "🌐Language   : " + fids.data.Language + "
+";
+        imdbt += "🌍Country    : " + fids.data.Country + "
+";
+        imdbt += "🎖️Awards     : " + fids.data.Awards + "
+";
+        imdbt += "📦BoxOffice  : " + fids.data.BoxOffice + "
+";
+        imdbt += "🏙️Production : " + fids.data.Production + "
+";
+        imdbt += "🌟imdbRating : " + fids.data.imdbRating + "
+";
         imdbt += "✅imdbVotes  : " + fids.data.imdbVotes + "";
         DinzBotz.sendMessage(m.chat, {
           image: {
@@ -45809,7 +48563,8 @@ Cieeee, What's Going On❤️💖👀`,
         break;
       case "cuaca":
         if (!q) {
-          return replyviex("Masukkan nama kota atau wilayah.\nContoh: cuaca Jakarta");
+          return replyviex("Masukkan nama kota atau wilayah.
+Contoh: cuaca Jakarta");
         }
         replyviex("Sedang mencari data cuaca...");
         try {
@@ -45821,7 +48576,11 @@ Cieeee, What's Going On❤️💖👀`,
           const humidity = info.humidity;
           const feels = info.FeelsLikeC;
           const wind = info.windspeedKmph;
-          const teks = `Cuaca di ${q}:\n- Suhu: ${temp}°C (terasa ${feels}°C)\n- Cuaca: ${weather}\n- Kelembaban: ${humidity}%\n- Angin: ${wind} km/jam`;
+          const teks = `Cuaca di ${q}:
+- Suhu: ${temp}°C (terasa ${feels}°C)
+- Cuaca: ${weather}
+- Kelembaban: ${humidity}%
+- Angin: ${wind} km/jam`;
           await DinzBotz.sendMessage(from, {
             text: teks
           }, {
@@ -45848,7 +48607,9 @@ Cieeee, What's Going On❤️💖👀`,
       case "searchnumber":
         {
           if (!text) {
-            return replyviex(`Provide Number with last number x\n\nContoh: ${prefix + command} 91690913721x`);
+            return replyviex(`Provide Number with last number x
+
+Contoh: ${prefix + command} 91690913721x`);
           }
           var inputnumber = text.split(" ")[0];
           replyviex(`Searching for WhatsApp account in given range...`);
@@ -45866,9 +48627,16 @@ Cieeee, What's Going On❤️💖👀`,
           } else if (random_length == 3) {
             randomxx = 1000;
           }
-          var text66 = `*==[ List of Whatsapp Numbers ]==*\n\n`;
-          var nobio = `\n*Bio:* || \nHey there! I am using WhatsApp.\n`;
-          var nowhatsapp = `\n*Numbers with no WhatsApp account within provided range.*\n`;
+          var text66 = `*==[ List of Whatsapp Numbers ]==*
+
+`;
+          var nobio = `
+*Bio:* || 
+Hey there! I am using WhatsApp.
+`;
+          var nowhatsapp = `
+*Numbers with no WhatsApp account within provided range.*
+`;
           for (let i = 0; i < randomxx; i++) {
             var nu = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
             var status1 = nu[Math.floor(Math.random() * nu.length)];
@@ -45894,12 +48662,18 @@ Cieeee, What's Going On❤️💖👀`,
                 var anu1 = "401";
               }
               if (anu1 == "401" || anu1.status.length == 0) {
-                nobio += `wa.me/${anu[0].jid.split("@")[0]}\n`;
+                nobio += `wa.me/${anu[0].jid.split("@")[0]}
+`;
               } else {
-                text66 += `🪀 *Number:* wa.me/${anu[0].jid.split("@")[0]}\n 🎗️*Bio :* ${anu1.status}\n🧐*Last update :* ${moment(anu1.setAt).tz("Asia/Kolkata").format("HH:mm:ss DD/MM/YYYY")}\n\n`;
+                text66 += `🪀 *Number:* wa.me/${anu[0].jid.split("@")[0]}
+ 🎗️*Bio :* ${anu1.status}
+🧐*Last update :* ${moment(anu1.setAt).tz("Asia/Kolkata").format("HH:mm:ss DD/MM/YYYY")}
+
+`;
               }
             } catch {
-              nowhatsapp += `${number0}${i}${number1}\n`;
+              nowhatsapp += `${number0}${i}${number1}
+`;
             }
           }
           replyviex(`${text66}${nobio}${nowhatsapp}`);
@@ -45923,7 +48697,8 @@ Cieeee, What's Going On❤️💖👀`,
             user: m.text
           });
           saveSession();
-          let chatHistory = sessions[sender].messages.map(msg => `User: ${msg.user}`).join("\n");
+          let chatHistory = sessions[sender].messages.map(msg => `User: ${msg.user}`).join("
+");
           let prompt = `
 Nama kamu adalah Rover, AI yang santai, ramah, dan suka ngobrol dengan pengguna. 
 Kamu hanya menjawab kalau pesan bukan perintah. Gunakan gaya bahasa santai dan sedikit humoris.

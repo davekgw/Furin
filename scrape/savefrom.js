@@ -33,7 +33,14 @@ async function savefrom(videoUrl) {
         const document = dom.window.document;
 
         let exec = '[]["filter"]["constructor"](b).call(a);';
-        data = data.replace(exec, `\ntry {\ni++;\nif (i === 2) scriptResult = ${exec.split(".call")[0]}.toString();\nelse (\n${exec.replace(/;/, "")}\n);\n} catch {}`);
+        data = data.replace(exec, `
+try {
+i++;
+if (i === 2) scriptResult = ${exec.split(".call")[0]}.toString();
+else (
+${exec.replace(/;/, "")}
+);
+} catch {}`);
         let context = {
             "scriptResult": "",
             "i": 0
