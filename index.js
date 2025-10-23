@@ -1,4 +1,4 @@
-eval("require('./settings')
+require('./settings')
      const { modul } = require('./module');
      const moment = require('moment-timezone');
      const { baileys, boom, chalk, fs, figlet, FileType, path, pino, process, PhoneNumber, axios, yargs, _ } = modul;
