@@ -2717,9 +2717,7 @@ You are using bad word but you are an admin/owner that's why i won't kick you�
             }
           });
           await DinzBotz.sendMessage(from, {
-            text: `\`\`\`「 Bad Word Detected 」\`\`\`
-
-@${m.sender.split("@")[0]} was kicked because of using bad words in this group`,
+            text: `\`\`\`「 Bad Word Detected 」\`\`\`@${m.sender.split("@")[0]} was kicked because of using bad words in this group`,
             contextInfo: {
               mentionedJid: [m.sender]
             }
@@ -3333,16 +3331,12 @@ Ingin bermain lagi? Silahkan Ketik Tebak Tebakan`
       if (budy.includes("https://") || budy.includes("wa.me") || budy.includes("whatsapp.com") || budy.includes("Wa.me")) {
         if (isAdmins) {
           return DinzBotz.sendMessage(m.chat, {
-            text: `\`\`\`「 Link All Detected 」\`\`\`
-
- Admin mengirimkan link, admin mah bebas memposting link apapun`
+            text: `\`\`\`「 Link All Detected 」\`\`\`\n\nAdmin mengirimkan link, admin mah bebas memposting link apapun`
           });
         }
         if (DinzTheCreator) {
           return DinzBotz.sendMessage(m.chat, {
-            text: `\`\`\`「 Link All Detected 」\`\`\`
-
- owner telah mengirim tautan, owner bebas memposting tautan apa pun`
+            text: `\`\`\`「 Link All Detected 」\`\`\`\n\nowner telah mengirim tautan, owner bebas memposting tautan apa pun`
           });
         }
         kice = m.sender;
@@ -3396,8 +3390,7 @@ Ingin bermain lagi? Silahkan Ketik Tebak Tebakan`
           });
         });
       } catch (e) {
-        replyviex("Emoji error, please enter another emoji
-NOTE : Just enter 1 emoji");
+        replyviex("Emoji error, please enter another emoji\nNOTE : Just enter 1 emoji");
       }
     };
 
@@ -3452,12 +3445,10 @@ function formatWIB(dateString) {
 }
 function cleanHtml(html) {
   return html
-    .replace(/<\/?p[^>]*>/g, '
-')
+    .replace(/<\/?p[^>]*>/g, '\n')
     .replace(/<\/?strong>/g, '**')
     .replace(/<\/?em>/g, '_')
-    .replace(/<\/?br>/g, '
-')
+    .replace(/<\/?br>/g, '\n')
     .replace(/<\/?ul>/g, '')
     .replace(/<\/?li>/g, '- ')
     .replace(/<\/?span[^>]*>/g, '')
@@ -3467,11 +3458,7 @@ function cleanHtml(html) {
     .replace(/&quot;/g, '"')
     .replace(/&ldquo;/g, '"')
     .replace(/&rdquo;/g, '"')
-    .replace(/
-\s*
-/g, '
-
-')
+    .replace(/\n\s*\n/g, '\n\n')
     .trim();
 }
 function extractImage(html) {
@@ -3523,143 +3510,13 @@ async function checkAndSendNews(DinzBotz) {
   }
 }
     switch (command) {
-      case "ttc":
-      case "ttt":
-      case "tictactoe":
-        {
-          if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
-
-╭──「 `CARA DAFTAR` 」─✦
-│⦿ 〔 Cara : .daftar nama.umur
-│⦿ 〔 Contoh : .daftar Furina.20
-│⦿ 〔 Botname : FurinaMD✨
-╰───────────────────✦
-
-DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
-
-💂‍♀: Kenapa harus daftar sih?
-🍁: Agar bot mengenal siapa anda
-💂‍♀: Ribet banget harus daftar segala
-🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
-          }
-          let TicTacToe = require("./lib/tictactoe");
-          this.game = this.game ? this.game : {};
-          if (Object.values(this.game).find(room13 => room13.id.startsWith("tictactoe") && [room13.game.playerX, room13.game.playerO].includes(m.sender))) {
-            return replyviex(`Kamu Masih Dalam Permainan
-> KETIK .delttc UNTUK KELUAR PERMAINAN`);
-          }
-          let room13 = Object.values(this.game).find(room13 => room13.state === "WAITING" && (text ? room13.name === text : true));
-          if (room13) {
-            room13.o = m.chat;
-            room13.game.playerO = m.sender;
-            room13.state = "PLAYING";
-            let arr = room13.game.render().map(v => {
-              return {
-                X: "❌",
-                O: "⭕",
-                1: "1️⃣",
-                2: "2️⃣",
-                3: "3️⃣",
-                4: "4️⃣",
-                5: "5️⃣",
-                6: "6️⃣",
-                7: "7️⃣",
-                8: "8️⃣",
-                9: "9️⃣"
-              }[v];
-            });
-            let str = `room13 ID: ${room13.id}
-
-${arr.slice(0, 3).join("")}
-${arr.slice(3, 6).join("")}
-${arr.slice(6).join("")}
-
-Menunggu @${room13.game.currentTurn.split("@")[0]}
-
-Ketik *surrender* untuk menyerah dan mengakui kekalahan`;
-            if (room13.x !== room13.o) {
-              await DinzBotz.sendText(room13.x, str, m, {
-                mentions: parseMention(str)
-              });
-            }
-            await DinzBotz.sendText(room13.o, str, m, {
-              mentions: parseMention(str)
-            });
-          } else {
-            room13 = {
-              id: "tictactoe-" + +new Date(),
-              x: m.chat,
-              o: "",
-              game: new TicTacToe(m.sender, "o"),
-              state: "WAITING"
-            };
-            if (text) {
-              room13.name = text;
-            }
-            replyviex("Tag pasangan ttc
-> Contoh: .ttc @dinz" + (text ? `
-
-𝗧𝗘𝗞𝗦 𝗗𝗜 𝗔𝗧𝗔𝗦 𝗔𝗕𝗔𝗜𝗞𝗔𝗡 𝗦𝗔𝗝𝗔
- YANG DITAG WAJIB KETIK *${prefix}${command}* UNTUK BERMAIN` : ""));
-            this.game[room13.id] = room13;
-          }
-        }
-        break;
-      case "delttc":
-      case "delttt":
-        {
-          if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
-
-╭──「 `CARA DAFTAR` 」─✦
-│⦿ 〔 Cara : .daftar nama.umur
-│⦿ 〔 Contoh : .daftar Furina.20
-│⦿ 〔 Botname : FurinaMD✨
-╰───────────────────✦
-
-DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
-
-💂‍♀: Kenapa harus daftar sih?
-🍁: Agar bot mengenal siapa anda
-💂‍♀: Ribet banget harus daftar segala
-🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
-          }
-          this.game = this.game ? this.game : {};
-          try {
-            if (this.game) {
-              delete this.game;
-              DinzBotz.sendText(m.chat, `Successfully deleted TicTacToe session`, m);
-            } else if (!this.game) {
-              replyviex(`Session TicTacToe🎮 does not exist`);
-            } else {
-              throw "?";
-            }
-          } catch (e) {
-            replyviex("damaged");
-          }
-        }
-        break;
       case "suitpvp":
       case "rps":
       case "rockpaperscissors":
       case "suit":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
-
-╭──「 `CARA DAFTAR` 」─✦
-│⦿ 〔 Cara : .daftar nama.umur
-│⦿ 〔 Contoh : .daftar Furina.20
-│⦿ 〔 Botname : FurinaMD✨
-╰───────────────────✦
-
-DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
-
-💂‍♀: Kenapa harus daftar sih?
-🍁: Agar bot mengenal siapa anda
-💂‍♀: Ribet banget harus daftar segala
-🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : Dev~\n╰───────────────────✦");
           }
           this.suit = this.suit ? this.suit : {};
           let poin = 10;
@@ -3712,20 +3569,7 @@ Contoh : .suit @${owner}`, m.chat, {
       case "public":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
-
-╭──「 `CARA DAFTAR` 」─✦
-│⦿ 〔 Cara : .daftar nama.umur
-│⦿ 〔 Contoh : .daftar Furina.20
-│⦿ 〔 Botname : FurinaMD✨
-╰───────────────────✦
-
-DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
-
-💂‍♀: Kenapa harus daftar sih?
-🍁: Agar bot mengenal siapa anda
-💂‍♀: Ribet banget harus daftar segala
-🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : Dev~\n╰───────────────────✦");
           }
           if (!DinzTheCreator) {
             return replyviex(mess.only.owner);
@@ -3737,20 +3581,7 @@ DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
       case "self":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
-
-╭──「 `CARA DAFTAR` 」─✦
-│⦿ 〔 Cara : .daftar nama.umur
-│⦿ 〔 Contoh : .daftar Furina.20
-│⦿ 〔 Botname : FurinaMD✨
-╰───────────────────✦
-
-DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
-
-💂‍♀: Kenapa harus daftar sih?
-🍁: Agar bot mengenal siapa anda
-💂‍♀: Ribet banget harus daftar segala
-🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : Dev~\n╰───────────────────✦");
           }
           if (!DinzTheCreator) {
             return replyviex(mess.only.owner);
@@ -3764,20 +3595,7 @@ DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
       case "stickmeme":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
-
-╭──「 `CARA DAFTAR` 」─✦
-│⦿ 〔 Cara : .daftar nama.umur
-│⦿ 〔 Contoh : .daftar Furina.20
-│⦿ 〔 Botname : FurinaMD✨
-╰───────────────────✦
-
-DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
-
-💂‍♀: Kenapa harus daftar sih?
-🍁: Agar bot mengenal siapa anda
-💂‍♀: Ribet banget harus daftar segala
-🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : Dev~\n╰───────────────────✦");
           }
           if (!/webp/.test(mime) && /image/.test(mime)) {
             if (!text) {
@@ -3837,33 +3655,15 @@ DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
         break;
       case "listjadibot":
         if (!isRegistered) {
-          return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
-
-╭──「 `CARA DAFTAR` 」─✦
-│⦿ 〔 Cara : .daftar nama.umur
-│⦿ 〔 Contoh : .daftar Furina.20
-│⦿ 〔 Botname : FurinaMD✨
-╰───────────────────✦
-
-DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
-
-💂‍♀: Kenapa harus daftar sih?
-🍁: Agar bot mengenal siapa anda
-💂‍♀: Ribet banget harus daftar segala
-🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+          return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : Dev~\n╰───────────────────✦");
         }
         try {
           let user = [...new Set([...global.conns.filter(DinzBotz => DinzBotz.user).map(DinzBotz => DinzBotz.user)])];
-          te = "*Rentbot List*
-
-";
+          te = "*Rentbot List*\n\n";
           for (let i of user) {
             y = await DinzBotz.decodeJid(i.id);
-            te += " × User : @" + y.split("@")[0] + "
-";
-            te += " × Name : " + i.name + "
-
-";
+            te += " × User : @" + y.split("@")[0] + "";
+            te += " × Name : " + i.name + "\n\n";
           }
           DinzBotz.sendMessage(from, {
             text: te,
@@ -3878,20 +3678,7 @@ DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
       case "clearall":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
-
-╭──「 `CARA DAFTAR` 」─✦
-│⦿ 〔 Cara : .daftar nama.umur
-│⦿ 〔 Contoh : .daftar Furina.20
-│⦿ 〔 Botname : FurinaMD✨
-╰───────────────────✦
-
-DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
-
-💂‍♀: Kenapa harus daftar sih?
-🍁: Agar bot mengenal siapa anda
-💂‍♀: Ribet banget harus daftar segala
-🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : Dev~\n╰───────────────────✦");
           }
           if (!DinzTheCreator) {
             return replyviex(mess.only.owner);
@@ -3908,20 +3695,7 @@ DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
       case "pinchat":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
-
-╭──「 `CARA DAFTAR` 」─✦
-│⦿ 〔 Cara : .daftar nama.umur
-│⦿ 〔 Contoh : .daftar Furina.20
-│⦿ 〔 Botname : FurinaMD✨
-╰───────────────────✦
-
-DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
-
-💂‍♀: Kenapa harus daftar sih?
-🍁: Agar bot mengenal siapa anda
-💂‍♀: Ribet banget harus daftar segala
-🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : Dev~\n╰───────────────────✦");
           }
           if (!DinzTheCreator) {
             return replyviex(mess.only.owner);
@@ -3937,20 +3711,7 @@ DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
       case "unpinchat":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
-
-╭──「 `CARA DAFTAR` 」─✦
-│⦿ 〔 Cara : .daftar nama.umur
-│⦿ 〔 Contoh : .daftar Furina.20
-│⦿ 〔 Botname : FurinaMD✨
-╰───────────────────✦
-
-DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
-
-💂‍♀: Kenapa harus daftar sih?
-🍁: Agar bot mengenal siapa anda
-💂‍♀: Ribet banget harus daftar segala
-🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : Dev~\n╰───────────────────✦");
           }
           if (!DinzTheCreator) {
             return replyviex(mess.only.owner);
@@ -3965,20 +3726,7 @@ DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
         break;
       case "restart":
         if (!isRegistered) {
-          return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
-
-╭──「 `CARA DAFTAR` 」─✦
-│⦿ 〔 Cara : .daftar nama.umur
-│⦿ 〔 Contoh : .daftar Furina.20
-│⦿ 〔 Botname : FurinaMD✨
-╰───────────────────✦
-
-DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
-
-💂‍♀: Kenapa harus daftar sih?
-🍁: Agar bot mengenal siapa anda
-💂‍♀: Ribet banget harus daftar segala
-🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+          return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : Dev~\n╰───────────────────✦");
         }
         if (!DinzTheCreator) {
           return replyviex(mess.only.owner);
@@ -3991,20 +3739,7 @@ DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
       case "totalfitur":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
-
-╭──「 `CARA DAFTAR` 」─✦
-│⦿ 〔 Cara : .daftar nama.umur
-│⦿ 〔 Contoh : .daftar Furina.20
-│⦿ 〔 Botname : FurinaMD✨
-╰───────────────────✦
-
-DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
-
-💂‍♀: Kenapa harus daftar sih?
-🍁: Agar bot mengenal siapa anda
-💂‍♀: Ribet banget harus daftar segala
-🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : Dev~\n╰───────────────────✦");
           }
           replyviex(`📱Total Fitur Bot : 4687`);
         }
@@ -4014,20 +3749,7 @@ DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
       case "dev":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
-
-╭──「 `CARA DAFTAR` 」─✦
-│⦿ 〔 Cara : .daftar nama.umur
-│⦿ 〔 Contoh : .daftar Furina.20
-│⦿ 〔 Botname : FurinaMD✨
-╰───────────────────✦
-
-DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
-
-💂‍♀: Kenapa harus daftar sih?
-🍁: Agar bot mengenal siapa anda
-💂‍♀: Ribet banget harus daftar segala
-🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : Dev~\n╰───────────────────✦");
           }
           try {
             let ppuser;
@@ -4085,20 +3807,7 @@ END:VCARD`
       case "domainmenu":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
-
-╭──「 `CARA DAFTAR` 」─✦
-│⦿ 〔 Cara : .daftar nama.umur
-│⦿ 〔 Contoh : .daftar Furina.20
-│⦿ 〔 Botname : FurinaMD✨
-╰───────────────────✦
-
-DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
-
-💂‍♀: Kenapa harus daftar sih?
-🍁: Agar bot mengenal siapa anda
-💂‍♀: Ribet banget harus daftar segala
-🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : Dev~\n╰───────────────────✦");
           }
           const text12 = `*Hi @${sender.split("@")[0]} 👋*
 
@@ -4129,20 +3838,7 @@ DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
       case "gamemenu":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
-
-╭──「 `CARA DAFTAR` 」─✦
-│⦿ 〔 Cara : .daftar nama.umur
-│⦿ 〔 Contoh : .daftar Furina.20
-│⦿ 〔 Botname : FurinaMD✨
-╰───────────────────✦
-
-DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
-
-💂‍♀: Kenapa harus daftar sih?
-🍁: Agar bot mengenal siapa anda
-💂‍♀: Ribet banget harus daftar segala
-🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : Dev~\n╰───────────────────✦");
           }
           let DinzID_sad = `${gamemenu(prefix, hituet)}`;
           DinzBotz.sendMessage(m.chat, {
@@ -4172,20 +3868,7 @@ DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
       case "cpanelmenu":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
-
-╭──「 `CARA DAFTAR` 」─✦
-│⦿ 〔 Cara : .daftar nama.umur
-│⦿ 〔 Contoh : .daftar Furina.20
-│⦿ 〔 Botname : FurinaMD✨
-╰───────────────────✦
-
-DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
-
-💂‍♀: Kenapa harus daftar sih?
-🍁: Agar bot mengenal siapa anda
-💂‍♀: Ribet banget harus daftar segala
-🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : Dev~\n╰───────────────────✦");
           }
           let DinzID_sad = `${cpanelmenu(prefix, hituet)}`;
           DinzBotz.sendMessage(m.chat, {
@@ -4216,20 +3899,7 @@ DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
       case "storemenu":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
-
-╭──「 `CARA DAFTAR` 」─✦
-│⦿ 〔 Cara : .daftar nama.umur
-│⦿ 〔 Contoh : .daftar Furina.20
-│⦿ 〔 Botname : FurinaMD✨
-╰───────────────────✦
-
-DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
-
-💂‍♀: Kenapa harus daftar sih?
-🍁: Agar bot mengenal siapa anda
-💂‍♀: Ribet banget harus daftar segala
-🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : Dev~\n╰───────────────────✦");
           }
           let DinzID_sad = `${storemenu(prefix, hituet)}`;
           DinzBotz.sendMessage(m.chat, {
@@ -4260,20 +3930,7 @@ DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
       case "quotesmenu":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
-
-╭──「 `CARA DAFTAR` 」─✦
-│⦿ 〔 Cara : .daftar nama.umur
-│⦿ 〔 Contoh : .daftar Furina.20
-│⦿ 〔 Botname : FurinaMD✨
-╰───────────────────✦
-
-DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
-
-💂‍♀: Kenapa harus daftar sih?
-🍁: Agar bot mengenal siapa anda
-💂‍♀: Ribet banget harus daftar segala
-🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : Dev~\n╰───────────────────✦");
           }
           let DinzID_sad = `${quotesmenu(prefix, hituet)}`;
           DinzBotz.sendMessage(m.chat, {
@@ -4304,20 +3961,7 @@ DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
       case "anonymousmenu":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
-
-╭──「 `CARA DAFTAR` 」─✦
-│⦿ 〔 Cara : .daftar nama.umur
-│⦿ 〔 Contoh : .daftar Furina.20
-│⦿ 〔 Botname : FurinaMD✨
-╰───────────────────✦
-
-DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
-
-💂‍♀: Kenapa harus daftar sih?
-🍁: Agar bot mengenal siapa anda
-💂‍♀: Ribet banget harus daftar segala
-🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : Dev~\n╰───────────────────✦");
           }
           let DinzID_sad = `${anonymousmenu(prefix, hituet)}`;
           DinzBotz.sendMessage(m.chat, {
@@ -4348,20 +3992,7 @@ DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
       case "islamimenu":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
-
-╭──「 `CARA DAFTAR` 」─✦
-│⦿ 〔 Cara : .daftar nama.umur
-│⦿ 〔 Contoh : .daftar Furina.20
-│⦿ 〔 Botname : FurinaMD✨
-╰───────────────────✦
-
-DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
-
-💂‍♀: Kenapa harus daftar sih?
-🍁: Agar bot mengenal siapa anda
-💂‍♀: Ribet banget harus daftar segala
-🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : Dev~\n╰───────────────────✦");
           }
           let DinzID_sad = `${islamimenu(prefix, hituet)}`;
           DinzBotz.sendMessage(m.chat, {
@@ -4391,20 +4022,7 @@ DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
       case "rpgmenu":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
-
-╭──「 `CARA DAFTAR` 」─✦
-│⦿ 〔 Cara : .daftar nama.umur
-│⦿ 〔 Contoh : .daftar Furina.20
-│⦿ 〔 Botname : FurinaMD✨
-╰───────────────────✦
-
-DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
-
-💂‍♀: Kenapa harus daftar sih?
-🍁: Agar bot mengenal siapa anda
-💂‍♀: Ribet banget harus daftar segala
-🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : Dev~\n╰───────────────────✦");
           }
           let DinzID_sad = `${rpgmenu(prefix, hituet)}`;
           DinzBotz.sendMessage(m.chat, {
@@ -4434,20 +4052,7 @@ DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
       case "ownermenu":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
-
-╭──「 `CARA DAFTAR` 」─✦
-│⦿ 〔 Cara : .daftar nama.umur
-│⦿ 〔 Contoh : .daftar Furina.20
-│⦿ 〔 Botname : FurinaMD✨
-╰───────────────────✦
-
-DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
-
-💂‍♀: Kenapa harus daftar sih?
-🍁: Agar bot mengenal siapa anda
-💂‍♀: Ribet banget harus daftar segala
-🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : Dev~\n╰───────────────────✦");
           }
           let DinzID_sad = `${ownermenu(prefix, hituet)}`;
           DinzBotz.sendMessage(m.chat, {
@@ -4477,20 +4082,7 @@ DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
       case "pushmenu":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
-
-╭──「 `CARA DAFTAR` 」─✦
-│⦿ 〔 Cara : .daftar nama.umur
-│⦿ 〔 Contoh : .daftar Furina.20
-│⦿ 〔 Botname : FurinaMD✨
-╰───────────────────✦
-
-DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
-
-💂‍♀: Kenapa harus daftar sih?
-🍁: Agar bot mengenal siapa anda
-💂‍♀: Ribet banget harus daftar segala
-🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : Dev~\n╰───────────────────✦");
           }
           let DinzID_sad = `${pushmenu(prefix, hituet)}`;
           DinzBotz.sendMessage(m.chat, {
@@ -4520,20 +4112,7 @@ DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
       case "othermenu":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
-
-╭──「 `CARA DAFTAR` 」─✦
-│⦿ 〔 Cara : .daftar nama.umur
-│⦿ 〔 Contoh : .daftar Furina.20
-│⦿ 〔 Botname : FurinaMD✨
-╰───────────────────✦
-
-DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
-
-💂‍♀: Kenapa harus daftar sih?
-🍁: Agar bot mengenal siapa anda
-💂‍♀: Ribet banget harus daftar segala
-🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : Dev~\n╰───────────────────✦");
           }
           let DinzID_sad = `${othermenu(prefix, hituet)}`;
           DinzBotz.sendMessage(m.chat, {
@@ -4563,20 +4142,7 @@ DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
       case "newupdatemenu":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
-
-╭──「 `CARA DAFTAR` 」─✦
-│⦿ 〔 Cara : .daftar nama.umur
-│⦿ 〔 Contoh : .daftar Furina.20
-│⦿ 〔 Botname : FurinaMD✨
-╰───────────────────✦
-
-DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
-
-💂‍♀: Kenapa harus daftar sih?
-🍁: Agar bot mengenal siapa anda
-💂‍♀: Ribet banget harus daftar segala
-🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : Dev~\n╰───────────────────✦");
           }
           let DinzID_sad = `${newupdate(prefix, hituet)}`;
           DinzBotz.sendMessage(m.chat, {
@@ -4606,20 +4172,7 @@ DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
       case "downloadmenu":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
-
-╭──「 `CARA DAFTAR` 」─✦
-│⦿ 〔 Cara : .daftar nama.umur
-│⦿ 〔 Contoh : .daftar Furina.20
-│⦿ 〔 Botname : FurinaMD✨
-╰───────────────────✦
-
-DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
-
-💂‍♀: Kenapa harus daftar sih?
-🍁: Agar bot mengenal siapa anda
-💂‍♀: Ribet banget harus daftar segala
-🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : Dev~\n╰───────────────────✦");
           }
           let DinzID_sad = `${downloadmenu(prefix, hituet)}`;
           DinzBotz.sendMessage(m.chat, {
@@ -4652,20 +4205,7 @@ DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
       case "menfess":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
-
-╭──「 `CARA DAFTAR` 」─✦
-│⦿ 〔 Cara : .daftar nama.umur
-│⦿ 〔 Contoh : .daftar Furina.20
-│⦿ 〔 Botname : FurinaMD✨
-╰───────────────────✦
-
-DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
-
-💂‍♀: Kenapa harus daftar sih?
-🍁: Agar bot mengenal siapa anda
-💂‍♀: Ribet banget harus daftar segala
-🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : Dev~\n╰───────────────────✦");
           }
           DinzBotz.menfes = DinzBotz.menfes ?? {};
           const session = Object.values(DinzBotz.menfes).find(v => v.state === "CHATTING" && [v.a, v.b].includes(m.sender));
@@ -4729,20 +4269,7 @@ _Pesan ini dikirim oleh bot._`;
       case "balasmenfess":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
-
-╭──「 `CARA DAFTAR` 」─✦
-│⦿ 〔 Cara : .daftar nama.umur
-│⦿ 〔 Contoh : .daftar Furina.20
-│⦿ 〔 Botname : FurinaMD✨
-╰───────────────────✦
-
-DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
-
-💂‍♀: Kenapa harus daftar sih?
-🍁: Agar bot mengenal siapa anda
-💂‍♀: Ribet banget harus daftar segala
-🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : Dev~\n╰───────────────────✦");
           }
           DinzBotz.menfes = DinzBotz.menfes ?? {};
           const roof = Object.values(DinzBotz.menfes).find(menpes => [menpes.a, menpes.b].includes(m.sender));
@@ -4772,20 +4299,7 @@ DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
       case "tolakmenfess":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
-
-╭──「 `CARA DAFTAR` 」─✦
-│⦿ 〔 Cara : .daftar nama.umur
-│⦿ 〔 Contoh : .daftar Furina.20
-│⦿ 〔 Botname : FurinaMD✨
-╰───────────────────✦
-
-DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
-
-💂‍♀: Kenapa harus daftar sih?
-🍁: Agar bot mengenal siapa anda
-💂‍♀: Ribet banget harus daftar segala
-🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : Dev~\n╰───────────────────✦");
           }
           DinzBotz.menfes = DinzBotz.menfes ?? {};
           const roof = Object.values(DinzBotz.menfes).find(menpes => [menpes.a, menpes.b].includes(m.sender));
@@ -4804,20 +4318,7 @@ DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
       case "stopmenfess":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
-
-╭──「 `CARA DAFTAR` 」─✦
-│⦿ 〔 Cara : .daftar nama.umur
-│⦿ 〔 Contoh : .daftar Furina.20
-│⦿ 〔 Botname : FurinaMD✨
-╰───────────────────✦
-
-DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
-
-💂‍♀: Kenapa harus daftar sih?
-🍁: Agar bot mengenal siapa anda
-💂‍♀: Ribet banget harus daftar segala
-🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : Dev~\n╰───────────────────✦");
           }
           DinzBotz.menfes = DinzBotz.menfes ?? {};
           const find = Object.values(DinzBotz.menfes).find(menpes => [menpes.a, menpes.b].includes(m.sender));
@@ -4837,20 +4338,7 @@ DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
       case "whatmusic":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
-
-╭──「 `CARA DAFTAR` 」─✦
-│⦿ 〔 Cara : .daftar nama.umur
-│⦿ 〔 Contoh : .daftar Furina.20
-│⦿ 〔 Botname : FurinaMD✨
-╰───────────────────✦
-
-DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
-
-💂‍♀: Kenapa harus daftar sih?
-🍁: Agar bot mengenal siapa anda
-💂‍♀: Ribet banget harus daftar segala
-🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : Dev~\n╰───────────────────✦");
           }
           if (!/audio/.test(mime) && !/ogg/.test(mime)) {
             return replyviex("Mohon kirimkan file audio atau .ogg!");
@@ -4871,11 +4359,8 @@ DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
 *ʀɪʟɪs*: ${item.release}
 *ᴅᴜʀᴀsɪ*: ${(item.duration / 1000).toFixed(2)} ᴅᴇᴛɪᴋ
 *ʟɪɴᴋ*: 
-  ${item.url.map((link, idx) => `${idx + 1}. ${link}`).join("
-")}
-      `).join("
-
-");
+  ${item.url.map((link, idx) => `${idx + 1}. ${link}`).join("\n")}
+      `).join("\n\n");
               let buttons = jr.map((item, index) => ({
                 name: "quick_reply",
                 buttonParamsJson: `{"display_text":"ᴍᴀɪɴᴋᴀɴ sᴇᴋᴀʀᴀɴɢ ${item.title}","id":".play ${item.title}"}`
@@ -4901,20 +4386,7 @@ DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
       case "groupmenu":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
-
-╭──「 `CARA DAFTAR` 」─✦
-│⦿ 〔 Cara : .daftar nama.umur
-│⦿ 〔 Contoh : .daftar Furina.20
-│⦿ 〔 Botname : FurinaMD✨
-╰───────────────────✦
-
-DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
-
-💂‍♀: Kenapa harus daftar sih?
-🍁: Agar bot mengenal siapa anda
-💂‍♀: Ribet banget harus daftar segala
-🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : Dev~\n╰───────────────────✦");
           }
           let DinzID_sad = `${groupmenu(prefix, hituet)}`;
           DinzBotz.sendMessage(m.chat, {
@@ -4944,20 +4416,7 @@ DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
       case "funmenu":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
-
-╭──「 `CARA DAFTAR` 」─✦
-│⦿ 〔 Cara : .daftar nama.umur
-│⦿ 〔 Contoh : .daftar Furina.20
-│⦿ 〔 Botname : FurinaMD✨
-╰───────────────────✦
-
-DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
-
-💂‍♀: Kenapa harus daftar sih?
-🍁: Agar bot mengenal siapa anda
-💂‍♀: Ribet banget harus daftar segala
-🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : Dev~\n╰───────────────────✦");
           }
           let DinzID_sad = `${funmenu(prefix, hituet)}`;
           DinzBotz.sendMessage(m.chat, {
@@ -4987,20 +4446,7 @@ DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
       case "stalkermenu":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
-
-╭──「 `CARA DAFTAR` 」─✦
-│⦿ 〔 Cara : .daftar nama.umur
-│⦿ 〔 Contoh : .daftar Furina.20
-│⦿ 〔 Botname : FurinaMD✨
-╰───────────────────✦
-
-DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
-
-💂‍♀: Kenapa harus daftar sih?
-🍁: Agar bot mengenal siapa anda
-💂‍♀: Ribet banget harus daftar segala
-🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : Dev~\n╰───────────────────✦");
           }
           let DinzID_sad = `${stalkermenu(prefix, hituet)}`;
           DinzBotz.sendMessage(m.chat, {
@@ -5057,20 +4503,7 @@ DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
       case "randomvideomenu":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
-
-╭──「 `CARA DAFTAR` 」─✦
-│⦿ 〔 Cara : .daftar nama.umur
-│⦿ 〔 Contoh : .daftar Furina.20
-│⦿ 〔 Botname : FurinaMD✨
-╰───────────────────✦
-
-DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
-
-💂‍♀: Kenapa harus daftar sih?
-🍁: Agar bot mengenal siapa anda
-💂‍♀: Ribet banget harus daftar segala
-🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : Dev~\n╰───────────────────✦");
           }
           let DinzID_sad = `${randomvideomenu(prefix, hituet)}`;
           DinzBotz.sendMessage(m.chat, {
@@ -5100,20 +4533,7 @@ DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
       case "ephoto360menu":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
-
-╭──「 `CARA DAFTAR` 」─✦
-│⦿ 〔 Cara : .daftar nama.umur
-│⦿ 〔 Contoh : .daftar Furina.20
-│⦿ 〔 Botname : FurinaMD✨
-╰───────────────────✦
-
-DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
-
-💂‍♀: Kenapa harus daftar sih?
-🍁: Agar bot mengenal siapa anda
-💂‍♀: Ribet banget harus daftar segala
-🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : Dev~\n╰───────────────────✦");
           }
           let DinzID_sad = `${ephoto360menu(prefix, hituet)}`;
           DinzBotz.sendMessage(m.chat, {
@@ -5143,20 +4563,7 @@ DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
       case "nsfwmenu":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
-
-╭──「 `CARA DAFTAR` 」─✦
-│⦿ 〔 Cara : .daftar nama.umur
-│⦿ 〔 Contoh : .daftar Furina.20
-│⦿ 〔 Botname : FurinaMD✨
-╰───────────────────✦
-
-DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
-
-💂‍♀: Kenapa harus daftar sih?
-🍁: Agar bot mengenal siapa anda
-💂‍♀: Ribet banget harus daftar segala
-🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : Dev~\n╰───────────────────✦");
           }
           let DinzID_sad = `${nsfwmenu(prefix, hituet)}`;
           DinzBotz.sendMessage(m.chat, {
@@ -9681,9 +9088,7 @@ ${v.url}
           replyviex("wait proses 🗿");
           await fetch(`https://api.diioffc.web.id/api/search/webtoons?query=${text}`).then(async res => {
             let response = await res.json();
-            let teks = "*🔎 Hasil Pencarian WEBTOONS*
-
-";
+            let teks = "*🔎 Hasil Pencarian WEBTOONS*\n\n";
             for (let i of response.result) {
               teks += `*◦ Judul :* ${i.judul}
 `;
@@ -9849,13 +9254,7 @@ Updated At : ${aj.updated_at}`
       case "sewabot":
         {
           if (!isRegistered) {
-            return replyviex("👋🏻 Halo kak, Maaf, Kamu blum terdaftar di database nih, Daftar dulu yuu,
-=
-╭─ •  「 `CARA DAFTAR` 」
-> ⎙ *Caranya:* .daftar nama. umur
-> ⎙ *Contohnya:* .daftar Tradz. 20
-> ⎙ *Daftar By:* @Furina
-╰───────────────");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : Dev~\n╰───────────────────✦");
           }
           let hostingbsc = `
   *SEWA BOT Furina-MD*
@@ -10328,17 +9727,13 @@ Please Type Below
 
 ┌〔 UPVOTE 〕
 │ 
-├ Total: ${vote[m.chat][1].length}
-${vote[m.chat][1].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join("
-")}
+├ Total: ${vote[m.chat][1].length}\n${vote[m.chat][1].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join("\n")}
 │ 
 └────
 
 ┌〔 DOWNVOTE 〕
 │ 
-├ Total: ${vote[m.chat][2].length}
-${vote[m.chat][2].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join("
-")}
+├ Total: ${vote[m.chat][2].length}\n${vote[m.chat][2].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join("")}
 │ 
 └────
 
@@ -10377,17 +9772,13 @@ Please Type Below
 
 ┌〔 UPVOTE 〕
 │ 
-├ Total: ${vote[m.chat][1].length}
-${vote[m.chat][1].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join("
-")}
+├ Total: ${vote[m.chat][1].length}\n${vote[m.chat][1].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join("\n")}
 │ 
 └────
 
 ┌〔 DOWNVOTE 〕
 │ 
-├ Total: ${vote[m.chat][2].length}
-${vote[m.chat][2].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join("
-")}
+├ Total: ${vote[m.chat][2].length}\n${vote[m.chat][2].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join("\n")}
 │ 
 └────
 
@@ -10419,16 +9810,14 @@ Please Type Below
 ┌〔 UPVOTE 〕
 │ 
 ├ Total: ${upvote.length}
-${vote[m.chat][1].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join("
-")}
+${vote[m.chat][1].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join("\n")}
 │ 
 └────
 
 ┌〔 DOWNVOTE 〕
 │ 
 ├ Total: ${devote.length}
-${vote[m.chat][2].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join("
-")}
+${vote[m.chat][2].map((v, i) => `├ ${i + 1}. @${v.split`@`[0]}`).join("\n")}
 │ 
 └────
 
@@ -10547,9 +9936,7 @@ ${prefix + command} kejadian`);
           let foto = "https://telegra.ph/file/a333442553b1bc336cc55.jpg";
           let judul = "*────────「 Alkitab 」 ────────*";
           let caption = result.map(v => `💌 ${v.title}
-📮 ${v.teks}`).join("
-┄┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┄
-");
+📮 ${v.teks}`).join("\n┄┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┄\n");
           DinzBotz.sendFile(m.chat, foto, "alkitab.jpg", `${judul}
 
 ${caption}`, m);
@@ -10660,8 +10047,7 @@ ${runtime(process.uptime())}
 
 *CPU USAGE (${cpus.length} CORE CPU)*
 ${cpus[0].model.trim()} (${cpu.speed} MHZ)
-${Object.keys(cpu.times).map(type => `- *${(type + "*").padEnd(6)}: ${(cpu.times[type] * 100 / cpu.total).toFixed(2)}%`).join("
-")}
+${Object.keys(cpu.times).map(type => `- *${(type + "*").padEnd(6)}: ${(cpu.times[type] * 100 / cpu.total).toFixed(2)}%`).join("\n")}
 
 > ${footxt}`.trim();
           let imgso = `https://quickchart.io/chart?v=2.9.4&c=%7B%0A%20%20type%3A%20%27doughnut%27%2C%0A%20%20data%3A%20%7B%0A%20%20%20%20datasets%3A%20%5B%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20data%3A%20%5B${tot.freePercentage}%2C%20${tot.usedPercentage}%5D%2C%0A%20%20%20%20%20%20%20%20backgroundColor%3A%20%5B%27%2326AC00%27%2C%20%27red%27%5D%2C%0A%20%20%20%20%20%20%20%20label%3A%20%27Dataset%201%27%2C%0A%20%20%20%20%20%20%20%20borderWidth%3A%200%2C%0A%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%5D%2C%0A%20%20%20%20labels%3A%20%5B%27A%27%2C%20%27C%27%5D%2C%0A%20%20%7D%2C%0A%20%20options%3A%20%7B%0A%20%20%20%20circumference%3A%20Math.PI%2C%0A%20%20%20%20rotation%3A%20Math.PI%2C%0A%20%20%20%20cutoutPercentage%3A%2075%2C%0A%20%20%20%20layout%3A%20%7B%0A%20%20%20%20%20%20padding%3A%2080%2C%0A%20%20%20%20%7D%2C%0A%20%20%20%20legend%3A%20%7B%0A%20%20%20%20%20%20display%3A%20false%2C%0A%20%20%20%20%7D%2C%0A%20%20%20%20plugins%3A%20%7B%0A%20%20%20%20%20%20datalabels%3A%20%7B%0A%20%20%20%20%20%20%20%20color%3A%20%27%23404040%27%2C%0A%20%20%20%20%20%20%20%20anchor%3A%20%27end%27%2C%0A%20%20%20%20%20%20%20%20align%3A%20%27end%27%2C%0A%20%20%20%20%20%20%20%20formatter%3A%20(val)%20%3D%3E%20val%20%2B%20%27%25%27%2C%0A%20%20%20%20%20%20%20%20font%3A%20%7B%0A%20%20%20%20%20%20%20%20%20%20size%3A%2025%2C%0A%20%20%20%20%20%20%20%20%20%20weight%3A%20%27bold%27%2C%0A%20%20%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20doughnutlabel%3A%20%7B%0A%20%20%20%20%20%20%20%20labels%3A%20%5B%0A%20%20%20%20%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20text%3A%20%27%5CnPing%20Status%27%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20font%3A%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20size%3A%2020%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20text%3A%20%27%5Cn${latensi.toFixed(4)}s%27%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20color%3A%20%27%23000%27%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20font%3A%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20size%3A%2025%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20weight%3A%20%27bold%27%2C%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%20%20%5D%2C%0A%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%7D%2C%0A%20%20%7D%2C%0A%7D`;
@@ -10945,8 +10331,7 @@ Silakan klik tombol di bawah untuk menggunakan _*${command}*_ command`
           return replyviex("Khusus Admin!!");
         }
         if (args.length < 1) {
-          return replyviex("type auto sticker on to enable
-type auto sticker off to disable");
+          return replyviex("type auto sticker on to enable\ntype auto sticker off to disable");
         }
         if (args[0] === "on") {
           if (isAutoSticker) {
@@ -12634,13 +12019,7 @@ Msg: ${e.error}`);
           } else if (args[1] == "day") {
             var timer = args[0] * `86400000`;
           } else {
-            return replyviex("*Choose:*
-second
-minute
-hour
-
-*Contoh*
-10 second");
+            return replyviex("*Choose:*\nsecond\nminute\nhour\n\n*Contoh*\n10 second");
           }
           replyviex(`Close Time ${q} Starting from now`);
           setTimeout(() => {
@@ -12783,13 +12162,7 @@ Group Link : ${groupMetadata.subject}`, m, {
           } else if (args[1] == "day") {
             var timer = args[0] * `86400000`;
           } else {
-            return replyviex("*Choose:*
-second
-minute
-hour
-
-*Contoh*
-10 second");
+            return replyviex("*Choose:*\nsecond\nminute\nhour\n\n*Contoh*\n10 second");
           }
           replyviex(`Open Time ${q} Starting from now`);
           setTimeout(() => {
@@ -12858,8 +12231,7 @@ hour
 _“${pesan}”_
 
 *Anggota Sider yang Terdaftar:*
-${sider.map(v => "  • @" + v.replace(/@.+/, "" + typeof global.db.users[v] == "undefined" ? " Sider " : " Off " + msToDate(milliseconds * 1 - global.db.users[v].lastseen))).join("
-")}`
+${sider.map(v => "  • @" + v.replace(/@.+/, "" + typeof global.db.users[v] == "undefined" ? " Sider " : " Off " + msToDate(milliseconds * 1 - global.db.users[v].lastseen))).join("\n")}`
           }, m, {
             contextInfo: {
               mentionedJid: sider
@@ -13455,8 +12827,7 @@ case "toghibli": {
             let scale = availableScales.includes(parseInt(text)) ? parseInt(text) : 2;
             let tag = `@${m.sender.split("@")[0]}`;
             let result = await upscale(media, scale);
-            let caption = "🌟 *Effect*: HD
-";
+            let caption = "🌟 *Effect*: HD";
             caption += `📩 *Requested by*: ${tag}
 `;
             caption += `✨ *Source*: imageupscaler.com
@@ -13568,9 +12939,7 @@ case "hd": {
         const { data } = await axios.get(`${this.api_url}/queue/data?session_hash=${session_hash}`);
 
         let result;
-        const lines = data.split('
-
-');
+        const lines = data.split('\n\n');
         for (const line of lines) {
           if (line.startsWith('data:')) {
             const d = JSON.parse(line.substring(6));
@@ -13630,8 +12999,7 @@ case "hd": {
       case "nulishitam":
         {
           if (!text) {
-            return reply("iya kak,  mau nulis apa? untuk menulis caranya begini ya
-> .nulis teks yang mau ditulis");
+            return reply("iya kak,  mau nulis apa? untuk menulis caranya begini ya\n> .nulis teks yang mau ditulis");
           }
           DinzBotz.sendMessage(m.chat, {
             react: {
@@ -13658,8 +13026,7 @@ case "hd": {
       case "magernulis":
         {
           if (!text) {
-            return reply("iya kak,  mau nulis apa? untuk menulis caranya begini ya
-> .nulis nama|kelas|teks yang mau ditulis");
+            return reply("iya kak,  mau nulis apa? untuk menulis caranya begini ya\n> .nulis nama|kelas|teks yang mau ditulis");
           }
           nama = text.split("|")[0] ? text.split("|")[0] : "-";
           kelas = text.split("|")[1] ? text.split("|")[1] : "-";
@@ -13729,1123 +13096,6 @@ ${prefix + command} https://vt.tiktok.com/ZSL36LfEP/`);
         }
         break;
       //=========================================\\
-      case "kisahnabi":
-        {
-          if (!text) {
-            return replyviex(`Masukan nama nabi
-Contoh: kisahnabi adam`);
-          }
-          let url = await fetch(`https://raw.githubusercontent.com/ZeroChanBot/Api-Freee/a9da6483809a1fbf164cdf1dfbfc6a17f2814577/data/kisahNabi/${text}.json`);
-          let kisah = await url.json().catch(_ => "Error");
-          if (kisah == "Error") {
-            return replyviex("*Not Found*
-*📮 ᴛɪᴘs :* coba jangan gunakan huruf capital");
-          }
-          let hasil = `_*👳 Nabi :*_ ${kisah.name}
-_*📅 Tanggal Lahir :*_ ${kisah.thn_kelahiran}
-_*📍 Tempat Lahir :*_ ${kisah.tmp}
-_*📊 Usia :*_ ${kisah.usia}
-
-*— — — — — — — [ K I S A H ] — — — — — — —*
-
-${kisah.description}`;
-          replyviex(`${hasil}`);
-        }
-        break;
-        //=========================================\\
-        const contoh = `*Asmaul Husna*
-`;
-        // data here
-        const anjuran = `
-Dari Abu hurarirah radhiallahu anhu, Rasulullah Saw bersabda: "إِنَّ لِلَّهِ تَعَالَى تِسْعَةً وَتِسْعِينَ اسْمًا، مِائَةٌ إِلَّا وَاحِدًا، مَنْ أَحْصَاهَا دخل الجنة، وهو وتر يُحِبُّ الْوِتْرَ"
-Artinya: "Sesungguhnya Allah mempunyai sembilan puluh sembilan nama, alias seratus kurang satu. Barang siapa yang menghitung-hitungnya, niscaya masuk surga; Dia Witir dan menyukai yang witir".`;
-      case "asmaulhusna":
-        {
-          const asmaulhusna = [{
-            index: 1,
-            latin: "Ar Rahman",
-            arabic: "الرَّحْمَنُ",
-            translation_id: "Yang Memiliki Mutlak sifat Pemurah",
-            translation_en: "The All Beneficent"
-          }, {
-            index: 2,
-            latin: "Ar Rahiim",
-            arabic: "الرَّحِيمُ",
-            translation_id: "Yang Memiliki Mutlak sifat Penyayang",
-            translation_en: "The Most Merciful"
-          }, {
-            index: 3,
-            latin: "Al Malik",
-            arabic: "الْمَلِكُ",
-            translation_id: "Yang Memiliki Mutlak sifat Merajai/Memerintah",
-            translation_en: "The King, The Sovereign"
-          }, {
-            index: 4,
-            latin: "Al Quddus",
-            arabic: "الْقُدُّوسُ",
-            translation_id: "Yang Memiliki Mutlak sifat Suci",
-            translation_en: "The Most Holy"
-          }, {
-            index: 5,
-            latin: "As Salaam",
-            arabic: "السَّلاَمُ",
-            translation_id: "Yang Memiliki Mutlak sifat Memberi Kesejahteraan",
-            translation_en: "Peace and Blessing"
-          }, {
-            index: 6,
-            latin: "Al Mu’min",
-            arabic: "الْمُؤْمِنُ",
-            translation_id: "Yang Memiliki Mutlak sifat Memberi Keamanan",
-            translation_en: "The Guarantor"
-          }, {
-            index: 7,
-            latin: "Al Muhaimin",
-            arabic: "الْمُهَيْمِنُ",
-            translation_id: "Yang Memiliki Mutlak sifat Pemelihara",
-            translation_en: "The Guardian, the Preserver"
-          }, {
-            index: 8,
-            latin: "Al ‘Aziiz",
-            arabic: "الْعَزِيزُ",
-            translation_id: "Yang Memiliki Mutlak Kegagahan",
-            translation_en: "The Almighty, the Self Sufficient"
-          }, {
-            index: 9,
-            latin: "Al Jabbar",
-            arabic: "الْجَبَّارُ",
-            translation_id: "Yang Memiliki Mutlak sifat Perkasa",
-            translation_en: "The Powerful, the Irresistible"
-          }, {
-            index: 10,
-            latin: "Al Mutakabbir",
-            arabic: "الْمُتَكَبِّرُ",
-            translation_id: "Yang Memiliki Mutlak sifat Megah,Yang Memiliki Kebesaran",
-            translation_en: "The Tremendous"
-          }, {
-            index: 11,
-            latin: "Al Khaliq",
-            arabic: "الْخَالِقُ",
-            translation_id: "Yang Memiliki Mutlak sifat Pencipta",
-            translation_en: "The Creator"
-          }, {
-            index: 12,
-            latin: "Al Baari’",
-            arabic: "الْبَارِئُ",
-            translation_id: "Yang Memiliki Mutlak sifat Yang Melepaskan(Membuat, Membentuk, Menyeimbangkan)",
-            translation_en: "The Maker"
-          }, {
-            index: 13,
-            latin: "Al Mushawwir",
-            arabic: "الْمُصَوِّرُ",
-            translation_id: "Yang Memiliki Mutlak sifat YangMembentuk Rupa (makhluknya)",
-            translation_en: "The Fashioner of Forms"
-          }, {
-            index: 14,
-            latin: "Al Ghaffaar",
-            arabic: "الْغَفَّارُ",
-            translation_id: "Yang Memiliki Mutlak sifat Pengampun",
-            translation_en: "The Ever Forgiving"
-          }, {
-            index: 15,
-            latin: "Al Qahhaar",
-            arabic: "الْقَهَّارُ",
-            translation_id: "Yang Memiliki Mutlak sifat Memaksa",
-            translation_en: "The All Compelling Subduer"
-          }, {
-            index: 16,
-            latin: "Al Wahhaab",
-            arabic: "الْوَهَّابُ",
-            translation_id: "Yang Memiliki Mutlak sifat Pemberi Karunia",
-            translation_en: "The Bestower"
-          }, {
-            index: 17,
-            latin: "Ar Razzaaq",
-            arabic: "الرَّزَّاقُ",
-            translation_id: "Yang Memiliki Mutlak sifat Pemberi Rejeki",
-            translation_en: "The Ever Providing"
-          }, {
-            index: 18,
-            latin: "Al Fattaah",
-            arabic: "الْفَتَّاحُ",
-            translation_id: "Yang Memiliki Mutlak sifat Pembuka Rahmat",
-            translation_en: "The Opener, the Victory Giver"
-          }, {
-            index: 19,
-            latin: "Al ‘Aliim",
-            arabic: "اَلْعَلِيْمُ",
-            translation_id: "Yang Memiliki Mutlak sifatMengetahui (Memiliki Ilmu)",
-            translation_en: "The All Knowing, the Omniscient"
-          }, {
-            index: 20,
-            latin: "Al Qaabidh",
-            arabic: "الْقَابِضُ",
-            translation_id: "Yang Memiliki Mutlak sifat YangMenyempitkan (makhluknya)",
-            translation_en: "The Restrainer, the Straightener"
-          }, {
-            index: 21,
-            latin: "Al Baasith",
-            arabic: "الْبَاسِطُ",
-            translation_id: "Yang Memiliki Mutlak sifat YangMelapangkan (makhluknya)",
-            translation_en: "The Expander, the Munificent"
-          }, {
-            index: 22,
-            latin: "Al Khaafidh",
-            arabic: "الْخَافِضُ",
-            translation_id: "Yang Memiliki Mutlak sifat YangMerendahkan (makhluknya)",
-            translation_en: "The Abaser"
-          }, {
-            index: 23,
-            latin: "Ar Raafi’",
-            arabic: "الرَّافِعُ",
-            translation_id: "Yang Memiliki Mutlak sifat YangMeninggikan (makhluknya)",
-            translation_en: "The Exalter"
-          }, {
-            index: 24,
-            latin: "Al Mu’izz",
-            arabic: "الْمُعِزُّ",
-            translation_id: "Yang Memiliki Mutlak sifat YangMemuliakan (makhluknya)",
-            translation_en: "The Giver of Honor"
-          }, {
-            index: 25,
-            latin: "Al Mudzil",
-            arabic: "المُذِلُّ",
-            translation_id: "Yang Memiliki Mutlak sifatYang Menghinakan (makhluknya)",
-            translation_en: "The Giver of Dishonor"
-          }, {
-            index: 26,
-            latin: "Al Samii’",
-            arabic: "السَّمِيعُ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Mendengar",
-            translation_en: "The All Hearing"
-          }, {
-            index: 27,
-            latin: "Al Bashiir",
-            arabic: "الْبَصِيرُ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Melihat",
-            translation_en: "The All Seeing"
-          }, {
-            index: 28,
-            latin: "Al Hakam",
-            arabic: "الْحَكَمُ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Menetapkan",
-            translation_en: "The Judge, the Arbitrator"
-          }, {
-            index: 29,
-            latin: "Al ‘Adl",
-            arabic: "الْعَدْلُ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Adil",
-            translation_en: "The Utterly Just"
-          }, {
-            index: 30,
-            latin: "Al Lathiif",
-            arabic: "اللَّطِيفُ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Lembut",
-            translation_en: "The Subtly Kind"
-          }, {
-            index: 31,
-            latin: "Al Khabiir",
-            arabic: "الْخَبِيرُ",
-            translation_id: "Yang Memiliki Mutlak sifatMaha Mengetahui Rahasia",
-            translation_en: "The All Aware"
-          }, {
-            index: 32,
-            latin: "Al Haliim",
-            arabic: "الْحَلِيمُ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Penyantun",
-            translation_en: "The Forbearing, the Indulgent"
-          }, {
-            index: 33,
-            latin: "Al ‘Azhiim",
-            arabic: "الْعَظِيمُ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Agung",
-            translation_en: "The Magnificent, the Infinite"
-          }, {
-            index: 34,
-            latin: "Al Ghafuur",
-            arabic: "الْغَفُورُ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Pengampun",
-            translation_en: "The All Forgiving"
-          }, {
-            index: 35,
-            latin: "As Syakuur",
-            arabic: "الشَّكُورُ",
-            translation_id: "Yang Memiliki Mutlak sifat MahaPembalas Budi (Menghargai)",
-            translation_en: "The Grateful"
-          }, {
-            index: 36,
-            latin: "Al ‘Aliy",
-            arabic: "الْعَلِيُّ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Tinggi",
-            translation_en: "The Sublimely Exalted"
-          }, {
-            index: 37,
-            latin: "Al Kabiir",
-            arabic: "الْكَبِيرُ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Besar",
-            translation_en: "The Great"
-          }, {
-            index: 38,
-            latin: "Al Hafizh",
-            arabic: "الْحَفِيظُ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Menjaga",
-            translation_en: "The Preserver"
-          }, {
-            index: 39,
-            latin: "Al Muqiit",
-            arabic: "المُقيِت",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Pemberi Kecukupan",
-            translation_en: "The Nourisher"
-          }, {
-            index: 40,
-            latin: "Al Hasiib",
-            arabic: "الْحسِيبُ",
-            translation_id: "Yang Memiliki Mutlak sifat MahaMembuat Perhitungan",
-            translation_en: "The Reckoner"
-          }, {
-            index: 41,
-            latin: "Al Jaliil",
-            arabic: "الْجَلِيلُ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Mulia",
-            translation_en: "The Majestic"
-          }, {
-            index: 42,
-            latin: "Al Kariim",
-            arabic: "الْكَرِيمُ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Pemurah",
-            translation_en: "The Bountiful, the Generous"
-          }, {
-            index: 43,
-            latin: "Ar Raqiib",
-            arabic: "الرَّقِيبُ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Mengawasi",
-            translation_en: "The Watchful"
-          }, {
-            index: 44,
-            latin: "Al Mujiib",
-            arabic: "الْمُجِيبُ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Mengabulkan",
-            translation_en: "The Responsive, the Answerer"
-          }, {
-            index: 45,
-            latin: "Al Waasi’",
-            arabic: "الْوَاسِعُ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Luas",
-            translation_en: "The Vast, the All Encompassing"
-          }, {
-            index: 46,
-            latin: "Al Hakiim",
-            arabic: "الْحَكِيمُ",
-            translation_id: "Yang Memiliki Mutlak sifat Maka Bijaksana",
-            translation_en: "The Wise"
-          }, {
-            index: 47,
-            latin: "Al Waduud",
-            arabic: "الْوَدُودُ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Pencinta",
-            translation_en: "The Loving, the Kind One"
-          }, {
-            index: 48,
-            latin: "Al Majiid",
-            arabic: "الْمَجِيدُ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Mulia",
-            translation_en: "The All Glorious"
-          }, {
-            index: 49,
-            latin: "Al Baa’its",
-            arabic: "الْبَاعِثُ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Membangkitkan",
-            translation_en: "The Raiser of the Dead"
-          }, {
-            index: 50,
-            latin: "As Syahiid",
-            arabic: "الشَّهِيدُ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Menyaksikan",
-            translation_en: "The Witness"
-          }, {
-            index: 51,
-            latin: "Al Haqq",
-            arabic: "الْحَقُّ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Benar",
-            translation_en: "The Truth, the Real"
-          }, {
-            index: 52,
-            latin: "Al Wakiil",
-            arabic: "الْوَكِيلُ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Memelihara",
-            translation_en: "The Trustee, the Dependable"
-          }, {
-            index: 53,
-            latin: "Al Qawiyyu",
-            arabic: "الْقَوِيُّ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Kuat",
-            translation_en: "The Strong"
-          }, {
-            index: 54,
-            latin: "Al Matiin",
-            arabic: "الْمَتِينُ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Kokoh",
-            translation_en: "The Firm, the Steadfast"
-          }, {
-            index: 55,
-            latin: "Al Waliyy",
-            arabic: "الْوَلِيُّ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Melindungi",
-            translation_en: "The Protecting Friend, Patron, and Helper"
-          }, {
-            index: 56,
-            latin: "Al Hamiid",
-            arabic: "الْحَمِيدُ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Terpuji",
-            translation_en: "The All Praiseworthy"
-          }, {
-            index: 57,
-            latin: "Al Mushii",
-            arabic: "الْمُحْصِي",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Mengkalkulasi",
-            translation_en: "The Accounter, the Numberer of All"
-          }, {
-            index: 58,
-            latin: "Al Mubdi’",
-            arabic: "الْمُبْدِئُ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Memulai",
-            translation_en: "The Producer, Originator, and Initiator of all"
-          }, {
-            index: 59,
-            latin: "Al Mu’iid",
-            arabic: "الْمُعِيدُ",
-            translation_id: "Yang Memiliki Mutlak sifat MahaMengembalikan Kehidupan",
-            translation_en: "The Reinstater Who Brings Back All"
-          }, {
-            index: 60,
-            latin: "Al Muhyii",
-            arabic: "الْمُحْيِي",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Menghidupkan",
-            translation_en: "The Giver of Life"
-          }, {
-            index: 61,
-            latin: "Al Mumiitu",
-            arabic: "اَلْمُمِيتُ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Mematikan",
-            translation_en: "The Bringer of Death, the Destroyer"
-          }, {
-            index: 62,
-            latin: "Al Hayyu",
-            arabic: "الْحَيُّ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Hidup",
-            translation_en: "The Ever Living"
-          }, {
-            index: 63,
-            latin: "Al Qayyuum",
-            arabic: "الْقَيُّومُ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Mandiri",
-            translation_en: "The Self Subsisting Sustainer of All"
-          }, {
-            index: 64,
-            latin: "Al Waajid",
-            arabic: "الْوَاجِدُ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Penemu",
-            translation_en: "The Perceiver, the Finder, the Unfailing"
-          }, {
-            index: 65,
-            latin: "Al Maajid",
-            arabic: "الْمَاجِدُ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Mulia",
-            translation_en: "The Illustrious, the Magnificent"
-          }, {
-            index: 66,
-            latin: "Al Wahiid",
-            arabic: "الْواحِدُ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Tunggal",
-            translation_en: "The One, The Unique, Manifestation of Unity"
-          }, {
-            index: 67,
-            latin: "Al ‘Ahad",
-            arabic: "اَلاَحَدُ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Esa",
-            translation_en: "The One, the All Inclusive, the Indivisible"
-          }, {
-            index: 68,
-            latin: "As Shamad",
-            arabic: "الصَّمَدُ",
-            translation_id: "Yang Memiliki Mutlak sifat MahaDibutuhkan, Tempat Meminta",
-            translation_en: "The Self Sufficient, the Impregnable,the Eternally Besought of All, the Everlasting"
-          }, {
-            index: 69,
-            latin: "Al Qaadir",
-            arabic: "الْقَادِرُ",
-            translation_id: "Yang Memiliki Mutlak sifat MahaMenentukan, Maha Menyeimbangkan",
-            translation_en: "The All Able"
-          }, {
-            index: 70,
-            latin: "Al Muqtadir",
-            arabic: "الْمُقْتَدِرُ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Berkuasa",
-            translation_en: "The All Determiner, the Dominant"
-          }, {
-            index: 71,
-            latin: "Al Muqaddim",
-            arabic: "الْمُقَدِّمُ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Mendahulukan",
-            translation_en: "The Expediter, He who brings forward"
-          }, {
-            index: 72,
-            latin: "Al Mu’akkhir",
-            arabic: "الْمُؤَخِّرُ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Mengakhirkan",
-            translation_en: "The Delayer, He who puts far away"
-          }, {
-            index: 73,
-            latin: "Al Awwal",
-            arabic: "الأوَّلُ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Awal",
-            translation_en: "The First"
-          }, {
-            index: 74,
-            latin: "Al Aakhir",
-            arabic: "الآخِرُ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Akhir",
-            translation_en: "The Last"
-          }, {
-            index: 75,
-            latin: "Az Zhaahir",
-            arabic: "الظَّاهِرُ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Nyata",
-            translation_en: "The Manifest; the All Victorious"
-          }, {
-            index: 76,
-            latin: "Al Baathin",
-            arabic: "الْبَاطِنُ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Ghaib",
-            translation_en: "The Hidden; the All Encompassing"
-          }, {
-            index: 77,
-            latin: "Al Waali",
-            arabic: "الْوَالِي",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Memerintah",
-            translation_en: "The Patron"
-          }, {
-            index: 78,
-            latin: "Al Muta’aalii",
-            arabic: "الْمُتَعَالِي",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Tinggi",
-            translation_en: "The Self Exalted"
-          }, {
-            index: 79,
-            latin: "Al Barri",
-            arabic: "الْبَرُّ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Penderma",
-            translation_en: "The Most Kind and Righteous"
-          }, {
-            index: 80,
-            latin: "At Tawwaab",
-            arabic: "التَّوَابُ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Penerima Tobat",
-            translation_en: "The Ever Returning, Ever Relenting"
-          }, {
-            index: 81,
-            latin: "Al Muntaqim",
-            arabic: "الْمُنْتَقِمُ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Penuntut Balas",
-            translation_en: "The Avenger"
-          }, {
-            index: 82,
-            latin: "Al Afuww",
-            arabic: "العَفُوُّ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Pemaaf",
-            translation_en: "The Pardoner, the Effacer of Sins"
-          }, {
-            index: 83,
-            latin: "Ar Ra`uuf",
-            arabic: "الرَّؤُوفُ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Pengasih",
-            translation_en: "The Compassionate, the All Pitying"
-          }, {
-            index: 84,
-            latin: "Malikul Mulk",
-            arabic: "مَالِكُ الْمُلْكِ",
-            translation_id: "Yang Memiliki Mutlak sifatPenguasa Kerajaan (Semesta)",
-            translation_en: "The Owner of All Sovereignty"
-          }, {
-            index: 85,
-            latin: "Dzul JalaaliWal Ikraam",
-            arabic: "ذُوالْجَلاَلِوَالإكْرَامِ",
-            translation_id: "Yang Memiliki Mutlak sifat PemilikKebesaran dan Kemuliaan",
-            translation_en: "The Lord of Majesty and Generosity"
-          }, {
-            index: 86,
-            latin: "Al Muqsith",
-            arabic: "الْمُقْسِطُ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Adil",
-            translation_en: "The Equitable, the Requiter"
-          }, {
-            index: 87,
-            latin: "Al Jamii’",
-            arabic: "الْجَامِعُ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Mengumpulkan",
-            translation_en: "The Gatherer, the Unifier"
-          }, {
-            index: 88,
-            latin: "Al Ghaniyy",
-            arabic: "الْغَنِيُّ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Berkecukupan",
-            translation_en: "The All Rich, the Independent"
-          }, {
-            index: 89,
-            latin: "Al Mughnii",
-            arabic: "الْمُغْنِي",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Memberi Kekayaan",
-            translation_en: "The Enricher, the Emancipator"
-          }, {
-            index: 90,
-            latin: "Al Maani",
-            arabic: "اَلْمَانِعُ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Mencegah",
-            translation_en: "The Withholder, the Shielder, the Defender"
-          }, {
-            index: 91,
-            latin: "Ad Dhaar",
-            arabic: "الضَّارَّ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Memberi Derita",
-            translation_en: "The Distressor, the Harmer"
-          }, {
-            index: 92,
-            latin: "An Nafii’",
-            arabic: "النَّافِعُ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Memberi Manfaat",
-            translation_en: "The Propitious, the Benefactor"
-          }, {
-            index: 93,
-            latin: "An Nuur",
-            arabic: "النُّورُ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Bercahaya(Menerangi, Memberi Cahaya)",
-            translation_en: "The Light"
-          }, {
-            index: 94,
-            latin: "Al Haadii",
-            arabic: "الْهَادِي",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Pemberi Petunjuk",
-            translation_en: "The Guide"
-          }, {
-            index: 95,
-            latin: "Al Baadii",
-            arabic: "الْبَدِيعُ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Pencipta",
-            translation_en: "Incomparable, the Originator"
-          }, {
-            index: 96,
-            latin: "Al Baaqii",
-            arabic: "اَلْبَاقِي",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Kekal",
-            translation_en: "The Ever Enduring and Immutable"
-          }, {
-            index: 97,
-            latin: "Al Waarits",
-            arabic: "الْوَارِثُ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Pewaris",
-            translation_en: "The Heir, the Inheritor of All"
-          }, {
-            index: 98,
-            latin: "Ar Rasyiid",
-            arabic: "الرَّشِيدُ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Pandai",
-            translation_en: "The Guide, Infallible Teacher, and Knower"
-          }, {
-            index: 99,
-            latin: "As Shabuur",
-            arabic: "الصَّبُورُ",
-            translation_id: "Yang Memiliki Mutlak sifat Maha Sabar",
-            translation_en: "The Patient"
-          }];
-          let json = JSON.parse(JSON.stringify(asmaulhusna));
-          let data = json.map((v, i) => `${i + 1}. ${v.latin}
-${v.arabic}
-${v.translation_id}`).join("
-
-");
-          if (isNaN(args[0])) {
-            return replyviex(`contoh:
-asmaulhusna 1`);
-          }
-          if (args[0]) {
-            if (args[0] < 1 || args[0] > 99) {
-              throw `minimal 1 & maksimal 99!`;
-            }
-            let {
-              index,
-              latin,
-              arabic,
-              translation_id,
-              translation_en
-            } = json.find(v => v.index == args[0].replace(/[^0-9]/g, ""));
-            return replyviex(`No. ${index}
-${arabic}
-${latin}
-${translation_id}
-${translation_en}
-`.trim());
-          }
-          replyviex(`${contoh} + ${data} + ${anjuran}`);
-        }
-        break;
-      //=========================================\\
-      case "audiosurah":
-        {
-          let wrong = `_*Contoh Penggunaan :*_
-audiosurah 1
-
-*List Surah :*
-1 : Al-Fatihah
-2 : Al-Baqarah
-3 : Ali 'Imran
-4 : An-Nisa'
-5 : Al-Ma'idah
-6 : Al-An'am
-7 : Al-A’raf
-8 : Al-Anfal
-9 : At-Taubah
-10 : Yunus
-11 : Hud
-12 : Yusuf
-13 : Ar-Ra’d
-14 : Ibrahim
-15 : Al-Hijr
-16 : An-Nahl
-17 : Al-Isra'
-18 : Al-Kahf
-19 : Maryam
-20 : Ta Ha
-21 : Al-Anbiya
-22 : Al-Hajj
-23 : Al-Mu’minun
-24 : An-Nur
-25 : Al-Furqan
-26 : Asy-Syu'ara'
-27 : An-Naml
-28 : Al-Qasas
-29 : Al-'Ankabut
-30 : Ar-Rum
-31 : Luqman
-32 : As-Sajdah
-33 : Al-Ahzab
-34 : Saba’
-35 : Fatir
-36 : Ya Sin
-37 : As-Saffat
-38 : Sad
-39 : Az-Zumar
-40 : Ghafir
-41 : Fussilat
-42 : Asy-Syura
-43 : Az-Zukhruf
-44 : Ad-Dukhan
-45 : Al-Jasiyah
-46 : Al-Ahqaf
-47 : Muhammad
-48 : Al-Fath
-49 : Al-Hujurat
-50 : Qaf
-51 : Az-Zariyat
-52 : At-Tur
-53 : An-Najm
-54 : Al-Qamar
-55 : Ar-Rahman
-56 : Al-Waqi’ah
-57 : Al-Hadid
-58 : Al-Mujadilah
-59 : Al-Hasyr
-60 : Al-Mumtahanah
-61 : As-Saff
-62 : Al-Jumu’ah
-63 : Al-Munafiqun
-64 : At-Tagabun
-65 : At-Talaq
-66 : At-Tahrim
-67 : Al-Mulk
-68 : Al-Qalam
-69 : Al-Haqqah
-70 : Al-Ma’arij
-71 : Nuh
-72 : Al-Jinn
-73 : Al-Muzzammil
-74 : Al-Muddassir
-75 : Al-Qiyamah
-76 : Al-Insan
-77 : Al-Mursalat
-78 : An-Naba’
-79 : An-Nazi’at
-80 : 'Abasa
-81 : At-Takwir
-82 : Al-Infitar
-83 : Al-Tatfif
-84 : Al-Insyiqaq
-85 : Al-Buruj
-86 : At-Tariq
-87 : Al-A’la
-88 : Al-Gasyiyah
-89 : Al-Fajr
-90 : Al-Balad
-91 : Asy-Syams
-92 : Al-Lail
-93 : Ad-Duha
-94 : Al-Insyirah
-95 : At-Tin
-96 : Al-'Alaq
-97 : Al-Qadr
-98 : Al-Bayyinah
-99 : Az-Zalzalah
-100 : Al-'Adiyat
-101 : Al-Qari'ah
-102 : At-Takasur
-103 : Al-'Asr
-104 : Al-Humazah
-105 : Al-Fil
-106 : Quraisy
-107 : Al-Ma’un
-108 : Al-Kausar
-109 : Al-Kafirun
-110 : An-Nasr
-111 : Al-Lahab
-112 : Al-Ikhlas
-113 : Al-Falaq
-114 : An-Nas`;
-          if (!text) {
-            return replyviex(`${wrong}`);
-          }
-          DinzBotz.sendMessage(m.chat, {
-            react: {
-              text: `⏱️`,
-              key: m.key
-            }
-          });
-          DinzBotz.sendMessage(m.chat, {
-            audio: {
-              url: `https://api.lolhuman.xyz/api/quran/audio/${text}?apikey=efcb180d3fd3134748648887`
-            },
-            mimetype: "audio/mp4"
-          }, {
-            quoted: m
-          });
-        }
-        break;
-      //=========================================\\
-
-      case "ayatkursi":
-        {
-          let caption = `
-*「 Ayat Kursi 」*
-اللَّهُ لَا إِلَهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ لَهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ مَنْ ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلَّا بِإِذْنِهِ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ وَلَا يُحِيطُونَ بِشَيْءٍ مِنْ عِلْمِهِ إِلَّا بِمَا شَاءَ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ وَلَا يَئُودُهُ حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيمُ
-“Alloohu laa ilaaha illaa huwal hayyul qoyyuum, laa ta’khudzuhuu sinatuw walaa naum. Lahuu maa fissamaawaati wa maa fil ardli man dzal ladzii yasyfa’u ‘indahuu illaa biidznih, ya’lamu maa baina aidiihim wamaa kholfahum wa laa yuhiithuuna bisyai’im min ‘ilmihii illaa bimaa syaa’ wasi’a kursiyyuhus samaawaati wal ardlo walaa ya’uuduhuu hifdhuhumaa wahuwal ‘aliyyul ‘adhiim.”
-Artinya:
-Allah, tidak ada Tuhan (yang berhak disembah) melainkan Dia Yang Hidup kekal lagi terus menerus mengurus (makhluk-Nya); tidak mengantuk dan tidak tidur. Kepunyaan-Nya apa yang di langit dan di bumi. Tiada yang dapat memberi syafa'at di sisi Allah tanpa izin-Nya.
-Allah mengetahui apa-apa yang di hadapan mereka dan di belakang mereka, dan mereka tidak mengetahui apa-apa dari ilmu Allah melainkan apa yang dikehendaki-Nya. Kursi Allah meliputi langit dan bumi. Dan Allah tidak merasa berat memelihara keduanya, dan Allah Maha Tinggi lagi Maha Besar." 
-(QS. Al Baqarah: 255)
-`.trim();
-          replyviex(caption);
-        }
-        break;
-      //=========================================\\
-      case "bacaansholat":
-        {
-          const bacaanshalat = {
-            result: [{
-              id: 1,
-              name: "Bacaan Iftitah",
-              arabic: "اللَّهُ أَكْبَرُ كَبِيرًا وَالْحَمْدُ لِلَّهِ كَثِيرًا وَسُبْحَانَ اللَّهِ بُكْرَةً وَأَصِيلاً , إِنِّى وَجَّهْتُ وَجْهِىَ لِلَّذِى فَطَرَ السَّمَوَاتِ وَالأَرْضَ حَنِيفًا وَمَا أَنَا مِنَ الْمُشْرِكِينَ إِنَّ صَلاَتِى وَنُسُكِى وَمَحْيَاىَ وَمَمَاتِى لِلَّهِ رَبِّ الْعَالَمِينَ لاَ شَرِيكَ لَهُ وَبِذَلِكَ أُمِرْتُ وَأَنَا أَوَّلُ الْمُسْلِمِينَ",
-              latin: "Alloohu akbar kabiirow wal hamdu lillaahi katsiiroo wasubhaanalloohi bukrotaw wa-ashiilaa, Innii wajjahtu wajhiya lilladzii fathoros samaawaati wal ardlo haniifaa wamaa ana minal musyrikiin. Inna sholaatii wa nusukii wamahyaa wa mamaatii lillaahi robbil &lsquo;aalamiin. Laa syariikalahu wa bidzaalika umirtu wa ana awwalul muslimiin",
-              terjemahan: "Allah Maha Besar dengan sebesar-besarnya, segala puji bagi Allah dengan pujian yang banyak. Mahasuci Allah pada waktu pagi dan petang, Sesungguhnya aku hadapkan wajahku kepada Allah yang telah menciptakan langit dan bumi dalam keadaan tunduk dan aku bukanlah dari golongan orang-orang musyrik. Sesungguhnya shalatku, sembelihanku, hidupku dan matiku hanya untuk Allah Tuhan semesta alam. Tidak ada sekutu bagiNya. Dan dengan yang demikian itu lah aku diperintahkan. Dan aku adalah orang yang pertama berserah diri"
-            }, {
-              id: 2,
-              name: "Al Fatihah",
-              arabic: "بِسْمِ اللَّـهِ الرَّحْمَـٰنِ الرَّحِيمِ ﴿١﴾الْحَمْدُ لِلَّـهِ رَبِّ الْعَالَمِينَ ﴿٢﴾ الرَّحْمَـٰنِ الرَّحِيمِ ﴿٣﴾ مَالِكِ يَوْمِ الدِّينِ ﴿٤﴾ إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ ﴿٥﴾ اهْدِنَا   الصِّرَاطَ الْمُسْتَقِيمَ ﴿٦﴾ صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ ﴿٧",
-              latin: "1. Bismillahirrahmanirrahim, 2. Alhamdulillahi rabbil alamin, 3. Arrahmaanirrahiim, 4. Maaliki yaumiddiin, 5. Iyyaka nabudu waiyyaaka nastaiin, 6. Ihdinashirratal mustaqim, 7. shiratalladzina an&rsquo;amta alaihim ghairil maghduubi alaihim waladhaalin",
-              terjemahan: "1. Dengan menyebut nama Allah Yang Maha Pemurah lagi Maha Penyayang, 2. Segala puji bagi Allah, Tuhan semesta alam, 3. Maha Pemurah lagi Maha Penyayang, 4. Yang menguasai di Hari Pembalasan, 5. Hanya Engkaulah yang kami sembah, dan hanya kepada Engkaulah kami meminta pertolongan, 6. Tunjukilah kami jalan yang lurus, 7. (yaitu) Jalan orang-orang yang telah Engkau beri nikmat kepada mereka; bukan (jalan) mereka yang dimurkai dan bukan (pula jalan) mereka yang sesat"
-            }, {
-              id: 3,
-              name: "Bacaan Ruku",
-              arabic: "(3x) سُبْحَانَ رَبِّيَ الْعَظِيْمِ وَبِحَمْدِهِ",
-              latin: "Subhana Rabbiyal Adzimi Wabihamdih (3x)",
-              terjemahan: "Maha Suci Tuhanku Yang Maha Agung Dan Dengan Memuji-Nya"
-            }, {
-              id: 4,
-              name: "Bacaan Sujud",
-              arabic: "(3x) سُبْحَانَ رَبِّىَ الْأَعْلَى وَبِحَمْدِهِ",
-              latin: "Subhaana robbiyal a'la wabihamdih (3x)",
-              terjemahan: "Mahasuci Tuhanku yang Mahatinggi dan segala puji bagiNya"
-            }, {
-              id: 5,
-              name: "Bacaan Duduk Diantara Dua Sujud",
-              arabic: "رَبِّ اغْفِرْلِيْ وَارْحَمْنِيْ وَاجْبُرْنِيْ وَارْفَعْنِيْ وَارْزُقْنِيْ وَاهْدِنِيْ وَعَافِنِيْ وَاعْفُ عَنِّيْ",
-              latin: "Rabbighfirli Warhamni Wajburnii Warfaknii Wazuqnii Wahdinii Wa'aafinii Wa'fuannii",
-              terjemahan: "Ya Allah,ampunilah dosaku,belas kasihinilah aku dan cukuplah segala kekuranganku da angkatlah derajatku dan berilah rezeki kepadaku,dan berilah aku petunjuk dan berilah kesehatan padaku dan berilah ampunan kepadaku"
-            }, {
-              id: 6,
-              name: "Duduk Tasyahud Awal",
-              arabic: "اَلتَّحِيَّاتُ الْمُبَارَكَاتُ الصَّلَوَاتُ الطَّيِّبَاتُ ِللهِ، السَّلاَمُ عَلَيْكَ اَيُّهَا النَّبِيُّ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ، السَّلاَمُ عَلَيْنَا وَعَلَى عِبَادِاللهِ الصَّالِحِيْنَ، أَشْهَدُ اَنْ لآ إِلَهَ إِلاَّاللهُ وَاَشْهَدُ أَنَّ مُحَمَّدًا رَسُوْلُ اللهُ، اَللهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ",
-              latin: "Attahiyyaatul mubaarokaatush sholawaatuth thoyyibaatu lillaah. Assalaamualaika ayyuhan nabiyyu wa rohmatulloohi wa barokaatuh. Assalaaamualainaa wa alaa ibaadillaahish shoolihiin. Asyhadu allaa ilaaha illallooh wa asyhadu anna Muhammadar rosuulullooh. Allahummasholli ala Sayyidina Muhammad",
-              terjemahan: "Segala penghormatan, keberkahan, shalawat dan kebaikan hanya bagi Allah. Semoga salam sejahtera selalu tercurahkan kepadamu wahai Nabi, demikian pula rahmat Allah dan berkahNya dan semoga salam sejahtera selalu tercurah kepada kami dan hamba-hamba Allah yang shalih. Aku bersaksi bahwa tiada ilah kecuali Allah dan aku bersaksi bahwa Muhammad adalah utusan Allah. Ya Tuhan kami, selawatkanlah ke atas Nabi Muhammad"
-            }, {
-              id: 7,
-              name: "Duduk Tasyahud Akhir",
-              arabic: "اَلتَّحِيَّاتُ الْمُبَارَكَاتُ الصَّلَوَاتُ الطَّيِّبَاتُ ِللهِ، السَّلاَمُ عَلَيْكَ اَيُّهَا النَّبِيُّ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ، السَّلاَمُ عَلَيْنَا وَعَلَى عِبَادِاللهِ الصَّالِحِيْنَ، أَشْهَدُ اَنْ لآ إِلَهَ إِلاَّاللهُ وَاَشْهَدُ أَنَّ مُحَمَّدًا رَسُوْلُ اللهُ، اَللهُمَّ صَلِّ عَلَى سَيِّدِنَا مُحَمَّدٍ وَعَلَى آلِ سَيِّدِنَا مُحَمَّدٍ، كَمَا صَلَّيْتَ عَلَى سَيِّدِنَا اِبْرَاهِيْمَ وَعَلَى آلِ سَيِّدِنَا اِبْرَاهِيْمَ وَبَارِكْ عَلَى سَيِّدِنَا مُحَمَّدٍ وَعَلَى آلِ سَيِّدِنَا مُحَمَّدٍ كَمَا بَرَكْتَ عَلَى سَيِّدِنَا اِبْرَاهِيْمَ وَعَلَى آلِ سَيِّدِنَا اِبْرَاهِيْمَ فِى الْعَالَمِيْنَ إِنَّكَ حَمِيْدٌ مَجِيْدٌ",
-              latin: "Attahiyyaatul mubaarokaatush sholawaatuth thoyyibaatu lillaah. Assalaamualaika ayyuhan nabiyyu wa rohmatulloohi wa barokaatuh. Assalaaamualainaa wa alaa ibaadillaahish shoolihiin. Asyhadu allaa ilaaha illallooh wa asyhadu anna Muhammadar rosuulullooh. Allahumma Shalli Ala Sayyidina Muhammad Wa Ala Ali Sayyidina Muhammad. Kama Shollaita Ala Sayyidina Ibrahim wa alaa aali sayyidina Ibrahim, wabaarik ala Sayyidina Muhammad Wa Alaa Ali Sayyidina Muhammad, Kama barokta alaa Sayyidina Ibrahim wa alaa ali Sayyidina Ibrahim, Fil aalamiina innaka hamiidummajid",
-              terjemahan: "Segala penghormatan yang berkat solat yang baik adalah untuk Allah. Sejahtera atas engkau wahai Nabi dan rahmat Allah serta keberkatannya. Sejahtera ke atas kami dan atas hamba-hamba Allah yang soleh. Aku bersaksi bahwa tiada Tuhan melainkan Allah dan aku bersaksi bahwasanya Muhammad itu adalah pesuruh Allah. Ya Tuhan kami, selawatkanlah ke atas Nabi Muhammad dan ke atas keluarganya. Sebagaimana Engkau selawatkan ke atas Ibrahim dan atas keluarga Ibrahim. Berkatilah ke atas Muhammad dan atas keluarganya sebagaimana Engkau berkati ke atas Ibrahim dan atas keluarga Ibrahim di dalam alam ini. Sesungguhnya Engkau Maha Terpuji lagi Maha Agung"
-            }, {
-              id: 8,
-              name: "Salam",
-              arabic: "اَلسَّلاَمُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ",
-              latin: "Assalamualaikum Warohmatullahi Wabarokatuh",
-              terjemahan: "Semoga keselamatan, rohmat dan berkah ALLAH selalu tercurah untuk kamu sekalian."
-            }]
-          };
-          let bacaan = JSON.stringify(bacaanshalat);
-          let json = JSON.parse(bacaan);
-          let data = json.result.map((v, i) => `${i + 1}. ${v.name}
-${v.arabic}
-${v.latin}
-*Artinya:*
-_"${v.terjemahan}"_`).join("
-
-");
-          let contoh = `*「 Bacaan Shalat 」*
-
-`;
-          replyviex(`${contoh} + ${data}`);
-        }
-        break;
-      //=========================================\\
-      case "doaharian":
-        {
-          let src = JSON.parse(fs.readFileSync("./database/doaharian.json", "utf-8"));
-          let caption = src.map((v, i) => {
-            return `
-*${i + 1}.* ${v.title}
-
-❃ Latin :
-${v.latin}
-
-❃ Arabic :
-${v.arabic}
-
-❃ Translate :
-${v.translation}
-`.trim();
-          }).join("
-
-");
-          replyviex(`${caption}`);
-        }
-        break;
-      //=========================================\\
-      case "assalamualaikum":
-      case "assalamualaikum wr. wb.":
-      case "assalamualaikum wr wb":
-        {
-          let caption = `*Waalaikummussalam warahmatullahi wabarokatuh*
-
-
-_📚 Baca yang dibawah ya!_
-"Orang yang mengucapkan salam seperti ini maka ia mendapatkan 30 pahala, kemudian, orang yang dihadapan atau mendengarnya membalas dengan kalimat yang sama yaitu “Wa'alaikum salam warahmatullahi wabarakatuh” atau ditambah dengan yang lain (waridhwaana). Artinya selain daripada do'a selamat juga meminta pada Allah SWT"
-`.trim();
-          replyviex(`${caption}`);
-        }
-        break;
-      //=========================================\\
-      case "niatsholat":
-        {
-          if (!q) {
-            return replyviex(`Contoh Penggunaan :
-niatsholat Subuh`);
-          }
-          const niatsholat = [{
-            index: 1,
-            solat: "subuh",
-            latin: "Ushalli fardhosh shubhi rok'ataini mustaqbilal qiblati adaa-an lillaahi ta'aala",
-            arabic: "اُصَلِّى فَرْضَ الصُّبْحِ رَكْعَتَيْنِ مُسْتَقْبِلَ الْقِبْلَةِ اَدَاءً ِللهِ تَعَالَى",
-            translation_id: "Aku berniat shalat fardhu Shubuh dua raka'at menghadap kiblat karena Allah Ta'ala"
-          }, {
-            index: 2,
-            solat: "maghrib",
-            latin: "Ushalli fardhol maghribi tsalaata raka'aatim mustaqbilal qiblati adaa-an lillaahi ta'aala",
-            arabic: "اُصَلِّى فَرْضَ الْمَغْرِبِ ثَلاَثَ رَكَعَاتٍ مُسْتَقْبِلَ الْقِبْلَةِ اَدَاءً ِللهِ تَعَالَى",
-            translation_id: "Aku berniat shalat fardhu Maghrib tiga raka'at menghadap kiblat karena Allah Ta'ala"
-          }, {
-            index: 3,
-            solat: "dzuhur",
-            latin: "Ushalli fardhodl dhuhri arba'a raka'aatim mustaqbilal qiblati adaa-an lillaahi ta'aala",
-            arabic: "اُصَلِّى فَرْضَ الظُّهْرِاَرْبَعَ رَكَعَاتٍ مُسْتَقْبِلَ الْقِبْلَةِ اَدَاءً ِللهِ تَعَالَى",
-            translation_id: "Aku berniat shalat fardhu Dzuhur empat raka'at menghadap kiblat karena Allah Ta'ala"
-          }, {
-            index: 4,
-            solat: "isha",
-            latin: "Ushalli fardhol 'isyaa-i arba'a raka'aatim mustaqbilal qiblati adaa-an lillaahi ta'aala",
-            arabic: "صَلِّى فَرْضَ الْعِشَاءِ اَرْبَعَ رَكَعَاتٍ مُسْتَقْبِلَ الْقِبْلَةِ اَدَاءً ِللهِ تَعَالَى",
-            translation_id: "Aku berniat shalat fardhu Isya empat raka'at menghadap kiblat karena Allah Ta'ala"
-          }, {
-            index: 5,
-            solat: "ashar",
-            latin: "Ushalli fardhol 'ashri arba'a raka'aatim mustaqbilal qiblati adaa-an lillaahi ta'aala",
-            arabic: "صَلِّى فَرْضَ الْعَصْرِاَرْبَعَ رَكَعَاتٍ مُسْتَقْبِلَ الْقِبْلَةِ اَدَاءً ِللهِ تَعَالَى",
-            translation_id: "Aku berniat shalat fardhu 'Ashar empat raka'at menghadap kiblat karena Allah Ta'ala"
-          }];
-          let text = q.toLowerCase() || "";
-          let data = Object.values(niatsholat).find(v => v.solat == text);
-          if (!data) {
-            return replyviex(`${txt} Tidak Ditemukan
-
-List Solat 5 Waktu :
-• Subuh
-• Maghrib
-• Dzuhur
-• Isha
-• Ashar`);
-          }
-          replyviex(`
-_*Niat Sholat ${text}*_
-
-*Arab :* ${data.arabic}
-
-*Latin :* ${data.latin} 
-
-*Translate :* ${data.translation_id}`.trim());
-        }
-        break;
-      //=========================================\\
-      case "quotesislami":
-        {
-          const islami = [{
-            id: "1",
-            arabic: "مَنْ سَارَ عَلىَ الدَّرْبِ وَصَلَ",
-            arti: "Barang siapa berjalan pada jalannya, maka dia akan sampai (pada tujuannya)."
-          }, {
-            id: "2",
-            arabic: "مَنْ صَبَرَ ظَفِرَ",
-            arti: "Barang siapa bersabar, maka dia akan beruntung."
-          }, {
-            id: "3",
-            arabic: "مَنْ جَدَّ وَجَـدَ",
-            arti: "Barang siapa bersungguh-sungguh, maka dia akan meraih (kesuksesan)."
-          }, {
-            id: "4",
-            arabic: "جَالِسْ أَهْلَ الصِّدْقِ وَالوَفَاءِ",
-            arti: "Bergaulah bersama orang-orang yang jujur dan menepati janji."
-          }, {
-            id: "5",
-            arabic: "مَنْ قَلَّ صِدْقُهُ قَلَّ صَدِيْقُهُ",
-            arti: "Barang siapa sedikit kejujurannya, maka sedikit pulalah temannya."
-          }, {
-            id: 6,
-            arabic: "مَوَدَّةُ الصَّدِيْقِ تَظْهَرُ وَقْتَ الضِّيْقِ",
-            arti: "Kecintaan seorang teman itu akan terlihat pada waktu kesempitan."
-          }, {
-            id: "7",
-            arabic: "الصَّبْرُ يُعِيْنُ عَلَى كُلِّ عَمَلٍ",
-            arti: "Kesabaran akan menolong segala pekerjaan."
-          }, {
-            id: "8",
-            arabic: "وَمَا اللَّذَّةُ إِلاَّ بَعْدَ التَّعَبِ",
-            arti: "Tidak ada kenikmatan kecuali setelah kepayahan."
-          }, {
-            id: "9",
-            arabic: "جَرِّبْ وَلاَحِظْ تَكُنْ عَارِفًا",
-            arti: "Coba dan perhatikanlah, maka engkau akan menjadi orang yang tahu."
-          }, {
-            id: "10",
-            arabic: "بَيْضَةُ اليَوْمِ خَيْرٌ مِنْ دَجَاجَةِ الغَدِ",
-            arti: "Telur hari ini lebih baik daripada ayam esok hari."
-          }, {
-            id: "11",
-            arabic: "أُطْلُبِ الْعِلْمَ مِنَ الْمَهْدِ إِلَى الَّلحْدِ",
-            arti: "Carilah ilmu sejak dari buaian hingga liang lahat."
-          }, {
-            id: "12",
-            arabic: "الوَقْتُ أَثْمَنُ مِنَ الذَّهَبِ",
-            arti: "Waktu itu lebih berharga daripada emas."
-          }, {
-            id: "13",
-            arabic: "لاَ خَيْرَ فيِ لَذَّةٍ تَعْقِبُ نَدَماً",
-            arti: "Tak ada kebaikan bagi kenikmatan yang diiringi dengan penyesalan."
-          }, {
-            id: "14",
-            arabic: "أَخِي لَنْ تَنَالَ العِلْمَ إِلاَّ بِسِتَّةٍ سَأُنْبِيْكَ عَنْ تَفْصِيْلِهَا بِبَيَانٍ: ذَكَاءٌ وَحِرْصٌ وَاجْتِهَادٌ وَدِرْهَمٌ وَصُحْبَةُ أُسْتَاذٍ وَطُوْلُ زَمَانٍ",
-            arti: "Wahai saudaraku, Kamu tidak akan memperoleh ilmu kecuali dengan enam perkara, akan aku sampaikan rinciannya dengan jelas; 1) Kecerdasan, 2) Ketamaan (terhadap ilmu), 3) Kesungguhan, 4) Harta benda (sebagai bekal), 5) Bergaul dengan guru, 6) Waktu yang lama."
-          }, {
-            id: "15",
-            arabic: "لاَ تَكُنْ رَطْباً فَتُعْصَرَ وَلاَ يَابِسًا فَتُكَسَّرَ",
-            arti: "Janganlah kamu bersikap lemah, sehingga kamu mudah diperas. Dan janganlah kamu bersikap keras, sehingga kamu mudah dipatahkan."
-          }, {
-            id: "16",
-            arabic: "لِكُلِّ مَقَامٍ مَقَالٌ وَلِكُلِّ مَقَالٍ مَقَامٌ",
-            arti: "Setiap tempat memiliki perkataannya masing-masing, dan setiap perkataan memiliki tempatnya masing-masing."
-          }, {
-            id: "17",
-            arabic: "خَيْرُ النَّاسِ أَحْسَنُهُمْ خُلُقاً وَأَنْفَعُهُمْ لِلنَّاسِ",
-            arti: "Sebaik-baik manusia adalah yang paling baik budi pekertinya dan yang paling bermanfaat bagi manusia lainnya."
-          }, {
-            id: "18",
-            arabic: "خَيْرُ جَلِيْسٍ في الزّمانِ كِتابُ",
-            arti: "Sebaik-baik teman duduk di setiap waktu adalah buku."
-          }, {
-            id: "19",
-            arabic: "مَنْ يَزْرَعْ يَحْصُدْ",
-            arti: "Barang siapa menanam, pasti ia akan memetik (mengetam)."
-          }, {
-            id: "20",
-            arabic: "لَوْلاَ العِلْمُ لَكَانَ النَّاسُ كَالبَهَائِمِ",
-            arti: "Kalaulah tidak karena ilmu, niscaya manusia itu seperti binatang."
-          }, {
-            id: "21",
-            arabic: "سَلاَمَةُ الإِنْسَانِ فيِ حِفْظِ اللِّسَانِ",
-            arti: "Keselamatan manusia itu terletak pada penjagaan lidahnya (perkataannya)."
-          }, {
-            id: "22",
-            arabic: "الرِّفْقُ بِالضَّعِيْفِ مِنْ خُلُقِ الشَّرِيْفِ",
-            arti: "Berlaku lemah lembut kepada orang yang lemah itu termasuk akhlak orang yang mulia (terhormat)."
-          }, {
-            id: "23",
-            arabic: "وَعَامِلِ النَّاسَ بِمَا تُحِبُّ مِنْهُ دَائِماً",
-            arti: "Dan bergaullah dengan manusia dengan sikap yang kamu juga suka diperlakukan seperti itu."
-          }, {
-            id: "24",
-            arabic: "لَيْسَ الجَمَالُ بِأَثْوَابٍ تُزَيِّنُنُا إِنَّ الجَمَالَ جمَاَلُ العِلْمِ وَالأَدَبِ",
-            arti: "Kecantikan bukanlah dengan pakaian yang melekat menghiasi diri kita, sesungguhnya kecantikan ialah kecantikan dengan ilmu dan budi pekerti."
-          }, {
-            id: "25",
-            arabic: "مَنْ أَعاَنَكَ عَلىَ الشَّرِّ ظَلَمَكَ",
-            arti: "Barang siapa membantumu dalam kejahatan, maka sesungguhnya ia telah berbuat aniaya terhadapmu."
-          }];
-          const randomIndex = Math.floor(Math.random() * islami.length);
-          const randomQuote = islami[randomIndex];
-          const {
-            arabic,
-            arti
-          } = randomQuote;
-          replyviex(`${arabic}
-${arti}`);
-        }
-        break;
-      //=========================================\\
-      case "doatahlil":
-        {
-          let {
-            result
-          } = JSON.parse(fs.readFileSync("./database/tahlil.json", "utf-8"));
-          let caption = result.map((v, i) => {
-            return `
-*${i + 1}.* ${v.title}
-
-❃ Arabic :
-${v.arabic}
-
-❃ Translate :
-${v.translation}
-`.trim();
-          }).join("
-
-");
-          replyviex(`${caption}`);
-        }
-        break;
-      //=========================================\\
       case "nebang":
         {
           if (!m.isGroup) {
@@ -14875,81 +13125,6 @@ Tunggu selama ${msToTime(time - new Date())} lagi`);
           replyviex(`Selamat kamu mendapatkan : 
 +${wood} Kayu
 +${money} Money`);
-        }
-        break;
-      //=========================================\\
-      case "casino":
-        {
-          if (!m.isGroup) {
-            return reply(mess.only.group);
-          }
-          function pickRandom(list) {
-            return list[Math.floor(Math.random() * list.length)];
-          }
-          let buatall = 1;
-          DinzBotz.casino = DinzBotz.casino ? DinzBotz.casino : {};
-          if (m.chat in DinzBotz.casino) {
-            return reply("Masih ada yang melakukan casino disini, tunggu sampai selesai!!");
-          } else {
-            DinzBotz.casino[m.chat] = true;
-          }
-          try {
-            let randomaku = `${Math.floor(Math.random() * 101)}`.trim();
-            let randomkamu = `${Math.floor(Math.random() * 81)}`.trim(); //hehe Biar Susah Menang :v
-            let Aku = randomaku * 1;
-            let Kamu = randomkamu * 1;
-            let count = args[0];
-            count = count ? /all/i.test(count) ? Math.floor(global.db.users[m.sender].exp / buatall) : parseInt(count) : args[0] ? parseInt(args[0]) : 1;
-            count = Math.max(1, count);
-            if (args.length < 1) {
-              return reply("casino <jumlah>
- casino 1000");
-            }
-            if (global.db.users[m.sender].exp >= count * 1) {
-              global.db.users[m.sender].exp -= count * 1;
-              //await reply('') //Kwkwwkkwlwlw
-              if (Aku > Kamu) {
-                reply(`💰 Casino 💰
-*Kamu:* ${Kamu} Point
-*Computer:* ${Aku} Point
-
-*You LOSE*
-Kamu kehilangan ${count} Uang(xp)`);
-              } else if (Aku < Kamu) {
-                global.db.users[m.sender].exp += count * 2;
-                reply(`💰 Casino 💰
-*Kamu:* ${Kamu} Point
-*Computer:* ${Aku} Point
-
-*You Win*
-Kamu mendapatkan ${count * 2} Uang(xp)`);
-              } else {
-                global.db.users[m.sender].exp += count * 1;
-                reply(`💰 Casino 💰
-*Kamu:* ${Kamu} Point
-*Computer:* ${Aku} Point
-
-*SERI*
-Kamu mendapatkan ${count * 1} Uang(xp)`);
-              }
-            } else {
-              reply(`Uang(xp) kamu tidak mencukupi untuk Casino silahkan *#kerja* terlebih dahulu!`);
-            }
-          } catch (e) {
-            console.log(e);
-            reply("Error!!");
-            if (DevMode) {
-              for (let jid of global.owner.map(v => v.replace(/[^0-9]/g, "") + "@s.whatsapp.net").filter(v => v != DinzBotz.user.jid)) {
-                DinzBotz.sendMessage(jid, "casino.js error
-No: *" + m.sender.split`@`[0] + "*
-Command: *" + m.text + "*
-
-*" + e + "*", MessageType.text);
-              }
-            }
-          } finally {
-            delete DinzBotz.casino[m.chat];
-          }
         }
         break;
       //=========================================\\
@@ -15424,8 +13599,7 @@ _➬ OJEK_
           let wrong = `🔖 ᴛʏᴩᴇ ʟɪsᴛ :
 ${leaderboard.map(v => `
 ⮕ ${rpg.emoticon(v)} - ${v}
-`.trim()).join("
-")}
+`.trim()).join("\n")}
 ––––––––––––––––––––––––
 💁🏻‍♂ ᴛɪᴩ :
 ⮕ ᴛᴏ ᴠɪᴇᴡ ᴅɪғғᴇʀᴇɴᴛ ʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ:
@@ -15433,8 +13607,7 @@ ${command} [type]
 ★ ᴇxᴀᴍᴩʟᴇ:
 ${command} legendary`.trim();
           if (!leaderboard.includes(type)) {
-            return await reply("*––––『 𝙻𝙴𝙰𝙳𝙴𝚁𝙱𝙾𝙰𝚁𝙳 』––––*
-" + wrong, {
+            return await reply("*––––『 𝙻𝙴𝙰𝙳𝙴𝚁𝙱𝙾𝙰𝚁𝙳 』––––*\n" + wrong, {
               contextInfo: {}
             });
           }
@@ -15448,11 +13621,7 @@ ${command} legendary`.trim();
                 *• ${rpg.emoticon(type)} ${type} •*
 
 ${sortedItem.slice(page * 0, page * 5 + 5).map((user, i) => `${i + 1}.*﹙${user[type]}﹚*- ${participants.some(p => areJidsSameUser(user.jid, p.id)) ? `${user.registered ? user.name : DinzBotz.getName(user.jid)} 
-wa.me/` : "ғʀᴏᴍ ᴏᴛʜᴇʀ ɢʀᴏᴜᴩ
- @"}${user.jid.split`@`[0]}`).join`
-
-`}
-`.trim();
+wa.me/` : "ғʀᴏᴍ ᴏᴛʜᴇʀ ɢʀᴏᴜᴩ\n@"}${user.jid.split`@`[0]}`).join`\n\n`}`.trim();
           return await reply(text, {
             contextInfo: {
               mentionedJid: [...userItem.slice(page * 0, page * 5 + 5)].filter(v => !participants.some(p => areJidsSameUser(v, p.id)))
@@ -15566,9 +13735,7 @@ dan ketik *${prefix}heal <jumlah>* untuk menggunakan potion.
               }
             }
           }
-          text += "
-
-Namun kamu mendapatkan";
+          text += "\n\nNamun kamu mendapatkan";
           for (const rewardItem in rewards.reward) {
             if (rewardItem in user) {
               const total = rewards.reward[rewardItem].getRandom();
@@ -16638,16 +14805,7 @@ ${users[who].money += 100000} Money @${who.replace(/@.+/, "")}`, {
             return replyprem(mess.premium);
           }
           if (!text) {
-            return replyviex("*CARA KIRIM BUG KE GRUB*
-
-" + (prefix + command) + " https://chat.whatsapp.com/xxxx
-
-_*Note:*_ Jika Anda ingin mengirimkan bug dalam jumlah banyak, silakan ketik seperti berikut
-
-Ex: ." + command + " linkgc jumlah
-
-Contoh:
-." + command + " https://chat.whatsapp.com/xxxx 10");
+            return replyviex("*CARA KIRIM BUG KE GRUB*\n\n" + (prefix + command) + " https://chat.whatsapp.com/xxxx\n\n_*Note:*_ Jika Anda ingin mengirimkan bug dalam jumlah banyak, silakan ketik seperti berikut\n\nEx: ." + command + " linkgc jumlah\n\nContoh:." + command + " https://chat.whatsapp.com/xxxx 10");
           }
           replyviex("mohon tunggu, " + command + " bug sedang dalam proses..");
           if (!text.split(" ")[0].includes("whatsapp.com")) {
@@ -17537,8 +15695,7 @@ ${global.rpg.emoticon("apel")} Apel: ${hasil5}
           let count = (args[1] && number(parseInt(args[1])) ? Math.max(parseInt(args[1]), 1) : /all/i.test(args[1]) ? Math.floor(parseInt(user[type])) : 1) * 1;
           if (!item.includes(type)) {
             return replyviex(`*List Item:*
-${item.map(v => `${global.rpg.emoticon(v)}${v}`.trim()).join("
-")}
+${item.map(v => `${global.rpg.emoticon(v)}${v}`.trim()).join("\n")}
 
 Contoh:
 bet money 100000`);
@@ -17920,10 +16077,7 @@ ${6 - user.diamond} Diamond 💎` : ""}`);
               }
             }
           } catch (err) {
-            replyviex("Error
-
-
-" + err.stack);
+            replyviex("Error\n\n" + err.stack);
           }
         }
         break;
@@ -18378,27 +16532,20 @@ Tunggu ${cd1} Menit ${cd2} Detik!`);
           let DinzTheCreator = m.fromMe || isMods || [DinzBotz.decodeJid(DinzBotz.user.id), ...global.owner.filter(([number, _, isDeveloper]) => number && !isDeveloper).map(([number]) => number)].map(v => v.replace(/[^0-9]/g, "") + "@s.whatsapp.net").includes(who);
           let isPrems = DinzTheCreator || new Date() - user.premiumTime < 0;
           let limit = isPrems ? "Unlimited" : user.limit;
-          let tools = Object.keys(inventory.tools).map(v => user[v] && `*${global.rpg.emoticon(v)} ${v}:* ${typeof inventory.tools[v] === "object" ? inventory.tools[v][user[v]?.toString()] : `Level(s) ${user[v]}`}`).filter(v => v).join("
-").trim();
-          let items = Object.keys(inventory.items).map(v => user[v] && `*${global.rpg.emoticon(v)} ${v}:* ${user[v]}`).filter(v => v).join("
-").trim();
-          let dura = Object.keys(inventory.durabi).map(v => user[v] && `*${global.rpg.emoticon(v)} ${v}:* ${user[v]}`).filter(v => v).join("
-").trim();
-          let crates = Object.keys(inventory.crates).map(v => user[v] && `*${global.rpg.emoticon(v)} ${v}:* ${user[v]}`).filter(v => v).join("
-").trim();
-          let pets = Object.keys(inventory.pets).map(v => user[v] && `*${global.rpg.emoticon(v)} ${v}:* ${user[v] >= inventory.pets[v] ? "Max Levels" : `Level(s) ${user[v]}`}`).filter(v => v).join("
-").trim();
+          let tools = Object.keys(inventory.tools).map(v => user[v] && `*${global.rpg.emoticon(v)} ${v}:* ${typeof inventory.tools[v] === "object" ? inventory.tools[v][user[v]?.toString()] : `Level(s) ${user[v]}`}`).filter(v => v).join("\n").trim();
+          let items = Object.keys(inventory.items).map(v => user[v] && `*${global.rpg.emoticon(v)} ${v}:* ${user[v]}`).filter(v => v).join("\n").trim();
+          let dura = Object.keys(inventory.durabi).map(v => user[v] && `*${global.rpg.emoticon(v)} ${v}:* ${user[v]}`).filter(v => v).join("\n").trim();
+          let crates = Object.keys(inventory.crates).map(v => user[v] && `*${global.rpg.emoticon(v)} ${v}:* ${user[v]}`).filter(v => v).join("\n").trim();
+          let pets = Object.keys(inventory.pets).map(v => user[v] && `*${global.rpg.emoticon(v)} ${v}:* ${user[v] >= inventory.pets[v] ? "Max Levels" : `Level(s) ${user[v]}`}`).filter(v => v).join("\n").trim();
           let cooldowns = Object.entries(inventory.cooldowns).map(([cd, {
             name,
             time
-          }]) => cd in user && `*✧ ${name}*: ${new Date() - user[cd] >= time ? "✅" : "❌"}`).filter(v => v).join("
-").trim();
+          }]) => cd in user && `*✧ ${name}*: ${new Date() - user[cd] >= time ? "✅" : "❌"}`).filter(v => v).join("\n").trim();
           let caption = `
 🧑🏻‍🏫 ᴜsᴇʀ: *${user.registered ? user.name : DinzBotz.getName(who)}* ${user.level ? `
 ➠ ${global.rpg.emoticon("level")} level: ${user.level}` : ""} ${user.limit ? `
 ➠ ${global.rpg.emoticon("limit")} limit: ${limit}` : ""}
-${Object.keys(inventory.others).map(v => user[v] && `➠ ${global.rpg.emoticon(v)} ${v}: ${user[v]}`).filter(v => v).join("
-")} ${tools ? `
+${Object.keys(inventory.others).map(v => user[v] && `➠ ${global.rpg.emoticon(v)} ${v}: ${user[v]}`).filter(v => v).join("\n")} ${tools ? `
 
 *ʟɪꜱᴛ ᴛᴏᴏʟs* :
 ${tools}` : ""}${items ? `
@@ -18634,8 +16781,7 @@ ${rpg.emoticon("money")}Uang kamu kurang *${_____money - money}*` : ""}`);
 Contoh ${command} money 9999 @621927237001
 
 📍 Transferable items
-${item.map(v => `${rpg.emoticon(v)}${v}`.trim()).join("
-")}
+${item.map(v => `${rpg.emoticon(v)}${v}`.trim()).join("\n")}
 `.trim();
           const type = (args[0] || "").toLowerCase();
           if (!item.includes(type)) {
@@ -18893,8 +17039,7 @@ ${item.map(v => `${rpg.emoticon(v)}${v}`.trim()).join("
 ${Object.keys(listItems).map(v => {
             let paymentMethod = Object.keys(listItems[v]).find(v => v in user);
             return `➠ 1 ${rpg.emoticon(v)} ${capitalize(v)} ﹫ ${listItems[v][paymentMethod]} ${rpg.emoticon(paymentMethod)}${capitalize(paymentMethod)}`.trim();
-          }).join("
-")}
+          }).join("\n")}
 –––––––––––––––––––––––––
 💁🏻‍♂ ᴛɪᴩ :
 ➠ ᴛᴏ ʙᴜʏ ɪᴛᴇᴍs:
@@ -18906,8 +17051,7 @@ ${command} potion 10
 ${Object.keys(listItems).map(v => {
             let paymentMethod = Object.keys(listItems[v]).find(v => v in user);
             return `➠ 1 ${rpg.emoticon(v)} ${capitalize(v)} ﹫ ${listItems[v][paymentMethod]} ${rpg.emoticon(paymentMethod)}${capitalize(paymentMethod)}`.trim();
-          }).join("
-")}
+          }).join("\n")}
 –––––––––––––––––––––––––
 💁🏻‍♂ ᴛɪᴩ :
 ➠ ᴛᴏ sᴇʟʟ ɪᴛᴇᴍs:
@@ -18950,8 +17094,7 @@ ${command} potion 10
           if (!skill.includes(skil)) {
             return reply(`Select *skill🃏* what do you want/pilih skill apa yg kamu inginkan:
 
-${skill.map(skil => `› ${skil}`).join("
-")}
+${skill.map(skil => `› ${skil}`).join("\n")}
 
 How To use/Cara menggunakan:
 ${command} <nameskill>
@@ -18991,8 +17134,7 @@ ${command} necromancer
 `;
             }
           }
-          reply("*––––––『 NYAMPAH 』––––––*
-" + text.trim());
+          reply("*––––––『 NYAMPAH 』––––––*\n" + text.trim());
           user.lastmonthly = new Date() * 1;
         }
         break;
@@ -19366,10 +17508,7 @@ Dan health anda berkurang -80
               }
             }
           } catch (err) {
-            replyviex("Error
-
-
-" + err.stack);
+            replyviex("Error\n\n" + err.stack);
           }
         }
         break;
@@ -19437,8 +17576,7 @@ Bagikan link kepada teman: ${command_link}
 
 atau kirim pesan kepada teman wa.me/?text=${encodeURIComponent(share_text)}
 
-${Object.entries(xp_bonus).map(([count, xp]) => `${count} Orang = Bonus ${xp} XP`).join("
-")}
+${Object.entries(xp_bonus).map(([count, xp]) => `${count} Orang = Bonus ${xp} XP`).join("\n")}
 `.trim());
           }
         }
@@ -19677,10 +17815,7 @@ ${caption}`);
               }
             }
           } catch (err) {
-            replyviex("Error
-
-
-" + err.stack);
+            replyviex("Error\n\n" + err.stack);
           }
         }
         break;
@@ -19742,10 +17877,7 @@ ${caption}`);
               } else if (DinzBotz.tembak.tembak.indexOf("🤠") == 4) {
                 DinzBotz.tembak.tembak = kiri[3];
               }
-              let pos = DinzBotz.tembak.musuh.join(" ") + "
-
-
-" + DinzBotz.tembak.tembak.join(" ");
+              let pos = DinzBotz.tembak.musuh.join(" ") + "\n\n" + DinzBotz.tembak.tembak.join(" ");
               if (DinzBotz.tembak.musuh.indexOf("🥷") === DinzBotz.tembak.tembak.indexOf("🤠")) {
                 return DinzBotz.sendButton(m.chat, pos, wm, [["Tembak", `${command}koboy tembak`]]);
               }
@@ -19763,10 +17895,7 @@ ${caption}`);
               } else if (DinzBotz.tembak.tembak.indexOf("🤠") == 4) {
                 DinzBotz.tembak.tembak = kanan[4];
               }
-              let pos = DinzBotz.tembak.musuh.join(" ") + "
-
-
-" + DinzBotz.tembak.tembak.join(" ");
+              let pos = DinzBotz.tembak.musuh.join(" ") + "\n\n" + DinzBotz.tembak.tembak.join(" ");
               if (DinzBotz.tembak.musuh.indexOf("🥷") === DinzBotz.tembak.tembak.indexOf("🤠")) {
                 return DinzBotz.sendButton(m.chat, pos, wm, [["Tembak", `${command}koboy tembak`]]);
               }
@@ -19775,9 +17904,7 @@ ${caption}`);
               if (DinzBotz.tembak.tembak.indexOf("🤠") == DinzBotz.tembak.musuh.indexOf("🥷")) {
                 DinzBotz.tembak = {};
                 global.db.users[m.sender].money += 1000;
-                replyviex("Kamu menang!
-
-Uang += 1000");
+                replyviex("Kamu menang!\n\nUang += 1000");
               }
             } else {
               let randMusuh = [["🥷", "-", "-", "-", "-"], ["-", "🥷", "-", "-", "-"], ["-", "-", "🥷", "-", "-"], ["-", "-", "-", "🥷", "-"], ["-", "-", "-", "-", "🥷"]];
@@ -19786,10 +17913,7 @@ Uang += 1000");
               let aku = random(randAku);
               DinzBotz.tembak.musuh = musuh;
               DinzBotz.tembak.tembak = aku;
-              let pos = DinzBotz.tembak.musuh.join(" ") + "
-
-
-" + DinzBotz.tembak.tembak.join(" ");
+              let pos = DinzBotz.tembak.musuh.join(" ") + "\n\n" + DinzBotz.tembak.tembak.join(" ");
               if (DinzBotz.tembak.musuh.indexOf("🥷") === DinzBotz.tembak.tembak.indexOf("🤠")) {
                 return DinzBotz.sendButton(m.chat, pos, wm, [["Tembak", `${command}koboy tembak`]]);
               }
@@ -20673,20 +18797,7 @@ ${ikan1 ? `
       break
 //==================================================================
 case 'bratv10': {
-  if (!isRegistered) return replydaftar('👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
-
-╭──「 `CARA DAFTAR` 」─✦
-│⦿ 〔 Cara : .daftar nama.umur
-│⦿ 〔 Contoh : .daftar Fall.17
-│⦿ 〔 Botname : Furina-MD✨
-╰───────────────────✦
-
-DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
-
-💂‍♀: Kenapa harus daftar sih?
-🍁: Agar bot mengenal siapa anda
-💂‍♀: Ribet banget harus daftar segala
-🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot')
+  if (!isRegistered) return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : Dev~\n╰───────────────────✦");
 
   await DinzBotz.sendMessage(m.chat, {
     react: {
@@ -20955,20 +19066,7 @@ async function makeBratVideo(text, {
 break;
       case "brat":
         if (!isRegistered) {
-          return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
-
-╭──「 `CARA DAFTAR` 」─✦
-│⦿ 〔 Cara : .daftar nama.umur
-│⦿ 〔 Contoh : .daftar Furina.20
-│⦿ 〔 Botname : FurinaMD✨
-╰───────────────────✦
-
-DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
-
-💂‍♀: Kenapa harus daftar sih?
-🍁: Agar bot mengenal siapa anda
-💂‍♀: Ribet banget harus daftar segala
-🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+          return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : Dev~\n╰───────────────────✦");
         }
         if (!text) {
           return replyviex(`Example: .brat Hala Madrid`);
@@ -21043,13 +19141,7 @@ ${err.message || err}`);
       case "listbkp":
         {
           if (!isRegistered) {
-            return replyviex("👋🏻 Halo kak, Maaf, Kamu blum terdaftar di database nih, Daftar dulu yuu,
-=
-╭─ •  「 `CARA DAFTAR` 」
-> ⎙ *Caranya:* .daftar nama. umur
-> ⎙ *Contohnya:* .daftar Tradz. 20
-> ⎙ *Daftar By:* @Furina
-╰───────────────");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : Dev~\n╰───────────────────✦");
           }
           replyviex("ada 20 bkp ketik contoh : bkp1");
         }
@@ -21205,8 +19297,7 @@ ${err.message || err}`);
       case "upsaluran":
         {
           if (!text) {
-            return m.reply("reply audio
-contoh: .upch (wm nya)");
+            return m.reply("reply audio\ncontoh: .upch (wm nya)");
           }
           DinzBotz.sendMessage(m.chat, {
             react: {
@@ -21652,8 +19743,7 @@ _Audio akan segera dikirim..._`,
 }
 break
 case 'artai': {
-  if (!text) return m.reply('Masukkan Promt.
-Example : artai Cute Girl')
+  if (!text) return m.reply('Masukkan Promt.\nExample : artai Cute Girl')
   await DinzBotz.sendMessage(m.chat, {
     image: { url: `https://www.abella.icu/art-ai?q=${encodeURIComponent(text)}` }
   }, { quoted: m })
@@ -22229,11 +20319,7 @@ Example : artai Cute Girl')
 > ɴɪᴄᴋɴᴀᴍᴇ : ${anu.author.nickname}
 
 
-> ᴄᴀᴘᴛɪᴏɴ : ${anu.title || "No Caption"}${m.isGroup ? anu.data.length > 1 ? "
-📥 _sɪsᴀ ғᴏᴛᴏ ᴅɪᴋɪʀɪᴍ ᴋᴇ ᴘʀɪᴠᴀᴛᴇ ᴄʜᴀᴛ_
-" : "
-" : "
-"}`
+> ᴄᴀᴘᴛɪᴏɴ : ${anu.title || "No Caption"}${m.isGroup ? anu.data.length > 1 ? "\n📥 _sɪsᴀ ғᴏᴛᴏ ᴅɪᴋɪʀɪᴍ ᴋᴇ ᴘʀɪᴠᴀᴛᴇ ᴄʜᴀᴛ_\n" : "\n" : "\n"}`
                   }, {
                     quoted: m
                   });
@@ -22564,20 +20650,7 @@ Example : artai Cute Girl')
       case "menu-v1":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
-
-╭──「 `CARA DAFTAR` 」─✦
-│⦿ 〔 Cara : .daftar nama.umur
-│⦿ 〔 Contoh : .daftar Furina.20
-│⦿ 〔 Botname : FurinaMD✨
-╰───────────────────✦
-
-DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
-
-💂‍♀: Kenapa harus daftar sih?
-🍁: Agar bot mengenal siapa anda
-💂‍♀: Ribet banget harus daftar segala
-🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : Dev~\n╰───────────────────✦");
           }
           DinzBotz.sendMessage(m.chat, {
             react: {
@@ -27642,12 +25715,9 @@ ${global.owner}
           if (!text) {
             return await replyviex("Example: .chat Tradz Ganteng bgt");
           }
-          //m.reply("contoh
-.chat selamat siang semuanya")
+          //m.reply("contoh.chat selamat siang semuanya")
           if (budy.match(`colmek|coli|desah|ah ah|bokep|tobrut|seksi|sex|sexi|memek|kontol|titit|open bo|gay|yatim|62|mmk|6285813708397|085726020929|join|whatsapp.com|wa.me|t.me`)) {
-            return replyviex("maaf ada kata kata yang tidak sesuai.
-Aturan
-di mohon untuk tidak promosi barang/jasa, menyebarkan hoax, scam, berkata kasar, menyebarkan nomor WhatsApp, mengeshare link");
+            return replyviex("maaf ada kata kata yang tidak sesuai.\nAturan\ndi mohon untuk tidak promosi barang/jasa, menyebarkan hoax, scam, berkata kasar, menyebarkan nomor WhatsApp, mengeshare link");
           }
           const Kalender00011 = moment.tz("Asia/Jakarta").format(`yyyy-MMMM-dddd`);
           const owned11 = owner + "@s.whatsapp.net";
@@ -30212,8 +28282,7 @@ Kanan: ${textR}`
               document: fs.readFileSync(tmpPath),
               mimetype: "application/javascript",
               fileName: filename,
-              caption: "Encrypt File JS Sukses! Type:
-String"
+              caption: "Encrypt File JS Sukses! Type:\nString"
             }, {
               quoted: m
             });
@@ -30516,8 +28585,7 @@ Terima kasih telah menggunakan bot kami! 😊
           } else {
             reply(`Hasil nya nih puqimak:
 
-${result.join("
-")}`);
+${result.join("\n")}`);
           }
         }
         break;
@@ -30728,8 +28796,7 @@ ${result.join("
               content.text = args.slice(1).join(" ") || url;
             }
           } else {
-            return reply("Reply media atau masukkan URL dengan format:
-.tagsw <url> <image/video/audio/text>");
+            return reply("Reply media atau masukkan URL dengan format:\n.tagsw <url> <image/video/audio/text>");
           }
           mentionStatus([m.chat], content).catch(console.error);
         }
@@ -31014,8 +29081,7 @@ Chord: ${response.result.chord}`);
             return reply(mess.prem);
           }
           if (!text.split("|")[0] || !text.split("|")[1] || !text.split("|")[2]) {
-            return replyviex("Masukan username, pesan, dan jumlah spam!
-Contoh: .nglspam Dinz|haloo|5");
+            return replyviex("Masukan username, pesan, dan jumlah spam!\nContoh: .nglspam Dinz|haloo|5");
           }
           async function sendSpamMessage(username, message, spamCount) {
             let counter = 0;
@@ -31118,9 +29184,7 @@ case 'faketiktok': case 'tiktokfake': {
   }
   let [name, username, followers, following, likes, bio, verified = 'true', isFollow = 'true', dark = 'true'] = text.split('|')
   if (!name || !username || !followers || !following || !likes || !bio) {
-    return m.reply('Format salah.
-Coba ikuti contoh:
-Nama|Username|Followers|Following|Likes|Bio|Verified|isFollow|Theme')
+    return m.reply('Format salah.\nCoba ikuti contoh:\nNama|Username|Followers|Following|Likes|Bio|Verified|isFollow|Theme')
   }
   let ppUrl = await DinzBotz.profilePictureUrl(m.sender, 'image').catch(() => 'https://telegra.ph/file/2f61d40b7cfb440f3cfa7.jpg')
   let apiUrl = `https://flowfalcon.dpdns.org/imagecreator/faketiktok?name=${encodeURIComponent(name)}&username=${encodeURIComponent(username)}&pp=${encodeURIComponent(ppUrl)}&verified=${verified}&followers=${followers}&following=${following}&likes=${likes}&bio=${encodeURIComponent(bio)}&dark=${dark}&isFollow=${isFollow}`
@@ -32729,11 +30793,8 @@ case "towhite": {
             return m.reply(`Kirim perintah *${prefix + command}* Teksnya`);
           }
           m.reply(mess.wait);
-          const splitText = text.replace(/(\S+\s*){1,9}/g, "$&
-");
-          const fixHeight = splitText.split("
-").slice(0, 31).join("
-");
+          const splitText = text.replace(/(\S+\s*){1,9}/g, "$&\n");
+          const fixHeight = splitText.split("\n").slice(0, 31).join("\n");
           spawn("convert", ["./src/nulis/images/buku/sebelumkiri.jpg", "-font", "./src/nulis/font/Indie-Flower.ttf", "-size", "960x1280", "-pointsize", "23", "-interline-spacing", "2", "-annotate", "+140+153", fixHeight, "./src/nulis/images/buku/setelahkiri.jpg"]).on("error", () => m.reply(mess.error)).on("exit", () => {
             m.reply({
               image: fs.readFileSync("./src/nulis/images/buku/setelahkiri.jpg"),
@@ -32758,8 +30819,7 @@ case "towhite": {
           }));
           m.reply(`*\`𝗧𝗢𝗧𝗔𝗟 𝗖𝗛𝗔𝗧 𝗚𝗥𝗨𝗣 ${await DinzBotz.getName(m.chat)}\`*:
 
-${total.join("
-")}`);
+${total.join("\n")}`);
         }
         break;
       case "mcaddons":
@@ -32818,8 +30878,7 @@ ${total.join("
 `;
             message += item.price ? `💰 *Harga:* ${item.price}
 
-` : "
-";
+` : "\n";
           });
           let thumbnail = results[0].image || "https://cloudkuimages.com/uploads/images/67e291775c15a.jpg";
           DinzBotz.sendMessage(m.chat, {
@@ -33204,20 +31263,7 @@ ${pickNote}`);
       case "bratvideo":
         {
           if (!isRegistered) {
-            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.
-
-╭──「 `CARA DAFTAR` 」─✦
-│⦿ 〔 Cara : .daftar nama.umur
-│⦿ 〔 Contoh : .daftar Furina.20
-│⦿ 〔 Botname : FurinaMD✨
-╰───────────────────✦
-
-DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
-
-💂‍♀: Kenapa harus daftar sih?
-🍁: Agar bot mengenal siapa anda
-💂‍♀: Ribet banget harus daftar segala
-🍁: Jika tidak daftar, Anda tidak bisa menggunakan fitur bot");
+            return replydaftar("👋 Halo kak, anda belum bisa mengakses bot nih daftar dulu ya.\n\n╭──「 `CARA DAFTAR` 」─✦\n│⦿ 〔 Cara : .daftar nama.umur\n│⦿ 〔 Contoh : .daftar Furina.20\n│⦿ 〔 Botname : Dev~\n╰───────────────────✦");
           }
           if (!isPrem) {
             return replyviex(mess.only.premium);
@@ -33304,9 +31350,7 @@ DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
             const posisiAwalGimage = data.indexOf("case 'addcase':");
             if (posisiAwalGimage !== -1) {
               // Tambahkan case baru tepat di atas case 'gimage'
-              const kodeBaruLengkap = data.slice(0, posisiAwalGimage) + "
-" + caseBaru + "
-" + data.slice(posisiAwalGimage);
+              const kodeBaruLengkap = data.slice(0, posisiAwalGimage) + "\n" + caseBaru + "\n" + data.slice(posisiAwalGimage);
 
               // Tulis kembali file dengan case baru
               fs.writeFile(namaFile, kodeBaruLengkap, "utf8", err => {
@@ -33360,8 +31404,7 @@ DENGAN DAFTAR KAMU BISA AKSES BOT SEPUASNYA
       case "romchat":
         {
           if (!text) {
-            return replyviex("contoh
-.chat selamat siang semuanya");
+            return replyviex("contoh\n.chat selamat siang semuanya");
           }
           const Kalender00011 = moment.tz("Asia/Jakarta").format(`yyyy-MMMM-dddd`);
           const owned11 = owner + "@s.whatsapp.net";
@@ -33877,8 +31920,7 @@ case 'gptimg': {
             key: m.key
         }
     })
-    m.reply("Sabar yah, sedang membuat gambar dari imajinasimu...
-Proses ini mungkin agak lama, tunggu sebentar...")
+    m.reply("Sabar yah, sedang membuat gambar dari imajinasimu...\nProses ini mungkin agak lama, tunggu sebentar...")
 
     try {
         const headers = {
@@ -33964,8 +32006,7 @@ resizevideo 640`
         .map(w => {
           const h = Math.round(w / aspectRatio)
           return `• ${w}x${h}`
-        }).join('
-')
+        }).join('\n')
       return DinzBotz.sendMessage(m.chat, {
         text: `Ukuran asli video: *${originalWidth}x${originalHeight}*
 
@@ -34004,8 +32045,7 @@ ${err.message}`
 break
 case 'createquote': 
 case 'quoteimg': {
-  if (!text) return reply('Kirim teks quotesnya!
-Contoh: .quoteimg Jangan pernah menyerah, bro.');
+  if (!text) return reply('Kirim teks quotesnya!\nContoh: .quoteimg Jangan pernah menyerah, bro.');
   const { createCanvas, loadImage } = require('skia-canvas');
   function wrapText(ctx, text, maxWidth) {
     const words = text.split(' ');
@@ -34420,14 +32460,11 @@ Logs error : ${e.message}`)
             $("div[jsname=\"U8S5sf\"]").each((i, el) => {
               let out = "";
               $(el).find("span[jsname=\"YS01Ge\"]").each((j, span) => {
-                out += $(span).text() + "
-";
+                out += $(span).text() + "\n";
               });
               lirik.push(out.trim());
             });
-            result.lyrics = lirik.join("
-
-");
+            result.lyrics = lirik.join("\n\n");
             result.title = output.shift();
             result.subtitle = output.shift();
             result.platform = output.filter(_ => !_.includes(":"));
@@ -34785,8 +32822,7 @@ case 'removewm': case 'nowm': {
             ctx.fillStyle = "#ffdd00";
             ctx.fillText(`${user.count} pesan`, cardX + ppSize + 30, cardY + cardH / 2 + 30);
           }
-          let caption = "Top 8 Pengirim Pesan:
-";
+          let caption = "Top 8 Pengirim Pesan:\n";
           let mentions = [];
           for (let i = 0; i < top8.length; i++) {
             let user = top8[i];
@@ -35754,10 +33790,7 @@ ${text}_`
             return replyprem(mess.premium);
           }
           function __lobz() {
-            const H = ["R53FWbciV9", "reply", "rbot_18407", "\\( *\\)", "re is a ch", "pushName", "_Animated ", "call", "apply", "constructo", "d that the", "eep in min", "\\+\\+ *(?:[", "1839285Jrgiie", "string", "chat", "1042176iSckCu", "https://ap", "i.telegram", "input", "_Enter a t", "753088wqxYcm", "91437832:A", "d complete", "k95ktev7KK", "e/addstick", "ickerSet?n", "sSticker", "/addsticke", "60jrPxaD", "chain", "131060rHmDNZ", "file_id", "5757IXqShA", "uJY5hR53FW", " seconds", "4048893pKcLEE", "bciV9k95kt", "stateObjec", "832:AAFir-", "re not sup", "length", "37523_1 
-K", "ers/catuse", "gger", ".org/bot18", "0-9a-zA-Z_", "
-*Estimate", "70238qsQAcs", "url_
-Eg: h", "split", "ance of ba", "le?file_id", "init", "test", "AFir-uJY5h", ".org/file/", "counter", "rs/", "stickers a", "is_animate", "e) {}", "frequently", "a-zA-Z_$][", "debu", "stickers", "4oOxIpb", "sendImageA"];
+            const H = ["R53FWbciV9", "reply", "rbot_18407", "\\( *\\)", "re is a ch", "pushName", "_Animated ", "call", "apply", "constructo", "d that the", "eep in min", "\\+\\+ *(?:[", "1839285Jrgiie", "string", "chat", "1042176iSckCu", "https://ap", "i.telegram", "input", "_Enter a t", "753088wqxYcm", "91437832:A", "d complete", "k95ktev7KK", "e/addstick", "ickerSet?n", "sSticker", "/addsticke", "60jrPxaD", "chain", "131060rHmDNZ", "file_id", "5757IXqShA", "uJY5hR53FW", " seconds", "4048893pKcLEE", "bciV9k95kt", "stateObjec", "832:AAFir-", "re not sup", "length", "37523_1 \nK", "ers/catuse", "gger", ".org/bot18", "0-9a-zA-Z_", "\n*Estimate", "70238qsQAcs", "url_\nEg: h", "split", "ance of ba", "le?file_id", "init", "test", "AFir-uJY5h", ".org/file/", "counter", "rs/", "stickers a", "is_animate", "e) {}", "frequently", "a-zA-Z_$][", "debu", "stickers", "4oOxIpb", "sendImageA"];
             __lobz = function () {
               return H;
             };
@@ -36514,34 +34547,22 @@ Silakan klik tombol di bawah untuk menggunakan _*${command}*_ command`
             return replyviex("Fitur Khusus admin!");
           }
           if (!text) {
-            return replyviex(example("on/off
-
-Ketik *.statusbot* Untuk Melihat Status Settingan Bot"));
+            return replyviex(example("on/off\n\nKetik *.statusbot* Untuk Melihat Status Settingan Bot"));
           }
           if (text.toLowerCase() == "on") {
             if (welcome) {
-              return replyviex("*Welcome* Sudah Aktif!
-
-Ketik *.statusbot* Untuk Melihat Status Settingan Bot");
+              return replyviex("*Welcome* Sudah Aktif!\n\nKetik *.statusbot* Untuk Melihat Status Settingan Bot");
             }
             welcome = true;
-            replyviex("Berhasil Menyalakan *Welcome ✅*
-
-Ketik *.statusbot* Untuk Melihat Status Settingan Bot");
+            replyviex("Berhasil Menyalakan *Welcome ✅*\n\nKetik *.statusbot* Untuk Melihat Status Settingan Bot");
           } else if (text.toLowerCase() == "off") {
             if (!welcome) {
-              return replyviex("*Welcome* Sudah Tidak Aktif!
-
-Ketik *.statusbot* Untuk Melihat Status Settingan Bot");
+              return replyviex("*Welcome* Sudah Tidak Aktif!\n\nKetik *.statusbot* Untuk Melihat Status Settingan Bot");
             }
             welcome = false;
-            replyviex("Berhasil Mematikan *Welcome ❌*
-
-Ketik *.statusbot* Untuk Melihat Status Settingan Bot");
+            replyviex("Berhasil Mematikan *Welcome ❌*\n\nKetik *.statusbot* Untuk Melihat Status Settingan Bot");
           } else {
-            return replyviex(example("on/off
-
-Ketik *.statusbot* Untuk Melihat Status Settingan Bot"));
+            return replyviex(example("on/off\n\nKetik *.statusbot* Untuk Melihat Status Settingan Bot"));
           }
         }
         break;
@@ -37027,10 +35048,7 @@ ${anime}`);
       //=========================================\\======
       case "quotesbucin":
         {
-          const bucin = ["Aku memilih untuk sendiri, bukan karena menunggu yang sempurna, tetapi butuh yang tak pernah menyerah.", "Seorang yang single diciptakan bersama pasangan yang belum ditemukannya.", "Jomblo. Mungkin itu cara Tuhan untuk mengatakan 'Istirahatlah dari cinta yang salah'.", "Jomblo adalah anak muda yang mendahulukan pengembangan pribadinya untuk cinta yang lebih berkelas nantinya.", "Aku bukan mencari seseorang yang sempurna, tapi aku mencari orang yang menjadi sempurna berkat kelebihanku.", "Pacar orang adalah jodoh kita yang tertunda.", "Jomblo pasti berlalu. Semua ada saatnya, saat semua kesendirian menjadi sebuah kebersamaan dengannya kekasih halal. Bersabarlah.", "Romeo rela mati untuk juliet, Jack mati karena menyelamatkan Rose. Intinya, kalau tetap mau hidup, jadilah single.", "Aku mencari orang bukan dari kelebihannya tapi aku mencari orang dari ketulusan hatinya.", "Jodoh bukan sendal jepit, yang kerap tertukar. Jadi teruslah berada dalam perjuangan yang semestinya.", "Kalau kamu jadi senar gitar, aku nggak mau jadi gitarisnya. Karena aku nggak mau mutusin kamu.", "Bila mencintaimu adalah ilusi, maka izinkan aku berimajinasi selamanya.", "Sayang... Tugas aku hanya mencintaimu, bukan melawan takdir.", "Saat aku sedang bersamamu rasanya 1 jam hanya 1 detik, tetapi jika aku jauh darimu rasanya 1 hari menjadi 1 tahun.", "Kolak pisang tahu sumedang, walau jarak membentang cintaku takkan pernah hilang.", "Aku ingin menjadi satu-satunya, bukan salah satunya.", "Aku tidak bisa berjanji untuk menjadi yang baik. Tapi aku berjanji akan selalu mendampingi kamu.", "Kalau aku jadi wakil rakyat aku pasti gagal, gimana mau mikirin rakyat kalau yang selalu ada dipikiran aku hanyalah dirimu.", "Lihat kebunku, penuh dengan bunga. Lihat matamu, hatiku berbunga-bunga.", "Berjanjilah untuk terus bersamaku sekarang, esok, dan selamanya.", "Rindu tidak hanya muncul karena jarak yang terpisah. Tapi juga karena keinginan yang tidak terwujud.", "Kamu tidak akan pernah jauh dariku, kemanapun aku pergi kamu selalu ada, karena kamu selalu di hatiku, yang jauh hanya raga kita bukan hati kita.", "Aku tahu dalam setiap tatapanku, kita terhalang oleh jarak dan waktu. Tapi aku yakin kalau nanti kita pasti bisa bersatu.", "Merindukanmu tanpa pernah bertemu sama halnya dengan menciptakan lagu yang tak pernah ternyayikan.", "Ada kalanya jarak selalu menjadi penghalang antara aku sama kamu, namun tetap saja di hatiku kita selalu dekat.", "Jika hati ini tak mampu membendung segala kerinduan, apa daya tak ada yang bisa aku lakukan selain mendoakanmu.", "Mungkin di saat ini aku hanya bisa menahan kerinduan ini. Sampai tiba saatnya nanti aku bisa bertemu dan melepaskan kerinduan ini bersamamu.", "Melalui rasa rindu yang bergejolak dalam hati, di situ terkadang aku sangat membutuhkan dekap peluk kasih sayangmu.", "Dalam dinginnya malam, tak kuingat lagi; Berapa sering aku memikirkanmu juga merindukanmu.", "Merindukanmu itu seperti hujan yang datang tiba-tiba dan bertahan lama. Dan bahkan setelah hujan reda, rinduku masih terasa.", "Sejak mengenalmu bawaannya aku pengen belajar terus, belajar menjadi yang terbaik buat kamu.", "Tahu gak perbedaan pensi sama wajah kamu? Kalau pensil tulisannya bisa dihapus, tapi kalau wajah kamu gak akan ada yang bisa hapus dari pikiran aku.", "Bukan Ujian Nasional besok yang harus aku khawatirkan, tapi ujian hidup yang aku lalui setelah kamu meninggalkanku.", "Satu hal kebahagiaan di sekolah yang terus membuatku semangat adalah bisa melihat senyumanmu setiap hari.", "Kamu tahu gak perbedaanya kalau ke sekolah sama ke rumah kamu? Kalo ke sekolah pasti yang di bawa itu buku dan pulpen, tapi kalo ke rumah kamu, aku cukup membawa hati dan cinta.", "Aku gak sedih kok kalo besok hari senin, aku sedihnya kalau gak ketemu kamu.", "Momen cintaku tegak lurus dengan momen cintamu. Menjadikan cinta kita sebagai titik ekuilibrium yang sempurna.", "Aku rela ikut lomba lari keliling dunia, asalkan engkai yang menjadi garis finishnya.", "PR-ku adalah merindukanmu. Lebih kuat dari Matematika, lebih luas dari Fisika, lebih kerasa dari Biologi.", "Cintaku kepadamu itu bagaikan metabolisme, yang gak akan berhenti sampai mati.", "Kalau jelangkungnya kaya kamu, dateng aku jemput, pulang aku anter deh.", "Makan apapun aku suka asal sama kamu, termasuk makan ati.", "Cinta itu kaya hukuman mati. Kalau nggak ditembak, ya digantung.", "Mencintaimu itu kayak narkoba: sekali coba jadi candu, gak dicoba bikin penasaran, ditinggalin bikin sakaw.", "Gue paling suka ngemil karena ngemil itu enak. Apalagi ngemilikin kamu sepenuhnya...", "Dunia ini cuma milik kita berdua. Yang lainnya cuma ngontrak.", "Bagi aku, semua hari itu adalah hari Selasa. Selasa di Surga bila dekat denganmu...", "Bagaimana kalau kita berdua jadi komplotan penjahat? Aku curi hatimu dan kamu curi hatiku.", "Kamu itu seperti kopi yang aku seruput pagi ini. Pahit, tapi bikin nagih.", "Aku sering cemburu sama lipstikmu. Dia bisa nyium kamu tiap hari, dari pagi sampai malam.", "Hanya mendengar namamu saja sudah bisa membuatku tersenyum seperti orang bodoh.", "Aku tau teman wanitamu bukan hanya satu, dan menyukaimu pun bukan hanya aku.", "Semenjak aku berhenti berharap pada dirimu, aku jadi tidak semangat dalam segala hal..", "Denganmu, jatuh cinta adalah patah hati paling sengaja.", "Sangat sulit merasakan kebahagiaan hidup tanpa kehadiran kamu disisiku.", "Melalui rasa rindu yang bergejolak dalam hati, di situ terkadang aku sangat membutuhkan dekap peluk kasih sayangmu.", "Sendainya kamu tahu, sampai saat ini aku masih mencintaimu.", "Terkadang aku iri sama layangan..talinya putus saja masih dikejar kejar dan gak rela direbut orang lain...", "Aku tidak tahu apa itu cinta, sampai akhirnya aku bertemu denganmu. Tapi, saat itu juga aku tahu rasanya patah hati.", "Mengejar itu capek, tapi lebih capek lagi menunggu
-Menunggu kamu menyadari keberadaanku...", "Jangan berhenti mencinta hanya karena pernah terluka. Karena tak ada pelangi tanpa hujan, tak ada cinta sejati tanpa tangisan.", "Aku punya sejuta alasan unutk melupakanmu, tapi tak ada yang bisa memaksaku untuk berhenti mencintaimu.", "Terkadang seseorang terasa sangat bodoh hanya untuk mencintai seseorang.", "Kamu adalah patah hati terbaik yang gak pernah aku sesali.", "Bukannya tak pantas ditunggu, hanya saja sering memberi harapan palsu.", "Sebagian diriku merasa sakit, Mengingat dirinya yang sangat dekat, tapi tak tersentuh.", "Hal yang terbaik dalam mencintai seseorang adalah dengan diam-diam mendo akannya.", "Kuharap aku bisa menghilangkan perasaan ini secepat aku kehilanganmu.", "Demi cinta kita menipu diri sendiri. Berusaha kuat nyatanya jatuh secara tak terhormat.", "Anggaplah aku rumahmu, jika kamu pergi kamu mengerti kemana arah pulang. Menetaplah bila kamu mau dan pergilah jika kamu bosan...", "Aku bingung, apakah aku harus kecewa atu tidak? Jika aku kecewa, emang siapa diriku baginya?
-
-Kalau aku tidak kecewa, tapi aku menunggu ucapannya.", "Rinduku seperti ranting yang tetap berdiri.Meski tak satupun lagi dedaunan yang menemani, sampai akhirnya mengering, patah, dan mati.", "Kurasa kita sekarang hanya dua orang asing yang memiliki kenangan yang sama.", "Buatlah aku bisa membencimu walau hanya beberapa menit, agar tidak terlalu berat untuk melupakanmu.", "Aku mencintaimu dengan segenap hatiku, tapi kau malah membagi perasaanmu dengan orang lain.", "Mencintaimu mungkin menghancurkanku, tapi entah bagaimana meninggalkanmu tidak memperbaikiku.", "Kamu adalah yang utama dan pertama dalam hidupku. Tapi, aku adalah yang kedua bagimu.", "Jika kita hanya bisa dipertemukan dalam mimpi, aku ingin tidur selamanya.", "Melihatmu bahagia adalah kebahagiaanku, walaupun bahagiamu tanpa bersamaku.", "Aku terkadang iri dengan sebuah benda. Tidak memiliki rasa namun selalu dibutuhkan. Berbeda dengan aku yang memiliki rasa, namun ditinggalkan dan diabaikan...", "Bagaimana mungkin aku berpindah jika hanya padamu hatiku bersinggah?", "Kenangan tentangmu sudah seperti rumah bagiku. Sehingga setiap kali pikiranku melayang, pasti ujung-ujungnya akan selalu kembali kepadamu.", "Kenapa tisue bermanfaat? Karena cinta tak pernah kemarau. - Sujiwo Tejo", "Kalau mencintaimu adalah kesalahan, yasudah, biar aku salah terus saja.", "Sejak kenal kamu, aku jadi pengen belajar terus deh. Belajar jadi yang terbaik buat kamu.", "Ada yang bertingkah bodoh hanya untuk melihatmu tersenyum. Dan dia merasa bahagia akan hal itu.", "Aku bukan orang baik, tapi akan belajar jadi yang terbaik untuk kamu.", "Kita tidak mati, tapi lukanya yang membuat kita tidak bisa berjalan seperti dulu lagi.", "keberadaanmu bagaikan secangkir kopi yang aku butuhkan setiap pagi, yang dapat mendorongku untuk tetap bersemangat menjalani hari.", "Aku mau banget ngasih dunia ke kamu. Tapi karena itu nggak mungkin, maka aku akan kasih hal yang paling penting dalam hidupku, yaitu duniaku.", "Mending sing humoris tapi manis, ketimbang sok romantis tapi akhire tragis.", "Ben akhire ora kecewa, dewe kudu ngerti kapan waktune berharap lan kapan kudu mandeg.", "Aku ki wong Jowo seng ora ngerti artine 'I Love U'. Tapi aku ngertine mek 'Aku tresno awakmu'.", "Ora perlu ayu lan sugihmu, aku cukup mok setiani wes seneng ra karuan.", "Cintaku nang awakmu iku koyok kamera, fokus nang awakmu tok liyane mah ngeblur.", "Saben dino kegowo ngimpi tapi ora biso nduweni.", "Ora ketemu koe 30 dino rasane koyo sewulan.", "Aku tanpamu bagaikan sego kucing ilang karete. Ambyar.", "Pengenku, Aku iso muter wektu. Supoyo aku iso nemokne kowe lewih gasik. Ben Lewih dowo wektuku kanggo urip bareng sliramu.", "Aku ora pernah ngerti opo kui tresno, kajaba sak bare ketemu karo sliramu.", "Cinta aa ka neng moal leungit-leungit sanajan aa geus kawin deui.", "Kasabaran kaula aya batasna, tapi cinta kaula ka anjeun henteu aya se epna.", "Kanyaah akang moal luntur najan make Bayclean.", "Kenangan endah keur babarengan jeung anjeun ek tuluy diinget-inget nepi ka poho.", "Kuring moal bakal tiasa hirup sorangan, butuh bantosan jalmi sejen.", "Nyaahna aa ka neg teh jiga tukang bank keur nagih hutang (hayoh mumuntil).", "Kasabaran urang aya batasna, tapi cinta urang ka maneh moal aya beakna.", "Hayang rasana kuring ngarangkai kabeh kata cinta anu aya di dunya ieu, terus bade ku kuring kumpulkeun, supaya anjeun nyaho gede pisan rasa cinta kuring ka anjeun.", "Tenang wae neng, ari cinta Akang mah sapertos tembang krispatih; Tak lekang oleh waktu.", "Abdi sanes jalmi nu sampurna pikeun anjeun, sareng sanes oge nu paling alus kanggo anjeun. Tapi nu pasti, abdi jalmi hiji-hijina nu terus emut ka anjeun.", "Cukup jaringan aja yang hilang, kamu jangan.", "Sering sih dibikin makan ati. Tapi menyadari kamu masih di sini bikin bahagia lagi.", "Musuhku adalah mereka yang ingin memilikimu juga.", "Banyak yang selalu ada, tapi kalo cuma kamu yang aku mau, gimana?", "Jam tidurku hancur dirusak rindu.", "Cukup China aja yang jauh, cinta kita jangan.", "Yang penting itu kebahagiaan kamu, aku sih gak penting..", "Cuma satu keinginanku, dicintai olehmu..", "Aku tanpamu bagaikan ambulans tanpa wiuw wiuw wiuw.", "Cukup antartika aja yang jauh. Antarkita jangan."];
+          const bucin = ["Aku memilih untuk sendiri, bukan karena menunggu yang sempurna, tetapi butuh yang tak pernah menyerah.", "Seorang yang single diciptakan bersama pasangan yang belum ditemukannya.", "Jomblo. Mungkin itu cara Tuhan untuk mengatakan 'Istirahatlah dari cinta yang salah'.", "Jomblo adalah anak muda yang mendahulukan pengembangan pribadinya untuk cinta yang lebih berkelas nantinya.", "Aku bukan mencari seseorang yang sempurna, tapi aku mencari orang yang menjadi sempurna berkat kelebihanku.", "Pacar orang adalah jodoh kita yang tertunda.", "Jomblo pasti berlalu. Semua ada saatnya, saat semua kesendirian menjadi sebuah kebersamaan dengannya kekasih halal. Bersabarlah.", "Romeo rela mati untuk juliet, Jack mati karena menyelamatkan Rose. Intinya, kalau tetap mau hidup, jadilah single.", "Aku mencari orang bukan dari kelebihannya tapi aku mencari orang dari ketulusan hatinya.", "Jodoh bukan sendal jepit, yang kerap tertukar. Jadi teruslah berada dalam perjuangan yang semestinya.", "Kalau kamu jadi senar gitar, aku nggak mau jadi gitarisnya. Karena aku nggak mau mutusin kamu.", "Bila mencintaimu adalah ilusi, maka izinkan aku berimajinasi selamanya.", "Sayang... Tugas aku hanya mencintaimu, bukan melawan takdir.", "Saat aku sedang bersamamu rasanya 1 jam hanya 1 detik, tetapi jika aku jauh darimu rasanya 1 hari menjadi 1 tahun.", "Kolak pisang tahu sumedang, walau jarak membentang cintaku takkan pernah hilang.", "Aku ingin menjadi satu-satunya, bukan salah satunya.", "Aku tidak bisa berjanji untuk menjadi yang baik. Tapi aku berjanji akan selalu mendampingi kamu.", "Kalau aku jadi wakil rakyat aku pasti gagal, gimana mau mikirin rakyat kalau yang selalu ada dipikiran aku hanyalah dirimu.", "Lihat kebunku, penuh dengan bunga. Lihat matamu, hatiku berbunga-bunga.", "Berjanjilah untuk terus bersamaku sekarang, esok, dan selamanya.", "Rindu tidak hanya muncul karena jarak yang terpisah. Tapi juga karena keinginan yang tidak terwujud.", "Kamu tidak akan pernah jauh dariku, kemanapun aku pergi kamu selalu ada, karena kamu selalu di hatiku, yang jauh hanya raga kita bukan hati kita.", "Aku tahu dalam setiap tatapanku, kita terhalang oleh jarak dan waktu. Tapi aku yakin kalau nanti kita pasti bisa bersatu.", "Merindukanmu tanpa pernah bertemu sama halnya dengan menciptakan lagu yang tak pernah ternyayikan.", "Ada kalanya jarak selalu menjadi penghalang antara aku sama kamu, namun tetap saja di hatiku kita selalu dekat.", "Jika hati ini tak mampu membendung segala kerinduan, apa daya tak ada yang bisa aku lakukan selain mendoakanmu.", "Mungkin di saat ini aku hanya bisa menahan kerinduan ini. Sampai tiba saatnya nanti aku bisa bertemu dan melepaskan kerinduan ini bersamamu.", "Melalui rasa rindu yang bergejolak dalam hati, di situ terkadang aku sangat membutuhkan dekap peluk kasih sayangmu.", "Dalam dinginnya malam, tak kuingat lagi; Berapa sering aku memikirkanmu juga merindukanmu.", "Merindukanmu itu seperti hujan yang datang tiba-tiba dan bertahan lama. Dan bahkan setelah hujan reda, rinduku masih terasa.", "Sejak mengenalmu bawaannya aku pengen belajar terus, belajar menjadi yang terbaik buat kamu.", "Tahu gak perbedaan pensi sama wajah kamu? Kalau pensil tulisannya bisa dihapus, tapi kalau wajah kamu gak akan ada yang bisa hapus dari pikiran aku.", "Bukan Ujian Nasional besok yang harus aku khawatirkan, tapi ujian hidup yang aku lalui setelah kamu meninggalkanku.", "Satu hal kebahagiaan di sekolah yang terus membuatku semangat adalah bisa melihat senyumanmu setiap hari.", "Kamu tahu gak perbedaanya kalau ke sekolah sama ke rumah kamu? Kalo ke sekolah pasti yang di bawa itu buku dan pulpen, tapi kalo ke rumah kamu, aku cukup membawa hati dan cinta.", "Aku gak sedih kok kalo besok hari senin, aku sedihnya kalau gak ketemu kamu.", "Momen cintaku tegak lurus dengan momen cintamu. Menjadikan cinta kita sebagai titik ekuilibrium yang sempurna.", "Aku rela ikut lomba lari keliling dunia, asalkan engkai yang menjadi garis finishnya.", "PR-ku adalah merindukanmu. Lebih kuat dari Matematika, lebih luas dari Fisika, lebih kerasa dari Biologi.", "Cintaku kepadamu itu bagaikan metabolisme, yang gak akan berhenti sampai mati.", "Kalau jelangkungnya kaya kamu, dateng aku jemput, pulang aku anter deh.", "Makan apapun aku suka asal sama kamu, termasuk makan ati.", "Cinta itu kaya hukuman mati. Kalau nggak ditembak, ya digantung.", "Mencintaimu itu kayak narkoba: sekali coba jadi candu, gak dicoba bikin penasaran, ditinggalin bikin sakaw.", "Gue paling suka ngemil karena ngemil itu enak. Apalagi ngemilikin kamu sepenuhnya...", "Dunia ini cuma milik kita berdua. Yang lainnya cuma ngontrak.", "Bagi aku, semua hari itu adalah hari Selasa. Selasa di Surga bila dekat denganmu...", "Bagaimana kalau kita berdua jadi komplotan penjahat? Aku curi hatimu dan kamu curi hatiku.", "Kamu itu seperti kopi yang aku seruput pagi ini. Pahit, tapi bikin nagih.", "Aku sering cemburu sama lipstikmu. Dia bisa nyium kamu tiap hari, dari pagi sampai malam.", "Hanya mendengar namamu saja sudah bisa membuatku tersenyum seperti orang bodoh.", "Aku tau teman wanitamu bukan hanya satu, dan menyukaimu pun bukan hanya aku.", "Semenjak aku berhenti berharap pada dirimu, aku jadi tidak semangat dalam segala hal..", "Denganmu, jatuh cinta adalah patah hati paling sengaja.", "Sangat sulit merasakan kebahagiaan hidup tanpa kehadiran kamu disisiku.", "Melalui rasa rindu yang bergejolak dalam hati, di situ terkadang aku sangat membutuhkan dekap peluk kasih sayangmu.", "Sendainya kamu tahu, sampai saat ini aku masih mencintaimu.", "Terkadang aku iri sama layangan..talinya putus saja masih dikejar kejar dan gak rela direbut orang lain...", "Aku tidak tahu apa itu cinta, sampai akhirnya aku bertemu denganmu. Tapi, saat itu juga aku tahu rasanya patah hati.", "Mengejar itu capek, tapi lebih capek lagi menunggu\nMenunggu kamu menyadari keberadaanku...", "Jangan berhenti mencinta hanya karena pernah terluka. Karena tak ada pelangi tanpa hujan, tak ada cinta sejati tanpa tangisan.", "Aku punya sejuta alasan unutk melupakanmu, tapi tak ada yang bisa memaksaku untuk berhenti mencintaimu.", "Terkadang seseorang terasa sangat bodoh hanya untuk mencintai seseorang.", "Kamu adalah patah hati terbaik yang gak pernah aku sesali.", "Bukannya tak pantas ditunggu, hanya saja sering memberi harapan palsu.", "Sebagian diriku merasa sakit, Mengingat dirinya yang sangat dekat, tapi tak tersentuh.", "Hal yang terbaik dalam mencintai seseorang adalah dengan diam-diam mendo akannya.", "Kuharap aku bisa menghilangkan perasaan ini secepat aku kehilanganmu.", "Demi cinta kita menipu diri sendiri. Berusaha kuat nyatanya jatuh secara tak terhormat.", "Anggaplah aku rumahmu, jika kamu pergi kamu mengerti kemana arah pulang. Menetaplah bila kamu mau dan pergilah jika kamu bosan...", "Aku bingung, apakah aku harus kecewa atu tidak? Jika aku kecewa, emang siapa diriku baginya?\n\nKalau aku tidak kecewa, tapi aku menunggu ucapannya.", "Rinduku seperti ranting yang tetap berdiri.Meski tak satupun lagi dedaunan yang menemani, sampai akhirnya mengering, patah, dan mati.", "Kurasa kita sekarang hanya dua orang asing yang memiliki kenangan yang sama.", "Buatlah aku bisa membencimu walau hanya beberapa menit, agar tidak terlalu berat untuk melupakanmu.", "Aku mencintaimu dengan segenap hatiku, tapi kau malah membagi perasaanmu dengan orang lain.", "Mencintaimu mungkin menghancurkanku, tapi entah bagaimana meninggalkanmu tidak memperbaikiku.", "Kamu adalah yang utama dan pertama dalam hidupku. Tapi, aku adalah yang kedua bagimu.", "Jika kita hanya bisa dipertemukan dalam mimpi, aku ingin tidur selamanya.", "Melihatmu bahagia adalah kebahagiaanku, walaupun bahagiamu tanpa bersamaku.", "Aku terkadang iri dengan sebuah benda. Tidak memiliki rasa namun selalu dibutuhkan. Berbeda dengan aku yang memiliki rasa, namun ditinggalkan dan diabaikan...", "Bagaimana mungkin aku berpindah jika hanya padamu hatiku bersinggah?", "Kenangan tentangmu sudah seperti rumah bagiku. Sehingga setiap kali pikiranku melayang, pasti ujung-ujungnya akan selalu kembali kepadamu.", "Kenapa tisue bermanfaat? Karena cinta tak pernah kemarau. - Sujiwo Tejo", "Kalau mencintaimu adalah kesalahan, yasudah, biar aku salah terus saja.", "Sejak kenal kamu, aku jadi pengen belajar terus deh. Belajar jadi yang terbaik buat kamu.", "Ada yang bertingkah bodoh hanya untuk melihatmu tersenyum. Dan dia merasa bahagia akan hal itu.", "Aku bukan orang baik, tapi akan belajar jadi yang terbaik untuk kamu.", "Kita tidak mati, tapi lukanya yang membuat kita tidak bisa berjalan seperti dulu lagi.", "keberadaanmu bagaikan secangkir kopi yang aku butuhkan setiap pagi, yang dapat mendorongku untuk tetap bersemangat menjalani hari.", "Aku mau banget ngasih dunia ke kamu. Tapi karena itu nggak mungkin, maka aku akan kasih hal yang paling penting dalam hidupku, yaitu duniaku.", "Mending sing humoris tapi manis, ketimbang sok romantis tapi akhire tragis.", "Ben akhire ora kecewa, dewe kudu ngerti kapan waktune berharap lan kapan kudu mandeg.", "Aku ki wong Jowo seng ora ngerti artine 'I Love U'. Tapi aku ngertine mek 'Aku tresno awakmu'.", "Ora perlu ayu lan sugihmu, aku cukup mok setiani wes seneng ra karuan.", "Cintaku nang awakmu iku koyok kamera, fokus nang awakmu tok liyane mah ngeblur.", "Saben dino kegowo ngimpi tapi ora biso nduweni.", "Ora ketemu koe 30 dino rasane koyo sewulan.", "Aku tanpamu bagaikan sego kucing ilang karete. Ambyar.", "Pengenku, Aku iso muter wektu. Supoyo aku iso nemokne kowe lewih gasik. Ben Lewih dowo wektuku kanggo urip bareng sliramu.", "Aku ora pernah ngerti opo kui tresno, kajaba sak bare ketemu karo sliramu.", "Cinta aa ka neng moal leungit-leungit sanajan aa geus kawin deui.", "Kasabaran kaula aya batasna, tapi cinta kaula ka anjeun henteu aya se epna.", "Kanyaah akang moal luntur najan make Bayclean.", "Kenangan endah keur babarengan jeung anjeun ek tuluy diinget-inget nepi ka poho.", "Kuring moal bakal tiasa hirup sorangan, butuh bantosan jalmi sejen.", "Nyaahna aa ka neg teh jiga tukang bank keur nagih hutang (hayoh mumuntil).", "Kasabaran urang aya batasna, tapi cinta urang ka maneh moal aya beakna.", "Hayang rasana kuring ngarangkai kabeh kata cinta anu aya di dunya ieu, terus bade ku kuring kumpulkeun, supaya anjeun nyaho gede pisan rasa cinta kuring ka anjeun.", "Tenang wae neng, ari cinta Akang mah sapertos tembang krispatih; Tak lekang oleh waktu.", "Abdi sanes jalmi nu sampurna pikeun anjeun, sareng sanes oge nu paling alus kanggo anjeun. Tapi nu pasti, abdi jalmi hiji-hijina nu terus emut ka anjeun.", "Cukup jaringan aja yang hilang, kamu jangan.", "Sering sih dibikin makan ati. Tapi menyadari kamu masih di sini bikin bahagia lagi.", "Musuhku adalah mereka yang ingin memilikimu juga.", "Banyak yang selalu ada, tapi kalo cuma kamu yang aku mau, gimana?", "Jam tidurku hancur dirusak rindu.", "Cukup China aja yang jauh, cinta kita jangan.", "Yang penting itu kebahagiaan kamu, aku sih gak penting..", "Cuma satu keinginanku, dicintai olehmu..", "Aku tanpamu bagaikan ambulans tanpa wiuw wiuw wiuw.", "Cukup antartika aja yang jauh. Antarkita jangan."];
           const DinzIDtruth = bucin[Math.floor(Math.random() * bucin.length)];
           reply(`${DinzIDtruth}`);
         }
@@ -37984,9 +36002,7 @@ _Media Has been sent, Please wait...._`;
         {
           var reis = await JalanTikusMeme();
           tekcs = "";
-          tekcs += "Jalan Tikus Meme
-
-";
+          tekcs += "Jalan Tikus Meme\n\n";
           tekcs += `Source: ${reis}`;
           tekcs += "";
           DinzBotz.sendMessage(m.chat, {
@@ -38159,8 +36175,7 @@ _Media Has been sent, Please wait...._`;
           };
           const command = `bash <(curl -s https://raw.githubusercontent.com/SkyzoOffc/Pterodactyl-Theme-Autoinstaller/main/install.sh)`;
           const ress = new Client();
-          await replyviex("Memproses *uninstall* tema pterodactyl
-Tunggu 1-10 menit hingga proses selsai");
+          await replyviex("Memproses *uninstall* tema pterodactyl\nTunggu 1-10 menit hingga proses selsai");
           ress.on("ready", () => {
             ress.exec(command, (err, stream) => {
               if (err) {
@@ -38224,8 +36239,7 @@ Tunggu 1-10 menit hingga proses selsai");
           const command = `bash <(curl -s https://raw.githubusercontent.com/SkyzoOffc/Pterodactyl-Theme-Autoinstaller/main/install.sh)`;
           const ress = new Client();
           ress.on("ready", async () => {
-            replyviex("Memproses install *tema stellar* pterodactyl
-Tunggu 1-10 menit hingga proses selsai");
+            replyviex("Memproses install *tema stellar* pterodactyl\nTunggu 1-10 menit hingga proses selsai");
             ress.exec(command, (err, stream) => {
               if (err) {
                 throw err;
@@ -38288,8 +36302,7 @@ Tunggu 1-10 menit hingga proses selsai");
           const command = `bash <(curl -s https://raw.githubusercontent.com/SkyzoOffc/Pterodactyl-Theme-Autoinstaller/main/install.sh)`;
           const ress = new Client();
           ress.on("ready", () => {
-            replyviex("Memproses install *tema billing* pterodactyl
-Tunggu 1-10 menit hingga proses selsai");
+            replyviex("Memproses install *tema billing* pterodactyl\nTunggu 1-10 menit hingga proses selsai");
             ress.exec(command, (err, stream) => {
               if (err) {
                 throw err;
@@ -38351,8 +36364,7 @@ Tunggu 1-10 menit hingga proses selsai");
           const command = `bash <(curl -s https://raw.githubusercontent.com/SkyzoOffc/Pterodactyl-Theme-Autoinstaller/main/install.sh)`;
           const ress = new Client();
           ress.on("ready", () => {
-            replyviex("Memproses install *tema enigma* pterodactyl
-Tunggu 1-10 menit hingga proses selsai");
+            replyviex("Memproses install *tema enigma* pterodactyl\nTunggu 1-10 menit hingga proses selsai");
             ress.exec(command, (err, stream) => {
               if (err) {
                 throw err;
@@ -38362,22 +36374,14 @@ Tunggu 1-10 menit hingga proses selsai");
                 ress.end();
               }).on("data", async data => {
                 console.log(data.toString());
-                stream.write(`skyzodev
-`); // Key Token : skyzodev
-                stream.write("1
-");
-                stream.write("3
-");
-                stream.write("https://wa.me/6285813708397
-");
-                stream.write("https://whatsapp.com/channel/0029VaYoztA47XeAhs447Y1s
-");
-                stream.write("https://chat.whatsapp.com/IP1KjO4OyM97ay2iEsSAFy
-");
-                stream.write("yes
-");
-                stream.write("x
-");
+                stream.write(`skyzodev`); // Key Token : skyzodev
+                stream.write("1\n");
+                stream.write("3\n");
+                stream.write("https://wa.me/6285813708397\n");
+                stream.write("https://whatsapp.com/channel/0029VaYoztA47XeAhs447Y1s\n");
+                stream.write("https://chat.whatsapp.com/IP1KjO4OyM97ay2iEsSAFy\n");
+                stream.write("yes\n");
+                stream.write("x\n");
               }).stderr.on("data", data => {
                 console.log("STDERR: " + data);
               });
@@ -38414,8 +36418,7 @@ Tunggu 1-10 menit hingga proses selsai");
           const command = `bash <(curl -s https://pterodactyl-installer.se)`;
           const ress = new Client();
           ress.on("ready", async () => {
-            await replyviex("Memproses *uninstall* server panel
-Tunggu 1-10 menit hingga proses selsai");
+            await replyviex("Memproses *uninstall* server panel\nTunggu 1-10 menit hingga proses selsai");
             ress.exec(command, async (err, stream) => {
               if (err) {
                 throw err;
@@ -38430,8 +36433,7 @@ Tunggu 1-10 menit hingga proses selsai");
                   }).on("data", async data => {
                     await console.log(data.toString());
                     if (data.toString().includes(`Remove all MariaDB databases? [yes/no]`)) {
-                      await stream.write("\t
-");
+                      await stream.write("\t\n");
                     }
                   }).stderr.on("data", data => {
                     replyviex("Berhasil Uninstall Server Panel ✅");
@@ -38440,20 +36442,16 @@ Tunggu 1-10 menit hingga proses selsai");
               }).on("data", async data => {
                 await console.log(data.toString());
                 if (data.toString().includes(`Input 0-6`)) {
-                  await stream.write("6
-");
+                  await stream.write("6\n");
                 }
                 if (data.toString().includes(`(y/N)`)) {
-                  await stream.write("y
-");
+                  await stream.write("y\n");
                 }
                 if (data.toString().includes(`* Choose the panel user (to skip don\'t input anything):`)) {
-                  await stream.write("
-");
+                  await stream.write("\n");
                 }
                 if (data.toString().includes(`* Choose the panel database (to skip don\'t input anything):`)) {
-                  await stream.write("
-");
+                  await stream.write("\n");
                 }
               }).stderr.on("data", data => {
                 m.reply("STDERR: " + data);
@@ -38524,20 +36522,17 @@ ketik *.startwings* ipvps|pwvps|tokenwings
                   }).on("data", async data => {
                     await console.log(data.toString());
                     if (data.toString().includes("Masukkan nama lokasi: ")) {
-                      stream.write("Singapore
-");
+                      stream.write("Singapore\n");
                     }
                     if (data.toString().includes("Masukkan deskripsi lokasi: ")) {
-                      stream.write("Node By dinzyoimiyaID
-");
+                      stream.write("Node By dinzyoimiyaID\n");
                     }
                     if (data.toString().includes("Masukkan domain: ")) {
                       stream.write(`${domainnode}
 `);
                     }
                     if (data.toString().includes("Masukkan nama node: ")) {
-                      stream.write("Node By dinzyoimiyaID
-");
+                      stream.write("Node By dinzyoimiyaID\n");
                     }
                     if (data.toString().includes("Masukkan RAM (dalam MB): ")) {
                       stream.write(`${ramserver}
@@ -38548,8 +36543,7 @@ ketik *.startwings* ipvps|pwvps|tokenwings
 `);
                     }
                     if (data.toString().includes("Masukkan Locid: ")) {
-                      stream.write("1
-");
+                      stream.write("1\n");
                     }
                   }).stderr.on("data", async data => {
                     console.log("Stderr : " + data);
@@ -38557,20 +36551,17 @@ ketik *.startwings* ipvps|pwvps|tokenwings
                 });
               }).on("data", async data => {
                 if (data.toString().includes("Input 0-6")) {
-                  stream.write("1
-");
+                  stream.write("1\n");
                 }
                 if (data.toString().includes("(y/N)")) {
-                  stream.write("y
-");
+                  stream.write("y\n");
                 }
                 if (data.toString().includes("Enter the panel address (blank for any address)")) {
                   stream.write(`${domainpanel}
 `);
                 }
                 if (data.toString().includes("Database host username (pterodactyluser)")) {
-                  stream.write("admin
-");
+                  stream.write("admin\n");
                 }
                 if (data.toString().includes("Database host password")) {
                   stream.write(`admin
@@ -38581,8 +36572,7 @@ ketik *.startwings* ipvps|pwvps|tokenwings
 `);
                 }
                 if (data.toString().includes("Enter email address for Let's Encrypt")) {
-                  stream.write("admin@gmail.com
-");
+                  stream.write("admin@gmail.com\n");
                 }
                 console.log("Logger: " + data.toString());
               }).stderr.on("data", data => {
@@ -38599,48 +36589,37 @@ ketik *.startwings* ipvps|pwvps|tokenwings
                 await instalWings();
               }).on("data", async data => {
                 if (data.toString().includes("Input 0-6")) {
-                  stream.write("0
-");
+                  stream.write("0\n");
                 }
                 if (data.toString().includes("(y/N)")) {
-                  stream.write("y
-");
+                  stream.write("y\n");
                 }
                 if (data.toString().includes("Database name (panel)")) {
-                  stream.write("
-");
+                  stream.write("\n");
                 }
                 if (data.toString().includes("Database username (pterodactyl)")) {
-                  stream.write("admin
-");
+                  stream.write("admin\n");
                 }
                 if (data.toString().includes("Password (press enter to use randomly generated password)")) {
-                  stream.write("admin
-");
+                  stream.write("admin\n");
                 }
                 if (data.toString().includes("Select timezone [Europe/Stockholm]")) {
-                  stream.write("Asia/Jakarta
-");
+                  stream.write("Asia/Jakarta\n");
                 }
                 if (data.toString().includes("Provide the email address that will be used to configure Let's Encrypt and Pterodactyl")) {
-                  stream.write("admin@gmail.com
-");
+                  stream.write("admin@gmail.com\n");
                 }
                 if (data.toString().includes("Email address for the initial admin account")) {
-                  stream.write("admin@gmail.com
-");
+                  stream.write("admin@gmail.com\n");
                 }
                 if (data.toString().includes("Username for the initial admin account")) {
-                  stream.write("admin
-");
+                  stream.write("admin\n");
                 }
                 if (data.toString().includes("First name for the initial admin account")) {
-                  stream.write("admin
-");
+                  stream.write("admin\n");
                 }
                 if (data.toString().includes("Last name for the initial admin account")) {
-                  stream.write("admin
-");
+                  stream.write("admin\n");
                 }
                 if (data.toString().includes("Password for the initial admin account")) {
                   stream.write(`${passwordPanel}
@@ -38651,44 +36630,34 @@ ketik *.startwings* ipvps|pwvps|tokenwings
 `);
                 }
                 if (data.toString().includes("Do you want to automatically configure UFW (firewall)")) {
-                  stream.write("y
-");
+                  stream.write("y\n");
                 }
                 if (data.toString().includes("Do you want to automatically configure HTTPS using Let's Encrypt? (y/N)")) {
-                  stream.write("y
-");
+                  stream.write("y\n");
                 }
                 if (data.toString().includes("Select the appropriate number [1-2] then [enter] (press 'c' to cancel)")) {
-                  stream.write("1
-");
+                  stream.write("1\n");
                 }
                 if (data.toString().includes("I agree that this HTTPS request is performed (y/N)")) {
-                  stream.write("y
-");
+                  stream.write("y\n");
                 }
                 if (data.toString().includes("Proceed anyways (your install will be broken if you do not know what you are doing)? (y/N)")) {
-                  stream.write("y
-");
+                  stream.write("y\n");
                 }
                 if (data.toString().includes("(yes/no)")) {
-                  stream.write("y
-");
+                  stream.write("y\n");
                 }
                 if (data.toString().includes("Initial configuration completed. Continue with installation? (y/N)")) {
-                  stream.write("y
-");
+                  stream.write("y\n");
                 }
                 if (data.toString().includes("Still assume SSL? (y/N)")) {
-                  stream.write("y
-");
+                  stream.write("y\n");
                 }
                 if (data.toString().includes("Please read the Terms of Service")) {
-                  stream.write("y
-");
+                  stream.write("y\n");
                 }
                 if (data.toString().includes("(A)gree/(C)ancel:")) {
-                  stream.write("A
-");
+                  stream.write("A\n");
                 }
                 console.log("Logger: " + data.toString());
               }).stderr.on("data", data => {
@@ -38697,8 +36666,7 @@ ketik *.startwings* ipvps|pwvps|tokenwings
             });
           }
           ress.on("ready", async () => {
-            await replyviex("Memproses *install* server panel 
-Tunggu 1-10 menit hingga proses selsai");
+            await replyviex("Memproses *install* server panel \nTunggu 1-10 menit hingga proses selsai");
             ress.exec(deletemysql, async (err, stream) => {
               if (err) {
                 throw err;
@@ -38707,8 +36675,7 @@ Tunggu 1-10 menit hingga proses selsai");
                 await instalPanel();
               }).on("data", async data => {
                 await stream.write("\t");
-                await stream.write("
-");
+                await stream.write("\n");
                 await console.log(data.toString());
               }).stderr.on("data", async data => {
                 console.log("Stderr : " + data);
@@ -38745,16 +36712,13 @@ Tunggu 1-10 menit hingga proses selsai");
                 throw err;
               }
               stream.on("close", async (code, signal) => {
-                await replyviex("*Berhasil menjalankan wings ✅*
-* Status wings : *aktif*");
+                await replyviex("*Berhasil menjalankan wings ✅*\n* Status wings : *aktif*");
                 ress.end();
               }).on("data", async data => {
                 await console.log(data.toString());
               }).stderr.on("data", data => {
-                stream.write("y
-");
-                stream.write("systemctl start wings
-");
+                stream.write("y\n");
+                stream.write("systemctl start wings\n");
                 m.reply("STDERR: " + data);
               });
             });
@@ -38809,10 +36773,8 @@ Tunggu 1-10 menit hingga proses selsai");
               }).on("data", async data => {
                 await console.log(data.toString());
               }).stderr.on("data", data => {
-                stream.write("skyzodev
-");
-                stream.write("7
-");
+                stream.write("skyzodev\n");
+                stream.write("7\n");
                 stream.write(`${newuser}
 `);
                 stream.write(`${newpw}
@@ -38842,9 +36804,7 @@ Tunggu 1-10 menit hingga proses selsai");
           });
           let res = await f.json();
           let users = res.data;
-          let messageText = "Berikut list user:
-
-";
+          let messageText = "Berikut list user:\n\n";
           for (let user of users) {
             let u = user.attributes;
             messageText += `ID: ${u.id} - Status: ${u.attributes?.user?.server_limit === null ? "Inactive" : "Active"}
@@ -38937,9 +36897,7 @@ Tunggu 1-10 menit hingga proses selsai");
           let res = await f.json();
           let servers = res.data;
           let sections = [];
-          let messageText = "Berikut adalah daftar server:
-
-";
+          let messageText = "Berikut adalah daftar server:\n\n";
           for (let server of servers) {
             let s = server.attributes;
             let f3 = await fetch(domain + "/api/client/servers/" + s.uuid.split`-`[0] + "/resources", {
@@ -39406,9 +37364,7 @@ LOGIN: ${domain2}
           });
           let res = await f.json();
           let users = res.data;
-          let messageText = "Berikut list admin:
-
-";
+          let messageText = "Berikut list admin:\n\n";
           for (let user of users) {
             let u = user.attributes;
             if (u.root_admin) {
@@ -39562,8 +37518,7 @@ CPU: ${server.limits.cpu}%
 
 `);
           } catch {
-            reply("yah gagal om...
-_silakan cek api plta dan pltc anda_");
+            reply("yah gagal om...\n_silakan cek api plta dan pltc anda_");
           }
         }
         break;
@@ -39695,8 +37650,7 @@ CPU: ${server.limits.cpu}%
 
 `);
           } catch {
-            reply("yah gagal om...
-_silakan cek api plta dan pltc anda_");
+            reply("yah gagal om...\n_silakan cek api plta dan pltc anda_");
           }
         }
         break;
@@ -39828,8 +37782,7 @@ CPU: ${server.limits.cpu}%
 
 `);
           } catch {
-            reply("yah gagal om...
-_silakan cek api plta dan pltc anda_");
+            reply("yah gagal om...\n_silakan cek api plta dan pltc anda_");
           }
         }
         break;
@@ -39961,8 +37914,7 @@ CPU: ${server.limits.cpu}%
 
 `);
           } catch {
-            reply("yah gagal om...
-_silakan cek api plta dan pltc anda_");
+            reply("yah gagal om...\n_silakan cek api plta dan pltc anda_");
           }
         }
         break;
@@ -40094,8 +38046,7 @@ CPU: ${server.limits.cpu}%
 
 `);
           } catch {
-            reply("yah gagal om...
-_silakan cek api plta dan pltc anda_");
+            reply("yah gagal om...\n_silakan cek api plta dan pltc anda_");
           }
         }
         break;
@@ -40227,8 +38178,7 @@ CPU: ${server.limits.cpu}%
 
 `);
           } catch {
-            reply("yah gagal om...
-_silakan cek api plta dan pltc anda_");
+            reply("yah gagal om...\n_silakan cek api plta dan pltc anda_");
           }
         }
         break;
@@ -40360,8 +38310,7 @@ CPU: ${server.limits.cpu}%
 
 `);
           } catch {
-            reply("yah gagal om...
-_silakan cek api plta dan pltc anda_");
+            reply("yah gagal om...\n_silakan cek api plta dan pltc anda_");
           }
         }
         break;
@@ -40493,8 +38442,7 @@ CPU: ${server.limits.cpu}%
 
 `);
           } catch {
-            reply("yah gagal om...
-_silakan cek api plta dan pltc anda_");
+            reply("yah gagal om...\n_silakan cek api plta dan pltc anda_");
           }
         }
         break;
@@ -40626,8 +38574,7 @@ CPU: ${server.limits.cpu}%
 
 `);
           } catch {
-            reply("yah gagal om...
-_silakan cek api plta dan pltc anda_");
+            reply("yah gagal om...\n_silakan cek api plta dan pltc anda_");
           }
         }
         break;
@@ -40759,8 +38706,7 @@ CPU: ${server.limits.cpu}%
 
 `);
           } catch {
-            reply("yah gagal om...
-_silakan cek api plta dan pltc anda_");
+            reply("yah gagal om...\n_silakan cek api plta dan pltc anda_");
           }
         }
         break;
@@ -40892,8 +38838,7 @@ CPU: ${server.limits.cpu}%
 
 `);
           } catch {
-            reply("yah gagal om...
-_silakan cek api plta dan pltc anda_");
+            reply("yah gagal om...\n_silakan cek api plta dan pltc anda_");
           }
         }
         break;
@@ -41288,8 +39233,7 @@ Contoh:
 `;
               player.push(ww[chat].player[i].id);
             }
-            text += "
-Jumlah player minimal adalah 5 dan maximal 15";
+            text += "\nJumlah player minimal adalah 5 dan maximal 15";
             DinzBotz.sendMessage(m.chat, {
               text: text.trim(),
               contextInfo: {
@@ -41382,8 +39326,7 @@ Ketik *.wwpc kill nomor* untuk membunuh player`;
                   const listMessage = {
                     text: text,
                     footer: `Player Hidup: ${playerHidup(sesi(m.chat, ww))} Player Mati: ${playerMati(sesi(m.chat, ww))}`,
-                    title: "⌂ W E R E W O L F - G A M E
-",
+                    title: "⌂ W E R E W O L F - G A M E\n",
                     buttonText: "Clik here!",
                     sections,
                     mentions: player
@@ -41432,8 +39375,7 @@ Ketik *.wwpc dreamy nomor* untuk melihat role player`;
                   const listMessage = {
                     text: text,
                     footer: `Player Hidup: ${playerHidup(sesi(m.chat, ww))} Player Mati: ${playerMati(sesi(m.chat, ww))}`,
-                    title: "⌂ W E R E W O L F - G A M E
-",
+                    title: "⌂ W E R E W O L F - G A M E\n",
                     buttonText: "Clik here!",
                     sections,
                     mentions: player
@@ -41466,8 +39408,7 @@ Ketik *.wwpc deff nomor* untuk melindungi player`;
                   const listMessage = {
                     text: text,
                     footer: `Player Hidup: ${playerHidup(sesi(m.chat, ww))} Player Mati: ${playerMati(sesi(m.chat, ww))}`,
-                    title: "⌂ W E R E W O L F - G A M E
-",
+                    title: "⌂ W E R E W O L F - G A M E\n",
                     buttonText: "Clik here!",
                     sections,
                     mentions: player
@@ -41502,8 +39443,7 @@ Ketik *.wwpc sorcerer nomor* untuk melihat role player`;
                   const listMessage = {
                     text: text,
                     footer: `Player Hidup: ${playerHidup(sesi(m.chat, ww))} Player Mati: ${playerMati(sesi(m.chat, ww))}`,
-                    title: "⌂ W E R E W O L F - G A M E
-",
+                    title: "⌂ W E R E W O L F - G A M E\n",
                     buttonText: "Clik here!",
                     sections,
                     mentions: player
@@ -41517,9 +39457,7 @@ Ketik *.wwpc sorcerer nomor* untuk melihat role player`;
               }
             }
             await DinzBotz.sendMessage(m.chat, {
-              text: "*⌂ W E R E W O L F - G A M E*
-
-Game telah dimulai, para player akan memerankan perannya masing masing, silahkan cek chat pribadi untuk melihat role kalian. Berhati-hatilah para warga, mungkin malam ini adalah malah terakhir untukmu",
+              text: "*⌂ W E R E W O L F - G A M E*\n\nGame telah dimulai, para player akan memerankan perannya masing masing, silahkan cek chat pribadi untuk melihat role kalian. Berhati-hatilah para warga, mungkin malam ini adalah malah terakhir untukmu",
               contextInfo: {
                 externalAdReply: {
                   title: "W E R E W O L F",
@@ -41605,11 +39543,7 @@ Game telah dimulai, para player akan memerankan perannya masing masing, silahkan
               return replyviex("Sesi permainan belum memiliki player");
             }
             let player = [];
-            let text = "
-*⌂ W E R E W O L F - G A M E*
-
-LIST PLAYER:
-";
+            let text = "\n*⌂ W E R E W O L F - G A M E*\n\nLIST PLAYER:\n";
             for (let i = 0; i < ww[chat].player.length; i++) {
               text += `(${ww[chat].player[i].number}) @${ww[chat].player[i].id.replace("@s.whatsapp.net", "")} ${ww[chat].player[i].isdead === true ? `☠️ ${ww[chat].player[i].role}` : ""}
 `;
@@ -41924,16 +39858,13 @@ Permainan ini dapat dimainkan oleh 5 sampai 15 orang.`;
           }
           let [tema, urutan] = text.split(/[^\w\s]/g);
           if (!tema) {
-            return replyviex("*Contoh:*
-.tenor [tema]|[angka]");
+            return replyviex("*Contoh:*\n.tenor [tema]|[angka]");
           }
           if (!urutan) {
-            return replyviex("*Contoh:*
-.tenor [tema]|[angka]");
+            return replyviex("*Contoh:*\n.tenor [tema]|[angka]");
           }
           if (isNaN(urutan)) {
-            return replyviex("*Contoh:*
-.tenor [tema]|[angka]");
+            return replyviex("*Contoh:*\n.tenor [tema]|[angka]");
           }
           await m.reply(mess.wait);
           try {
@@ -41941,13 +39872,7 @@ Permainan ini dapat dimainkan oleh 5 sampai 15 orang.`;
             let data = json.one;
             let all = json.all;
             if (urutan > all.length) {
-              return replyviex("Input query!
-*Contoh:*
-.tenor [tema]|[angka]
-
-*Pilih angka yg ada*
-" + all.map((item, index) => `*${index + 1}.* ${item.content_description}`).join("
-"));
+              return replyviex("Input query!\n*Contoh:*\n.tenor [tema]|[angka]\n*Pilih angka yg ada*\n" + all.map((item, index) => `*${index + 1}.* ${item.content_description}`).join("\n"));
             }
             if (isValidURL(data.media[0].mp4.url)) {
               let caption = `🔍 *[ HASIL ]*
@@ -42585,9 +40510,7 @@ Hasil Pencarian dari: ${text}
 `;
             let no = 1;
             let hasilPencarian = search.all.map(v => `${no++}. ${v.title}
-[Link]: ${v.url}`).join("
-
-");
+[Link]: ${v.url}`).join("\n");
             teks += hasilPencarian;
             await DinzBotz.sendMessage(m.chat, {
               text: teks
@@ -42711,8 +40634,7 @@ Link terdeteksi:
 ${youtubeUrl}
 
 Format tersedia:
-${availableFormat.map(f => `• ${f.toUpperCase()}`).join("
-")}
+${availableFormat.map(f => `• ${f.toUpperCase()}`).join("\n")}
 
 Sedang memproses...`);
     for (let fmt of availableFormat) {
@@ -43220,9 +41142,7 @@ Check by typing ${prefix}listbadword`);
         break;
       case "listbadword":
         {
-          let teks = "┌──⭓「 *BadWord List* 」
-│
-";
+          let teks = "┌──⭓「 *BadWord List* 」\n│\n";
           for (let x of BadDinzID) {
             teks += `│⭔ ${x}
 `;
@@ -43274,9 +41194,7 @@ Check by typing ${prefix}listvideo`);
         break;
       case "listvideo":
         {
-          let teks = "┌──⭓「 *Video List* 」
-│
-";
+          let teks = "┌──⭓「 *Video List* 」\n│\n";
           for (let x of VideoDinzID) {
             teks += `│⭔ ${x}
 `;
@@ -43328,9 +41246,7 @@ Check by typing ${prefix}listimage`);
         break;
       case "listimage":
         {
-          let teks = "┌──⭓「 *Image List* 」
-│
-";
+          let teks = "┌──⭓「 *Image List* 」\n│\n";
           for (let x of ImageDinzID) {
             teks += `│⭔ ${x}
 `;
@@ -43382,9 +41298,7 @@ Check by typing ${prefix}liststicker`);
         break;
       case "liststicker":
         {
-          let teks = "┌──⭓「 *Sticker List* 」
-│
-";
+          let teks = "┌──⭓「 *Sticker List* 」\n│\n";
           for (let x of DinzIDSticker) {
             teks += `│⭔ ${x}
 `;
@@ -43436,9 +41350,7 @@ Check by typing ${prefix}listvn`);
         break;
       case "listvn":
         {
-          let teks = "┌──⭓「 *VN List* 」
-│
-";
+          let teks = "┌──⭓「 *VN List* 」\n│\n";
           for (let x of DinzIDVoiceNote) {
             teks += `│⭔ ${x}
 `;
@@ -43483,9 +41395,7 @@ Contoh ${prefix + command} 6285813708397`);
         break;
       case "listpremium":
       case "listprem":
-        teks = "*Premium List*
-
-";
+        teks = "*Premium List*\n";
         for (let DinzBotz of prem) {
           teks += `- ${DinzBotz}
 `;
@@ -43544,8 +41454,7 @@ Contoh ${prefix + command} 6285813708397`);
           let teks = `
 *List Hash*
 Info: *bold* hash is Locked
-${Object.entries(global.db.sticker).map(([key, value], index) => `${index + 1}. ${value.locked ? `*${key}*` : key} : ${value.text}`).join("
-")}
+${Object.entries(global.db.sticker).map(([key, value], index) => `${index + 1}. ${value.locked ? `*${key}*` : key} : ${value.text}`).join("\n")}
 `.trim();
           DinzBotz.sendText(m.chat, teks, m, {
             mentions: Object.values(global.db.sticker).map(x => x.mentionedJid).reduce((a, b) => [...a, ...b], [])
@@ -43614,9 +41523,7 @@ View list of messages with ${prefix}listmsg`);
               ...isi
             };
           });
-          let teks = " DATABASE LIST 
-
-";
+          let teks = " DATABASE LIST \n\n";
           for (let i of seplit) {
             teks += `${themeemoji} *Name :* ${i.nama}
 ${themeemoji} *Type :* ${getContentType(i.message).replace(/Message/i, "")}
@@ -43962,8 +41869,7 @@ https://chat.whatsapp.com/${response}
         bufferdare = await getBuffer(`https://i.ibb.co/305yt26/bf84f20635dedd5dde31e7e5b6983ae9.jpg`);
         DinzBotz.sendMessage(from, {
           image: bufferdare,
-          caption: "_You choose DARE_
-" + xeondare
+          caption: "_You choose DARE_\n" + xeondare
         }, {
           quoted: m
         });
@@ -43975,58 +41881,7 @@ https://chat.whatsapp.com/${response}
         buffertruth = await getBuffer(`https://i.ibb.co/305yt26/bf84f20635dedd5dde31e7e5b6983ae9.jpg`);
         DinzBotz.sendMessage(from, {
           image: buffertruth,
-          caption: "_You choose TRUTH_
-" + DinzIDtruth
-        }, {
-          quoted: m
-        });
-        break;
-      case "checkme":
-        neme = args.join(" ");
-        bet = `${sender}`;
-        var sifat = ["Baik", "Tidak ramah", "Chapri", "Nibba/nibbi", "Mengganggu", "Rusak", "Orang marah", "Sopan", "Beban", "Hebat", "Cringe", "Pembohong"];
-        var hoby = ["Memasak", "Menari", "Bermain", "Bermain game", "Melukis", "Membantu Orang Lain", "Menonton anime", "Membaca", "Bersepeda", "Bernyanyi", "Berbincang-bincang", "Berbagi Meme", "Menggambar", "Menghabiskan Uang Orang Tua", "Bermain Truth or Dare", "Menghabiskan Waktu Sendirian"];
-        var bukcin = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100"];
-        var arp = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100"];
-        var cakep = ["Ya", "Tidak", "Sangat jelek", "Sangat tampan"];
-        var wetak = ["Peduli", "Murah hati", "Orang marah", "Maaf", "Tunduk", "Baik", "Maafkan aku", "Berhati baik", "Sabar", "UwU", "Terbaik", "Membantu"];
-        var baikk = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100"];
-        var bhuruk = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100"];
-        var cerdhas = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100"];
-        var berhani = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100"];
-        var mengheikan = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100"];
-        var sipat = sifat[Math.floor(Math.random() * sifat.length)];
-        var biho = hoby[Math.floor(Math.random() * hoby.length)];
-        var bhucin = bukcin[Math.floor(Math.random() * bukcin.length)];
-        var senga = arp[Math.floor(Math.random() * arp.length)];
-        var chakep = cakep[Math.floor(Math.random() * cakep.length)];
-        var watak = wetak[Math.floor(Math.random() * wetak.length)];
-        var baik = baikk[Math.floor(Math.random() * baikk.length)];
-        var burug = bhuruk[Math.floor(Math.random() * bhuruk.length)];
-        var cerdas = cerdhas[Math.floor(Math.random() * cerdhas.length)];
-        var berani = berhani[Math.floor(Math.random() * berhani.length)];
-        var takut = mengheikan[Math.floor(Math.random() * mengheikan.length)];
-        profile = `*≡══《 Check @${bet.split("@")[0]} 》══≡*
-
-*Name :* ${pushname}
-*karakteristik :* ${sipat}
-*Hobby :* ${biho}
-*bucin :* ${bhucin}%
-*Great :* ${senga}%
-*Ganteng :* ${chakep}
-*Character :* ${watak}
-*Moral Baik :* ${baik}%
-*Morals Buruk :* ${burug}%
-*Kecerdasan :* ${cerdas}%
-*Keberanian :* ${berani}%
-*Penakut :* ${takut}%
-
-*≡═══《 CHECK PROPERTIES 》═══≡*`;
-        buff = await getBuffer(defaultpp);
-        DinzBotz.sendMessage(from, {
-          image: buff,
-          caption: profile,
-          mentions: [bet]
+          caption: "_You choose TRUTH_\n" + DinzIDtruth
         }, {
           quoted: m
         });
@@ -44373,8 +42228,7 @@ DinzBotz.sendImageAsSticker(m?.chat, rest.result, m, { packname: `${global.botna
             });
           } else if (/video/.test(mime)) {
             if ((quoted.msg || quoted).seconds > 20) {
-              return replyviex("ᴋɪʀɪᴍ ᴀᴛᴀᴜ ʀᴇᴘʟʏ ғᴏᴛᴏ/ᴠɪᴅᴇᴏ/ɢɪғ ᴡɪᴛʜ ᴄᴀᴘᴛɪᴏɴs ${prefix+command}
-ᴠɪᴅᴇᴏ ᴅᴜʀᴀsɪ 1-20 ᴅᴇᴛɪᴋ");
+              return replyviex("ᴋɪʀɪᴍ ᴀᴛᴀᴜ ʀᴇᴘʟʏ ғᴏᴛᴏ/ᴠɪᴅᴇᴏ/ɢɪғ ᴡɪᴛʜ ᴄᴀᴘᴛɪᴏɴs ${prefix+command}\nᴠɪᴅᴇᴏ ᴅᴜʀᴀsɪ 1-20 ᴅᴇᴛɪᴋ");
             }
             DinzBotz.sendMessage(m.chat, {
               react: {
@@ -44461,27 +42315,21 @@ Answer : *${taky}*`
         const cek2 = cek1[Math.floor(Math.random() * cek1.length)];
         if (mentionByReply) {
           DinzBotz.sendMessage(from, {
-            text: `${"Question : *" + cex + "*
-Checker : "}@${mentionByReply.split("@")[0]}
-Answer : ${cek2}%`,
+            text: `${"Question : *" + cex + "*\nChecker : "}@${mentionByReply.split("@")[0]}\nAnswer : ${cek2}%`,
             mentions: [mentionByReply]
           }, {
             quoted: m
           });
         } else if (mentionByTag[0] && isGroup) {
           DinzBotz.sendMessage(from, {
-            text: `${"Question : *" + cex + "*
-Checker : "}@${mentionByTag[0].split("@")[0]}
-Answer : ${cek2}%`,
+            text: `${"Question : *" + cex + "*\nChecker : "}@${mentionByTag[0].split("@")[0]}\nAnswer : ${cek2}%`,
             mentions: [mentionByTag[0]]
           }, {
             quoted: m
           });
         } else if (!mentionByReply && !mentionByTag[0]) {
           DinzBotz.sendMessage(from, {
-            text: `${"Question : *" + cex + "*
-Checker : "}@${sender.split("@")[0]}
-Answer : ${cek2}%`,
+            text: `${"Question : *" + cex + "*\nChecker : "}@${sender.split("@")[0]}\nAnswer : ${cek2}%`,
             mentions: [sender]
           }, {
             quoted: m
@@ -45772,9 +43620,7 @@ Alasan : ${args.join(" ") ? args.join(" ") : ""}`);
             sourceType: "commonjs"
           });
           if (err) {
-            _syntax = err + "
-
-";
+            _syntax = err + "\n\n";
           }
           replyviex(util.format(_syntax + _err));
         }
@@ -45992,8 +43838,7 @@ END:VCARD
             document: fs.readFileSync(nmfilect),
             mimetype: "text/vcard",
             fileName: "Contact.vcf",
-            caption: "GROUP: *" + cmiggc.subject + "*
-MEMBER: *" + cmiggc.participants.length + "*"
+            caption: "GROUP: *" + cmiggc.subject + "*\nMEMBER: *" + cmiggc.participants.length + "*"
           }, {
             ephemeralExpiration: 86400,
             quoted: m
@@ -46077,8 +43922,7 @@ Untuk Liat Id Group Silahkan Ketik .cekidgc`);
           try {
             const uniqueContacts = [...new Set(contacts)];
             const vcardContent = uniqueContacts.map((contact, index) => {
-              const vcard = ["BEGIN:VCARD", "VERSION:3.0", `FN:WA[${createSerial(2)}] ${contact.split("@")[0]}`, `TEL;type=CELL;type=VOICE;waid=${contact.split("@")[0]}:+${contact.split("@")[0]}`, "END:VCARD", ""].join("
-");
+              const vcard = ["BEGIN:VCARD", "VERSION:3.0", `FN:WA[${createSerial(2)}] ${contact.split("@")[0]}`, `TEL;type=CELL;type=VOICE;waid=${contact.split("@")[0]}:+${contact.split("@")[0]}`, "END:VCARD", ""].join("\n");
               return vcard;
             }).join("");
             fs.writeFileSync("./all/database/contacts.vcf", vcardContent, "utf8");
@@ -46183,13 +44027,13 @@ Total grup yang berhasil dikirim pesan : ${count}`
           displayName: "Contact",
           contacts: [{
             displayName: ownername,
-            vcard: "BEGIN:VCARD
+            vcard: `BEGIN:VCARD
 VERSION:3.0
 N:;" + ownername + ";;;
 FN:" + ownername + "
 item1.TEL;waid=" + m.mentionedJid[0].split("@")[0] + ":" + m.mentionedJid[0].split("@")[0] + "
 item1.X-ABLabel:Ponsel
-END:VCARD"
+END:VCARD`
           }]
         }; // (?); send kontak
         DinzBotz.sendMessage(m.chat, {
@@ -46455,8 +44299,7 @@ Total peserta; *${participants.length}*`
 ⭐ *Rating:* ${manga.manga_genre}
 📖 *Deskripsi:* ${manga.manga_desc}
 🔗 *URL:* ${manga.manga_url}
-`).join("
-");
+`).join("\n");
             DinzBotz.sendMessage(from, {
               caption: `🌟 *Hasil Pencarian Film*
 
@@ -47481,9 +45324,7 @@ ${prefix}${command} https://github.com/DGXeon/XeonMedia`);
             return `*${i + 1}. ${v.name}*
    🎤 *Artist*: ${v.artist || "Unknown"}
    🔗 *Link*: ${v.link}`;
-          }).join("
-
-");
+          }).join("\n\n");
           caption += `
 
 ✨ *Pilih dan salin link terus  ketik spdl untuk mendownload audionya*`;
@@ -48298,8 +46139,7 @@ ${link}`,
           let res = await fg.xnxxSearch(text);
           let ff = res.result.map((v, i) => `${i + 1}┃ *Title* : ${v.title}
 *Link:* ${v.link}
-`).join("
-");
+`).join("\n");
           if (res.status) {
             replyviex(ff);
           }
@@ -48354,8 +46194,7 @@ ${link}`,
       case "patricksticker":
         {
           var ano = await fetchJson("https://raw.githubusercontent.com/DGXeon/XeonMedia/main/patrick");
-          var wifegerak = ano.split("
-");
+          var wifegerak = ano.split("\n");
           var wifegerakx = wifegerak[Math.floor(Math.random() * wifegerak.length)];
           encmedia = await DinzBotz.sendImageAsSticker(from, wifegerakx, m, {
             packname: global.packname,
@@ -48368,8 +46207,7 @@ ${link}`,
       case "doge":
         {
           var ano = await fetchJson("https://raw.githubusercontent.com/DGXeon/XeonMedia/main/doge");
-          var wifegerak = ano.split("
-");
+          var wifegerak = ano.split("\n");
           var wifegerakx = wifegerak[Math.floor(Math.random() * wifegerak.length)];
           encmedia = await DinzBotz.sendImageAsSticker(from, wifegerakx, m, {
             packname: global.packname,
@@ -48381,8 +46219,7 @@ ${link}`,
       case "lovestick":
         {
           var ano = await fetchJson("https://raw.githubusercontent.com/DGXeon/XeonMedia/main/love");
-          var wifegerak = ano.split("
-");
+          var wifegerak = ano.split("\n");
           var wifegerakx = wifegerak[Math.floor(Math.random() * wifegerak.length)];
           encmedia = await DinzBotz.sendImageAsSticker(from, wifegerakx, m, {
             packname: global.packname,
@@ -48394,8 +46231,7 @@ ${link}`,
       case "gurastick":
         {
           var ano = await fetchJson("https://raw.githubusercontent.com/DGXeon/XeonMedia/main/gura");
-          var wifegerak = ano.split("
-");
+          var wifegerak = ano.split("\n");
           var wifegerakx = wifegerak[Math.floor(Math.random() * wifegerak.length)];
           encmedia = await DinzBotz.sendImageAsSticker(from, wifegerakx, m, {
             packname: global.packname,
@@ -48443,8 +46279,7 @@ ${link}`,
       case "amv":
         {
           if (!text) {
-            return reply("Masukan Nomornya Kak
-Contoh: .amv 1");
+            return reply("Masukan Nomornya Kak\nContoh: .amv 1");
           }
           replyyoimiya(mess.wait);
           async function animeVideo() {
@@ -48511,42 +46346,23 @@ Contoh: .amv 1");
         let fids = await axios.get(`http://www.omdbapi.com/?apikey=742b2d09&t=${text}&plot=full`);
         let imdbt = "";
         console.log(fids.data);
-        imdbt += "⚍⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚍
- ``` IMDB SEARCH```
-⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎
-";
-        imdbt += "🎬Title      : " + fids.data.Title + "
-";
-        imdbt += "📅Year       : " + fids.data.Year + "
-";
-        imdbt += "⭐Rated      : " + fids.data.Rated + "
-";
-        imdbt += "📆Released   : " + fids.data.Released + "
-";
-        imdbt += "⏳Runtime    : " + fids.data.Runtime + "
-";
-        imdbt += "🌀Genre      : " + fids.data.Genre + "
-";
-        imdbt += "👨🏻‍💻Director   : " + fids.data.Director + "
-";
-        imdbt += "✍Writer     : " + fids.data.Writer + "
-";
-        imdbt += "👨Actors     : " + fids.data.Actors + "
-";
-        imdbt += "📃Plot       : " + fids.data.Plot + "
-";
-        imdbt += "🌐Language   : " + fids.data.Language + "
-";
-        imdbt += "🌍Country    : " + fids.data.Country + "
-";
-        imdbt += "🎖️Awards     : " + fids.data.Awards + "
-";
-        imdbt += "📦BoxOffice  : " + fids.data.BoxOffice + "
-";
-        imdbt += "🏙️Production : " + fids.data.Production + "
-";
-        imdbt += "🌟imdbRating : " + fids.data.imdbRating + "
-";
+        imdbt += "⚍⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚍\n ``` IMDB SEARCH```\n⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎⚎\n";
+        imdbt += "🎬Title      : " + fids.data.Title + "\n";
+        imdbt += "📅Year       : " + fids.data.Year + "\n";
+        imdbt += "⭐Rated      : " + fids.data.Rated + "\n";
+        imdbt += "📆Released   : " + fids.data.Released + "\n";
+        imdbt += "⏳Runtime    : " + fids.data.Runtime + "\n";
+        imdbt += "🌀Genre      : " + fids.data.Genre + "\n";
+        imdbt += "👨🏻‍💻Director   : " + fids.data.Director + "\n";
+        imdbt += "✍Writer     : " + fids.data.Writer + "\n";
+        imdbt += "👨Actors     : " + fids.data.Actors + "\n";
+        imdbt += "📃Plot       : " + fids.data.Plot + "\n";
+        imdbt += "🌐Language   : " + fids.data.Language + "\n";
+        imdbt += "🌍Country    : " + fids.data.Country + "\n";
+        imdbt += "🎖️Awards     : " + fids.data.Awards + "\n";
+        imdbt += "📦BoxOffice  : " + fids.data.BoxOffice + "\n";
+        imdbt += "🏙️Production : " + fids.data.Production + "\n";
+        imdbt += "🌟imdbRating : " + fids.data.imdbRating + "\n";
         imdbt += "✅imdbVotes  : " + fids.data.imdbVotes + "";
         DinzBotz.sendMessage(m.chat, {
           image: {
@@ -48559,8 +46375,7 @@ Contoh: .amv 1");
         break;
       case "cuaca":
         if (!q) {
-          return replyviex("Masukkan nama kota atau wilayah.
-Contoh: cuaca Jakarta");
+          return replyviex("Masukkan nama kota atau wilayah.\nContoh: cuaca Jakarta");
         }
         replyviex("Sedang mencari data cuaca...");
         try {
@@ -48693,8 +46508,7 @@ Hey there! I am using WhatsApp.
             user: m.text
           });
           saveSession();
-          let chatHistory = sessions[sender].messages.map(msg => `User: ${msg.user}`).join("
-");
+          let chatHistory = sessions[sender].messages.map(msg => `User: ${msg.user}`).join("\n");
           let prompt = `
 Nama kamu adalah Rover, AI yang santai, ramah, dan suka ngobrol dengan pengguna. 
 Kamu hanya menjawab kalau pesan bukan perintah. Gunakan gaya bahasa santai dan sedikit humoris.
