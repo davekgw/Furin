@@ -689,6 +689,633 @@ percentase: *${similarityPercentage}%*`;
         return;
       }
     }
+        try {
+          const isNumber = x => typeof x === "number" && !isNaN(x);
+          const user = global.db.users[m.sender];
+          if (typeof user !== "object") {
+            global.db.users[m.sender] = {};
+          }
+          const chats = global.db.chats[m.chat];
+          if (typeof chats !== "object") {
+            global.db.chats[m.chat] = {};
+          }
+          if (user) {
+            if (!isNumber(user.chip)) {
+              user.chip = 0;
+            }
+            if (!isNumber(user.level)) {
+              user.level = 1;
+            }
+            if (!isNumber(user.atm)) {
+              user.atm = 0;
+            }
+            if (!isNumber(user.fullatm)) {
+              user.fullatm = 0;
+            }
+            if (!isNumber(user.bank)) {
+              user.bank = 0;
+            }
+            if (!isNumber(user.health)) {
+              user.health = 100;
+            }
+            if (!isNumber(user.potion)) {
+              user.potion = 0;
+            }
+            if (!isNumber(user.trash)) {
+              user.trash = 0;
+            }
+            if (!isNumber(user.wood)) {
+              user.wood = 0;
+            }
+            if (!isNumber(user.rock)) {
+              user.rock = 0;
+            }
+            if (!isNumber(user.string)) {
+              user.string = 0;
+            }
+            if (!isNumber(user.petfood)) {
+              user.petfood = 0;
+            }
+            if (!isNumber(user.emerald)) {
+              user.emerald = 0;
+            }
+            if (!isNumber(user.diamond)) {
+              user.diamond = 0;
+            }
+            if (!isNumber(user.gold)) {
+              user.gold = 0;
+            }
+            if (!isNumber(user.botol)) {
+              user.botol = 0;
+            }
+            if (!isNumber(user.kardus)) {
+              user.kardus = 0;
+            }
+            if (!isNumber(user.kaleng)) {
+              user.kaleng = 0;
+            }
+            if (!isNumber(user.gelas)) {
+              user.gelas = 0;
+            }
+            if (!isNumber(user.plastik)) {
+              user.plastik = 0;
+            }
+            if (!isNumber(user.iron)) {
+              user.iron = 0;
+            }
+            if (!isNumber(user.common)) {
+              user.common = 0;
+            }
+            if (!isNumber(user.uncommon)) {
+              user.uncommon = 0;
+            }
+            if (!isNumber(user.mythic)) {
+              user.mythic = 0;
+            }
+            if (!isNumber(user.legendary)) {
+              user.legendary = 0;
+            }
+            if (!isNumber(user.umpan)) {
+              user.umpan = 0;
+            }
+            if (!isNumber(user.pet)) {
+              user.pet = 0;
+            }
+            if (!isNumber(user.paus)) {
+              user.paus = 0;
+            }
+            if (!isNumber(user.kepiting)) {
+              user.kepiting = 0;
+            }
+            if (!isNumber(user.gurita)) {
+              user.gurita = 0;
+            }
+            if (!isNumber(user.cumi)) {
+              user.cumi = 0;
+            }
+            if (!isNumber(user.buntal)) {
+              user.buntal = 0;
+            }
+            if (!isNumber(user.dory)) {
+              user.dory = 0;
+            }
+            if (!isNumber(user.lumba)) {
+              user.lumba = 0;
+            }
+            if (!isNumber(user.lobster)) {
+              user.lobster = 0;
+            }
+            if (!isNumber(user.hiu)) {
+              user.hiu = 0;
+            }
+            if (!isNumber(user.udang)) {
+              user.udang = 0;
+            }
+            if (!isNumber(user.orca)) {
+              user.orca = 0;
+            }
+            if (!isNumber(user.banteng)) {
+              user.banteng = 0;
+            }
+            if (!isNumber(user.gajah)) {
+              user.gajah = 0;
+            }
+            if (!isNumber(user.harimau)) {
+              user.harimau = 0;
+            }
+            if (!isNumber(user.kambing)) {
+              user.kambing = 0;
+            }
+            if (!isNumber(user.panda)) {
+              user.panda = 0;
+            }
+            if (!isNumber(user.buaya)) {
+              user.buaya = 0;
+            }
+            if (!isNumber(user.kerbau)) {
+              user.kerbau = 0;
+            }
+            if (!isNumber(user.sapi)) {
+              user.sapi = 0;
+            }
+            if (!isNumber(user.monyet)) {
+              user.monyet = 0;
+            }
+            if (!isNumber(user.babihutan)) {
+              user.babihutan = 0;
+            }
+            if (!isNumber(user.babi)) {
+              user.babi = 0;
+            }
+            if (!isNumber(user.ayam)) {
+              user.ayam = 0;
+            }
+            if (!isNumber(user.lastadventure)) {
+              user.lastadventure = 0;
+            }
+            if (!isNumber(user.lastkill)) {
+              user.lastkill = 0;
+            }
+            if (!isNumber(user.lastmisi)) {
+              user.lastmisi = 0;
+            }
+            if (!isNumber(user.lastdungeon)) {
+              user.lastdungeon = 0;
+            }
+            if (!isNumber(user.lastwar)) {
+              user.lastwar = 0;
+            }
+            if (!isNumber(user.lastsda)) {
+              user.lastsda = 0;
+            }
+            if (!isNumber(user.lastduel)) {
+              user.lastduel = 0;
+            }
+            if (!isNumber(user.lastmining)) {
+              user.lastmining = 0;
+            }
+            if (!isNumber(user.lasthunt)) {
+              user.lasthunt = 0;
+            }
+            if (!isNumber(user.lastgift)) {
+              user.lastgift = 0;
+            }
+            if (!isNumber(user.lastberkebon)) {
+              user.lastberkebon = 0;
+            }
+            if (!isNumber(user.lastdagang)) {
+              user.lastdagang = 0;
+            }
+            if (!isNumber(user.lasthourly)) {
+              user.lasthourly = 0;
+            }
+            if (!isNumber(user.lastbansos)) {
+              user.lastbansos = 0;
+            }
+            if (!isNumber(user.lastrampok)) {
+              user.lastrampok = 0;
+            }
+            if (!isNumber(user.lastclaim)) {
+              user.lastclaim = 0;
+            }
+            if (!isNumber(user.lastnebang)) {
+              user.lastnebang = 0;
+            }
+            if (!isNumber(user.lastweekly)) {
+              user.lastweekly = 0;
+            }
+            if (!isNumber(user.lastmonthly)) {
+              user.lastmonthly = 0;
+            }
+            if (!isNumber(user.apel)) {
+              user.apel = 0;
+            }
+            if (!isNumber(user.anggur)) {
+              user.anggur = 0;
+            }
+            if (!isNumber(user.jeruk)) {
+              user.jeruk = 0;
+            }
+            if (!isNumber(user.mangga)) {
+              user.mangga = 0;
+            }
+            if (!isNumber(user.pisang)) {
+              user.pisang = 0;
+            }
+            if (!isNumber(user.makanan)) {
+              user.makanan = 0;
+            }
+            if (!isNumber(user.bibitanggur)) {
+              user.bibitanggur = 0;
+            }
+            if (!isNumber(user.bibitpisang)) {
+              user.bibitpisang = 0;
+            }
+            if (!isNumber(user.bibitapel)) {
+              user.bibitapel = 0;
+            }
+            if (!isNumber(user.bibitmangga)) {
+              user.bibitmangga = 0;
+            }
+            if (!isNumber(user.bibitjeruk)) {
+              user.bibitjeruk = 0;
+            }
+            if (!isNumber(user.horse)) {
+              user.horse = 0;
+            }
+            if (!isNumber(user.horseexp)) {
+              user.horseexp = 0;
+            }
+            if (!isNumber(user.cat)) {
+              user.cat = 0;
+            }
+            if (!isNumber(user.catexp)) {
+              user.catexp = 0;
+            }
+            if (!isNumber(user.fox)) {
+              user.fox = 0;
+            }
+            if (!isNumber(user.foxhexp)) {
+              user.foxexp = 0;
+            }
+            if (!isNumber(user.dog)) {
+              user.foxexp = 0;
+            }
+            if (!isNumber(user.dogexp)) {
+              user.dogexp = 0;
+            }
+            if (!isNumber(user.robo)) {
+              user.robo = 0;
+            }
+            if (!isNumber(user.roboexp)) {
+              user.roboexp = 0;
+            }
+            if (!isNumber(user.horselastfeed)) {
+              user.horselastfeed = 0;
+            }
+            if (!isNumber(user.catlastfeed)) {
+              user.catlastfeed = 0;
+            }
+            if (!isNumber(user.robolastfeed)) {
+              user.robolastfeed = 0;
+            }
+            if (!isNumber(user.foxlastfeed)) {
+              user.foxlastfeed = 0;
+            }
+            if (!isNumber(user.doglastfeed)) {
+              user.doglastfeed = 0;
+            }
+            if (!isNumber(user.robo)) {
+              user.robo = 0;
+            }
+            if (!isNumber(user.robodurability)) {
+              user.robodurability = 0;
+            }
+            if (!isNumber(user.armor)) {
+              user.armor = 0;
+            }
+            if (!isNumber(user.armordurability)) {
+              user.armordurability = 0;
+            }
+            if (!isNumber(user.sword)) {
+              user.sword = 0;
+            }
+            if (!isNumber(user.sworddurability)) {
+              user.sworddurability = 0;
+            }
+            if (!isNumber(user.pickaxe)) {
+              user.pickaxe = 1;
+            }
+            if (!isNumber(user.pickaxedurability)) {
+              user.pickaxedurability = 0;
+            }
+            if (!isNumber(user.fishingrod)) {
+              user.fishingrod = 0;
+            }
+            if (!isNumber(user.fishingroddurability)) {
+              user.fishingroddurability = 0;
+            }
+            if (!user.premium) {
+              user.premiumTime = 0;
+            }
+            if (!("afkReason" in user)) {
+              user.afkReason = "";
+            }
+            if (!("premium" in user)) {
+              user.premium = false;
+            }
+          } else {
+            global.db.users[m.sender] = {
+              afkTime: -1,
+              afkReason: "",
+              premiumTime: 0,
+              premium: false,
+              money: 100000,
+              exp: 0,
+              level: 1,
+              limit: 20,
+              freelimit: 0,
+              lastclaim: 0,
+              skata: 0,
+              registered: false,
+              name: m.name,
+              pc: 0,
+              joinlimit: 1,
+              age: -1,
+              regTime: -1,
+              unreg: false,
+              afk: -1,
+              afkReason: "",
+              banned: false,
+              bannedTime: 0,
+              warning: 0,
+              level: 0,
+              rokets: 0,
+              role: "Beginner",
+              skill: "",
+              ojekk: 0,
+              WarnReason: "",
+              chip: 0,
+              bank: 0,
+              atm: 0,
+              fullatm: 0,
+              health: 1000,
+              potion: 10,
+              trash: 0,
+              wood: 0,
+              rock: 0,
+              string: 0,
+              emerald: 0,
+              diamond: 0,
+              gold: 0,
+              iron: 0,
+              common: 0,
+              uncommon: 0,
+              mythic: 0,
+              legendary: 0,
+              umpan: 0,
+              pet: 0,
+              horse: 0,
+              horseexp: 0,
+              horselastfeed: 0,
+              cat: 0,
+              catexp: 0,
+              catlastfeed: 0,
+              fox: 0,
+              foxexp: 0,
+              foxlastfeed: 0,
+              robo: 0,
+              roboexp: 0,
+              robolastfeed: 0,
+              dog: 0,
+              dogexp: 0,
+              doglastfeed: 0,
+              paus: 0,
+              kepiting: 0,
+              gurita: 0,
+              cumi: 0,
+              buntal: 0,
+              dory: 0,
+              lumba: 0,
+              lobster: 0,
+              hiu: 0,
+              udang: 0,
+              ikan: 0,
+              orca: 0,
+              banteng: 0,
+              harimau: 0,
+              gajah: 0,
+              kambing: 0,
+              buaya: 0,
+              kerbau: 0,
+              sapi: 0,
+              monyet: 0,
+              babi: 0,
+              ayam: 0,
+              armor: 1,
+              armordurability: 0,
+              sword: 1,
+              sworddurability: 0,
+              pickaxe: 1,
+              pickaxedurability: 0,
+              fishingrod: 0,
+              fishingroddurability: 0,
+              robo: 0,
+              robodurability: 0,
+              apel: 20,
+              pisang: 0,
+              anggur: 0,
+              mangga: 0,
+              jeruk: 0,
+              lastadventure: 0,
+              lastkill: 0,
+              lastmisi: 0,
+              lastdungeon: 0,
+              lastwar: 0,
+              lastsda: 0,
+              lastduel: 0,
+              lastmining: 0,
+              lasthunt: 0,
+              lastgift: 0,
+              lastberkebon: 0,
+              lastdagang: 0,
+              lasthourly: 0,
+              lastbansos: 0,
+              lastrampok: 0,
+              lastclaim: 0,
+              lastnebang: 0,
+              lastweekly: 0,
+              lastmonthly: 0
+            };
+          }
+          const setting = db.settings[botNumber];
+          if (typeof setting !== "object") {
+            db.settings[botNumber] = {};
+          }
+          if (setting) {
+            if (!("anticall" in setting)) {
+              setting.anticall = false;
+            }
+            if (!isNumber(setting.status)) {
+              setting.status = 0;
+            }
+            if (!("autobio" in setting)) {
+              setting.autobio = false;
+            }
+            if (!("autoread" in setting)) {
+              setting.autoread = false;
+            }
+            if (!("goodbye" in setting)) {
+              chats.goodbye = setting.auto_leaveMsg;
+            }
+            if (!("onlygrub" in setting)) {
+              setting.onlygrub = true;
+            }
+            if (!("onlypc" in setting)) {
+              setting.onlypc = false;
+            }
+            if (!("welcome" in setting)) {
+              chats.welcome = setting.auto_welcomeMsg;
+            }
+            if (!("onlygrub" in setting)) {
+              setting.onlygrub = true;
+            }
+          } else {
+            global.db.settings[botNumber] = {
+              anticall: false,
+              status: 0,
+              stock: 10,
+              autobio: false,
+              autoread: false,
+              auto_ai_grup: false,
+              goodbye: false,
+              onlygrub: false,
+              onlypc: false,
+              welcome: false,
+              autoread: false
+            };
+          }
+        } catch (err) {
+          console.error(err);
+        }
+        if (m.isGroup && isMute) {
+          if (!isAdmins && !DinzTheCreator) {
+            return;
+          }
+        }
+        if (!DinzBotz.public) {
+          if (!m.key.fromMe) {
+            return;
+          }
+        }
+        if (db.settings[botNumber].autoread) {
+          DinzBotz.readMessages([m.key]);
+        }
+        if (m.message && m.isGroup) {
+          console.log(`
+             [ GROUP CHAT LOG ]
+    ────────────────────────────────────
+     乂 WAKTU   : ${chalk.yellow(new Date().toISOString().slice(0, 19).replace("T", " "))}
+     乂 TEXT    : ${chalk.yellow(budy || m.mtype)}
+     乂 FROM    : ${chalk.red(pushname)} (${chalk.yellow(m.sender)})
+     乂 GRUB    : ${chalk.red(groupName)} (${chalk.yellow(m.chat)})
+    ────────────────────────────────────
+        `);
+        } else {
+          console.log(`
+             [ PRIVATE CHAT LOG ]
+    ────────────────────────────────────
+     乂 WAKTU   : ${chalk.yellow(new Date().toISOString().slice(0, 19).replace("T", " "))}
+     乂 TEXT    : ${chalk.yellow(budy || m.mtype)}
+     乂 FROM    : ${chalk.red(pushname)} (${chalk.yellow(m.sender)})
+    ────────────────────────────────────
+        `);
+        }
+        if (isCmd && !isUser) {
+          dinzyoimiyaverifikasiuser.push(sender);
+          fs.writeFileSync("./database/user.json", JSON.stringify(dinzyoimiyaverifikasiuser, null, 2));
+        }
+        DinzBotz.sendPresenceUpdate("unavailable", from);
+        for (let jid of mentionUser) {
+          let user = global.db.users[jid];
+          if (!user) {
+            continue;
+          }
+          let afkTime = user.afkTime;
+          if (!afkTime || afkTime < 0) {
+            continue;
+          }
+          let reason = user.afkReason || "";
+          m.reply(`Jangan Tag Dia!
+    Dia AFK ${reason ? "With Reason: " + reason : "No Reason"}
+    During ${clockString(new Date() - afkTime)}
+    `.trim());
+        }
+    
+        function clockString(ms) {
+          let h = Math.floor(ms / 3600000);
+          let m = Math.floor(ms / 60000) % 60;
+          let s = Math.floor(ms / 1000) % 60;
+          console.log({
+            ms,
+            h,
+            m,
+            s
+          });
+          return [h, m, s].map(v => v.toString().padStart(2, 0)).join(":");
+        }
+        if (db.users[m.sender].afkTime > -1) {
+          let user = global.db.users[m.sender];
+          m.reply(`
+    Berhenti AFK${user.afkReason ? " After: " + user.afkReason : ""}
+    During ${clockString(new Date() - user.afkTime)}
+    `.trim());
+          user.afkTime = -1;
+          user.afkReason = "";
+        }
+
+        function roundRect(ctx, x, y, width, height, radius, fill, stroke) {
+          if (typeof stroke === "undefined") {
+            stroke = true;
+          }
+          if (typeof radius === "number") {
+            radius = {
+              tl: radius,
+              tr: radius,
+              br: radius,
+              bl: radius
+            };
+          }
+          ctx.beginPath();
+          ctx.moveTo(x + radius.tl, y);
+          ctx.lineTo(x + width - radius.tr, y);
+          ctx.quadraticCurveTo(x + width, y, x + width, y + radius.tr);
+          ctx.lineTo(x + width, y + height - radius.br);
+          ctx.quadraticCurveTo(x + width, y + height, x + width - radius.br, y + height);
+          ctx.lineTo(x + radius.bl, y + height);
+          ctx.quadraticCurveTo(x, y + height, x, y + height - radius.bl);
+          ctx.lineTo(x, y + radius.tl);
+          ctx.quadraticCurveTo(x, y, x + radius.tl, y);
+          ctx.closePath();
+          if (fill) {
+            ctx.fill();
+          }
+          if (stroke) {
+            ctx.stroke();
+          }
+        }
+        //==================================================//
+        const configPath = "./lib/groupConfig.json";
+        function loadConfig() {
+          if (!fs.existsSync(configPath)) {
+            fs.writeFileSync(configPath, "{}");
+          }
+          return JSON.parse(fs.readFileSync(configPath, "utf-8"));
+        }
+        function saveConfig(config) {
+          fs.writeFileSync(configPath, JSON.stringify(config, null, 2));
+        }
+
     const SESSION_FILE = "./session/ai_sessions.json";
     let sessions = fs.existsSync(SESSION_FILE) ? JSON.parse(fs.readFileSync(SESSION_FILE)) : {};
     function saveSession() {
