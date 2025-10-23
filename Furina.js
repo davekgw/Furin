@@ -3008,11 +3008,9 @@ ${Array.from(room.jawaban, (jawaban, index) => {
         } else {
           return false;
         }
-      }).filter(v => v).join("
-")}
+      }).filter(v => v).join("")}
 
-${isSurrender ? "" : `+${room.winScore} Money tiap jawaban benar`}
-    `.trim();
+${isSurrender ? "" : `+${room.winScore} Money tiap jawaban benar`}`.trim();
       DinzBotz.sendMessage(from, {
         text: `${caption}`,
         mentions: [room.terjawab + "@s.whatsapp.net"]
