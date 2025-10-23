@@ -395,12 +395,12 @@ async function theFontaine() {
           
           Furina.public = true
           Furina.sendImage = async (jid, path, caption = '', quoted = '', options) => {
-               let buffer = Buffer.isBuffer(path) ? path : /^data:.*?\\/.*?;base64,/i.test(path) ? Buffer.from(path.split`,`[1], 'base64') : /^https?:\\/\\//.test(path) ? await (await getBuffer(path)) : fs.existsSync(path) ? fs.readFileSync(path) : Buffer.alloc(0)
+               let buffer = Buffer.isBuffer(path) ? path : /^data:.*?\/.*?;base64,/i.test(path) ? Buffer.from(path.split(',')[1], 'base64') : /^https?:\/\//.test(path) ? await getBuffer(path) : fs.existsSync(path) ? fs.readFileSync(path) : Buffer.alloc(0);
                return await Furina.sendMessage(jid, { image: buffer, caption: caption, ...options }, { quoted })
           }
           
           Furina.sendImageAsSticker = async (jid, path, quoted, options = {}) => {
-               let buff = Buffer.isBuffer(path) ? path : /^data:.*?\\/.*?;base64,/i.test(path) ? Buffer.from(path.split`,`[1], 'base64') : /^https?:\\/\\//.test(path) ? await (await getBuffer(path)) : fs.existsSync(path) ? fs.readFileSync(path) : Buffer.alloc(0)
+               let buff = Buffer.isBuffer(path) ? path : /^data:.*?\/.*?;base64,/i.test(path) ? Buffer.from(path.split(',')[1], 'base64'): /^https?:\/\//.test(path) ? await getBuffer(path): fs.existsSync(path)? fs.readFileSync(path): Buffer.alloc(0);
                let buffer
                if (options && (options.packname || options.author)) {
                     buffer = await writeExifImg(buff, options)
@@ -415,7 +415,7 @@ async function theFontaine() {
           }
           
           Furina.sendVideoAsSticker = async (jid, path, quoted, options = {}) => {
-               let buff = Buffer.isBuffer(path) ? path : /^data:.*?\\/.*?;base64,/i.test(path) ? Buffer.from(path.split`,`[1], 'base64') : /^https?:\\/\\//.test(path) ? await (await getBuffer(path)) : fs.existsSync(path) ? fs.readFileSync(path) : Buffer.alloc(0)
+               let buff = Buffer.isBuffer(path) ? path : /^data:.*?\/.*?;base64,/i.test(path) ? Buffer.from(path.split`,`[1], 'base64') : /^https?:\/\//.test(path) ? await (await getBuffer(path)) : fs.existsSync(path) ? fs.readFileSync(path) : Buffer.alloc(0)
                let buffer
                if (options && (options.packname || options.author)) {
                     buffer = await writeExifVid(buff, options)
@@ -487,7 +487,7 @@ async function theFontaine() {
           }
           Furina.getFile = async (PATH, save) => {
                let res
-               let data = Buffer.isBuffer(PATH) ? PATH : /^data:.*?\\/.*?;base64,/i.test(PATH) ? Buffer.from(PATH.split`,`[1], 'base64') : /^https?:\\/\\//.test(PATH) ? await (res = await getBuffer(PATH)) : fs.existsSync(PATH) ? (filename = PATH, fs.readFileSync(PATH)) : typeof PATH === 'string' ? PATH : Buffer.alloc(0)
+               let data = Buffer.isBuffer(PATH) ? PATH : /^data:.*?\/.*?;base64,/i.test(PATH) ? Buffer.from(PATH.split`,`[1], 'base64') : /^https?:\/\//.test(PATH) ? await (res = await getBuffer(PATH)) : fs.existsSync(PATH) ? (filename = PATH, fs.readFileSync(PATH)) : typeof PATH === 'string' ? PATH : Buffer.alloc(0)
                let type = await FileType.fromBuffer(data) || {
                     mime: 'application/octet-stream',
                     ext: '.bin'
@@ -587,7 +587,7 @@ async function theFontaine() {
      })): '')
 
      Furina.sendButImg = async (jid, path, teks, fke, but) => {
-          let img = Buffer.isBuffer(path) ? path : /^data:.*?\\/.*?;base64,/i.test(path) ? Buffer.from(path.split`,`[1], 'base64') : /^https?:\\/\\//.test(path) ? await (await getBuffer(path)) : fs.existsSync(path) ? fs.readFileSync(path) : Buffer.alloc(0)
+          let img = Buffer.isBuffer(path) ? path : /^data:.*?\/.*?;base64,/i.test(path) ? Buffer.from(path.split`,`[1], 'base64') : /^https?:\/\//.test(path) ? await (await getBuffer(path)) : fs.existsSync(path) ? fs.readFileSync(path) : Buffer.alloc(0)
           let fjejfjjjer = {
                image: img, 
                jpegThumbnail: img,
